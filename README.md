@@ -2,8 +2,6 @@
 
 <h1 align="center">👨‍💻Olá, eu me chamo João Paulo e sou um estudante de desenvolvimento de sistemas👨‍💻</h1>
 
-###
-
 <br clear="both">
 
 <div align="center">
@@ -28,7 +26,11 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="55" alt="docker logo"  />
 </div>
 
-###
+<br clear="both">
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=true&layout=compact&card_width=320&langs_count=3&theme=dark&hide_border=true&order=2" height="255" alt="languages graph"  />
+</div>
 
 <br clear="both">
 
@@ -43,17 +45,3 @@
     <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=AA0211&logoColor=FFFFFF&labelColor=&style=flat" height="40" alt="instagram logo"  />
   </a>
 </div>
-
-###
-
-###
-
-<br clear="both">
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=true&layout=compact&card_width=320&langs_count=3&theme=dark&hide_border=true&order=2" height="255" alt="languages graph"  />
-</div>
-
-###
-
-###
