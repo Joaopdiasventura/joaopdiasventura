@@ -1,5 +1,3 @@
-<br clear="both">
-
 <h1 align="center">👨‍💻Backend developer and systems development student👨‍💻</h1>
 <br clear="both">
 
