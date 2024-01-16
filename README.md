@@ -25,7 +25,7 @@
 <br clear="both">
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=true&layout=compact&card_width=320&langs_count=3&theme=dark&hide_border=true&order=2" height="255" alt="languages graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=true&layout=compact&card_width=310&langs_count=4&theme=dark&hide_border=true&order=2" height="255" alt="languages graph"  />
 </div>
 
 <br clear="both">
