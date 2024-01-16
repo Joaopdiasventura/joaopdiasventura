@@ -1,7 +1,6 @@
 <br clear="both">
 
-<h1 align="center">👨‍💻Desenvolvedor Backend e estudante de desenvolvimento de sistemas👨‍💻</h1>
-
+<h1 align="center">👨‍💻Backend developer and systems development student👨‍💻</h1>
 <br clear="both">
 
 <div align="center">
