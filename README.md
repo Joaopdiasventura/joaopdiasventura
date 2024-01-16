@@ -1,6 +1,6 @@
 <br clear="both">
 
-<h1 align="center">👨‍💻Olá, eu me chamo João Paulo e sou um estudante de desenvolvimento de sistemas👨‍💻</h1>
+<h1 align="center">👨‍💻Desenvolvedor Backend e estudante de desenvolvimento de sistemas👨‍💻</h1>
 
 <br clear="both">
 
