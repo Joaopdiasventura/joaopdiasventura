@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">👨‍💻 I'm a Back-end Developer<br>📚 I study system development at Etec de Guarulhos</p>
+<p align="left">👨‍💻 I'm a Back-end Developer<br>📚 Studying systems development at Etec de Guarulhos</p>
 
 ###
 
