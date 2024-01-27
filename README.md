@@ -50,7 +50,7 @@
 
 ###
 
-<h3 align="left">Skill's:</h3>
+<h3 align="left">Extra:</h3>
 
 ###
 
