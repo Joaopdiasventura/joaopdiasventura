@@ -1,22 +1,14 @@
-<br clear="both">
-
 <h1 align="center">Hi, my name is João Paulo</h1>
 
 ###
-
-<br clear="both">
 
 <p align="left">👨‍💻 I'm a Back-end Developer<br>📚 Studying system development at Etec de Guarulhos</p>
 
 ###
 
-<br clear="both">
-
 <h2 align="left">Technologies</h2>
 
 ###
-
-<br clear="both">
 
 <h3 align="left">Programin language:</h3>
 
@@ -36,8 +28,6 @@
 
 ###
 
-<br clear="both">
-
 <h3 align="left">Database:</h3>
 
 ###
@@ -54,8 +44,6 @@
 
 ###
 
-<br clear="both">
-
 <h3 align="left">Frameworks and libraries:</h3>
 
 ###
@@ -71,8 +59,6 @@
 </div>
 
 ###
-
-<br clear="both">
 
 <h3 align="left">Skill's:</h3>
 
