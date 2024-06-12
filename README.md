@@ -11,7 +11,7 @@
 
 ###
 
-<h3 align="left">Programin language:</h3>
+<h3 align="left">Programin languages:</h3>
 
 ###
 
@@ -27,7 +27,7 @@
 
 ###
 
-<h3 align="left">Database:</h3>
+<h3 align="left">Databases:</h3>
 
 ###
 
