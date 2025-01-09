@@ -2,7 +2,7 @@
 
 ### About Me
 
-👨‍💻 I'm a **Full-Stack Developer** currently working at [Representa Online](https://www.representa.online).  
+👨‍💻 I'm a **Full-Stack Developer** currently working at [Representa Online](https://www.linkedin.com/company/representa-online/).  
 📚 Studying **System Development** at **Etec de Guarulhos**.  
 🌱 Constantly learning to solve problems efficiently.
 
