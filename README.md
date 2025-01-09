@@ -1,84 +1,61 @@
+<h1 align="center">Hi, I'm João Paulo 👋</h1>
 
-<h1 align="center">Hi, my name is João Paulo</h1>
+### About Me
 
-###
+👨‍💻 I'm a **Full-Stack Developer** currently working at [Representa Online](https://www.representa.online).  
+📚 Studying **System Development** at **Etec de Guarulhos**.  
+🌱 Constantly learning to solve problems efficiently.
 
-<p align="left">👨‍💻 I'm a Full-Stack Developer working at <a href="https://www.representa.online" target="_blank">Representa Online</a><br>📚 Studying system development at Etec de Guarulhos</p>
+---
 
-###
+### 🛠️ Technologies I Use
 
-<h2 align="left">Technologies</h2>
-
-###
-
-<h3 align="left">Programming languages:</h3>
-
-###
-
+#### Programming Languages:
 <div align="left">
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40" alt="java logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40" alt="csharp logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="TypeScript logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="JavaScript logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40" alt="Java logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40" alt="C# logo" />
 </div>
 
-###
-
-<h3 align="left">Frameworks:</h3>
-
-###
-
+#### Frameworks and Libraries:
 <div align="left">
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/angular/DD0031" height="40" alt="angularjs logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/nestjs/E0234E" height="40" alt="nestjs logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="40" alt="spring logo"  />
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/dotnet/512BD4" height="40" alt="dot-net logo"  />
+  <img src="https://cdn.simpleicons.org/angular/DD0031" height="40" alt="Angular logo" />
+  <img src="https://cdn.simpleicons.org/nestjs/E0234E" height="40" alt="NestJS logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="40" alt="Spring logo" />
+  <img src="https://cdn.simpleicons.org/dotnet/512BD4" height="40" alt=".NET logo" />
 </div>
 
-###
-
-<h3 align="left">Databases:</h3>
-
-###
-
+#### Databases:
 <div align="left">
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" alt="mongodb logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="40" alt="mysql logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="40" alt="postgresql logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" height="40" alt="oracle logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" alt="MongoDB logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="40" alt="MySQL logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="40" alt="PostgreSQL logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" height="40" alt="Oracle logo" />
 </div>
 
-###
-
-<h3 align="left">Cloud:</h3>
-
-###
-
+#### Cloud and DevOps:
 <div align="left">
-  <img width="12" />
-  <img src="https://cdn.simpleicons.org/docker/2496ED" height="40" alt="docker logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="40" alt="firebase logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" height="40" alt="googlecloud logo"  />
-  <img width="12" />
-  <img src="https://skillicons.dev/icons?i=aws" height="40" alt="amazonwebservices logo"  />
+  <img src="https://cdn.simpleicons.org/docker/2496ED" height="40" alt="Docker logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="40" alt="Firebase logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" height="40" alt="Google Cloud logo" />
+  <img src="https://skillicons.dev/icons?i=aws" height="40" alt="AWS logo" />
 </div>
 
-###
+---
 
-<div align="left">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=4&theme=dark&hide_border=true&order=2&hide=HTML,CSS,SCSS" height="150" alt="languages graph"  />
+### 📊 GitHub Stats
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=joaopdiasventura&locale=en&hide_title=false&layout=donut&langs_count=4&theme=dark&hide_border=true&hide=html,css,scss" height="200" alt="Languages graph" />
 </div>
+
+---
+
+### 🌐 Where to Find Me
+- 🌎 [LinkedIn](https://www.linkedin.com/in/jo%C3%A3o-paulo-dias-ventura-314978293)  
+- 📧 [Email](joaopdias.dev@gmail.com)  
+- 💼 Always open to new opportunities and collaborations!
+
+---
+
+Thank you for visiting my profile! 🚀
