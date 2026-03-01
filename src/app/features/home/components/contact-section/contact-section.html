@@ -1,0 +1,87 @@
+﻿<section id="contact" class="section-padding section-muted" aria-labelledby="contact-title">
+  <div class="container-narrow contact-container">
+    <div appRevealOnScroll>
+      <h2 id="contact-title" class="section-title">{{ translate('contact.title') }}</h2>
+      <p class="section-subtitle">{{ translate('contact.subtitle') }}</p>
+    </div>
+
+    <form appRevealOnScroll [delayMs]="100" class="contact-form" [formRoot]="contactForm">
+      <div class="contact-form__grid">
+        <div class="field">
+          <label for="contact-name">{{ translate('contact.name') }}</label>
+          <input
+            id="contact-name"
+            type="text"
+            [formField]="contactForm.name"
+            [class.field-control--invalid]="controlInvalid(contactForm.name)"
+            [attr.aria-invalid]="controlInvalid(contactForm.name)"
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="field">
+          <label for="contact-email">{{ translate('contact.email') }}</label>
+          <input
+            id="contact-email"
+            type="email"
+            [formField]="contactForm.email"
+            [class.field-control--invalid]="controlInvalid(contactForm.email)"
+            [attr.aria-invalid]="controlInvalid(contactForm.email)"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="contact-message">{{ translate('contact.message') }}</label>
+        <textarea
+          id="contact-message"
+          rows="5"
+          [formField]="contactForm.message"
+          [class.field-control--invalid]="controlInvalid(contactForm.message)"
+          [attr.aria-invalid]="controlInvalid(contactForm.message)"
+        ></textarea>
+      </div>
+
+      <div class="contact-form__actions">
+        <button type="submit" class="contact-form__submit" [disabled]="isSubmitting()">
+          @if (submitStatus() == 'success') {
+            <img
+              ngSrc="/assets/icons/check-circle.svg"
+              width="16"
+              height="16"
+              class="icon-img icon-img--white"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>{{ translate('contact.sent') }}</span>
+          } @else {
+            <img
+              ngSrc="/assets/icons/send.svg"
+              width="16"
+              height="16"
+              class="icon-img icon-img--white"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>
+              {{ isSubmitting() ? translate('contact.sending') : translate('contact.send') }}
+            </span>
+          }
+        </button>
+
+        <p
+          class="contact-form__status"
+          [class.contact-form__status--error]="submitStatus() == 'error'"
+          aria-live="polite"
+        >
+          @if (submitStatus() == 'success') {
+            {{ translate('contact.sent') }}
+          } @else if (submitStatus() == 'error') {
+            {{ translate('contact.error') }}
+          }
+        </p>
+      </div>
+    </form>
+  </div>
+</section>

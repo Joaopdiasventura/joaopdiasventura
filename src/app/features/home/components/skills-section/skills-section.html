@@ -1,0 +1,30 @@
+﻿<section id="skills" class="section-padding" aria-labelledby="skills-title">
+  <div class="container-narrow">
+    <h2 id="skills-title" appRevealOnScroll class="section-title">
+      {{ translate('skills.title') }}
+    </h2>
+
+    <div class="skills-grid">
+      @for (group of skillGroups; track group.id; let index = $index) {
+        <article appRevealOnScroll [delayMs]="index * 100" class="skill-card">
+          <h3>{{ translate(group.titleKey) }}</h3>
+          <div class="skill-card__items">
+            @for (item of group.items; track item) {
+              <p>{{ item }}</p>
+            }
+          </div>
+        </article>
+      }
+    </div>
+
+    <div appRevealOnScroll [delayMs]="300" class="specialization-card">
+      <h3>{{ translate('skills.specialization') }}</h3>
+      <div class="specialization-card__list">
+        @for (specialization of specializations(); track specialization) {
+          <span>{{ specialization }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,41 @@
+﻿:host {
+  display: block;
+}
+
+.metrics {
+  background: color-mix(in srgb, var(--secondary) 60%, transparent);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding: var(--space-12) 0;
+}
+
+.metrics__grid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metrics__item {
+  text-align: center;
+}
+
+.metrics__value {
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 6vw, 2.5rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+.metrics__label {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  margin: 0.25rem 0 0;
+}
+
+@media (min-width: 768px) {
+  .metrics__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+

@@ -1,0 +1,28 @@
+﻿<footer class="footer">
+  <div class="container-wide footer__inner">
+    <p>
+      © {{ currentYear }} João Paulo Dias Ventura.
+      {{ translate('footer.rights') }}
+    </p>
+
+    <div class="footer__links">
+      @for (link of socialLinks; track link.href) {
+        <a
+          [href]="link.href"
+          [attr.aria-label]="link.ariaLabel"
+          [attr.target]="link.external ? '_blank' : null"
+          [attr.rel]="link.external ? 'noopener noreferrer' : null"
+        >
+          <img
+            [ngSrc]="iconPath(link)"
+            width="20"
+            height="20"
+            class="icon-img icon-img--muted"
+            alt=""
+            aria-hidden="true"
+          />
+        </a>
+      }
+    </div>
+  </div>
+</footer>

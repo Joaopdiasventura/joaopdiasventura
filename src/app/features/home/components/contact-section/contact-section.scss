@@ -1,0 +1,134 @@
+﻿:host {
+  display: block;
+}
+
+.contact-container {
+  max-width: 42rem;
+}
+
+.section-title {
+  color: var(--foreground);
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4vw, 2.15rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--muted-foreground);
+  margin: 0 0 var(--space-8);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-form__grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 0.875rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
+  outline: none;
+}
+
+.field-control--invalid {
+  border-color: var(--primary);
+}
+
+.contact-form__actions {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.contact-form__submit {
+  align-items: center;
+  background: var(--primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.contact-form__submit:hover {
+  background: var(--primary-hover);
+}
+
+.contact-form__submit:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.contact-form__submit:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.contact-form__submit img {
+  display: block;
+}
+
+.contact-form__status {
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+  margin: 0;
+  min-height: 1.2rem;
+}
+
+.contact-form__status--error {
+  color: var(--primary);
+}
+
+@media (min-width: 640px) {
+  .contact-form__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+

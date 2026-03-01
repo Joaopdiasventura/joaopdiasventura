@@ -1,0 +1,51 @@
+﻿<section id="education" class="section-padding" aria-labelledby="education-title">
+  <div class="container-narrow">
+    <h2 id="education-title" appRevealOnScroll class="section-title">
+      {{ translate('edu.title') }}
+    </h2>
+
+    <div class="education-grid">
+      @for (item of educationItems; track item.id; let index = $index) {
+        <article appRevealOnScroll [delayMs]="index * 100" class="education-card">
+          <div class="education-card__icon" aria-hidden="true">
+            <img
+              ngSrc="/assets/icons/graduation-cap.svg"
+              width="20"
+              height="20"
+              class="icon-img icon-img--primary"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+
+          <div class="education-card__content">
+            <h3>{{ translate(item.courseKey) }}</h3>
+            <p class="education-card__school">{{ translate(item.schoolKey) }}</p>
+            <p class="education-card__period">{{ translate(item.periodKey) }}</p>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div appRevealOnScroll [delayMs]="200" class="certifications">
+      <h3>{{ translate('cert.title') }}</h3>
+
+      <div class="certifications__list">
+        @for (certificationKey of certificationKeys; track certificationKey) {
+          <p>
+            <img
+              ngSrc="/assets/icons/award.svg"
+              width="16"
+              height="16"
+              class="icon-img icon-img--primary"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>{{ translate(certificationKey) }}</span>
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+

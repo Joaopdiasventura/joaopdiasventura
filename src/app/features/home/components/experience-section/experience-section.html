@@ -1,0 +1,33 @@
+﻿<section
+  id="experience"
+  class="section-padding section-muted"
+  aria-labelledby="experience-title"
+>
+  <div class="container-narrow">
+    <h2 id="experience-title" appRevealOnScroll class="section-title">
+      {{ translate('exp.title') }}
+    </h2>
+
+    <div class="timeline">
+      <div class="timeline__items">
+        @for (experience of experiences; track experience.id; let index = $index) {
+          <article appRevealOnScroll [delayMs]="index * 150" class="timeline__item">
+            <div class="timeline__card">
+              <div class="timeline__header">
+                <div>
+                  <h3>{{ translate(experience.roleKey) }}</h3>
+                  <p class="timeline__company">{{ translate(experience.companyKey) }}</p>
+                </div>
+                <p class="timeline__period">{{ translate(experience.periodKey) }}</p>
+              </div>
+
+              <p class="timeline__description">
+                {{ translate(experience.descriptionKey) }}
+              </p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+﻿:host {
+  display: block;
+}
+
+.not-found {
+  align-items: center;
+  background: var(--secondary);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-6);
+}
+
+.not-found__content {
+  text-align: center;
+}
+
+.not-found h1 {
+  color: var(--foreground);
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin: 0 0 1rem;
+}
+
+.not-found p {
+  color: var(--muted-foreground);
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.not-found a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.not-found a:hover {
+  color: var(--primary-hover);
+}
+
+.not-found a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+

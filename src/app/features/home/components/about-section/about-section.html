@@ -1,0 +1,64 @@
+﻿<section id="about" class="section-padding" aria-labelledby="about-title">
+  <div class="container-narrow">
+    <h2 id="about-title" appRevealOnScroll class="section-title">
+      {{ translate('about.title') }}
+    </h2>
+
+    <div class="about-grid">
+      <div appRevealOnScroll [delayMs]="100">
+        <p class="about-text">{{ translate('about.p1') }}</p>
+        <p class="about-text">{{ translate('about.p2') }}</p>
+      </div>
+
+      <div appRevealOnScroll [delayMs]="200" class="about-side">
+        <div class="about-contact">
+          <img
+            class="icon icon-img icon-img--primary"
+            ngSrc="/assets/icons/map-pin.svg"
+            width="16"
+            height="16"
+            alt=""
+            aria-hidden="true"
+          />
+          <span>{{ translate('about.location') }}</span>
+        </div>
+
+        <div class="about-contact">
+          <img
+            class="icon icon-img icon-img--primary"
+            ngSrc="/assets/icons/envelope.svg"
+            width="16"
+            height="16"
+            alt=""
+            aria-hidden="true"
+          />
+          <a [href]="'mailto:' + translate('about.email')">
+            {{ translate('about.email') }}
+          </a>
+        </div>
+
+        <div class="about-contact">
+          <img
+            class="icon icon-img icon-img--primary"
+            ngSrc="/assets/icons/phone.svg"
+            width="16"
+            height="16"
+            alt=""
+            aria-hidden="true"
+          />
+          <span>{{ translate('about.phone') }}</span>
+        </div>
+
+        <div class="about-languages">
+          <h3>{{ translate('languages.title') }}</h3>
+          <div class="about-languages__list">
+            @for (languageKey of languageKeys; track languageKey) {
+              <p>{{ translate(languageKey) }}</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

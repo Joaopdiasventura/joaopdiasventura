@@ -1,0 +1,105 @@
+$font-heading: 'main', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  sans-serif;
+$font-body: 'normal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  sans-serif;
+
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-10: 2.5rem;
+$space-12: 3rem;
+$space-16: 4rem;
+$space-20: 5rem;
+
+$radius-sm: 0.25rem;
+$radius-md: 0.375rem;
+$radius-lg: 0.625rem;
+
+$max-width-wide: 72rem;
+$max-width-narrow: 64rem;
+
+:root {
+  --background: hsl(0deg 0% 98%);
+  --foreground: hsl(0deg 0% 8%);
+
+  --card: hsl(0deg 0% 100%);
+  --card-foreground: hsl(0deg 0% 8%);
+
+  --primary: hsl(0deg 100% 35%);
+  --primary-foreground: hsl(0deg 0% 100%);
+  --primary-hover: hsl(0deg 100% 40%);
+  --primary-soft: hsl(0deg 30% 96%);
+
+  --secondary: hsl(0deg 5% 93%);
+  --secondary-foreground: hsl(0deg 0% 12%);
+  --muted-foreground: hsl(0deg 0% 40%);
+  --accent-foreground: hsl(0deg 100% 35%);
+
+  --border: hsl(0deg 5% 88%);
+  --ring: hsl(0deg 100% 35%);
+  --icon-filter-primary: invert(10%) sepia(56%) saturate(6796%)
+    hue-rotate(4deg) brightness(108%) contrast(130%);
+  --icon-filter-muted: invert(33%) sepia(98%) saturate(0%) hue-rotate(276deg)
+    brightness(99%) contrast(95%);
+  --icon-filter-foreground: invert(0%) sepia(17%) saturate(1063%)
+    hue-rotate(234deg) brightness(99%) contrast(84%);
+  --icon-filter-white: invert(100%) sepia(6%) saturate(0%) hue-rotate(359deg)
+    brightness(107%) contrast(105%);
+
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+
+  --space-1: #{$space-1};
+  --space-2: #{$space-2};
+  --space-3: #{$space-3};
+  --space-4: #{$space-4};
+  --space-5: #{$space-5};
+  --space-6: #{$space-6};
+  --space-8: #{$space-8};
+  --space-10: #{$space-10};
+  --space-12: #{$space-12};
+  --space-16: #{$space-16};
+  --space-20: #{$space-20};
+
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+
+  --max-width-wide: #{$max-width-wide};
+  --max-width-narrow: #{$max-width-narrow};
+
+  --shadow-lg: 0 18px 42px color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.dark {
+  --background: hsl(0deg 0% 6%);
+  --foreground: hsl(0deg 0% 92%);
+
+  --card: hsl(0deg 0% 9%);
+  --card-foreground: hsl(0deg 0% 92%);
+
+  --primary: hsl(0deg 85% 50%);
+  --primary-foreground: hsl(0deg 0% 100%);
+  --primary-hover: hsl(0deg 85% 55%);
+  --primary-soft: hsl(0deg 20% 12%);
+
+  --secondary: hsl(0deg 3% 15%);
+  --secondary-foreground: hsl(0deg 0% 90%);
+  --muted-foreground: hsl(0deg 0% 60%);
+  --accent-foreground: hsl(0deg 85% 55%);
+
+  --border: hsl(0deg 3% 18%);
+  --ring: hsl(0deg 85% 50%);
+  --icon-filter-primary: invert(12%) sepia(100%) saturate(6565%)
+    hue-rotate(357deg) brightness(96%) contrast(91%);
+  --icon-filter-muted: invert(63%) sepia(0%) saturate(0%) hue-rotate(91deg)
+    brightness(97%) contrast(88%);
+  --icon-filter-foreground: invert(100%) sepia(9%) saturate(278%)
+    hue-rotate(276deg) brightness(111%) contrast(84%);
+
+  --shadow-lg: 0 18px 42px color-mix(in srgb, var(--foreground) 18%, transparent);
+}

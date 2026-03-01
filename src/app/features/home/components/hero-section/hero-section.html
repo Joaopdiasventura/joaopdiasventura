@@ -1,0 +1,70 @@
+﻿<section class="hero" aria-labelledby="hero-title">
+  <div class="container-wide hero__container">
+    <div class="hero__content">
+      <div appRevealOnScroll>
+        <span class="hero__role">{{ translate('hero.role') }}</span>
+      </div>
+
+      <h1 id="hero-title" appRevealOnScroll [delayMs]="100" class="hero__title">
+        João Paulo
+        <br />
+        <span class="text-gradient">Dias Ventura</span>
+      </h1>
+
+      <p appRevealOnScroll [delayMs]="200" class="hero__summary">
+        {{ translate('hero.summary') }}
+      </p>
+
+      <div appRevealOnScroll [delayMs]="300" class="hero__actions">
+        <a class="button button--primary" [href]="languageService.cvPath()" download>
+          <img
+            ngSrc="/assets/icons/download.svg"
+            width="16"
+            height="16"
+            class="icon-img icon-img--white"
+            alt=""
+            aria-hidden="true"
+          />
+          <span>{{ translate('hero.cta.cv') }}</span>
+        </a>
+
+        <a class="button button--secondary" [routerLink]="sectionRoute('contact')">
+          <img
+            ngSrc="/assets/icons/envelope.svg"
+            width="16"
+            height="16"
+            class="icon-img icon-img--foreground"
+            alt=""
+            aria-hidden="true"
+          />
+          <span>{{ translate('hero.cta.contact') }}</span>
+        </a>
+
+        <a class="button button--ghost" [routerLink]="sectionRoute('projects')">
+          <span>{{ translate('hero.cta.projects') }}</span>
+          <img
+            ngSrc="/assets/icons/arrow-down.svg"
+            width="16"
+            height="16"
+            class="icon-img icon-img--primary"
+            alt=""
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+    </div>
+
+    <div appRevealOnScroll [delayMs]="200" class="hero__media">
+      <div class="hero__photo-frame">
+        <img
+          ngSrc="/assets/profile.png"
+          width="256"
+          height="256"
+          priority
+          alt="João Paulo Dias Ventura"
+        />
+      </div>
+      <div class="hero__photo-shadow" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>

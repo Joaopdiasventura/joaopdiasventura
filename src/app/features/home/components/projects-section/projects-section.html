@@ -1,0 +1,53 @@
+﻿<section
+  id="projects"
+  class="section-padding section-muted"
+  aria-labelledby="projects-title"
+>
+  <div class="container-narrow">
+    <h2 id="projects-title" appRevealOnScroll class="section-title">
+      {{ translate('projects.title') }}
+    </h2>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.id; let index = $index) {
+        <article appRevealOnScroll [delayMs]="index * 150" class="project-card">
+          <div class="project-card__icon" aria-hidden="true">
+            <img
+              [ngSrc]="iconPath(project.icon)"
+              width="20"
+              height="20"
+              class="project-card__icon-image"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+
+          <h3>{{ translate(project.nameKey) }}</h3>
+
+          <p class="project-card__description">
+            {{ translate(project.descriptionKey) }}
+          </p>
+
+          <div class="project-card__tags">
+            @for (tag of project.tags; track tag) {
+              <span>{{ tag }}</span>
+            }
+          </div>
+
+          <a
+            class="project-card__live-link"
+            [href]="project.liveUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="
+              translate('projects.cta.live') + ': ' + translate(project.nameKey)
+            "
+          >
+            {{ translate('projects.cta.live') }}
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

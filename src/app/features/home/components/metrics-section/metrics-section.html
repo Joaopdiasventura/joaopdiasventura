@@ -1,0 +1,13 @@
+﻿<section class="metrics" aria-label="Metrics">
+  <div class="container-wide">
+    <div class="metrics__grid">
+      @for (metric of metrics; track metric.id; let index = $index) {
+        <div appRevealOnScroll [delayMs]="index * 100" class="metrics__item">
+          <p class="metrics__value">{{ translate(metric.valueKey) }}</p>
+          <p class="metrics__label">{{ translate(metric.labelKey) }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+

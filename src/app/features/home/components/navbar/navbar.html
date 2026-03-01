@@ -1,0 +1,88 @@
+﻿<nav class="navbar" aria-label="Primary">
+  <div class="container-wide navbar__inner">
+    <a
+      class="navbar__brand"
+      [routerLink]="homeRoute()"
+      [attr.aria-label]="translate('nav.brand')"
+      (click)="closeMenu()"
+    >
+      <img ngSrc="/assets/icon.svg" width="45" height="45" priority alt="JD Logo" />
+    </a>
+
+    <div class="navbar__links" aria-label="Section navigation">
+      @for (item of navItems; track item.id) {
+        <a class="navbar__link" [routerLink]="sectionRoute(item.id)">
+          {{ translate(item.labelKey) }}
+        </a>
+      }
+    </div>
+
+    <div class="navbar__actions">
+      <button
+        type="button"
+        class="icon-button icon-button--lang"
+        [attr.aria-label]="translate('nav.toggleLanguage')"
+        (click)="toggleLanguageRoute()"
+      >
+        <img
+          ngSrc="/assets/icons/globe.svg"
+          width="16"
+          height="16"
+          class="icon-img icon-img--muted"
+          alt=""
+          aria-hidden="true"
+        />
+        <span>{{ languageService.language().toUpperCase() }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="icon-button"
+        [attr.aria-label]="translate('nav.toggleTheme')"
+        (click)="themeService.toggleTheme()"
+      >
+        <img
+          [ngSrc]="themeIconPath()"
+          width="16"
+          height="16"
+          alt=""
+          aria-hidden="true"
+          class="icon-img icon-img--muted theme-icon"
+        />
+      </button>
+
+      <button
+        type="button"
+        class="icon-button navbar__menu-toggle"
+        [attr.aria-label]="isMenuOpen() ? translate('nav.closeMenu') : translate('nav.openMenu')"
+        aria-controls="mobile-menu"
+        [attr.aria-expanded]="isMenuOpen()"
+        (click)="toggleMenu()"
+      >
+        <img
+          [ngSrc]="menuToggleIconPath()"
+          width="18"
+          height="18"
+          class="icon-img icon-img--muted"
+          alt=""
+          aria-hidden="true"
+        />
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="mobile-menu"
+    [class.mobile-menu--open]="isMenuOpen()"
+    [attr.aria-hidden]="!isMenuOpen()"
+  >
+    <div class="container-wide mobile-menu__content">
+      @for (item of navItems; track item.id) {
+        <a class="mobile-menu__link" [routerLink]="sectionRoute(item.id)" (click)="closeMenu()">
+          {{ translate(item.labelKey) }}
+        </a>
+      }
+    </div>
+  </div>
+</nav>
