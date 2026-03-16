@@ -1,6 +1,10 @@
 <section class="hero" aria-labelledby="hero-title" data-scene-section>
   <div class="hero__background" aria-hidden="true">
-    <app-brand-scene />
+    @defer (on idle) {
+      <app-brand-scene />
+    } @placeholder {
+      <div class="hero__scene-placeholder"></div>
+    }
     <span class="hero__grain"></span>
     <span class="hero__gradient hero__gradient--top"></span>
     <span class="hero__gradient hero__gradient--bottom"></span>

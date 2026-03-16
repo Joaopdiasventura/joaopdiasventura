@@ -36,6 +36,8 @@ type IdleWindow = Window & {
 export class BrandScene implements AfterViewInit, OnDestroy {
   public readonly variant = input<'hero' | 'case'>('hero');
 
+  private static readonly HERO_IDLE_TIMEOUT_MS = 1800;
+
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
@@ -132,8 +134,9 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     viewport: HTMLElement,
     reducedMotion: boolean,
   ): () => void {
+    const isHeroVariant = this.variant() == 'hero';
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(this.variant() == 'hero' ? 34 : 38, 1, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(isHeroVariant ? 34 : 38, 1, 0.1, 100);
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
@@ -141,12 +144,12 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     });
 
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.variant() == 'hero' ? 1.35 : 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isHeroVariant ? 1.35 : 1.5));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.04;
 
-    camera.position.set(0, 0.25, this.variant() == 'hero' ? 7.8 : 7.2);
+    camera.position.set(0, 0.25, isHeroVariant ? 7.8 : 7.2);
 
     const ambient = new THREE.AmbientLight(0xfff3ea, 1.2);
     const keyLight = new THREE.DirectionalLight(0xff746f, 2.1);
@@ -167,7 +170,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       new THREE.PointsMaterial({
         color: 0xf8a0a0,
         opacity: 0.38,
-        size: this.variant() == 'hero' ? 0.06 : 0.05,
+        size: isHeroVariant ? 0.06 : 0.05,
         sizeAttenuation: true,
         transparent: true,
       }),
@@ -268,7 +271,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
     const pointer = { x: 0, y: 0 };
     const section = this.host.nativeElement.closest<HTMLElement>('[data-scene-section]');
-    const defaultProgress = this.variant() == 'hero' ? 0.14 : 0.08;
+    const defaultProgress = isHeroVariant ? 0.14 : 0.08;
 
     let frameId = 0;
     let progressFrameId = 0;
@@ -279,6 +282,9 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     let sectionHeight = 0;
     let viewportHeight = window.innerHeight;
     let sceneProgress = defaultProgress;
+    let lastFrameTime = 0;
+    let idleTimeoutId = 0;
+    const targetFrameDuration = isHeroVariant ? 1000 / 30 : 1000 / 36;
 
     const updateSize = (): void => {
       const width = viewport.clientWidth;
@@ -318,17 +324,48 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       sceneProgress = Math.max(0, Math.min(progress, 1));
     };
 
-    const renderFrame = (): void => {
+    const scheduleIdleStop = (): void => {
+      if (!isHeroVariant || reducedMotion) {
+        return;
+      }
+
+      if (idleTimeoutId != 0) {
+        window.clearTimeout(idleTimeoutId);
+      }
+
+      idleTimeoutId = window.setTimeout(() => {
+        idleTimeoutId = 0;
+        stopRender();
+      }, BrandScene.HERO_IDLE_TIMEOUT_MS);
+    };
+
+    const wakeScene = (): void => {
+      if (!isVisible || document.hidden) {
+        return;
+      }
+
+      scheduleIdleStop();
+      startRender();
+    };
+
+    const renderFrame = (timestamp: number): void => {
       frameId = 0;
 
       if (isDestroyed || !renderActive) {
         return;
       }
 
-      const targetRotationY = pointer.x * 0.3 + sceneProgress * (this.variant() == 'hero' ? 1.15 : 0.72);
+      if (lastFrameTime != 0 && timestamp - lastFrameTime < targetFrameDuration) {
+        frameId = window.requestAnimationFrame(renderFrame);
+        return;
+      }
+
+      lastFrameTime = timestamp;
+
+      const targetRotationY = pointer.x * 0.3 + sceneProgress * (isHeroVariant ? 1.15 : 0.72);
       const targetRotationX = pointer.y * 0.18 - 0.16 - sceneProgress * 0.16;
       const targetPositionY = 0.24 + sceneProgress * 0.48;
-      const targetPositionZ = (this.variant() == 'hero' ? 7.8 : 7.2) - sceneProgress * 1.2;
+      const targetPositionZ = (isHeroVariant ? 7.8 : 7.2) - sceneProgress * 1.2;
 
       rig.rotation.y += (targetRotationY - rig.rotation.y) * 0.045;
       rig.rotation.x += (targetRotationX - rig.rotation.x) * 0.045;
@@ -349,11 +386,17 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       }
 
       renderActive = true;
+      lastFrameTime = 0;
       frameId = window.requestAnimationFrame(renderFrame);
     };
 
     const stopRender = (): void => {
       renderActive = false;
+
+      if (idleTimeoutId != 0) {
+        window.clearTimeout(idleTimeoutId);
+        idleTimeoutId = 0;
+      }
 
       if (frameId != 0) {
         window.cancelAnimationFrame(frameId);
@@ -364,6 +407,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     const syncProgress = (): void => {
       progressFrameId = 0;
       updateScrollProgress();
+      wakeScene();
     };
 
     const scheduleProgressSync = (): void => {
@@ -390,7 +434,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
         isVisible = Boolean(entry?.isIntersecting);
 
         if (isVisible) {
-          startRender();
+          wakeScene();
           return;
         }
 
@@ -408,6 +452,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
       pointer.x = event.clientX / Math.max(window.innerWidth, 1) - 0.5;
       pointer.y = event.clientY / Math.max(window.innerHeight, 1) - 0.5;
+      wakeScene();
     };
 
     const handleVisibilityChange = (): void => {
@@ -416,7 +461,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
         return;
       }
 
-      startRender();
+      wakeScene();
     };
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
@@ -431,7 +476,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     if (reducedMotion) {
       renderer.render(scene, camera);
     } else {
-      startRender();
+      wakeScene();
     }
 
     return () => {
@@ -440,6 +485,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
       if (progressFrameId != 0) {
         window.cancelAnimationFrame(progressFrameId);
+      }
+
+      if (idleTimeoutId != 0) {
+        window.clearTimeout(idleTimeoutId);
       }
 
       window.removeEventListener('pointermove', handlePointerMove);

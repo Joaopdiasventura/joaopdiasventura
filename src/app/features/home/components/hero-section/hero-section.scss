@@ -21,6 +21,11 @@
   position: absolute;
 }
 
+.hero__scene-placeholder {
+  inset: 0;
+  position: absolute;
+}
+
 .hero__grain,
 .hero__gradient {
   inset: 0;
@@ -155,10 +160,13 @@
 
 .hero__portrait {
   display: block;
+  justify-self: end;
 }
 
 .hero__portrait-shell {
+  max-width: 15.75rem;
   overflow: hidden;
+  width: 100%;
 }
 
 .hero__portrait-media {
