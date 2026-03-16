@@ -92,6 +92,10 @@
   gap: 0.9rem;
 }
 
+.case-study__meta-card-wrap {
+  min-width: 0;
+}
+
 .case-study__meta-card,
 .case-study__media-frame,
 .case-study__text-block,
@@ -208,7 +212,7 @@
   text-transform: uppercase;
 }
 
-.case-study__media-panel h2,
+.case-study__media-panel h3,
 .case-study__section-heading h2,
 .case-study__decision-card h3,
 .case-study__next h2 {
@@ -380,13 +384,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .case-study__hero-meta > :last-child {
+    grid-column: 1 / -1;
+  }
+
   .case-study__meta-card {
     min-height: 100%;
     padding: 1.15rem 1.2rem;
-  }
-
-  .case-study__meta-card:last-child {
-    grid-column: 1 / -1;
   }
 
   .case-study__meta-card strong {

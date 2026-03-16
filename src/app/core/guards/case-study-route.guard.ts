@@ -1,8 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { CASE_STUDIES } from '../data/portfolio.data';
-
-const CASE_STUDY_SLUGS = new Set<string>(CASE_STUDIES.map((caseStudy) => caseStudy.slug));
+import { CASE_STUDY_SLUGS } from '../data/case-study-previews.data';
 
 export const caseStudyRouteGuard: CanActivateFn = (route) => {
   const router = inject(Router);

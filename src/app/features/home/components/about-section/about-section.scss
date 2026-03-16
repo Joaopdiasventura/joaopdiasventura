@@ -189,10 +189,13 @@
     padding: 1.75rem;
   }
 
-  .manifesto__profile {
-    padding: 1.55rem;
+  .manifesto__profile-wrap {
     position: sticky;
     top: 7rem;
+  }
+
+  .manifesto__profile {
+    padding: 1.55rem;
   }
 
   .manifesto__principles {

@@ -16,7 +16,7 @@
       </p>
 
       <div appRevealOnScroll [delayMs]="220" [preset]="'panel'" class="contact__panel-wrap">
-        <div class="contact__links" data-viewport-tilt="card">
+        <div appViewportTilt="card" class="contact__links">
           @for (link of content.links; track link.label.en) {
             <a
               class="action-link action-link--surface"
@@ -32,7 +32,7 @@
       </div>
 
       <div appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="contact__panel-wrap">
-        <article class="contact__base" data-viewport-tilt="card">
+        <article appViewportTilt="card" class="contact__base">
           <div class="contact__base-grid">
             @for (item of content.baseItems; track item.label.en) {
               <div class="contact__base-item">
@@ -50,7 +50,7 @@
     </div>
 
     <div appRevealOnScroll [delayMs]="120" [preset]="'panel'" class="contact-form-wrap">
-      <form class="contact-form" [formRoot]="contactForm" data-viewport-tilt="card">
+      <form appViewportTilt="card" class="contact-form" novalidate (submit)="submit($event)">
         <div class="contact-form__chrome" aria-hidden="true">
           <span></span>
           <span></span>
@@ -62,14 +62,17 @@
             <label for="contact-name">{{ copy(content.formName) }}</label>
             <div
               class="field__shell"
-              [class.field__shell--invalid]="controlInvalid(contactForm.name)"
+              [class.field__shell--invalid]="controlInvalid('name')"
             >
               <input
                 id="contact-name"
                 type="text"
-                [formField]="contactForm.name"
-                [attr.aria-invalid]="controlInvalid(contactForm.name)"
+                [value]="formValue().name"
+                [attr.aria-invalid]="controlInvalid('name')"
                 autocomplete="name"
+                required
+                (blur)="markTouched('name')"
+                (input)="updateField('name', $event)"
               />
             </div>
           </div>
@@ -78,14 +81,17 @@
             <label for="contact-email">{{ copy(content.formEmail) }}</label>
             <div
               class="field__shell"
-              [class.field__shell--invalid]="controlInvalid(contactForm.email)"
+              [class.field__shell--invalid]="controlInvalid('email')"
             >
               <input
                 id="contact-email"
                 type="email"
-                [formField]="contactForm.email"
-                [attr.aria-invalid]="controlInvalid(contactForm.email)"
+                [value]="formValue().email"
+                [attr.aria-invalid]="controlInvalid('email')"
                 autocomplete="email"
+                required
+                (blur)="markTouched('email')"
+                (input)="updateField('email', $event)"
               />
             </div>
           </div>
@@ -95,13 +101,16 @@
           <label for="contact-message">{{ copy(content.formMessage) }}</label>
           <div
             class="field__shell field__shell--textarea"
-            [class.field__shell--invalid]="controlInvalid(contactForm.message)"
+            [class.field__shell--invalid]="controlInvalid('message')"
           >
             <textarea
               id="contact-message"
               rows="6"
-              [formField]="contactForm.message"
-              [attr.aria-invalid]="controlInvalid(contactForm.message)"
+              [value]="formValue().message"
+              [attr.aria-invalid]="controlInvalid('message')"
+              required
+              (blur)="markTouched('message')"
+              (input)="updateField('message', $event)"
             ></textarea>
           </div>
         </div>

@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CAPABILITY_CLUSTERS, CAPABILITY_HEADING } from '../../../../core/data/portfolio.data';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
 
 @Component({
   selector: 'app-skills-section',
-  imports: [RevealOnScrollDirective],
+  imports: [RevealOnScrollDirective, ViewportTiltDirective],
   templateUrl: './skills-section.html',
   styleUrl: './skills-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 const CONTACT_API_ENDPOINT = 'https://joaopdias-email.vercel.app/';
 
@@ -20,8 +18,6 @@ interface EmailApiErrorResponse {
   error: string;
 }
 
-type EmailApiResponse = EmailApiSuccessResponse | EmailApiErrorResponse;
-
 export interface ContactMessagePayload {
   name: string;
   email: string;
@@ -30,23 +26,48 @@ export interface ContactMessagePayload {
 
 @Injectable({ providedIn: 'root' })
 export class ContactEmailApiService {
-  private readonly httpClient = inject(HttpClient);
-
   public async sendMessage(payload: ContactMessagePayload): Promise<void> {
     const requestBody = this.buildRequest(payload);
-    const response = await firstValueFrom(
-      this.httpClient.post<EmailApiResponse>(CONTACT_API_ENDPOINT, requestBody),
-    );
+    const response = await fetch(CONTACT_API_ENDPOINT, {
+      body: JSON.stringify(requestBody),
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'POST',
+    });
+    const responseBody = (await response.json()) as unknown;
 
-    if (!this.isSuccessResponse(response)) {
-      throw new Error(response.error);
+    if (!response.ok || !this.isSuccessResponse(responseBody)) {
+      throw new Error(this.errorMessage(responseBody));
     }
   }
 
-  private isSuccessResponse(
-    response: EmailApiResponse,
-  ): response is EmailApiSuccessResponse {
-    return 'ok' in response && response.ok;
+  private errorMessage(response: unknown): string {
+    if (this.isErrorResponse(response)) {
+      return response.error;
+    }
+
+    return 'Unable to send message.';
+  }
+
+  private isErrorResponse(response: unknown): response is EmailApiErrorResponse {
+    return (
+      typeof response == 'object' &&
+      response != null &&
+      'error' in response &&
+      typeof response.error == 'string'
+    );
+  }
+
+  private isSuccessResponse(response: unknown): response is EmailApiSuccessResponse {
+    return (
+      typeof response == 'object' &&
+      response != null &&
+      'ok' in response &&
+      response.ok === true &&
+      'messageId' in response &&
+      typeof response.messageId == 'string'
+    );
   }
 
   private buildRequest(payload: ContactMessagePayload): EmailApiRequest {

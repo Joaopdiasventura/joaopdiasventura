@@ -1,19 +1,23 @@
 <section class="experience section-padding" aria-labelledby="experience-title">
   <div class="container-wide experience__layout">
     <div class="experience__intro">
-      <p class="experience__eyebrow">{{ copy(heading.eyebrow) }}</p>
-      <h2 id="experience-title" class="experience__title">{{ copy(heading.title) }}</h2>
-      <p class="experience__summary">{{ copy(heading.summary) }}</p>
-      <div class="experience__rail" aria-hidden="true">
+      <p appRevealOnScroll [preset]="'caption'" class="experience__eyebrow">{{ copy(heading.eyebrow) }}</p>
+      <h2 id="experience-title" appRevealOnScroll [preset]="'headline'" class="experience__title">
+        {{ copy(heading.title) }}
+      </h2>
+      <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="experience__summary">
+        {{ copy(heading.summary) }}
+      </p>
+      <div appRevealOnScroll [delayMs]="160" [preset]="'copy'" class="experience__rail" aria-hidden="true">
         <span class="experience__rail-fill"></span>
       </div>
     </div>
 
     <div class="timeline">
       <div class="timeline__items">
-        @for (experience of experiences; track experience.id) {
-          <article class="timeline__item">
-            <div class="timeline__card" data-viewport-tilt="card">
+        @for (experience of experiences; track experience.id; let index = $index) {
+          <article appRevealOnScroll [delayMs]="index * 110 + 120" [preset]="'card'" class="timeline__item">
+            <div appViewportTilt="card" class="timeline__card">
               <div class="timeline__header">
                 <div>
                   <p class="timeline__company">{{ experience.company }}</p>

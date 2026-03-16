@@ -15,38 +15,43 @@
     <div class="credentials__grid">
       <div class="credentials__education">
         @for (item of content.education; track item.title.en; let index = $index) {
-          <article
+          <div
             appRevealOnScroll
             [delayMs]="index * 90 + 120"
             [preset]="'card'"
-            class="credentials__education-card"
-            data-viewport-tilt="card"
+            class="tilt-reveal-wrap"
           >
-            <h3>{{ copy(item.title) }}</h3>
-            <p>{{ copy(item.subtitle) }}</p>
-            <span>{{ copy(item.meta) }}</span>
-          </article>
+            <article appViewportTilt="card" class="credentials__education-card">
+              <h3>{{ copy(item.title) }}</h3>
+              <p>{{ copy(item.subtitle) }}</p>
+              <span>{{ copy(item.meta) }}</span>
+            </article>
+          </div>
         }
       </div>
 
       <div class="credentials__stack">
-        <article appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="credentials__panel" data-viewport-tilt="card">
-          <p>{{ copy(content.certificationsLabel) }}</p>
-          <div class="credentials__list">
-            @for (item of copy(content.certifications); track item) {
-              <span>{{ item }}</span>
-            }
-          </div>
-        </article>
+        <div appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="tilt-reveal-wrap">
+          <article appViewportTilt="card" class="credentials__panel">
+            <p>{{ copy(content.certificationsLabel) }}</p>
+            <div class="credentials__list">
+              @for (item of copy(content.certifications); track item) {
+                <span>{{ item }}</span>
+              }
+            </div>
+          </article>
+        </div>
 
-        <article appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="credentials__panel" data-viewport-tilt="card">
-          <p>{{ copy(content.languagesLabel) }}</p>
-          <div class="credentials__list">
-            @for (item of copy(content.languages); track item) {
-              <span>{{ item }}</span>
-            }
-          </div>
-        </article>
+        <div appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="tilt-reveal-wrap">
+          <article appViewportTilt="card" class="credentials__panel">
+            <p>{{ copy(content.languagesLabel) }}</p>
+            <div class="credentials__list">
+              @for (item of copy(content.languages); track item) {
+                <span>{{ item }}</span>
+              }
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>

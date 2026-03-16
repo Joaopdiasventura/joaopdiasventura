@@ -1,6 +1,8 @@
-import { AfterViewInit, Directive, ElementRef, inject, input, OnDestroy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Directive, ElementRef, inject, input, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { MotionRevealPreset, MOTION_REVEAL_PRESETS } from '../motion/motion.tokens';
-import { MotionCleanup, MotionService } from '../services/motion.service';
+
+const DEFAULT_THRESHOLD = 0.01;
 
 @Directive({
   selector: '[appRevealOnScroll]',
@@ -8,59 +10,86 @@ import { MotionCleanup, MotionService } from '../services/motion.service';
 })
 export class RevealOnScrollDirective implements AfterViewInit, OnDestroy {
   private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-  private readonly motionService = inject(MotionService);
+  private readonly platformId = inject(PLATFORM_ID);
 
-  private cleanup: MotionCleanup = () => undefined;
+  private observer: IntersectionObserver | null = null;
+  private revealed = false;
 
   public readonly delayMs = input(0);
   public readonly once = input(true);
   public readonly preset = input<MotionRevealPreset>('card');
 
   public ngAfterViewInit(): void {
-    if (!this.motionService.motionEnabled()) {
+    const element = this.elementRef.nativeElement;
+    const config = MOTION_REVEAL_PRESETS[this.preset()];
+
+    element.style.setProperty('--reveal-blur', `${config.blur}px`);
+    element.style.setProperty('--reveal-delay', `${this.delayMs()}ms`);
+    element.style.setProperty('--reveal-distance-x', config.axis == 'x' ? `${config.distance}px` : '0px');
+    element.style.setProperty('--reveal-distance-y', config.axis == 'y' ? `${config.distance}px` : '0px');
+    element.style.setProperty('--reveal-duration', `${Math.round(config.duration * 1000)}ms`);
+    element.style.setProperty('--reveal-scale', `${config.scale}`);
+
+    if (!isPlatformBrowser(this.platformId) || this.prefersReducedMotion() || !this.supportsObserver()) {
+      element.classList.add('reveal-on-scroll--visible');
       return;
     }
 
-    void this.initializeMotion();
+    this.observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          this.revealed = true;
+          element.classList.remove('reveal-on-scroll--ready');
+          element.classList.add('reveal-on-scroll--visible');
+
+          if (this.once()) {
+            this.destroyObserver();
+          }
+
+          return;
+        }
+
+        if (!this.revealed || !this.once()) {
+          element.classList.add('reveal-on-scroll--ready');
+          element.classList.remove('reveal-on-scroll--visible');
+        }
+      },
+      {
+        rootMargin: this.toRootMargin(config.start),
+        threshold: DEFAULT_THRESHOLD,
+      },
+    );
+
+    this.observer.observe(element);
   }
 
   public ngOnDestroy(): void {
-    this.cleanup();
+    this.destroyObserver();
   }
 
-  private async initializeMotion(): Promise<void> {
-    const element = this.elementRef.nativeElement;
-    const preset = MOTION_REVEAL_PRESETS[this.preset()];
-    const axisTransform = preset.axis == 'x' ? { x: preset.distance } : { y: preset.distance };
+  private destroyObserver(): void {
+    this.observer?.disconnect();
+    this.observer = null;
+  }
 
-    this.cleanup = await this.motionService.animate(element, ({ gsap }) => {
-      gsap.fromTo(
-        element,
-        {
-          autoAlpha: 0,
-          filter: `blur(${preset.blur}px)`,
-          scale: preset.scale,
-          willChange: 'transform,opacity,filter',
-          ...axisTransform,
-        },
-        {
-          autoAlpha: 1,
-          clearProps: 'filter,opacity,transform,visibility,willChange',
-          delay: this.delayMs() / 1000,
-          duration: preset.duration,
-          ease: preset.ease,
-          filter: 'blur(0px)',
-          scale: 1,
-          x: 0,
-          y: 0,
-          scrollTrigger: {
-            fastScrollEnd: true,
-            once: this.once(),
-            start: preset.start,
-            trigger: element,
-          },
-        },
-      );
-    });
+  private prefersReducedMotion(): boolean {
+    return (
+      typeof window.matchMedia == 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+  }
+
+  private supportsObserver(): boolean {
+    return typeof IntersectionObserver == 'function';
+  }
+
+  private toRootMargin(start: string): string {
+    const viewportOffset = Number.parseFloat(start.split(' ')[1] ?? '');
+
+    if (!Number.isFinite(viewportOffset)) {
+      return '0px 0px -10% 0px';
+    }
+
+    return `0px 0px -${Math.max(0, 100 - viewportOffset)}% 0px`;
   }
 }

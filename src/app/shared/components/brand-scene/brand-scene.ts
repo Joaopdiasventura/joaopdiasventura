@@ -19,6 +19,14 @@ interface DisposableMaterial {
   dispose?: () => void;
 }
 
+type IdleWindow = Window & {
+  cancelIdleCallback?: (handle: number) => void;
+  requestIdleCallback?: (
+    callback: () => void,
+    options?: { timeout?: number },
+  ) => number;
+};
+
 @Component({
   selector: 'app-brand-scene',
   template: '<div class="brand-scene__viewport" aria-hidden="true"></div>',
@@ -34,9 +42,13 @@ export class BrandScene implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
 
   private cleanup: (() => void) | null = null;
+  private idleHandle: number | null = null;
+  private destroyed = false;
 
   public constructor() {
     this.destroyRef.onDestroy(() => {
+      this.destroyed = true;
+      this.cancelIdleTask();
       this.cleanup?.();
       this.cleanup = null;
     });
@@ -47,16 +59,55 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       return;
     }
 
-    void this.initializeScene();
+    this.scheduleInitialization();
   }
 
   public ngOnDestroy(): void {
+    this.destroyed = true;
+    this.cancelIdleTask();
     this.cleanup?.();
     this.cleanup = null;
   }
 
+  private cancelIdleTask(): void {
+    if (this.idleHandle == null) {
+      return;
+    }
+
+    const idleWindow = window as IdleWindow;
+
+    if (typeof idleWindow.cancelIdleCallback == 'function') {
+      idleWindow.cancelIdleCallback(this.idleHandle);
+    } else {
+      window.clearTimeout(this.idleHandle);
+    }
+
+    this.idleHandle = null;
+  }
+
+  private scheduleInitialization(): void {
+    const idleWindow = window as IdleWindow;
+    const start = (): void => {
+      this.idleHandle = null;
+
+      if (this.destroyed) {
+        return;
+      }
+
+      void this.initializeScene();
+    };
+
+    if (typeof idleWindow.requestIdleCallback == 'function') {
+      this.idleHandle = idleWindow.requestIdleCallback(start, { timeout: 1200 });
+      return;
+    }
+
+    this.idleHandle = window.setTimeout(start, 180);
+  }
+
   private async initializeScene(): Promise<void> {
     const viewport = this.host.nativeElement.querySelector<HTMLElement>('.brand-scene__viewport');
+
     if (!viewport) {
       return;
     }
@@ -66,6 +117,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const THREE = await import('three');
+
+    if (this.destroyed) {
+      return;
+    }
 
     this.cleanup = this.ngZone.runOutsideAngular(() =>
       this.createScene(THREE, viewport, reducedMotion),
@@ -86,12 +141,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     });
 
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-    renderer.setSize(viewport.clientWidth, viewport.clientHeight, false);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.variant() == 'hero' ? 1.35 : 1.5));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.04;
-    viewport.append(renderer.domElement);
 
     camera.position.set(0, 0.25, this.variant() == 'hero' ? 7.8 : 7.2);
 
@@ -171,7 +224,11 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       const angle = (Math.PI * 2 * index) / 18;
       const radius = 2 + (index % 3) * 0.42;
       const shard = new THREE.Mesh(shardGeometry, shardMaterial.clone());
-      shard.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius, ((index % 4) - 1.5) * 0.34);
+      shard.position.set(
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        ((index % 4) - 1.5) * 0.34,
+      );
       shard.lookAt(0, 0, 0);
       shard.rotateZ(index % 2 == 0 ? 0.18 : -0.22);
       core.add(shard);
@@ -210,12 +267,23 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     });
 
     const pointer = { x: 0, y: 0 };
+    const section = this.host.nativeElement.closest<HTMLElement>('[data-scene-section]');
+    const defaultProgress = this.variant() == 'hero' ? 0.14 : 0.08;
+
     let frameId = 0;
+    let progressFrameId = 0;
     let isDestroyed = false;
+    let isVisible = !reducedMotion;
+    let renderActive = false;
+    let sectionTop = 0;
+    let sectionHeight = 0;
+    let viewportHeight = window.innerHeight;
+    let sceneProgress = defaultProgress;
 
     const updateSize = (): void => {
       const width = viewport.clientWidth;
       const height = viewport.clientHeight;
+
       if (width <= 0 || height <= 0) {
         return;
       }
@@ -225,33 +293,46 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       renderer.setSize(width, height, false);
     };
 
-    const section = this.host.nativeElement.closest<HTMLElement>('[data-scene-section]');
+    const updateSectionMetrics = (): void => {
+      viewportHeight = window.innerHeight;
 
-    const readScrollProgress = (): number => {
-      if (reducedMotion || !section) {
-        return this.variant() == 'hero' ? 0.14 : 0.08;
-      }
-
-      const rect = section.getBoundingClientRect();
-      const total = rect.height + window.innerHeight;
-      const progress = (window.innerHeight - rect.top) / total;
-      return Math.max(0, Math.min(progress, 1));
-    };
-
-    const renderFrame = (): void => {
-      if (isDestroyed) {
+      if (!section || reducedMotion) {
+        sceneProgress = defaultProgress;
         return;
       }
 
-      const progress = readScrollProgress();
-      const targetRotationY = pointer.x * 0.3 + progress * (this.variant() == 'hero' ? 1.15 : 0.72);
-      const targetRotationX = pointer.y * 0.18 - 0.16 - progress * 0.16;
-      const targetPositionY = 0.24 + progress * 0.48;
-      const targetPositionZ = (this.variant() == 'hero' ? 7.8 : 7.2) - progress * 1.2;
+      const rect = section.getBoundingClientRect();
+      sectionTop = rect.top + window.scrollY;
+      sectionHeight = rect.height;
+      updateScrollProgress();
+    };
+
+    const updateScrollProgress = (): void => {
+      if (!section || reducedMotion || sectionHeight <= 0 || viewportHeight <= 0) {
+        sceneProgress = defaultProgress;
+        return;
+      }
+
+      const total = sectionHeight + viewportHeight;
+      const progress = (window.scrollY + viewportHeight - sectionTop) / total;
+      sceneProgress = Math.max(0, Math.min(progress, 1));
+    };
+
+    const renderFrame = (): void => {
+      frameId = 0;
+
+      if (isDestroyed || !renderActive) {
+        return;
+      }
+
+      const targetRotationY = pointer.x * 0.3 + sceneProgress * (this.variant() == 'hero' ? 1.15 : 0.72);
+      const targetRotationX = pointer.y * 0.18 - 0.16 - sceneProgress * 0.16;
+      const targetPositionY = 0.24 + sceneProgress * 0.48;
+      const targetPositionZ = (this.variant() == 'hero' ? 7.8 : 7.2) - sceneProgress * 1.2;
 
       rig.rotation.y += (targetRotationY - rig.rotation.y) * 0.045;
       rig.rotation.x += (targetRotationX - rig.rotation.x) * 0.045;
-      rig.position.y += ((progress - 0.5) * 0.3 - rig.position.y) * 0.05;
+      rig.position.y += ((sceneProgress - 0.5) * 0.3 - rig.position.y) * 0.05;
       core.rotation.z += reducedMotion ? 0 : 0.0022;
       nodes.rotation.z -= reducedMotion ? 0 : 0.0014;
       sparks.rotation.z += reducedMotion ? 0 : 0.001;
@@ -262,32 +343,111 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       frameId = window.requestAnimationFrame(renderFrame);
     };
 
-    const resizeObserver = new ResizeObserver(() => updateSize());
-    resizeObserver.observe(viewport);
-    updateSize();
-
-    const handlePointerMove = (event: PointerEvent): void => {
-      if (reducedMotion) {
+    const startRender = (): void => {
+      if (reducedMotion || renderActive || !isVisible) {
         return;
       }
 
-      pointer.x = event.clientX / window.innerWidth - 0.5;
-      pointer.y = event.clientY / window.innerHeight - 0.5;
+      renderActive = true;
+      frameId = window.requestAnimationFrame(renderFrame);
+    };
+
+    const stopRender = (): void => {
+      renderActive = false;
+
+      if (frameId != 0) {
+        window.cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+    };
+
+    const syncProgress = (): void => {
+      progressFrameId = 0;
+      updateScrollProgress();
+    };
+
+    const scheduleProgressSync = (): void => {
+      if (progressFrameId != 0) {
+        return;
+      }
+
+      progressFrameId = window.requestAnimationFrame(syncProgress);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateSize();
+      updateSectionMetrics();
+    });
+
+    resizeObserver.observe(viewport);
+
+    if (section) {
+      resizeObserver.observe(section);
+    }
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = Boolean(entry?.isIntersecting);
+
+        if (isVisible) {
+          startRender();
+          return;
+        }
+
+        stopRender();
+      },
+      { threshold: 0.05 },
+    );
+
+    visibilityObserver.observe(section ?? viewport);
+
+    const handlePointerMove = (event: PointerEvent): void => {
+      if (reducedMotion || !isVisible) {
+        return;
+      }
+
+      pointer.x = event.clientX / Math.max(window.innerWidth, 1) - 0.5;
+      pointer.y = event.clientY / Math.max(window.innerHeight, 1) - 0.5;
+    };
+
+    const handleVisibilityChange = (): void => {
+      if (document.hidden) {
+        stopRender();
+        return;
+      }
+
+      startRender();
     };
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('resize', scheduleProgressSync, { passive: true });
+    window.addEventListener('scroll', scheduleProgressSync, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    updateSize();
+    updateSectionMetrics();
+    viewport.append(renderer.domElement);
 
     if (reducedMotion) {
       renderer.render(scene, camera);
     } else {
-      renderFrame();
+      startRender();
     }
 
     return () => {
       isDestroyed = true;
+      stopRender();
+
+      if (progressFrameId != 0) {
+        window.cancelAnimationFrame(progressFrameId);
+      }
+
       window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('resize', scheduleProgressSync);
+      window.removeEventListener('scroll', scheduleProgressSync);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      visibilityObserver.disconnect();
       resizeObserver.disconnect();
-      window.cancelAnimationFrame(frameId);
 
       renderer.dispose();
       scene.traverse((child: ThreeObject) => {
@@ -297,12 +457,14 @@ export class BrandScene implements AfterViewInit, OnDestroy {
         };
 
         mesh.geometry?.dispose?.();
+
         if (Array.isArray(mesh.material)) {
           mesh.material.forEach((material) => material.dispose?.());
         } else {
           mesh.material?.dispose?.();
         }
       });
+
       viewport.replaceChildren();
     };
   }
@@ -311,7 +473,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     const geometry = new THREE.BufferGeometry();
     const positions: number[] = [];
 
-    for (let index = 0; index < 96; index += 1) {
+    for (let index = 0; index < 72; index += 1) {
       const angle = Math.random() * Math.PI * 2;
       const radius = 1.4 + Math.random() * 2.8;
       positions.push(

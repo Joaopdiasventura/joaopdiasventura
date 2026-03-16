@@ -14,23 +14,24 @@
 
     <div class="capabilities__grid">
       @for (cluster of clusters; track cluster.id; let index = $index) {
-        <article
+        <div
           appRevealOnScroll
           [delayMs]="index * 120 + 120"
           [preset]="'panel'"
-          class="capability-card"
-          data-viewport-tilt="card"
+          class="tilt-reveal-wrap"
         >
-          <p class="capability-card__eyebrow">{{ copy(cluster.accentLabel) }}</p>
-          <h3>{{ copy(cluster.title) }}</h3>
-          <p class="capability-card__summary">{{ copy(cluster.summary) }}</p>
+          <article appViewportTilt="card" class="capability-card">
+            <p class="capability-card__eyebrow">{{ copy(cluster.accentLabel) }}</p>
+            <h3>{{ copy(cluster.title) }}</h3>
+            <p class="capability-card__summary">{{ copy(cluster.summary) }}</p>
 
-          <div class="capability-card__items">
-            @for (item of copy(cluster.items); track item) {
-              <p>{{ item }}</p>
-            }
-          </div>
-        </article>
+            <div class="capability-card__items">
+              @for (item of copy(cluster.items); track item) {
+                <p>{{ item }}</p>
+              }
+            </div>
+          </article>
+        </div>
       }
     </div>
   </div>

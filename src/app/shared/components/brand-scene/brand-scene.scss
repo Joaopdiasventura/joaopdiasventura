@@ -7,6 +7,7 @@
 }
 
 .brand-scene__viewport {
+  contain: layout paint size;
   height: 100%;
   mask-image: radial-gradient(circle at center, black 58%, transparent 100%);
   min-height: inherit;

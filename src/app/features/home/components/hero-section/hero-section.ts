@@ -4,10 +4,11 @@ import { HERO_CONTENT } from '../../../../core/data/portfolio.data';
 import { HeroCta, NavSectionId } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
 import { BrandScene } from '../../../../shared/components/brand-scene/brand-scene';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [NgOptimizedImage, BrandScene],
+  imports: [NgOptimizedImage, BrandScene, ViewportTiltDirective],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

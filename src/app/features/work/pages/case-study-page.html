@@ -26,27 +26,34 @@
         </div>
 
         <div class="case-study__hero-meta">
-          <article class="case-study__meta-card" data-viewport-tilt="card">
-            <span>{{ copy(labels.role) }}</span>
-            <strong>{{ copy(study.role) }}</strong>
-          </article>
+          <div class="case-study__meta-card-wrap case-study__meta-card--animated">
+            <article appViewportTilt="card" class="case-study__meta-card">
+              <span>{{ copy(labels.role) }}</span>
+              <strong>{{ copy(study.role) }}</strong>
+            </article>
+          </div>
 
-          <article class="case-study__meta-card" data-viewport-tilt="card">
-            <span>{{ copy(labels.timeline) }}</span>
-            <strong>{{ copy(study.timeline) }}</strong>
-          </article>
+          <div class="case-study__meta-card-wrap case-study__meta-card--animated">
+            <article appViewportTilt="card" class="case-study__meta-card">
+              <span>{{ copy(labels.timeline) }}</span>
+              <strong>{{ copy(study.timeline) }}</strong>
+            </article>
+          </div>
 
-          <article class="case-study__meta-card" data-viewport-tilt="card">
-            <span>{{ copy(labels.stack) }}</span>
-            <strong>{{ study.stack.join(' · ') }}</strong>
-          </article>
+          <div class="case-study__meta-card-wrap case-study__meta-card--animated">
+            <article appViewportTilt="card" class="case-study__meta-card">
+              <span>{{ copy(labels.stack) }}</span>
+              <strong>{{ study.stack.join(' · ') }}</strong>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="case-study__section">
       <div class="container-wide case-study__overview-layout">
-        <div class="case-study__overview">
+        <div appRevealOnScroll [preset]="'copy'" class="case-study__overview">
+          <h2 class="visually-hidden">{{ copy(labels.overview) }}</h2>
           <p class="case-study__section-label">{{ copy(study.category) }}</p>
 
           @for (paragraph of copy(study.overview); track paragraph) {
@@ -63,18 +70,20 @@
           </div>
         </div>
 
-        <div class="case-study__media-stage" data-viewport-tilt="feature">
-          <div class="case-study__media-frame" [class]="'case-study__media-frame case-study__media-frame--' + study.theme">
-            <p class="case-study__media-caption">{{ copy(study.mediaCaption) }}</p>
+        <div appRevealOnScroll [delayMs]="120" [preset]="'panel'" class="tilt-reveal-wrap case-study__media-stage-wrap">
+          <div appViewportTilt="feature" class="case-study__media-stage">
+            <div class="case-study__media-frame" [class]="'case-study__media-frame case-study__media-frame--' + study.theme">
+              <p class="case-study__media-caption">{{ copy(study.mediaCaption) }}</p>
 
-            <div class="case-study__media-panels">
-              @for (panel of study.mediaPanels; track panel.title.en) {
-                <article class="case-study__media-panel">
-                  <span>{{ copy(panel.eyebrow) }}</span>
-                  <h2>{{ copy(panel.title) }}</h2>
-                  <p>{{ copy(panel.body) }}</p>
-                </article>
-              }
+              <div class="case-study__media-panels">
+                @for (panel of study.mediaPanels; track panel.title.en; let index = $index) {
+                  <article appRevealOnScroll [delayMs]="index * 90 + 120" [preset]="'card'" class="case-study__media-panel">
+                    <span>{{ copy(panel.eyebrow) }}</span>
+                    <h3>{{ copy(panel.title) }}</h3>
+                    <p>{{ copy(panel.body) }}</p>
+                  </article>
+                }
+              </div>
             </div>
           </div>
         </div>
@@ -83,14 +92,16 @@
 
     <section class="case-study__section case-study__section--split">
       <div class="container-wide case-study__two-column">
-        <article class="case-study__text-block">
+        <article appRevealOnScroll [preset]="'card'" class="case-study__text-block">
+          <h2 class="visually-hidden">{{ copy(labels.challenge) }}</h2>
           <p class="case-study__section-label">{{ copy(labels.challenge) }}</p>
           @for (paragraph of copy(study.challenge); track paragraph) {
             <p>{{ paragraph }}</p>
           }
         </article>
 
-        <article class="case-study__text-block">
+        <article appRevealOnScroll [delayMs]="120" [preset]="'card'" class="case-study__text-block">
+          <h2 class="visually-hidden">{{ copy(labels.constraints) }}</h2>
           <p class="case-study__section-label">{{ copy(labels.constraints) }}</p>
           <ul class="case-study__constraint-list">
             @for (item of copy(study.constraints); track item) {
@@ -110,8 +121,8 @@
 
         <div class="case-study__decisions">
           @for (decision of study.decisions; track decision.title.en; let index = $index) {
-            <article class="case-study__decision">
-              <div class="case-study__decision-card" data-viewport-tilt="card">
+            <article appRevealOnScroll [delayMs]="index * 100" [preset]="'card'" class="case-study__decision">
+              <div appViewportTilt="card" class="case-study__decision-card">
                 <span>0{{ index + 1 }}</span>
                 <h3>{{ copy(decision.title) }}</h3>
                 <p>{{ copy(decision.description) }}</p>
@@ -124,7 +135,8 @@
 
     <section class="case-study__section">
       <div class="container-wide case-study__results-layout">
-        <div>
+        <div appRevealOnScroll [preset]="'copy'">
+          <h2 class="visually-hidden">{{ copy(labels.results) }}</h2>
           <p class="case-study__section-label">{{ copy(labels.results) }}</p>
           <ul class="case-study__results">
             @for (result of copy(study.results); track result) {
@@ -133,7 +145,7 @@
           </ul>
         </div>
 
-        <ul class="case-study__highlight-list">
+        <ul appRevealOnScroll [delayMs]="120" [preset]="'panel'" class="case-study__highlight-list">
           @for (highlight of copy(study.highlights); track highlight; let index = $index) {
             <li class="case-study__highlight-item">
               <span class="case-study__highlight-index">0{{ index + 1 }}</span>
@@ -145,16 +157,18 @@
     </section>
 
     <section class="case-study__section case-study__section--next">
-      <div class="container-wide case-study__next" data-viewport-tilt="card">
-        <div>
-          <p class="case-study__section-label">{{ copy(labels.nextCase) }}</p>
-          <h2>{{ copy(nextCaseStudy().name) }}</h2>
-          <p>{{ copy(nextCaseStudy().teaser) }}</p>
-        </div>
+      <div appRevealOnScroll [preset]="'panel'" class="tilt-reveal-wrap case-study__next-wrap">
+        <div appViewportTilt="card" class="container-wide case-study__next">
+          <div>
+            <p class="case-study__section-label">{{ copy(labels.nextCase) }}</p>
+            <h2>{{ copy(nextCaseStudy().name) }}</h2>
+            <p>{{ copy(nextCaseStudy().teaser) }}</p>
+          </div>
 
-        <a class="button button--primary" [routerLink]="caseRoute(nextCaseStudy().slug)">
-          {{ copy(workCopy.ctaLabel) }}
-        </a>
+          <a class="button button--primary" [routerLink]="caseRoute(nextCaseStudy().slug)">
+            {{ copy(workCopy.ctaLabel) }}
+          </a>
+        </div>
       </div>
     </section>
   </main>

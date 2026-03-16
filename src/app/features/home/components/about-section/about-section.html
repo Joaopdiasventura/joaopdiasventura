@@ -16,9 +16,11 @@
 
     <div class="manifesto__body">
       <div class="manifesto__copy">
-        <p appRevealOnScroll [delayMs]="160" [preset]="'panel'" class="manifesto__lead" data-viewport-tilt="card">
-          {{ copy(content.lead) }}
-        </p>
+        <div appRevealOnScroll [delayMs]="160" [preset]="'panel'" class="tilt-reveal-wrap">
+          <p appViewportTilt="card" class="manifesto__lead">
+            {{ copy(content.lead) }}
+          </p>
+        </div>
 
         @for (paragraph of copy(content.body); track paragraph; let index = $index) {
           <p appRevealOnScroll [delayMs]="index * 110 + 240" [preset]="'copy'" class="manifesto__paragraph">
@@ -27,39 +29,42 @@
         }
       </div>
 
-      <aside appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="manifesto__profile" data-viewport-tilt="card">
-        <p class="manifesto__profile-label">{{ copy(content.profileCardTitle) }}</p>
-        <p class="manifesto__profile-body">{{ copy(content.profileCardBody) }}</p>
+      <div appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="manifesto__profile-wrap tilt-reveal-wrap">
+        <aside appViewportTilt="card" class="manifesto__profile">
+          <p class="manifesto__profile-label">{{ copy(content.profileCardTitle) }}</p>
+          <p class="manifesto__profile-body">{{ copy(content.profileCardBody) }}</p>
 
-        <div class="manifesto__profile-meta">
-          @for (item of content.profileMeta; track copy(item.label)) {
-            <div class="manifesto__profile-row">
-              <span>{{ copy(item.label) }}</span>
+          <div class="manifesto__profile-meta">
+            @for (item of content.profileMeta; track copy(item.label)) {
+              <div class="manifesto__profile-row">
+                <span>{{ copy(item.label) }}</span>
 
-              @if (item.href) {
-                <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
-              } @else {
-                <strong>{{ copy(item.value) }}</strong>
-              }
-            </div>
-          }
-        </div>
-      </aside>
+                @if (item.href) {
+                  <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
+                } @else {
+                  <strong>{{ copy(item.value) }}</strong>
+                }
+              </div>
+            }
+          </div>
+        </aside>
+      </div>
     </div>
 
     <div class="manifesto__principles">
       @for (principle of content.principles; track copy(principle.title); let index = $index) {
-        <article
+        <div
           appRevealOnScroll
           [delayMs]="index * 110 + 240"
           [preset]="'card'"
-          class="manifesto__principle"
-          data-viewport-tilt="card"
+          class="tilt-reveal-wrap"
         >
-          <p class="manifesto__principle-index">0{{ index + 1 }}</p>
-          <h3>{{ copy(principle.title) }}</h3>
-          <p>{{ copy(principle.description) }}</p>
-        </article>
+          <article appViewportTilt="card" class="manifesto__principle">
+            <p class="manifesto__principle-index">0{{ index + 1 }}</p>
+            <h3>{{ copy(principle.title) }}</h3>
+            <p>{{ copy(principle.description) }}</p>
+          </article>
+        </div>
       }
     </div>
   </div>

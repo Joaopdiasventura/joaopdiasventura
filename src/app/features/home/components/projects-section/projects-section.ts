@@ -1,23 +1,25 @@
 ﻿import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CASE_STUDIES, FEATURED_WORK_CONTENT } from '../../../../core/data/portfolio.data';
+import { CASE_STUDY_PREVIEWS } from '../../../../core/data/case-study-previews.data';
+import { FEATURED_WORK_CONTENT } from '../../../../core/data/portfolio.data';
 import {
-  CaseStudy,
   CaseStudyLink,
   CaseStudyMetric,
+  CaseStudyPreview,
   CaseStudySlug,
 } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
 
 interface ProjectPreview {
   readonly slug: CaseStudySlug;
-  readonly theme: CaseStudy['theme'];
-  readonly name: CaseStudy['name'];
-  readonly category: CaseStudy['category'];
-  readonly year: CaseStudy['year'];
-  readonly teaser: CaseStudy['teaser'];
+  readonly theme: CaseStudyPreview['theme'];
+  readonly name: CaseStudyPreview['name'];
+  readonly category: CaseStudyPreview['category'];
+  readonly year: CaseStudyPreview['year'];
+  readonly teaser: CaseStudyPreview['teaser'];
   readonly previewMetrics: readonly CaseStudyMetric[];
   readonly previewStack: readonly string[];
   readonly liveLink: CaseStudyLink | null;
@@ -33,7 +35,7 @@ const PROJECT_ICON_DIMENSIONS: Readonly<Record<CaseStudySlug, { readonly width: 
   etecfy: { width: 24, height: 24 },
 } as const;
 
-const toProjectPreview = (caseStudy: CaseStudy): ProjectPreview => ({
+const toProjectPreview = (caseStudy: CaseStudyPreview): ProjectPreview => ({
   slug: caseStudy.slug,
   theme: caseStudy.theme,
   name: caseStudy.name,
@@ -47,14 +49,14 @@ const toProjectPreview = (caseStudy: CaseStudy): ProjectPreview => ({
 
 @Component({
   selector: 'app-projects-section',
-  imports: [NgOptimizedImage, RouterLink, RevealOnScrollDirective],
+  imports: [NgOptimizedImage, RouterLink, RevealOnScrollDirective, ViewportTiltDirective],
   templateUrl: './projects-section.html',
   styleUrl: './projects-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsSection {
   public readonly content = FEATURED_WORK_CONTENT;
-  public readonly projectPreviews = CASE_STUDIES.map(toProjectPreview);
+  public readonly projectPreviews = CASE_STUDY_PREVIEWS.map(toProjectPreview);
   private readonly languageService = inject(LanguageService);
 
   public copy<T>(value: { en: T; pt: T }): T {

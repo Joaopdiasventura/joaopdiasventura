@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MANIFESTO_CONTENT } from '../../../../core/data/portfolio.data';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
 
 @Component({
   selector: 'app-about-section',
-  imports: [RevealOnScrollDirective],
+  imports: [RevealOnScrollDirective, ViewportTiltDirective],
   templateUrl: './about-section.html',
   styleUrl: './about-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

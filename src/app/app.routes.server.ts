@@ -1,5 +1,5 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
-import { CASE_STUDIES } from './core/data/portfolio.data';
+import { CASE_STUDIES } from './core/data/case-studies.data';
 import { SUPPORTED_LANGUAGES } from './core/models/language.model';
 
 export const serverRoutes: ServerRoute[] = [

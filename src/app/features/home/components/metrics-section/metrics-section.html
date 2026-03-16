@@ -3,7 +3,7 @@
     <div class="impact-strip__grid">
       @for (metric of metrics; track metric.id; let index = $index) {
         <div appRevealOnScroll [delayMs]="index * 80" [preset]="'panel'" class="impact-strip__item-wrap">
-          <article class="impact-strip__item" data-viewport-tilt="card">
+          <article appViewportTilt="card" class="impact-strip__item">
             <p class="impact-strip__value">{{ metric.value }}</p>
             <p class="impact-strip__label">{{ copy(metric.label) }}</p>
             <p class="impact-strip__context">{{ copy(metric.context) }}</p>

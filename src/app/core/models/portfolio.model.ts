@@ -115,19 +115,23 @@ export interface CaseStudyLink {
   href: ExternalUrl;
 }
 
-export interface CaseStudy {
+export interface CaseStudyPreview {
   slug: CaseStudySlug;
   theme: CaseStudyTheme;
   name: LocalizedValue<string>;
   category: LocalizedValue<string>;
   year: string;
+  teaser: LocalizedValue<string>;
+  metrics: readonly CaseStudyMetric[];
+  stack: readonly string[];
+  links: readonly CaseStudyLink[];
+}
+
+export interface CaseStudy extends CaseStudyPreview {
   role: LocalizedValue<string>;
   timeline: LocalizedValue<string>;
-  teaser: LocalizedValue<string>;
   thesis: LocalizedValue<string>;
   overview: LocalizedValue<readonly string[]>;
-  stack: readonly string[];
-  metrics: readonly CaseStudyMetric[];
   highlights: LocalizedValue<readonly string[]>;
   challenge: LocalizedValue<readonly string[]>;
   constraints: LocalizedValue<readonly string[]>;
@@ -135,7 +139,6 @@ export interface CaseStudy {
   results: LocalizedValue<readonly string[]>;
   mediaCaption: LocalizedValue<string>;
   mediaPanels: readonly CaseStudyMediaPanel[];
-  links: readonly CaseStudyLink[];
   seoTitle: LocalizedValue<string>;
   seoDescription: LocalizedValue<string>;
 }
