@@ -9,7 +9,6 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
   'nav.contact': 'Contact',
   'nav.brand': 'JD Logo',
   'nav.toggleLanguage': 'Switch language',
-  'nav.toggleTheme': 'Switch theme',
   'nav.openMenu': 'Open menu',
   'nav.closeMenu': 'Close menu',
 
@@ -39,7 +38,7 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
   'exp.2.company': 'Representa Online',
   'exp.2.period': 'Sep 2024 - May 2025',
   'exp.2.desc':
-    'Led the conception and implementation of a billing system for an insurance brokerage, processing files with over 200k beneficiaries. Designed high-performance architecture for multiple layouts and financial rules, reducing manual operations from days to minutes.',
+    'Led the conception and implementation of a billing system for an insurance brokerage, processing files with over 1M beneficiaries. Designed high-performance architecture for multiple layouts and financial rules, reducing manual operations from days to minutes.',
   'exp.3.role': 'Software Development Intern',
   'exp.3.company': 'Representa Online',
   'exp.3.period': 'Jun 2024 - Aug 2024',
@@ -89,7 +88,7 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
   'metrics.data.label': 'Data Processed',
   'metrics.users': '+500',
   'metrics.users.label': 'Concurrent Users',
-  'metrics.beneficiaries': '+200K',
+  'metrics.beneficiaries': '+1M',
   'metrics.beneficiaries.label': 'Beneficiaries',
   'metrics.accesses': '1.3K',
   'metrics.accesses.label': 'Accesses in 6h',

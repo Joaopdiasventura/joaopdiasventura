@@ -1,0 +1,161 @@
+@if (caseStudy(); as study) {
+  <main class="case-study">
+    <section class="case-study__hero" data-scene-section>
+      <div class="case-study__hero-background" aria-hidden="true">
+        <app-brand-scene [variant]="'case'" />
+        <span class="case-study__hero-glow"></span>
+      </div>
+
+      <div class="container-wide case-study__hero-layout">
+        <div class="case-study__hero-copy">
+          <a class="case-study__backlink action-link" [attr.href]="homeWorkHref()">
+            ← {{ copy(labels.back) }}
+          </a>
+
+          <p class="case-study__hero-eyebrow">{{ copy(study.category) }}</p>
+          <h1 class="case-study__hero-title">{{ copy(study.name) }}</h1>
+          <p class="case-study__hero-summary">{{ copy(study.thesis) }}</p>
+
+          <div class="case-study__hero-actions">
+            @for (link of study.links; track link.href) {
+              <a class="button button--secondary" [href]="link.href" target="_blank" rel="noopener noreferrer">
+                {{ copy(link.label) }}
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="case-study__hero-meta">
+          <article class="case-study__meta-card" data-viewport-tilt="card">
+            <span>{{ copy(labels.role) }}</span>
+            <strong>{{ copy(study.role) }}</strong>
+          </article>
+
+          <article class="case-study__meta-card" data-viewport-tilt="card">
+            <span>{{ copy(labels.timeline) }}</span>
+            <strong>{{ copy(study.timeline) }}</strong>
+          </article>
+
+          <article class="case-study__meta-card" data-viewport-tilt="card">
+            <span>{{ copy(labels.stack) }}</span>
+            <strong>{{ study.stack.join(' · ') }}</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-study__section">
+      <div class="container-wide case-study__overview-layout">
+        <div class="case-study__overview">
+          <p class="case-study__section-label">{{ copy(study.category) }}</p>
+
+          @for (paragraph of copy(study.overview); track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+
+          <div class="case-study__metrics">
+            @for (metric of study.metrics; track metric.label.en) {
+              <article>
+                <strong>{{ metric.value }}</strong>
+                <span>{{ copy(metric.label) }}</span>
+              </article>
+            }
+          </div>
+        </div>
+
+        <div class="case-study__media-stage" data-viewport-tilt="feature">
+          <div class="case-study__media-frame" [class]="'case-study__media-frame case-study__media-frame--' + study.theme">
+            <p class="case-study__media-caption">{{ copy(study.mediaCaption) }}</p>
+
+            <div class="case-study__media-panels">
+              @for (panel of study.mediaPanels; track panel.title.en) {
+                <article class="case-study__media-panel">
+                  <span>{{ copy(panel.eyebrow) }}</span>
+                  <h2>{{ copy(panel.title) }}</h2>
+                  <p>{{ copy(panel.body) }}</p>
+                </article>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-study__section case-study__section--split">
+      <div class="container-wide case-study__two-column">
+        <article class="case-study__text-block">
+          <p class="case-study__section-label">{{ copy(labels.challenge) }}</p>
+          @for (paragraph of copy(study.challenge); track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+        </article>
+
+        <article class="case-study__text-block">
+          <p class="case-study__section-label">{{ copy(labels.constraints) }}</p>
+          <ul class="case-study__constraint-list">
+            @for (item of copy(study.constraints); track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="case-study__section">
+      <div class="container-wide">
+        <div class="case-study__section-heading">
+          <p class="case-study__section-label">{{ copy(labels.decisions) }}</p>
+          <h2>{{ copy(labels.decisionsTitle) }}</h2>
+        </div>
+
+        <div class="case-study__decisions">
+          @for (decision of study.decisions; track decision.title.en; let index = $index) {
+            <article class="case-study__decision">
+              <div class="case-study__decision-card" data-viewport-tilt="card">
+                <span>0{{ index + 1 }}</span>
+                <h3>{{ copy(decision.title) }}</h3>
+                <p>{{ copy(decision.description) }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="case-study__section">
+      <div class="container-wide case-study__results-layout">
+        <div>
+          <p class="case-study__section-label">{{ copy(labels.results) }}</p>
+          <ul class="case-study__results">
+            @for (result of copy(study.results); track result) {
+              <li>{{ result }}</li>
+            }
+          </ul>
+        </div>
+
+        <ul class="case-study__highlight-list">
+          @for (highlight of copy(study.highlights); track highlight; let index = $index) {
+            <li class="case-study__highlight-item">
+              <span class="case-study__highlight-index">0{{ index + 1 }}</span>
+              <p>{{ highlight }}</p>
+            </li>
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-study__section case-study__section--next">
+      <div class="container-wide case-study__next" data-viewport-tilt="card">
+        <div>
+          <p class="case-study__section-label">{{ copy(labels.nextCase) }}</p>
+          <h2>{{ copy(nextCaseStudy().name) }}</h2>
+          <p>{{ copy(nextCaseStudy().teaser) }}</p>
+        </div>
+
+        <a class="button button--primary" [routerLink]="caseRoute(nextCaseStudy().slug)">
+          {{ copy(workCopy.ctaLabel) }}
+        </a>
+      </div>
+    </section>
+  </main>
+}

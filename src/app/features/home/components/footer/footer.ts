@@ -1,7 +1,6 @@
-﻿import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SOCIAL_LINKS } from '../../../../core/data/portfolio.data';
-import { TranslationKey } from '../../../../core/i18n/translation.types';
+import { SITE_CHROME, SOCIAL_LINKS } from '../../../../core/data/portfolio.data';
 import { SocialLink } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
 
@@ -13,13 +12,14 @@ import { LanguageService } from '../../../../core/services/language.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
-  public readonly socialLinks = SOCIAL_LINKS;
   public readonly currentYear = new Date().getFullYear();
+  public readonly socialLinks = SOCIAL_LINKS;
+  public readonly chrome = SITE_CHROME;
 
   private readonly languageService = inject(LanguageService);
 
-  public translate(key: TranslationKey): string {
-    return this.languageService.translate(key);
+  public copy<T>(value: { en: T; pt: T }): T {
+    return this.languageService.copy(value);
   }
 
   public iconPath(link: SocialLink): string {

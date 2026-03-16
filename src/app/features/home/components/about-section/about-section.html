@@ -1,64 +1,66 @@
-﻿<section id="about" class="section-padding" aria-labelledby="about-title">
-  <div class="container-narrow">
-    <h2 id="about-title" appRevealOnScroll class="section-title">
-      {{ translate('about.title') }}
-    </h2>
+<section class="manifesto section-padding" aria-labelledby="about-title">
+  <div class="container-wide manifesto__layout">
+    <div class="manifesto__intro">
+      <p appRevealOnScroll [preset]="'caption'" class="manifesto__eyebrow">
+        {{ copy(content.heading.eyebrow) }}
+      </p>
 
-    <div class="about-grid">
-      <div appRevealOnScroll [delayMs]="100">
-        <p class="about-text">{{ translate('about.p1') }}</p>
-        <p class="about-text">{{ translate('about.p2') }}</p>
+      <h2 id="about-title" appRevealOnScroll [preset]="'headline'" class="manifesto__title">
+        {{ copy(content.heading.title) }}
+      </h2>
+
+      <p appRevealOnScroll [delayMs]="120" [preset]="'copy'" class="manifesto__summary">
+        {{ copy(content.heading.summary) }}
+      </p>
+    </div>
+
+    <div class="manifesto__body">
+      <div class="manifesto__copy">
+        <p appRevealOnScroll [delayMs]="160" [preset]="'panel'" class="manifesto__lead" data-viewport-tilt="card">
+          {{ copy(content.lead) }}
+        </p>
+
+        @for (paragraph of copy(content.body); track paragraph; let index = $index) {
+          <p appRevealOnScroll [delayMs]="index * 110 + 240" [preset]="'copy'" class="manifesto__paragraph">
+            {{ paragraph }}
+          </p>
+        }
       </div>
 
-      <div appRevealOnScroll [delayMs]="200" class="about-side">
-        <div class="about-contact">
-          <img
-            class="icon icon-img icon-img--primary"
-            ngSrc="/assets/icons/map-pin.svg"
-            width="16"
-            height="16"
-            alt=""
-            aria-hidden="true"
-          />
-          <span>{{ translate('about.location') }}</span>
-        </div>
+      <aside appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="manifesto__profile" data-viewport-tilt="card">
+        <p class="manifesto__profile-label">{{ copy(content.profileCardTitle) }}</p>
+        <p class="manifesto__profile-body">{{ copy(content.profileCardBody) }}</p>
 
-        <div class="about-contact">
-          <img
-            class="icon icon-img icon-img--primary"
-            ngSrc="/assets/icons/envelope.svg"
-            width="16"
-            height="16"
-            alt=""
-            aria-hidden="true"
-          />
-          <a [href]="'mailto:' + translate('about.email')">
-            {{ translate('about.email') }}
-          </a>
-        </div>
+        <div class="manifesto__profile-meta">
+          @for (item of content.profileMeta; track copy(item.label)) {
+            <div class="manifesto__profile-row">
+              <span>{{ copy(item.label) }}</span>
 
-        <div class="about-contact">
-          <img
-            class="icon icon-img icon-img--primary"
-            ngSrc="/assets/icons/phone.svg"
-            width="16"
-            height="16"
-            alt=""
-            aria-hidden="true"
-          />
-          <span>{{ translate('about.phone') }}</span>
+              @if (item.href) {
+                <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
+              } @else {
+                <strong>{{ copy(item.value) }}</strong>
+              }
+            </div>
+          }
         </div>
+      </aside>
+    </div>
 
-        <div class="about-languages">
-          <h3>{{ translate('languages.title') }}</h3>
-          <div class="about-languages__list">
-            @for (languageKey of languageKeys; track languageKey) {
-              <p>{{ translate(languageKey) }}</p>
-            }
-          </div>
-        </div>
-      </div>
+    <div class="manifesto__principles">
+      @for (principle of content.principles; track copy(principle.title); let index = $index) {
+        <article
+          appRevealOnScroll
+          [delayMs]="index * 110 + 240"
+          [preset]="'card'"
+          class="manifesto__principle"
+          data-viewport-tilt="card"
+        >
+          <p class="manifesto__principle-index">0{{ index + 1 }}</p>
+          <h3>{{ copy(principle.title) }}</h3>
+          <p>{{ copy(principle.description) }}</p>
+        </article>
+      }
     </div>
   </div>
 </section>
-

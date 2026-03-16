@@ -1,29 +1,34 @@
-﻿<section
-  id="experience"
-  class="section-padding section-muted"
-  aria-labelledby="experience-title"
->
-  <div class="container-narrow">
-    <h2 id="experience-title" appRevealOnScroll class="section-title">
-      {{ translate('exp.title') }}
-    </h2>
+<section class="experience section-padding" aria-labelledby="experience-title">
+  <div class="container-wide experience__layout">
+    <div class="experience__intro">
+      <p class="experience__eyebrow">{{ copy(heading.eyebrow) }}</p>
+      <h2 id="experience-title" class="experience__title">{{ copy(heading.title) }}</h2>
+      <p class="experience__summary">{{ copy(heading.summary) }}</p>
+      <div class="experience__rail" aria-hidden="true">
+        <span class="experience__rail-fill"></span>
+      </div>
+    </div>
 
     <div class="timeline">
       <div class="timeline__items">
-        @for (experience of experiences; track experience.id; let index = $index) {
-          <article appRevealOnScroll [delayMs]="index * 150" class="timeline__item">
-            <div class="timeline__card">
+        @for (experience of experiences; track experience.id) {
+          <article class="timeline__item">
+            <div class="timeline__card" data-viewport-tilt="card">
               <div class="timeline__header">
                 <div>
-                  <h3>{{ translate(experience.roleKey) }}</h3>
-                  <p class="timeline__company">{{ translate(experience.companyKey) }}</p>
+                  <p class="timeline__company">{{ experience.company }}</p>
+                  <h3>{{ copy(experience.role) }}</h3>
                 </div>
-                <p class="timeline__period">{{ translate(experience.periodKey) }}</p>
+                <p class="timeline__period">{{ copy(experience.period) }}</p>
               </div>
 
-              <p class="timeline__description">
-                {{ translate(experience.descriptionKey) }}
-              </p>
+              <p class="timeline__summary">{{ copy(experience.summary) }}</p>
+
+              <div class="timeline__highlights">
+                @for (highlight of copy(experience.highlights); track highlight) {
+                  <span>{{ highlight }}</span>
+                }
+              </div>
             </div>
           </article>
         }

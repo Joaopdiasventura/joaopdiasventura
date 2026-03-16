@@ -1,87 +1,133 @@
-﻿<section id="contact" class="section-padding section-muted" aria-labelledby="contact-title">
-  <div class="container-narrow contact-container">
-    <div appRevealOnScroll>
-      <h2 id="contact-title" class="section-title">{{ translate('contact.title') }}</h2>
-      <p class="section-subtitle">{{ translate('contact.subtitle') }}</p>
+<section class="contact section-padding" aria-labelledby="contact-title">
+  <div class="container-wide contact__layout">
+    <div class="contact__intro">
+      <p appRevealOnScroll [preset]="'caption'" class="contact__eyebrow">
+        {{ copy(content.heading.eyebrow) }}
+      </p>
+      <h2 id="contact-title" appRevealOnScroll [preset]="'headline'" class="contact__title">
+        {{ copy(content.heading.title) }}
+      </h2>
+      <p appRevealOnScroll [delayMs]="120" [preset]="'copy'" class="contact__summary">
+        {{ copy(content.heading.summary) }}
+      </p>
+
+      <p appRevealOnScroll [delayMs]="180" [preset]="'copy'" class="contact__availability">
+        {{ copy(content.availability) }}
+      </p>
+
+      <div appRevealOnScroll [delayMs]="220" [preset]="'panel'" class="contact__panel-wrap">
+        <div class="contact__links" data-viewport-tilt="card">
+          @for (link of content.links; track link.label.en) {
+            <a
+              class="action-link action-link--surface"
+              [href]="link.href"
+              [attr.target]="link.href.startsWith('http') ? '_blank' : null"
+              [attr.rel]="link.href.startsWith('http') ? 'noopener noreferrer' : null"
+            >
+              <span>{{ copy(link.label) }}</span>
+              <strong>{{ copy(link.value) }}</strong>
+            </a>
+          }
+        </div>
+      </div>
+
+      <div appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="contact__panel-wrap">
+        <article class="contact__base" data-viewport-tilt="card">
+          <div class="contact__base-grid">
+            @for (item of content.baseItems; track item.label.en) {
+              <div class="contact__base-item">
+                <span>{{ copy(item.label) }}</span>
+                @if (item.href) {
+                  <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
+                } @else {
+                  <strong>{{ copy(item.value) }}</strong>
+                }
+              </div>
+            }
+          </div>
+        </article>
+      </div>
     </div>
 
-    <form appRevealOnScroll [delayMs]="100" class="contact-form" [formRoot]="contactForm">
-      <div class="contact-form__grid">
-        <div class="field">
-          <label for="contact-name">{{ translate('contact.name') }}</label>
-          <input
-            id="contact-name"
-            type="text"
-            [formField]="contactForm.name"
-            [class.field-control--invalid]="controlInvalid(contactForm.name)"
-            [attr.aria-invalid]="controlInvalid(contactForm.name)"
-            autocomplete="name"
-          />
+    <div appRevealOnScroll [delayMs]="120" [preset]="'panel'" class="contact-form-wrap">
+      <form class="contact-form" [formRoot]="contactForm" data-viewport-tilt="card">
+        <div class="contact-form__chrome" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="contact-form__grid">
+          <div class="field">
+            <label for="contact-name">{{ copy(content.formName) }}</label>
+            <div
+              class="field__shell"
+              [class.field__shell--invalid]="controlInvalid(contactForm.name)"
+            >
+              <input
+                id="contact-name"
+                type="text"
+                [formField]="contactForm.name"
+                [attr.aria-invalid]="controlInvalid(contactForm.name)"
+                autocomplete="name"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="contact-email">{{ copy(content.formEmail) }}</label>
+            <div
+              class="field__shell"
+              [class.field__shell--invalid]="controlInvalid(contactForm.email)"
+            >
+              <input
+                id="contact-email"
+                type="email"
+                [formField]="contactForm.email"
+                [attr.aria-invalid]="controlInvalid(contactForm.email)"
+                autocomplete="email"
+              />
+            </div>
+          </div>
         </div>
 
         <div class="field">
-          <label for="contact-email">{{ translate('contact.email') }}</label>
-          <input
-            id="contact-email"
-            type="email"
-            [formField]="contactForm.email"
-            [class.field-control--invalid]="controlInvalid(contactForm.email)"
-            [attr.aria-invalid]="controlInvalid(contactForm.email)"
-            autocomplete="email"
-          />
+          <label for="contact-message">{{ copy(content.formMessage) }}</label>
+          <div
+            class="field__shell field__shell--textarea"
+            [class.field__shell--invalid]="controlInvalid(contactForm.message)"
+          >
+            <textarea
+              id="contact-message"
+              rows="6"
+              [formField]="contactForm.message"
+              [attr.aria-invalid]="controlInvalid(contactForm.message)"
+            ></textarea>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label for="contact-message">{{ translate('contact.message') }}</label>
-        <textarea
-          id="contact-message"
-          rows="5"
-          [formField]="contactForm.message"
-          [class.field-control--invalid]="controlInvalid(contactForm.message)"
-          [attr.aria-invalid]="controlInvalid(contactForm.message)"
-        ></textarea>
-      </div>
+        <div class="contact-form__actions">
+          <button
+            type="submit"
+            class="button button--primary contact-form__submit"
+            [disabled]="isSubmitting()"
+          >
+            {{ isSubmitting() ? copy(content.formSending) : copy(content.formSubmit) }}
+          </button>
 
-      <div class="contact-form__actions">
-        <button type="submit" class="contact-form__submit" [disabled]="isSubmitting()">
-          @if (submitStatus() == 'success') {
-            <img
-              ngSrc="/assets/icons/check-circle.svg"
-              width="16"
-              height="16"
-              class="icon-img icon-img--white"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>{{ translate('contact.sent') }}</span>
-          } @else {
-            <img
-              ngSrc="/assets/icons/send.svg"
-              width="16"
-              height="16"
-              class="icon-img icon-img--white"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>
-              {{ isSubmitting() ? translate('contact.sending') : translate('contact.send') }}
-            </span>
-          }
-        </button>
-
-        <p
-          class="contact-form__status"
-          [class.contact-form__status--error]="submitStatus() == 'error'"
-          aria-live="polite"
-        >
-          @if (submitStatus() == 'success') {
-            {{ translate('contact.sent') }}
-          } @else if (submitStatus() == 'error') {
-            {{ translate('contact.error') }}
-          }
-        </p>
-      </div>
-    </form>
+          <p
+            class="contact-form__status"
+            [class.contact-form__status--error]="submitStatus() === 'error'"
+            aria-live="polite"
+          >
+            @if (submitStatus() === 'success') {
+              {{ copy(content.formSent) }}
+            } @else if (submitStatus() === 'error') {
+              {{ copy(content.formError) }}
+            }
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </section>

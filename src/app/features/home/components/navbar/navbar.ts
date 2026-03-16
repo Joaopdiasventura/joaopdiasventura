@@ -1,31 +1,42 @@
-﻿import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { NAV_ITEMS } from '../../../../core/data/portfolio.data';
-import { TranslationKey } from '../../../../core/i18n/translation.types';
+import { Router } from '@angular/router';
+import { NAV_ITEMS, SITE_CHROME } from '../../../../core/data/portfolio.data';
 import { NavSectionId } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
-import { ThemeService } from '../../../../core/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgOptimizedImage, RouterLink],
+  imports: [NgOptimizedImage],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Navbar {
   public readonly navItems = NAV_ITEMS;
+  public readonly chrome = SITE_CHROME;
+  public readonly brandStrapline = {
+    en: 'Architecture · Performance · Scalability',
+    pt: 'Arquitetura · Performance · Escalabilidade',
+  } as const;
   public readonly languageService = inject(LanguageService);
-  public readonly themeService = inject(ThemeService);
 
   private readonly router = inject(Router);
 
   public readonly isMenuOpen = signal(false);
-  public readonly isDarkTheme = computed(() => this.themeService.theme() == 'dark');
-  public readonly themeIconPath = computed(() =>
-    this.isDarkTheme() ? '/assets/icons/sun.svg' : '/assets/icons/moon.svg',
-  );
+  public readonly languageLabel = computed(() => this.languageService.language().toUpperCase());
+
+  public copy<T>(value: { en: T; pt: T }): T {
+    return this.languageService.copy(value);
+  }
+
+  public homeHref(): string {
+    return `/${this.languageService.language()}#top`;
+  }
+
+  public sectionHref(section: NavSectionId): string {
+    return this.languageService.sectionHref(section);
+  }
 
   public toggleMenu(): void {
     this.isMenuOpen.update((currentState) => !currentState);
@@ -35,39 +46,23 @@ export class Navbar {
     this.isMenuOpen.set(false);
   }
 
-  public translate(key: TranslationKey): string {
-    return this.languageService.translate(key);
-  }
-
-  public homeRoute(): readonly string[] {
-    return this.languageService.buildRoute();
-  }
-
-  public sectionRoute(section: NavSectionId): readonly string[] {
-    return this.languageService.buildRoute(this.languageService.language(), section);
-  }
-
-  public menuToggleIconPath(): string {
-    return this.isMenuOpen() ? '/assets/icons/close.svg' : '/assets/icons/menu.svg';
-  }
-
   public async toggleLanguageRoute(): Promise<void> {
-    const currentSection = this.resolveCurrentSection();
-    const route = this.languageService.toggleLanguage(currentSection);
+    const nextLanguage = this.languageService.language() == 'en' ? 'pt' : 'en';
+    const currentSegments = this.router.url
+      .split('?')[0]
+      .split('#')[0]
+      .split('/')
+      .filter(Boolean);
+    const currentFragment = this.router.url.split('#')[1] ?? undefined;
+
+    const nextRoute =
+      currentSegments.length > 0
+        ? ['/', nextLanguage, ...currentSegments.slice(1)]
+        : this.languageService.homeRoute(nextLanguage);
+
     this.closeMenu();
-    await this.router.navigate(route);
-  }
-
-  private resolveCurrentSection(): NavSectionId | null {
-    const routeSegments = this.router.url.split('?')[0].split('#')[0].split('/').filter(Boolean);
-
-    if (routeSegments.length < 2) {
-      return null;
-    }
-
-    const sectionCandidate = routeSegments[1];
-    return this.navItems.some((item) => item.id == sectionCandidate)
-      ? (sectionCandidate as NavSectionId)
-      : null;
+    await this.router.navigate(nextRoute, {
+      fragment: currentFragment,
+    });
   }
 }

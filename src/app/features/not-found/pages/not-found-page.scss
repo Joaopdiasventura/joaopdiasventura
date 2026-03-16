@@ -35,6 +35,7 @@
 
 .not-found a:hover {
   color: var(--primary-hover);
+  transform: var(--action-lift-transform);
 }
 
 .not-found a:focus-visible {

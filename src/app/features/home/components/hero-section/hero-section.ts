@@ -1,26 +1,40 @@
-﻿import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { TranslationKey } from '../../../../core/i18n/translation.types';
-import { NavSectionId } from '../../../../core/models/portfolio.model';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { HERO_CONTENT } from '../../../../core/data/portfolio.data';
+import { HeroCta, NavSectionId } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
+import { BrandScene } from '../../../../shared/components/brand-scene/brand-scene';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [NgOptimizedImage, RevealOnScrollDirective, RouterLink],
+  imports: [NgOptimizedImage, BrandScene],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSection {
+  public readonly content = HERO_CONTENT;
+  public readonly portraitLocation = {
+    en: 'São Paulo',
+    pt: 'São Paulo',
+  } as const;
+  public readonly portraitCaption = {
+    en: 'Data oriented engineering · Premium frontend',
+    pt: 'Engenharia orientada a dados · Frontend premium',
+  } as const;
   public readonly languageService = inject(LanguageService);
 
-  public translate(key: TranslationKey): string {
-    return this.languageService.translate(key);
+  public readonly titleLines = computed(() => this.languageService.copy(this.content.titleLines));
+
+  public copy<T>(value: { en: T; pt: T }): T {
+    return this.languageService.copy(value);
   }
 
-  public sectionRoute(section: NavSectionId): readonly string[] {
-    return this.languageService.buildRoute(this.languageService.language(), section);
+  public ctaHref(cta: HeroCta): string | null {
+    if (cta.id == 'cv') {
+      return null;
+    }
+
+    return this.languageService.sectionHref(cta.id as NavSectionId);
   }
 }

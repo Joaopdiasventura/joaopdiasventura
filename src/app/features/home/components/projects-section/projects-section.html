@@ -1,53 +1,91 @@
-﻿<section
-  id="projects"
-  class="section-padding section-muted"
-  aria-labelledby="projects-title"
->
-  <div class="container-narrow">
-    <h2 id="projects-title" appRevealOnScroll class="section-title">
-      {{ translate('projects.title') }}
-    </h2>
+<section class="projects section-padding" aria-labelledby="projects-title">
+  <div class="container-wide projects__layout">
+    <div class="projects__intro">
+      <p appRevealOnScroll [preset]="'caption'" class="projects__eyebrow">
+        {{ copy(content.heading.eyebrow) }}
+      </p>
 
-    <div class="projects-grid">
-      @for (project of projects; track project.id; let index = $index) {
-        <article appRevealOnScroll [delayMs]="index * 150" class="project-card">
-          <div class="project-card__icon" aria-hidden="true">
-            <img
-              [ngSrc]="iconPath(project.icon)"
-              width="20"
-              height="20"
-              class="project-card__icon-image"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
+      <h2 id="projects-title" appRevealOnScroll [preset]="'headline'" class="projects__title">
+        {{ copy(content.heading.title) }}
+      </h2>
 
-          <h3>{{ translate(project.nameKey) }}</h3>
+      <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="projects__summary">
+        {{ copy(content.heading.summary) }}
+      </p>
+    </div>
 
-          <p class="project-card__description">
-            {{ translate(project.descriptionKey) }}
-          </p>
-
-          <div class="project-card__tags">
-            @for (tag of project.tags; track tag) {
-              <span>{{ tag }}</span>
-            }
-          </div>
-
-          <a
-            class="project-card__live-link"
-            [href]="project.liveUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            [attr.aria-label]="
-              translate('projects.cta.live') + ': ' + translate(project.nameKey)
-            "
+    <div class="projects__grid">
+      @for (project of projectPreviews; track project.slug; let index = $index) {
+        <div
+          appRevealOnScroll
+          [delayMs]="index * 110 + 140"
+          [preset]="'panel'"
+          class="project-card-wrap"
+        >
+          <article
+            class="project-card"
+            [class.project-card--vox]="project.theme === 'vox'"
+            [class.project-card--etecfy]="project.theme === 'etecfy'"
+            data-viewport-tilt="project"
           >
-            {{ translate('projects.cta.live') }}
-          </a>
-        </article>
+            <div class="project-card__header">
+              <div class="project-card__brand">
+                <span class="project-card__icon" aria-hidden="true">
+                  <img
+                    [ngSrc]="iconPath(project.slug)"
+                    [width]="iconDimensions(project.slug).width"
+                    [height]="iconDimensions(project.slug).height"
+                    alt=""
+                  />
+                </span>
+
+                <div class="project-card__identity">
+                  <p class="project-card__category">{{ copy(project.category) }}</p>
+                  <h3>{{ copy(project.name) }}</h3>
+                </div>
+              </div>
+
+              <span class="project-card__year">{{ project.year }}</span>
+            </div>
+
+            <p class="project-card__teaser">{{ copy(project.teaser) }}</p>
+
+            <dl class="project-card__metrics">
+              @for (metric of project.previewMetrics; track metric.label.en) {
+                <div class="project-card__metric">
+                  <dt>{{ copy(metric.label) }}</dt>
+                  <dd>{{ metric.value }}</dd>
+                </div>
+              }
+            </dl>
+
+            <div class="project-card__footer">
+              <div class="project-card__stack">
+                @for (stackItem of project.previewStack; track stackItem) {
+                  <span>{{ stackItem }}</span>
+                }
+              </div>
+
+              <div class="project-card__actions">
+                <a class="button button--primary" [routerLink]="caseRoute(project.slug)">
+                  {{ copy(content.ctaLabel) }}
+                </a>
+
+                @if (project.liveLink; as liveLink) {
+                  <a
+                    class="project-card__link action-link"
+                    [href]="liveLink.href"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ copy(content.ctaSecondaryLabel) }}
+                  </a>
+                }
+              </div>
+            </div>
+          </article>
+        </div>
       }
     </div>
   </div>
 </section>
-

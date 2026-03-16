@@ -1,4 +1,3 @@
-﻿import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,7 +14,7 @@ import {
   FormRoot,
   required,
 } from '@angular/forms/signals';
-import { TranslationKey } from '../../../../core/i18n/translation.types';
+import { CONTACT_CONTENT } from '../../../../core/data/portfolio.data';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { ContactEmailApiService } from '../../services/contact-email-api.service';
@@ -36,12 +35,14 @@ const INITIAL_FORM_VALUE: ContactFormValue = {
 
 @Component({
   selector: 'app-contact-section',
-  imports: [FormRoot, FormField, RevealOnScrollDirective, NgOptimizedImage],
+  imports: [FormRoot, FormField, RevealOnScrollDirective],
   templateUrl: './contact-section.html',
   styleUrl: './contact-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactSection implements OnDestroy {
+  public readonly content = CONTACT_CONTENT;
+
   private readonly languageService = inject(LanguageService);
   private readonly contactEmailApiService = inject(ContactEmailApiService);
 
@@ -67,8 +68,8 @@ export class ContactSection implements OnDestroy {
 
   public readonly isSubmitting = computed(() => this.contactForm().submitting());
 
-  public translate(key: TranslationKey): string {
-    return this.languageService.translate(key);
+  public copy<T>(value: { en: T; pt: T }): T {
+    return this.languageService.copy(value);
   }
 
   public controlInvalid(field: FieldTree<string>): boolean {

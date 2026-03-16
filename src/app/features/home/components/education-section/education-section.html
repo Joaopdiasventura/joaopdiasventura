@@ -1,51 +1,53 @@
-﻿<section id="education" class="section-padding" aria-labelledby="education-title">
-  <div class="container-narrow">
-    <h2 id="education-title" appRevealOnScroll class="section-title">
-      {{ translate('edu.title') }}
-    </h2>
-
-    <div class="education-grid">
-      @for (item of educationItems; track item.id; let index = $index) {
-        <article appRevealOnScroll [delayMs]="index * 100" class="education-card">
-          <div class="education-card__icon" aria-hidden="true">
-            <img
-              ngSrc="/assets/icons/graduation-cap.svg"
-              width="20"
-              height="20"
-              class="icon-img icon-img--primary"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
-
-          <div class="education-card__content">
-            <h3>{{ translate(item.courseKey) }}</h3>
-            <p class="education-card__school">{{ translate(item.schoolKey) }}</p>
-            <p class="education-card__period">{{ translate(item.periodKey) }}</p>
-          </div>
-        </article>
-      }
+<section class="credentials section-padding" aria-labelledby="credentials-title">
+  <div class="container-wide">
+    <div class="credentials__intro">
+      <p appRevealOnScroll [preset]="'caption'" class="credentials__eyebrow">
+        {{ copy(content.heading.eyebrow) }}
+      </p>
+      <h2 id="credentials-title" appRevealOnScroll [preset]="'headline'" class="credentials__title">
+        {{ copy(content.heading.title) }}
+      </h2>
+      <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="credentials__summary">
+        {{ copy(content.heading.summary) }}
+      </p>
     </div>
 
-    <div appRevealOnScroll [delayMs]="200" class="certifications">
-      <h3>{{ translate('cert.title') }}</h3>
-
-      <div class="certifications__list">
-        @for (certificationKey of certificationKeys; track certificationKey) {
-          <p>
-            <img
-              ngSrc="/assets/icons/award.svg"
-              width="16"
-              height="16"
-              class="icon-img icon-img--primary"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>{{ translate(certificationKey) }}</span>
-          </p>
+    <div class="credentials__grid">
+      <div class="credentials__education">
+        @for (item of content.education; track item.title.en; let index = $index) {
+          <article
+            appRevealOnScroll
+            [delayMs]="index * 90 + 120"
+            [preset]="'card'"
+            class="credentials__education-card"
+            data-viewport-tilt="card"
+          >
+            <h3>{{ copy(item.title) }}</h3>
+            <p>{{ copy(item.subtitle) }}</p>
+            <span>{{ copy(item.meta) }}</span>
+          </article>
         }
+      </div>
+
+      <div class="credentials__stack">
+        <article appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="credentials__panel" data-viewport-tilt="card">
+          <p>{{ copy(content.certificationsLabel) }}</p>
+          <div class="credentials__list">
+            @for (item of copy(content.certifications); track item) {
+              <span>{{ item }}</span>
+            }
+          </div>
+        </article>
+
+        <article appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="credentials__panel" data-viewport-tilt="card">
+          <p>{{ copy(content.languagesLabel) }}</p>
+          <div class="credentials__list">
+            @for (item of copy(content.languages); track item) {
+              <span>{{ item }}</span>
+            }
+          </div>
+        </article>
       </div>
     </div>
   </div>
 </section>
-

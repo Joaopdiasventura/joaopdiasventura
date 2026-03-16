@@ -1,22 +1,22 @@
-﻿<footer class="footer">
+<footer class="footer">
   <div class="container-wide footer__inner">
-    <p>
-      © {{ currentYear }} João Paulo Dias Ventura.
-      {{ translate('footer.rights') }}
-    </p>
+    <div class="footer__copy">
+      <p>© {{ currentYear }} João Paulo Dias Ventura. {{ copy(chrome.footerRights) }}</p>
+    </div>
 
     <div class="footer__links">
       @for (link of socialLinks; track link.href) {
         <a
+          class="action-link action-link--surface"
           [href]="link.href"
-          [attr.aria-label]="link.ariaLabel"
+          [attr.aria-label]="copy(link.label)"
           [attr.target]="link.external ? '_blank' : null"
           [attr.rel]="link.external ? 'noopener noreferrer' : null"
         >
           <img
             [ngSrc]="iconPath(link)"
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             class="icon-img icon-img--muted"
             alt=""
             aria-hidden="true"

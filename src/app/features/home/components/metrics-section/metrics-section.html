@@ -1,13 +1,15 @@
-﻿<section class="metrics" aria-label="Metrics">
+<section class="impact-strip section-padding" [attr.aria-label]="copy(ariaLabel)">
   <div class="container-wide">
-    <div class="metrics__grid">
+    <div class="impact-strip__grid">
       @for (metric of metrics; track metric.id; let index = $index) {
-        <div appRevealOnScroll [delayMs]="index * 100" class="metrics__item">
-          <p class="metrics__value">{{ translate(metric.valueKey) }}</p>
-          <p class="metrics__label">{{ translate(metric.labelKey) }}</p>
+        <div appRevealOnScroll [delayMs]="index * 80" [preset]="'panel'" class="impact-strip__item-wrap">
+          <article class="impact-strip__item" data-viewport-tilt="card">
+            <p class="impact-strip__value">{{ metric.value }}</p>
+            <p class="impact-strip__label">{{ copy(metric.label) }}</p>
+            <p class="impact-strip__context">{{ copy(metric.context) }}</p>
+          </article>
         </div>
       }
     </div>
   </div>
 </section>
-

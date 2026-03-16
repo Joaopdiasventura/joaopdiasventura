@@ -1,5 +1,5 @@
-﻿import { RenderMode, ServerRoute } from '@angular/ssr';
-import { NAV_ITEMS } from './core/data/portfolio.data';
+import { RenderMode, ServerRoute } from '@angular/ssr';
+import { CASE_STUDIES } from './core/data/portfolio.data';
 import { SUPPORTED_LANGUAGES } from './core/models/language.model';
 
 export const serverRoutes: ServerRoute[] = [
@@ -10,18 +10,18 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: ':lang',
     renderMode: RenderMode.Prerender,
-    async getPrerenderParams() {
+    async getPrerenderParams(): Promise<Record<string, string>[]> {
       return SUPPORTED_LANGUAGES.map((language) => ({ lang: language }));
     },
   },
   {
-    path: ':lang/:section',
+    path: ':lang/work/:slug',
     renderMode: RenderMode.Prerender,
-    async getPrerenderParams() {
+    async getPrerenderParams(): Promise<Record<string, string>[]> {
       return SUPPORTED_LANGUAGES.flatMap((language) =>
-        NAV_ITEMS.map((item) => ({
+        CASE_STUDIES.map((caseStudy) => ({
           lang: language,
-          section: item.id,
+          slug: caseStudy.slug,
         })),
       );
     },

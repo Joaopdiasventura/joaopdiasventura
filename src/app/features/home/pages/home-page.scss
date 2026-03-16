@@ -1,8 +1,13 @@
-﻿:host {
+:host {
   display: block;
+  background:
+    radial-gradient(circle at top, rgb(145 30 42 / 14%) 0%, transparent 26%),
+    linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(6 6 8 / 100%) 100%);
+  overflow-x: clip;
 }
 
 .home-main {
   display: block;
+  overflow-x: clip;
+  position: relative;
 }
-

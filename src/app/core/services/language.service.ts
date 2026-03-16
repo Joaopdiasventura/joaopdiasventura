@@ -1,8 +1,7 @@
-﻿import { DOCUMENT } from '@angular/common';
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { NavSectionId } from '../models/portfolio.model';
+import { DOCUMENT } from '@angular/common';
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { CaseStudySlug, LocalizedValue, NavSectionId } from '../models/portfolio.model';
 import { DEFAULT_LANGUAGE, Language, SUPPORTED_LANGUAGES } from '../models/language.model';
-import { TranslationDictionary, TranslationKey } from '../i18n/translation.types';
 
 const HTML_LANGUAGE_BY_ROUTE_LANGUAGE: Record<Language, string> = {
   en: 'en',
@@ -14,61 +13,40 @@ export class LanguageService {
   private readonly document = inject(DOCUMENT);
 
   public readonly language = signal<Language>(DEFAULT_LANGUAGE);
-  private readonly dictionary = signal<TranslationDictionary | null>(null);
-
-  public readonly isReady = computed(() => this.dictionary() !== null);
-  public readonly isPortuguese = computed(() => this.language() == 'pt');
-  public readonly cvPath = computed(() =>
-    this.isPortuguese() ? '/cv/CV_JoaoPaulo_PT.pdf' : '/cv/CV_JoaoPaulo_EN.pdf',
-  );
+  public readonly cvPath = signal('/cv/CV_JoaoPaulo_EN.pdf');
 
   public constructor() {
     effect(() => {
-      this.document.documentElement.lang = HTML_LANGUAGE_BY_ROUTE_LANGUAGE[this.language()];
+      const language = this.language();
+      this.document.documentElement.lang = HTML_LANGUAGE_BY_ROUTE_LANGUAGE[language];
+      this.cvPath.set(language == 'pt' ? '/cv/CV_JoaoPaulo_PT.pdf' : '/cv/CV_JoaoPaulo_EN.pdf');
     });
   }
 
   public async setLanguage(language: Language): Promise<void> {
-    const currentDictionary = this.dictionary();
-    if (this.language() == language && currentDictionary) {
-      return;
-    }
-
-    const loadedDictionary = await this.loadDictionary(language);
     this.language.set(language);
-    this.dictionary.set(loadedDictionary);
   }
 
-  public translate(key: TranslationKey): string {
-    const currentDictionary = this.dictionary();
-    if (!currentDictionary) {
-      return key;
-    }
-
-    return currentDictionary[key] ?? key;
+  public copy<T>(value: LocalizedValue<T>): T {
+    return value[this.language()];
   }
 
-  public toggleLanguage(currentSection: NavSectionId | null): readonly string[] {
-    const nextLanguage = this.language() == 'en' ? 'pt' : 'en';
-    return this.buildRoute(nextLanguage, currentSection);
-  }
-
-  public buildRoute(
-    language: Language = this.language(),
-    section: NavSectionId | null = null,
-  ): readonly string[] {
-    if (section) {
-      return ['/', language, section] as const;
-    }
-
+  public homeRoute(language: Language = this.language()): readonly string[] {
     return ['/', language] as const;
   }
 
-  public alternateRoutes(section: NavSectionId | null = null): Readonly<Record<Language, string>> {
-    return {
-      en: this.serializeRoute('en', section),
-      pt: this.serializeRoute('pt', section),
-    };
+  public sectionHref(
+    section: NavSectionId,
+    language: Language = this.language(),
+  ): string {
+    return `/${language}#${section}`;
+  }
+
+  public caseRoute(
+    slug: CaseStudySlug,
+    language: Language = this.language(),
+  ): readonly string[] {
+    return ['/', language, 'work', slug] as const;
   }
 
   public supportedLanguage(language: string | null): language is Language {
@@ -77,23 +55,5 @@ export class LanguageService {
     }
 
     return (SUPPORTED_LANGUAGES as readonly string[]).includes(language);
-  }
-
-  private async loadDictionary(language: Language): Promise<TranslationDictionary> {
-    if (language == 'en') {
-      const module = await import('../i18n/translations/en');
-      return module.EN_TRANSLATIONS;
-    }
-
-    const module = await import('../i18n/translations/pt');
-    return module.PT_TRANSLATIONS;
-  }
-
-  private serializeRoute(language: Language, section: NavSectionId | null): string {
-    if (section) {
-      return `/${language}/${section}`;
-    }
-
-    return `/${language}`;
   }
 }

@@ -19,7 +19,6 @@
 *,
 *::before,
 *::after {
-  border-color: var(--border);
   box-sizing: border-box;
 }
 
@@ -33,11 +32,27 @@ body {
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top, rgb(145 30 42 / 12%) 0%, transparent 24%),
+    linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(5 5 6 / 100%) 100%);
   color: var(--foreground);
   font-family: var(--font-body);
   margin: 0;
   text-rendering: optimizeLegibility;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.015) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  content: '';
+  inset: 0;
+  mask-image: linear-gradient(180deg, black 0%, black 65%, transparent 100%);
+  opacity: 0.36;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
 }
 
 h1,
@@ -47,10 +62,147 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+p,
+a,
+label,
+input,
+textarea,
+button {
+  font-size: 0.95rem;
 }
 
 a {
   color: inherit;
+}
+
+::selection {
+  background: rgb(146 25 36 / 34%);
+  color: var(--foreground);
+}
+
+:root {
+  --action-lift-shadow: 0 16px 28px rgb(0 0 0 / 22%);
+  --action-lift-transform: translateY(-2px);
+  --container-padding-inline: var(--space-4);
+  --container-wide-limit: var(--max-width-wide);
+  --container-narrow-limit: var(--max-width-narrow);
+  --scrollbar-size: 0.82rem;
+  --scrollbar-track: color-mix(in srgb, var(--surface) 86%, black);
+  --scrollbar-thumb: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary) 72%, var(--border-strong)) 0%,
+    color-mix(in srgb, var(--primary) 44%, black) 100%
+  );
+  --scrollbar-thumb-hover: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary-hover) 84%, var(--primary)) 0%,
+    color-mix(in srgb, var(--primary) 58%, black) 100%
+  );
+  --scrollbar-thumb-border: color-mix(in srgb, var(--background) 78%, transparent);
+}
+
+html {
+  scrollbar-color: color-mix(in srgb, var(--primary) 70%, var(--border-strong)) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+  height: var(--scrollbar-size);
+  width: var(--scrollbar-size);
+}
+
+html::-webkit-scrollbar-track {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 2%) 0%, transparent 100%),
+    var(--scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+  border: 0.18rem solid var(--scrollbar-thumb-border);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+html::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+.button,
+.action-link {
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.button {
+  align-items: center;
+  backdrop-filter: blur(16px);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  justify-content: center;
+  letter-spacing: 0.06em;
+  min-height: 3rem;
+  padding: 0.8rem 1.28rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.action-link {
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus-visible,
+.action-link:hover,
+.action-link:focus-visible {
+  transform: var(--action-lift-transform);
+}
+
+.button:hover,
+.button:focus-visible,
+.action-link--surface:hover,
+.action-link--surface:focus-visible {
+  box-shadow: var(--action-lift-shadow);
+}
+
+.button:focus-visible,
+.action-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.button--primary {
+  background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 72%, black) 100%);
+  color: var(--primary-foreground);
+}
+
+.button--secondary {
+  background: rgb(255 255 255 / 4%);
+  border-color: color-mix(in srgb, var(--border-strong) 70%, transparent);
+  color: var(--foreground);
+}
+
+.button--ghost {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  color: var(--foreground-soft);
 }
 
 .icon-img {
@@ -74,70 +226,70 @@ a {
   filter: var(--icon-filter-white);
 }
 
-section[id] {
-  scroll-margin-top: 5.5rem;
+.scroll-anchor {
+  display: block;
+  block-size: 1px;
+  inline-size: 100%;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-anchor[id] {
+  scroll-margin-top: 6rem;
 }
 
 .container-wide,
 .container-narrow {
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-4);
-  padding-right: var(--space-4);
+  padding-left: var(--container-padding-inline);
+  padding-right: var(--container-padding-inline);
   width: 100%;
 }
 
 .container-wide {
-  max-width: var(--max-width-wide);
+  max-width: var(--container-wide-limit);
 }
 
 .container-narrow {
-  max-width: var(--max-width-narrow);
+  max-width: var(--container-narrow-limit);
 }
 
 .section-padding {
-  padding-bottom: var(--space-20);
-  padding-top: var(--space-20);
-}
-
-.section-muted {
-  background: color-mix(in srgb, var(--secondary) 35%, transparent);
-}
-
-.text-gradient {
-  background: linear-gradient(
-    to right,
-    var(--primary) 0%,
-    color-mix(in srgb, var(--primary) 70%, white) 100%
-  );
-  background-clip: text;
-  color: transparent;
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+  padding-top: clamp(4rem, 9vw, 7rem);
 }
 
 .reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @media (min-width: 768px) {
-  .container-wide,
-  .container-narrow {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
+  :root {
+    --container-padding-inline: var(--space-8);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --container-padding-inline: clamp(1.5rem, 1.9vw, 2.25rem);
+    --container-wide-limit: 89rem;
+    --container-narrow-limit: 71rem;
   }
 
   .section-padding {
-    padding-bottom: 7rem;
-    padding-top: 7rem;
+    padding-bottom: clamp(5rem, 7vw, 8rem);
+    padding-top: clamp(5rem, 7vw, 8rem);
+  }
+}
+
+@media (min-width: 1520px) {
+  :root {
+    --container-padding-inline: clamp(1.75rem, 1.8vw, 2.5rem);
+    --container-wide-limit: 93rem;
+    --container-narrow-limit: 75rem;
   }
 }
 

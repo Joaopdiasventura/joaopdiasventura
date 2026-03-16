@@ -1,9 +1,16 @@
-﻿import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, inject, PLATFORM_ID } from '@angular/core';
-import { map } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { NavSectionId } from '../../../core/models/portfolio.model';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  effect,
+  ElementRef,
+  inject,
+} from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { SITE_CHROME } from '../../../core/data/portfolio.data';
+import { LanguageService } from '../../../core/services/language.service';
+import { MotionCleanup, MotionService } from '../../../shared/services/motion.service';
 import { AboutSection } from '../components/about-section/about-section';
 import { ContactSection } from '../components/contact-section/contact-section';
 import { EducationSection } from '../components/education-section/education-section';
@@ -14,6 +21,7 @@ import { MetricsSection } from '../components/metrics-section/metrics-section';
 import { Navbar } from '../components/navbar/navbar';
 import { ProjectsSection } from '../components/projects-section/projects-section';
 import { SkillsSection } from '../components/skills-section/skills-section';
+import { initializeHomePageMotion } from './home-page.motion';
 
 @Component({
   selector: 'app-home-page',
@@ -33,47 +41,50 @@ import { SkillsSection } from '../components/skills-section/skills-section';
   styleUrl: './home-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomePage {
-  private readonly route = inject(ActivatedRoute);
-  private readonly document = inject(DOCUMENT);
-  private readonly platformId = inject(PLATFORM_ID);
+export class HomePage implements AfterViewInit {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly languageService = inject(LanguageService);
+  private readonly motionService = inject(MotionService);
+  private readonly meta = inject(Meta);
+  private readonly titleService = inject(Title);
 
-  private lastRenderedTargetId: string | null = null;
-
-  private readonly activeSection = toSignal(
-    this.route.paramMap.pipe(
-      map((params) => {
-        const sectionParam = params.get('section');
-        return (sectionParam as NavSectionId | null) ?? null;
-      }),
-    ),
-    { initialValue: null },
-  );
+  private motionCleanup: MotionCleanup = () => undefined;
+  private motionInitialized = false;
 
   public constructor() {
     effect(() => {
-      const section = this.activeSection();
-      if (!isPlatformBrowser(this.platformId)) {
+      const language = this.languageService.language();
+      this.titleService.setTitle('João Paulo Dias Ventura | Portfolio');
+      this.meta.updateTag({
+        name: 'description',
+        content: SITE_CHROME.homeDescription[language],
+      });
+
+      if (!this.motionInitialized) {
         return;
       }
 
-      const targetId = section ?? 'top';
-      if (this.lastRenderedTargetId == targetId) {
-        return;
-      }
-
-      this.lastRenderedTargetId = targetId;
       queueMicrotask(() => {
-        const targetElement = this.document.getElementById(targetId);
-        if (!targetElement) {
-          return;
-        }
-
-        targetElement.scrollIntoView({
-          behavior: section ? 'smooth' : 'auto',
-          block: 'start',
-        });
+        void this.motionService.refresh();
       });
     });
+
+    this.destroyRef.onDestroy(() => {
+      this.motionCleanup();
+    });
+  }
+
+  public ngAfterViewInit(): void {
+    void this.initializeMotion();
+  }
+
+  private async initializeMotion(): Promise<void> {
+    this.motionCleanup = await this.motionService.animate(
+      this.host.nativeElement,
+      initializeHomePageMotion,
+    );
+    this.motionInitialized = true;
+    await this.motionService.refresh();
   }
 }

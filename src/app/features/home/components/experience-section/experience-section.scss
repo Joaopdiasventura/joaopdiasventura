@@ -1,88 +1,281 @@
-﻿:host {
+:host {
   display: block;
 }
 
-.section-title {
-  color: var(--foreground);
-  font-family: var(--font-heading);
-  font-size: clamp(1.9rem, 4vw, 2.15rem);
-  font-weight: 700;
-  margin: 0 0 var(--space-10);
-}
-
-.timeline {
+.experience {
+  overflow: clip;
   position: relative;
 }
 
+.experience::before {
+  background:
+    radial-gradient(circle at 78% 18%, rgb(145 30 42 / 14%) 0%, transparent 26%),
+    linear-gradient(180deg, rgb(255 255 255 / 2%) 0%, transparent 32%);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.experience__layout {
+  display: grid;
+  gap: 1.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.experience__intro {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.experience__eyebrow {
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.experience__title {
+  color: var(--foreground);
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  line-height: 1.06;
+  margin: 0;
+}
+
+.experience__summary {
+  color: var(--foreground-soft);
+  line-height: 1.82;
+  margin: 0;
+  max-width: 31rem;
+}
+
+.experience__rail {
+  background: color-mix(in srgb, var(--border) 66%, transparent);
+  border-radius: 999px;
+  height: 0.28rem;
+  margin-top: 0.3rem;
+  max-width: 13rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.experience__rail-fill {
+  background: linear-gradient(90deg, rgb(146 25 36 / 0%) 0%, var(--primary) 100%);
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.timeline {
+  min-width: 0;
+  position: relative;
+}
+
+.timeline::before {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary) 34%, transparent) 0%,
+    color-mix(in srgb, var(--border) 72%, transparent) 100%
+  );
+  content: '';
+  left: 0.7rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
 .timeline__items {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-10);
+  display: grid;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+.timeline__item {
+  min-width: 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.timeline__item::before {
+  background: var(--background);
+  border: 1px solid color-mix(in srgb, var(--primary) 52%, var(--border));
+  border-radius: 999px;
+  box-shadow: 0 0 0 0.5rem rgb(146 25 36 / 10%);
+  content: '';
+  height: 0.8rem;
+  left: 0.33rem;
+  position: absolute;
+  top: 1.6rem;
+  width: 0.8rem;
 }
 
 .timeline__card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  transition: border-color 0.2s ease;
+  backdrop-filter: blur(18px);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 6%) 0%, rgb(255 255 255 / 2%) 100%),
+    var(--surface);
+  border: 1px solid color-mix(in srgb, var(--border-strong) 68%, transparent);
+  border-radius: 1.8rem;
+  box-shadow: var(--shadow-panel);
+  min-width: 0;
+  padding: 1.35rem;
+  transition:
+    border-color 0.24s ease,
+    transform 0.24s ease;
 }
 
 .timeline__card:hover {
-  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+  transform: translateY(-2px);
 }
 
 .timeline__header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 0.75rem;
-}
-
-.timeline__header h3 {
-  color: var(--foreground);
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  margin: 0;
+  display: grid;
+  gap: 0.65rem;
 }
 
 .timeline__company {
   color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+}
+
+.timeline__header h3 {
+  color: var(--foreground);
+  font-size: 1.12rem;
   margin: 0;
 }
 
 .timeline__period {
   color: var(--muted-foreground);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
   margin: 0;
+  text-transform: uppercase;
 }
 
-.timeline__description {
-  color: var(--muted-foreground);
-  font-size: 0.875rem;
-  line-height: 1.7;
-  margin: 0;
+.timeline__summary,
+.timeline__impact {
+  color: var(--foreground-soft);
+  line-height: 1.78;
+  margin: 1rem 0 0;
 }
 
-@media (min-width: 640px) {
+.timeline__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.timeline__highlights span {
+  background: rgb(255 255 255 / 4%);
+  border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
+  border-radius: 999px;
+  color: var(--foreground-soft);
+  font-size: 0.76rem;
+  padding: 0.42rem 0.72rem;
+}
+
+.timeline__impact {
+  color: var(--foreground);
+}
+
+@media (min-width: 960px) {
+  .experience__layout {
+    align-items: start;
+    gap: 2.4rem;
+    grid-template-columns: minmax(21rem, 26rem) minmax(0, 1fr);
+  }
+
+  .experience__intro {
+    padding-right: clamp(0.75rem, 1.8vw, 1.4rem);
+    position: relative;
+    z-index: 2;
+  }
+
+  .timeline {
+    overflow: visible;
+    z-index: 1;
+  }
+
+  .timeline::before,
+  .timeline__item::before {
+    content: none;
+  }
+
+  .timeline__item {
+    padding-left: 0;
+  }
+
   .timeline__header {
-    align-items: flex-start;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 }
 
-@media (min-width: 768px) {
-  .timeline__header {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
+@media (min-width: 1200px) {
+  .experience__layout {
+    gap: clamp(2rem, 3.5vw, 3.5rem);
+    grid-template-columns: minmax(24rem, 30rem) minmax(0, 1fr);
+  }
+
+  .experience__intro {
+    gap: 0.95rem;
+    padding-top: 0.6rem;
+  }
+
+  .experience__summary {
+    max-width: 25rem;
+  }
+
+  .experience__rail {
+    margin-top: 1rem;
+    max-width: 16rem;
+  }
+
+  .timeline {
+    padding-left: 0;
+  }
+
+  .timeline__items {
+    gap: 1.25rem;
+  }
+
+  .timeline__item {
+    max-width: 48rem;
+  }
+
+  .timeline__item:nth-child(even) {
+    margin-left: 0;
   }
 
   .timeline__card {
-    padding: 1.5rem;
+    padding: 1.6rem 1.7rem;
+  }
+
+  .timeline__header h3 {
+    font-size: 1.24rem;
   }
 }
 
+@media (min-width: 1480px) {
+  .experience__layout {
+    grid-template-columns: minmax(26rem, 32rem) minmax(0, 1fr);
+  }
+
+  .timeline__item {
+    max-width: 52rem;
+  }
+
+  .timeline__item:nth-child(even) {
+    margin-left: 0;
+  }
+}
