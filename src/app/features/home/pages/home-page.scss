@@ -1,13 +1,47 @@
 :host {
   display: block;
-  background:
-    radial-gradient(circle at top, rgb(145 30 42 / 14%) 0%, transparent 26%),
-    linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(6 6 8 / 100%) 100%);
-  overflow-x: clip;
+}
+
+.home-shell {
+  min-height: 100%;
 }
 
 .home-main {
   display: block;
   overflow-x: clip;
   position: relative;
+}
+
+.home-scene-stage {
+  isolation: isolate;
+  overflow: clip;
+  position: relative;
+}
+
+.home-scene-stage__background {
+  inset: -1px 0 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.home-scene-stage__background app-brand-scene {
+  --brand-scene-mask: radial-gradient(
+    ellipse 74% 68% at 50% 34%,
+    black 0%,
+    black 56%,
+    rgb(0 0 0 / 74%) 76%,
+    transparent 100%
+  );
+  block-size: min(100%, calc(100svh + clamp(14rem, 22vw, 24rem)));
+  inset: 0 clamp(-12vw, -4rem, -2rem) auto;
+  opacity: 0.96;
+  position: absolute;
+}
+
+.home-scene-stage > app-hero-section,
+.home-scene-stage > app-metrics-section {
+  display: block;
+  position: relative;
+  z-index: 1;
 }

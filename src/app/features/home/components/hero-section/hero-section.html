@@ -1,11 +1,4 @@
-<section class="hero" aria-labelledby="hero-title" data-scene-section>
-  <div class="hero__background" aria-hidden="true">
-    <app-brand-scene />
-    <span class="hero__grain"></span>
-    <span class="hero__gradient hero__gradient--top"></span>
-    <span class="hero__gradient hero__gradient--bottom"></span>
-  </div>
-
+<section class="hero" aria-labelledby="hero-title">
   <div class="container-wide hero__container">
     <div class="hero__content">
       <span class="hero__eyebrow">{{ copy(content.eyebrow) }}</span>
@@ -59,13 +52,13 @@
       <article class="hero__portrait">
         <div appViewportTilt="card" class="hero__portrait-shell">
           <div class="hero__portrait-media">
-          <img
-            ngSrc="/assets/profile.webp"
-            width="252"
-            height="252"
-            priority
-            alt="João Paulo Dias Ventura"
-          />
+            <img
+              ngSrc="/assets/profile.webp"
+              width="252"
+              height="252"
+              priority
+              alt="João Paulo Dias Ventura"
+            />
           </div>
 
           <div class="hero__portrait-copy">

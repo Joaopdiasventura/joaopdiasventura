@@ -1,21 +1,33 @@
-﻿<app-navbar />
+<div class="page-shell page-shell--home home-shell">
+  <div class="page-shell__background" aria-hidden="true"></div>
 
-<span id="top" class="scroll-anchor" aria-hidden="true"></span>
+  <div class="page-shell__content">
+    <app-navbar />
 
-<main class="home-main">
-  <app-hero-section />
-  <app-metrics-section />
-  <span id="about" class="scroll-anchor" aria-hidden="true"></span>
-  <app-about-section />
-  <span id="work" class="scroll-anchor" aria-hidden="true"></span>
-  <app-projects-section />
-  <span id="experience" class="scroll-anchor" aria-hidden="true"></span>
-  <app-experience-section />
-  <app-skills-section />
-  <app-education-section />
-  <span id="contact" class="scroll-anchor" aria-hidden="true"></span>
-  <app-contact-section />
-</main>
+    <span id="top" class="scroll-anchor" aria-hidden="true"></span>
 
-<app-footer />
+    <main class="home-main">
+      <div class="home-scene-stage" data-scene-section>
+        <div class="home-scene-stage__background" aria-hidden="true">
+          <app-brand-scene />
+        </div>
 
+        <app-hero-section />
+        <app-metrics-section />
+      </div>
+
+      <span id="about" class="scroll-anchor" aria-hidden="true"></span>
+      <app-about-section />
+      <span id="work" class="scroll-anchor" aria-hidden="true"></span>
+      <app-projects-section />
+      <span id="experience" class="scroll-anchor" aria-hidden="true"></span>
+      <app-experience-section />
+      <app-skills-section />
+      <app-education-section />
+      <span id="contact" class="scroll-anchor" aria-hidden="true"></span>
+      <app-contact-section />
+    </main>
+
+    <app-footer />
+  </div>
+</div>

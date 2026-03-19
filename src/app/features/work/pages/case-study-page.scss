@@ -3,7 +3,41 @@
 }
 
 .case-study {
+  overflow-x: clip;
   padding-top: 4.7rem;
+}
+
+.case-study__scene-stage {
+  isolation: isolate;
+  overflow: clip;
+  position: relative;
+}
+
+.case-study__scene-background {
+  inset: -1px 0 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.case-study__scene-background app-brand-scene {
+  --brand-scene-mask: radial-gradient(
+    ellipse 70% 64% at 50% 32%,
+    black 0%,
+    black 54%,
+    rgb(0 0 0 / 76%) 76%,
+    transparent 100%
+  );
+  block-size: min(100%, calc(82svh + clamp(16rem, 20vw, 24rem)));
+  inset: 0 clamp(-10vw, -3.5rem, -2rem) auto;
+  opacity: 0.94;
+  position: absolute;
+}
+
+.case-study__scene-stage > .case-study__hero,
+.case-study__scene-stage > .case-study__section {
+  position: relative;
+  z-index: 1;
 }
 
 .case-study__hero {
@@ -11,24 +45,6 @@
   overflow: clip;
   padding: clamp(2.2rem, 5vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
   position: relative;
-}
-
-.case-study__hero-background {
-  inset: 0;
-  position: absolute;
-}
-
-.case-study__hero-background app-brand-scene {
-  inset: 0;
-  position: absolute;
-}
-
-.case-study__hero-glow {
-  background:
-    radial-gradient(circle at 18% 20%, rgb(145 30 42 / 22%) 0%, transparent 26%),
-    linear-gradient(180deg, transparent 0%, rgb(6 5 7 / 90%) 100%);
-  inset: 0;
-  position: absolute;
 }
 
 .case-study__hero-layout {

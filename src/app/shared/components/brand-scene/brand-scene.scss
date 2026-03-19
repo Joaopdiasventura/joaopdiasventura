@@ -1,7 +1,9 @@
 :host {
+  --brand-scene-mask: radial-gradient(circle at center, black 58%, transparent 100%);
+  --brand-scene-min-height: 20rem;
   display: block;
   height: 100%;
-  min-height: 20rem;
+  min-height: var(--brand-scene-min-height);
   pointer-events: none;
   width: 100%;
 }
@@ -9,7 +11,9 @@
 .brand-scene__viewport {
   contain: layout paint size;
   height: 100%;
-  mask-image: radial-gradient(circle at center, black 58%, transparent 100%);
+  mask-image: var(--brand-scene-mask);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
   min-height: inherit;
   width: 100%;
 }

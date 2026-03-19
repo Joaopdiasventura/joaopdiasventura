@@ -5,7 +5,6 @@
 .navbar {
   backdrop-filter: blur(18px);
   background: linear-gradient(180deg, rgb(6 5 7 / 92%) 0%, rgb(6 5 7 / 74%) 100%);
-  border-bottom: 1px solid color-mix(in srgb, var(--border-strong) 74%, transparent);
   isolation: isolate;
   left: 0;
   position: fixed;
@@ -168,7 +167,6 @@
 
 .mobile-menu {
   background: linear-gradient(180deg, rgb(7 6 8 / 98%) 0%, rgb(12 10 13 / 98%) 100%);
-  border-top: 1px solid transparent;
   opacity: 0;
   overflow: hidden;
   pointer-events: none;
@@ -181,20 +179,17 @@
   will-change: opacity, transform;
   left: 0;
   transition:
-    border-color 0.28s ease,
     opacity 0.28s ease,
     transform 0.28s ease,
     visibility 0s linear 0.28s;
 }
 
 .mobile-menu--open {
-  border-top-color: color-mix(in srgb, var(--border) 76%, transparent);
   opacity: 1;
   pointer-events: auto;
   transform: translate3d(0, 0, 0) scaleY(1);
   visibility: visible;
   transition:
-    border-color 0.28s ease,
     opacity 0.28s ease,
     transform 0.28s ease;
 }

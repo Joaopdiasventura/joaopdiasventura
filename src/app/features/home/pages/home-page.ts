@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { Meta, Title } from '@angular/platform-browser';
 import { SITE_CHROME } from '../../../core/data/portfolio.data';
 import { LanguageService } from '../../../core/services/language.service';
+import { BrandScene } from '../../../shared/components/brand-scene/brand-scene';
 import { AboutSection } from '../components/about-section/about-section';
 import { ContactSection } from '../components/contact-section/contact-section';
 import { EducationSection } from '../components/education-section/education-section';
@@ -17,6 +18,7 @@ import { SkillsSection } from '../components/skills-section/skills-section';
   selector: 'app-home-page',
   imports: [
     Navbar,
+    BrandScene,
     HeroSection,
     MetricsSection,
     AboutSection,

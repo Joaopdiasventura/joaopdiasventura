@@ -36,27 +36,11 @@ body {
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgb(145 30 42 / 12%) 0%, transparent 24%),
-    linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(5 5 6 / 100%) 100%);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
   margin: 0;
   text-rendering: optimizeLegibility;
-}
-
-body::before {
-  background-image:
-    linear-gradient(rgb(255 255 255 / 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.015) 1px, transparent 1px);
-  background-size: 5rem 5rem;
-  content: '';
-  inset: 0;
-  mask-image: linear-gradient(180deg, black 0%, black 65%, transparent 100%);
-  opacity: 0.36;
-  pointer-events: none;
-  position: fixed;
-  z-index: -1;
 }
 
 h1,
@@ -88,6 +72,114 @@ a {
   color: var(--foreground);
 }
 
+.page-shell {
+  background-color: var(--background);
+  isolation: isolate;
+  min-height: 100%;
+  overflow-x: clip;
+  position: relative;
+}
+
+.page-shell__background {
+  background:
+    var(--page-shell-glow-5, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-glow-4, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-glow-3, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-glow-2, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-glow-1, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-veil, linear-gradient(180deg, transparent 0%, transparent 100%)),
+    var(--page-shell-surface, linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(5 5 6 / 100%) 100%));
+  inset: -1px 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  transform: translateZ(0);
+  z-index: 0;
+}
+
+.page-shell__background::before {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.015) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  content: '';
+  inset: -1px 0;
+  mask-image: linear-gradient(180deg, black 0%, black 82%, transparent 100%);
+  opacity: var(--page-shell-grid-opacity, 0.34);
+  position: absolute;
+}
+
+.page-shell__content {
+  position: relative;
+  z-index: 1;
+}
+
+.page-shell--home {
+  --page-shell-surface: linear-gradient(
+    180deg,
+    rgb(8 7 9 / 100%) 0%,
+    rgb(7 6 8 / 100%) 36%,
+    rgb(6 6 7 / 100%) 72%,
+    rgb(5 5 6 / 100%) 100%
+  );
+  --page-shell-veil: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.025) 0%,
+    transparent 16%,
+    transparent 84%,
+    rgb(0 0 0 / 0.18) 100%
+  );
+  --page-shell-glow-1: radial-gradient(circle at 14% 7%, rgb(145 30 42 / 24%) 0%, transparent 16%);
+  --page-shell-glow-2: radial-gradient(
+    circle at 80% 10%,
+    rgb(255 255 255 / 8%) 0%,
+    transparent 13%
+  );
+  --page-shell-glow-3: radial-gradient(circle at 20% 42%, rgb(145 30 42 / 16%) 0%, transparent 18%);
+  --page-shell-glow-4: radial-gradient(circle at 78% 60%, rgb(145 30 42 / 14%) 0%, transparent 18%);
+  --page-shell-glow-5: radial-gradient(circle at 50% 88%, rgb(145 30 42 / 10%) 0%, transparent 16%);
+}
+
+.page-shell--case-study {
+  --page-shell-surface: linear-gradient(
+    180deg,
+    rgb(7 6 8 / 100%) 0%,
+    rgb(6 5 7 / 100%) 42%,
+    rgb(5 5 6 / 100%) 100%
+  );
+  --page-shell-veil: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.02) 0%,
+    transparent 18%,
+    transparent 86%,
+    rgb(0 0 0 / 0.16) 100%
+  );
+  --page-shell-glow-1: radial-gradient(circle at 16% 8%, rgb(145 30 42 / 22%) 0%, transparent 16%);
+  --page-shell-glow-2: radial-gradient(
+    circle at 74% 16%,
+    rgb(255 255 255 / 6%) 0%,
+    transparent 12%
+  );
+  --page-shell-glow-3: radial-gradient(circle at 62% 46%, rgb(145 30 42 / 12%) 0%, transparent 17%);
+}
+
+.page-shell--not-found {
+  --page-shell-surface: linear-gradient(180deg, rgb(8 7 9 / 100%) 0%, rgb(5 5 6 / 100%) 100%);
+  --page-shell-veil: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.02) 0%,
+    transparent 26%,
+    transparent 74%,
+    rgb(0 0 0 / 0.16) 100%
+  );
+  --page-shell-glow-1: radial-gradient(circle at 50% 22%, rgb(145 30 42 / 18%) 0%, transparent 18%);
+  --page-shell-glow-2: radial-gradient(
+    circle at 50% 74%,
+    rgb(255 255 255 / 4%) 0%,
+    transparent 16%
+  );
+}
+
 :root {
   --action-lift-shadow: 0 16px 28px rgb(0 0 0 / 22%);
   --action-lift-transform: translateY(-2px);
@@ -110,7 +202,8 @@ a {
 }
 
 html {
-  scrollbar-color: color-mix(in srgb, var(--primary) 70%, var(--border-strong)) var(--scrollbar-track);
+  scrollbar-color: color-mix(in srgb, var(--primary) 70%, var(--border-strong))
+    var(--scrollbar-track);
   scrollbar-width: thin;
 }
 
@@ -121,8 +214,7 @@ html::-webkit-scrollbar {
 
 html::-webkit-scrollbar-track {
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 2%) 0%, transparent 100%),
-    var(--scrollbar-track);
+    linear-gradient(180deg, rgb(255 255 255 / 2%) 0%, transparent 100%), var(--scrollbar-track);
 }
 
 html::-webkit-scrollbar-thumb {
@@ -193,7 +285,11 @@ html::-webkit-scrollbar-corner {
 }
 
 .button--primary {
-  background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 72%, black) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    color-mix(in srgb, var(--primary) 72%, black) 100%
+  );
   color: var(--primary-foreground);
 }
 
@@ -231,12 +327,14 @@ html::-webkit-scrollbar-corner {
 }
 
 .scroll-anchor {
+  block-size: 0;
   display: block;
-  block-size: 1px;
   inline-size: 100%;
-  margin: 0;
+  line-height: 0;
   opacity: 0;
+  overflow: hidden;
   pointer-events: none;
+  position: relative;
 }
 
 .scroll-anchor[id] {
@@ -272,10 +370,8 @@ html::-webkit-scrollbar-corner {
   --viewport-tilt-rotate-x: 0deg;
   --viewport-tilt-rotate-y: 0deg;
   backface-visibility: hidden;
-  transform:
-    translate3d(0, var(--viewport-tilt-lift), 0)
-    perspective(var(--viewport-tilt-perspective))
-    rotateX(var(--viewport-tilt-rotate-x))
+  transform: translate3d(0, var(--viewport-tilt-lift), 0)
+    perspective(var(--viewport-tilt-perspective)) rotateX(var(--viewport-tilt-rotate-x))
     rotateY(var(--viewport-tilt-rotate-y));
   transform-origin: center center;
   transform-style: preserve-3d;
@@ -318,8 +414,7 @@ html::-webkit-scrollbar-corner {
 .reveal-on-scroll--ready {
   filter: blur(var(--reveal-blur));
   opacity: 0;
-  transform:
-    translate3d(var(--reveal-distance-x), var(--reveal-distance-y), 0)
+  transform: translate3d(var(--reveal-distance-x), var(--reveal-distance-y), 0)
     scale(var(--reveal-scale));
 }
 
