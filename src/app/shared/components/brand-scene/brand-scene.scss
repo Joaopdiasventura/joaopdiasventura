@@ -3,19 +3,19 @@
   --brand-scene-min-height: 20rem;
   display: block;
   height: 100%;
+  inline-size: 100%;
   min-height: var(--brand-scene-min-height);
   pointer-events: none;
-  width: 100%;
 }
 
 .brand-scene__viewport {
   contain: layout paint size;
   height: 100%;
+  inline-size: 100%;
   mask-image: var(--brand-scene-mask);
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
   min-height: inherit;
-  width: 100%;
 }
 
 .brand-scene__viewport canvas {

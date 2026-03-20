@@ -26,15 +26,17 @@
 }
 
 .home-scene-stage__background app-brand-scene {
-  --brand-scene-mask: radial-gradient(
-    ellipse 74% 68% at 50% 34%,
-    black 0%,
-    black 56%,
-    rgb(0 0 0 / 74%) 76%,
+  --brand-scene-mask: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(0 0 0 / 78%) 6%,
+    black 14%,
+    black 88%,
+    rgb(0 0 0 / 74%) 94%,
     transparent 100%
   );
   block-size: min(100%, calc(100svh + clamp(14rem, 22vw, 24rem)));
-  inset: 0 clamp(-12vw, -4rem, -2rem) auto;
+  inset: 0 0 auto;
   opacity: 0.96;
   position: absolute;
 }

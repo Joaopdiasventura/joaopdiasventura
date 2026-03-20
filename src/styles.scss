@@ -2,9 +2,7 @@
 
 @font-face {
   font-family: 'main';
-  src:
-    url('/fonts/main.woff2') format('woff2'),
-    url('/fonts/main.otf') format('opentype');
+  src: url('/fonts/main.otf') format('opentype');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -12,12 +10,10 @@
 
 @font-face {
   font-family: 'normal';
-  src:
-    url('/fonts/regular.woff2') format('woff2'),
-    url('/fonts/regular.ttf') format('truetype');
+  src: url('/fonts/regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
-  font-display: fallback;
+  font-display: swap;
 }
 
 *,

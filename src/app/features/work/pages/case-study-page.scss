@@ -21,15 +21,17 @@
 }
 
 .case-study__scene-background app-brand-scene {
-  --brand-scene-mask: radial-gradient(
-    ellipse 70% 64% at 50% 32%,
-    black 0%,
-    black 54%,
-    rgb(0 0 0 / 76%) 76%,
+  --brand-scene-mask: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(0 0 0 / 80%) 7%,
+    black 15%,
+    black 87%,
+    rgb(0 0 0 / 76%) 94%,
     transparent 100%
   );
   block-size: min(100%, calc(82svh + clamp(16rem, 20vw, 24rem)));
-  inset: 0 clamp(-10vw, -3.5rem, -2rem) auto;
+  inset: 0 0 auto;
   opacity: 0.94;
   position: absolute;
 }
