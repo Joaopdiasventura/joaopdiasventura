@@ -432,6 +432,84 @@ html::-webkit-scrollbar-corner {
   white-space: nowrap;
 }
 
+.projects__scroll-region::before,
+.projects__scroll-region::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+}
+
+.projects__scroll-region::before {
+  background: radial-gradient(circle at 20% 20%, rgb(255 255 255 / 6%) 0%, transparent 24%);
+  inset: 2% 0 auto;
+  min-height: 12rem;
+}
+
+.projects__scroll-region::after {
+  background: radial-gradient(circle at 84% 24%, rgb(145 30 42 / 18%) 0%, transparent 22%);
+  inset: auto 0 8% 0;
+  min-height: 16rem;
+}
+
+.project-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--project-accent) 72%, white) 50%,
+    transparent 100%
+  );
+  content: '';
+  height: 1px;
+  inset: 0 0 auto;
+  opacity: 0.74;
+  position: absolute;
+  z-index: 1;
+}
+
+.project-card[data-theme='auronix'] {
+  --project-accent: rgb(218 124 54);
+  --project-accent-soft: rgb(218 124 54 / 0.18);
+}
+
+.project-card[data-theme='modularis'] {
+  --project-accent: rgb(67 145 255);
+  --project-accent-soft: rgb(67 145 255 / 0.18);
+}
+
+.project-card[data-theme='votrix'] {
+  --project-accent: rgb(122 204 127);
+  --project-accent-soft: rgb(122 204 127 / 0.18);
+}
+
+.project-card[data-theme='vox'] {
+  --project-accent: rgb(170 27 47);
+  --project-accent-soft: rgb(170 27 47 / 0.18);
+}
+
+.project-card[data-theme='etecfy'] {
+  --project-accent: rgb(180 73 112);
+  --project-accent-soft: rgb(180 73 112 / 0.18);
+}
+
+.project-card__media-overlay {
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 54%) 100%),
+    linear-gradient(135deg, rgb(0 0 0 / 12%) 0%, var(--project-accent-soft) 100%);
+  inset: 0;
+  position: absolute;
+}
+
+.project-card__index {
+  color: rgb(255 255 255 / 88%);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  inset: 1rem 1rem auto auto;
+  letter-spacing: 0.2em;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .case-study__backlink,
   .case-study__hero-eyebrow,

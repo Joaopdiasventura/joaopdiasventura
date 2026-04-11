@@ -1,91 +1,129 @@
 <section class="projects section-padding" aria-labelledby="projects-title">
-  <div class="container-wide projects__layout">
-    <div class="projects__intro">
-      <p appRevealOnScroll [preset]="'caption'" class="projects__eyebrow">
-        {{ copy(content.heading.eyebrow) }}
-      </p>
+  <div
+    class="projects__scroll-region"
+    appScrollMotion
+    [scrollMotionViewport]="viewport"
+    [scrollMotionTrack]="track"
+    [scrollMotionSticky]="sticky"
+    [scrollMotionMinWidth]="scrollMinWidth"
+    [scrollMotionTopOffset]="scrollTopOffset"
+  >
+    <div #sticky class="container-wide projects__sticky">
+      <div class="projects__intro">
+        <p appRevealOnScroll [preset]="'caption'" class="projects__eyebrow">
+          {{ copy(content.heading.eyebrow) }}
+        </p>
 
-      <h2 id="projects-title" appRevealOnScroll [preset]="'headline'" class="projects__title">
-        {{ copy(content.heading.title) }}
-      </h2>
+        <h2 id="projects-title" appRevealOnScroll [preset]="'headline'" class="projects__title">
+          {{ copy(content.heading.title) }}
+        </h2>
 
-      <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="projects__summary">
-        {{ copy(content.heading.summary) }}
-      </p>
-    </div>
+        <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="projects__summary">
+          {{ copy(content.heading.summary) }}
+        </p>
+      </div>
 
-    <div class="projects__grid">
-      @for (project of projectPreviews; track project.slug; let index = $index) {
-        <div
-          appRevealOnScroll
-          [delayMs]="index * 110 + 140"
-          [preset]="'panel'"
-          class="project-card-wrap"
-        >
-          <article
-            appViewportTilt="project"
-            class="project-card"
-            [class.project-card--vox]="project.theme === 'vox'"
-            [class.project-card--etecfy]="project.theme === 'etecfy'"
-          >
-            <div class="project-card__header">
-              <div class="project-card__brand">
-                <span class="project-card__icon" aria-hidden="true">
-                  <img
-                    [ngSrc]="iconPath(project.slug)"
-                    [width]="iconDimensions(project.slug).width"
-                    [height]="iconDimensions(project.slug).height"
-                    alt=""
-                  />
-                </span>
+      <div appRevealOnScroll [delayMs]="140" [preset]="'panel'" class="projects__rail-meta">
+        <p id="projects-track-hint" class="projects__hint">
+          <span class="projects__hint-desktop">{{ copy(labels.desktopHint) }}</span>
+          <span class="projects__hint-mobile">{{ copy(labels.mobileHint) }}</span>
+        </p>
 
-                <div class="project-card__identity">
-                  <p class="project-card__category">{{ copy(project.category) }}</p>
-                  <h3>{{ copy(project.name) }}</h3>
-                </div>
-              </div>
-
-              <span class="project-card__year">{{ project.year }}</span>
-            </div>
-
-            <p class="project-card__teaser">{{ copy(project.teaser) }}</p>
-
-            <dl class="project-card__metrics">
-              @for (metric of project.previewMetrics; track metric.label.en) {
-                <div class="project-card__metric">
-                  <dt>{{ copy(metric.label) }}</dt>
-                  <dd>{{ metric.value }}</dd>
-                </div>
-              }
-            </dl>
-
-            <div class="project-card__footer">
-              <div class="project-card__stack">
-                @for (stackItem of project.previewStack; track stackItem) {
-                  <span>{{ stackItem }}</span>
-                }
-              </div>
-
-              <div class="project-card__actions">
-                <a class="button button--primary" [routerLink]="caseRoute(project.slug)">
-                  {{ copy(content.ctaLabel) }}
-                </a>
-
-                @if (project.liveLink; as liveLink) {
-                  <a
-                    class="project-card__link action-link"
-                    [href]="liveLink.href"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {{ copy(content.ctaSecondaryLabel) }}
-                  </a>
-                }
-              </div>
-            </div>
-          </article>
+        <div class="projects__progress" aria-hidden="true">
+          <span></span>
         </div>
-      }
+      </div>
+
+      <div
+        #viewport
+        class="projects__viewport"
+        role="region"
+        aria-labelledby="projects-title"
+        aria-describedby="projects-track-hint"
+      >
+        <ul #track class="projects__track">
+          @for (project of content.projects; track project.slug; let index = $index) {
+            <li class="project-card-wrap">
+              <article
+                class="project-card"
+                [attr.data-theme]="project.slug"
+                [attr.aria-labelledby]="'project-' + project.slug + '-title'"
+              >
+                <div class="project-card__media">
+                  <img
+                    [ngSrc]="project.cover.src"
+                    [sizes]="imageSizes"
+                    [alt]="copy(project.cover.alt)"
+                    fill
+                  />
+
+                  <div class="project-card__media-overlay" aria-hidden="true"></div>
+                  <span class="project-card__index" aria-hidden="true">0{{ index + 1 }}</span>
+                </div>
+
+                <div class="project-card__body">
+                  <header class="project-card__header">
+                    <div class="project-card__brand">
+                      <span class="project-card__icon" aria-hidden="true">
+                        <img
+                          [ngSrc]="project.icon.src"
+                          [width]="project.icon.width"
+                          [height]="project.icon.height"
+                          alt=""
+                        />
+                      </span>
+
+                      <div class="project-card__identity">
+                        <p class="project-card__category">{{ copy(project.category) }}</p>
+                        <h3 [id]="'project-' + project.slug + '-title'">{{ copy(project.name) }}</h3>
+                      </div>
+                    </div>
+
+                    <p class="project-card__tagline">{{ copy(project.tagline) }}</p>
+                  </header>
+
+                  <p class="project-card__description">{{ copy(project.description) }}</p>
+
+                  <div class="project-card__details">
+                    <section class="project-card__panel">
+                      <p class="project-card__label">{{ copy(labels.metrics) }}</p>
+
+                      <dl class="project-card__metrics">
+                        @for (metric of project.metrics; track metric.label.en) {
+                          <div class="project-card__metric">
+                            <dt>{{ copy(metric.label) }}</dt>
+                            <dd>{{ metric.value }}</dd>
+                          </div>
+                        }
+                      </dl>
+                    </section>
+
+                    <section class="project-card__panel">
+                      <p class="project-card__label">{{ copy(labels.highlights) }}</p>
+
+                      <ul class="project-card__highlights">
+                        @for (highlight of copyList(project.highlights); track highlight) {
+                          <li>{{ highlight }}</li>
+                        }
+                      </ul>
+                    </section>
+                  </div>
+
+                  <section class="project-card__stack-panel">
+                    <p class="project-card__label">{{ copy(labels.stack) }}</p>
+
+                    <ul class="project-card__stack">
+                      @for (stackItem of project.stack; track stackItem) {
+                        <li>{{ stackItem }}</li>
+                      }
+                    </ul>
+                  </section>
+                </div>
+              </article>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </section>
