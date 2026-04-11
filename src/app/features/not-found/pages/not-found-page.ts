@@ -1,11 +1,11 @@
-﻿import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
-import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { BrandScene } from '../../../shared/components/brand-scene/brand-scene';
 
 @Component({
   selector: 'app-not-found-page',
-  imports: [RouterLink],
+  imports: [RouterLink, BrandScene],
   templateUrl: './not-found-page.html',
   styleUrl: './not-found-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,4 +25,3 @@ export class NotFoundPage implements OnInit {
     );
   }
 }
-

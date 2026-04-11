@@ -1,17 +1,27 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CASE_STUDY_SLUGS } from '../../../../core/data/case-study-previews.data';
 import { PROJECTS_SECTION_DATA } from '../../../../core/data/projects-section.data';
+import { CaseStudyMetric, CaseStudySlug } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language.service';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
 import { ScrollMotionDirective } from '../../../../shared/directives/scroll-motion.directive';
 
-const PROJECT_SCROLL_BREAKPOINT = 960;
-const PROJECT_SCROLL_TOP_OFFSET = 96;
-const PROJECT_CARD_IMAGE_SIZES = '(max-width: 959px) 84vw, 34rem';
+type ProjectCard = (typeof PROJECTS_SECTION_DATA.projects)[number];
+
+const PROJECT_SCROLL_BREAKPOINT = 0;
+const PROJECT_SCROLL_TOP_OFFSET = 84;
+const PROJECT_CARD_IMAGE_SIZES = '(max-width: 959px) 92vw, 36rem';
+const PROJECT_HOME_LIMITS = {
+  highlights: 2,
+  metrics: 2,
+  stack: 3,
+} as const;
 
 @Component({
   selector: 'app-projects-section',
-  imports: [NgOptimizedImage, RevealOnScrollDirective, ScrollMotionDirective],
+  imports: [NgOptimizedImage, RouterLink, RevealOnScrollDirective, ScrollMotionDirective],
   templateUrl: './projects-section.html',
   styleUrl: './projects-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,20 +37,28 @@ export class ProjectsSection {
       pt: 'Role verticalmente para atravessar o trilho de projetos.',
     },
     mobileHint: {
-      en: 'Swipe horizontally to browse the projects.',
-      pt: 'Deslize horizontalmente para navegar pelos projetos.',
+      en: 'Scroll vertically to move across the project rail.',
+      pt: 'Role verticalmente para atravessar o trilho de projetos.',
     },
-    metrics: {
-      en: 'Metrics',
-      pt: 'Metricas',
+    caseCta: {
+      en: 'Open case study',
+      pt: 'Abrir case study',
+    },
+    liveCta: {
+      en: 'Open live project',
+      pt: 'Abrir projeto online',
+    },
+    repositoryCta: {
+      en: 'View repository',
+      pt: 'Ver repositorio',
     },
     highlights: {
       en: 'Highlights',
       pt: 'Destaques',
     },
-    stack: {
-      en: 'Core stack',
-      pt: 'Stack principal',
+    proof: {
+      en: 'Proof points',
+      pt: 'Sinais de prova',
     },
   } as const;
 
@@ -55,5 +73,35 @@ export class ProjectsSection {
     pt: readonly string[];
   }): readonly string[] {
     return value[this.languageService.language()];
+  }
+
+  public caseRoute(slug: CaseStudySlug): readonly string[] {
+    return this.languageService.caseRoute(slug);
+  }
+
+  public projectCaseRoute(slug: ProjectCard['slug']): readonly string[] | null {
+    return CASE_STUDY_SLUGS.has(slug)
+      ? this.languageService.caseRoute(slug as CaseStudySlug)
+      : null;
+  }
+
+  public projectPrimaryHref(project: ProjectCard): string {
+    return project.liveUrl ?? project.repositories[0]?.href ?? '#';
+  }
+
+  public projectPrimaryLabel(project: ProjectCard): { en: string; pt: string } {
+    return project.liveUrl ? this.labels.liveCta : this.labels.repositoryCta;
+  }
+
+  public projectHighlights(project: ProjectCard): readonly string[] {
+    return this.copyList(project.highlights).slice(0, PROJECT_HOME_LIMITS.highlights);
+  }
+
+  public projectMetrics(project: ProjectCard): readonly CaseStudyMetric[] {
+    return project.metrics.slice(0, PROJECT_HOME_LIMITS.metrics);
+  }
+
+  public projectStack(project: ProjectCard): readonly string[] {
+    return project.stack.slice(0, PROJECT_HOME_LIMITS.stack);
   }
 }

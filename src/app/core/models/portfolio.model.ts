@@ -91,7 +91,7 @@ export interface CredentialsContent {
   languages: LocalizedValue<readonly string[]>;
 }
 
-export type CaseStudySlug = 'vox' | 'etecfy';
+export type CaseStudySlug = 'auronix' | 'modularis' | 'votrix' | 'vox' | 'etecfy';
 export type CaseStudyTheme = CaseStudySlug;
 
 export interface CaseStudyMetric {

@@ -1,5 +1,6 @@
-<div class="page-shell page-shell--home home-shell">
+<div class="page-shell page-shell--home home-shell" data-scene-section>
   <div class="page-shell__background" aria-hidden="true"></div>
+  <app-brand-scene class="page-shell__scene page-shell__scene--home" />
 
   <div class="page-shell__content">
     <app-navbar />
@@ -7,11 +8,7 @@
     <span id="top" class="scroll-anchor" aria-hidden="true"></span>
 
     <main class="home-main">
-      <div class="home-scene-stage" data-scene-section>
-        <div class="home-scene-stage__background" aria-hidden="true">
-          <app-brand-scene />
-        </div>
-
+      <div class="home-scene-stage">
         <app-hero-section />
         <app-metrics-section />
       </div>

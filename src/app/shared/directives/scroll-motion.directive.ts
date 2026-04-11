@@ -26,6 +26,7 @@ export class ScrollMotionDirective implements AfterViewInit {
   private frameId = 0;
   private scrollRange = 0;
   private active = false;
+  private activeTopOffset = 0;
 
   public readonly scrollMotionViewport = input.required<HTMLElement>();
   public readonly scrollMotionTrack = input.required<HTMLElement>();
@@ -81,8 +82,6 @@ export class ScrollMotionDirective implements AfterViewInit {
     const viewport = this.scrollMotionViewport();
     const track = this.scrollMotionTrack();
 
-    host.style.setProperty('--scroll-motion-top-offset', `${this.scrollMotionTopOffset()}px`);
-
     const prefersReducedMotion =
       typeof window.matchMedia == 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -107,6 +106,8 @@ export class ScrollMotionDirective implements AfterViewInit {
       return;
     }
 
+    this.activeTopOffset = this.resolveTopOffset(sticky, viewport, track);
+    host.style.setProperty('--scroll-motion-top-offset', `${this.activeTopOffset}px`);
     this.scrollRange = scrollRange;
     host.style.height = `${stickyHeight + scrollRange}px`;
     this.active = true;
@@ -141,7 +142,7 @@ export class ScrollMotionDirective implements AfterViewInit {
     const hostTop = host.getBoundingClientRect().top;
     const progress = Math.min(
       1,
-      Math.max(0, (this.scrollMotionTopOffset() - hostTop) / this.scrollRange),
+      Math.max(0, (this.activeTopOffset - hostTop) / this.scrollRange),
     );
     const offset = progress * this.scrollRange;
 
@@ -155,11 +156,13 @@ export class ScrollMotionDirective implements AfterViewInit {
 
     this.cancelFrame();
     this.active = false;
+    this.activeTopOffset = 0;
 
     host.classList.add('scroll-motion--native');
     host.classList.remove('scroll-motion--active');
     host.style.removeProperty('height');
     host.style.setProperty('--scroll-motion-progress', '0');
+    host.style.setProperty('--scroll-motion-top-offset', `${this.scrollMotionTopOffset()}px`);
     host.style.setProperty('--scroll-motion-x', '0px');
 
     this.scrollMotionTrack().style.removeProperty('transform');
@@ -185,5 +188,35 @@ export class ScrollMotionDirective implements AfterViewInit {
     this.resizeObserver = null;
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
+  }
+
+  private resolveTopOffset(sticky: HTMLElement, viewport: HTMLElement, track: HTMLElement): number {
+    const minimumTopOffset = this.scrollMotionTopOffset();
+    const stickyRect = sticky.getBoundingClientRect();
+    const firstTrackItem = track.firstElementChild as HTMLElement | null;
+
+    if (firstTrackItem) {
+      const firstTrackItemRect = firstTrackItem.getBoundingClientRect();
+
+      if (firstTrackItemRect.height > 0) {
+        const itemOffsetWithinSticky = Math.max(0, firstTrackItemRect.top - stickyRect.top);
+        const centeredOffset =
+          window.innerHeight / 2 - itemOffsetWithinSticky - firstTrackItemRect.height / 2;
+
+        return Math.max(minimumTopOffset, Math.round(centeredOffset));
+      }
+    }
+
+    const viewportHeight = viewport.clientHeight;
+
+    if (viewportHeight <= 0) {
+      return minimumTopOffset;
+    }
+
+    const viewportRect = viewport.getBoundingClientRect();
+    const viewportOffsetWithinSticky = Math.max(0, viewportRect.top - stickyRect.top);
+    const centeredOffset = window.innerHeight / 2 - viewportOffsetWithinSticky - viewportHeight / 2;
+
+    return Math.max(minimumTopOffset, Math.round(centeredOffset));
   }
 }

@@ -1,10 +1,12 @@
-﻿import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { ProjectsSection } from './projects-section';
 
 describe('ProjectsSection', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProjectsSection],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
