@@ -147,7 +147,7 @@ export const CASE_STUDY_PREVIEWS = [
     metrics: [
       {
         value: '500+',
-        label: { en: 'Concurrent users', pt: 'Usuarios simultaneos' },
+        label: { en: 'Users', pt: 'Usuarios' },
       },
       {
         value: '100%',
@@ -183,8 +183,8 @@ export const CASE_STUDY_PREVIEWS = [
     },
     metrics: [
       {
-        value: '1.3K',
-        label: { en: 'Launch accesses in 6h', pt: 'Acessos em 6h de lancamento' },
+        value: '16K+',
+        label: { en: 'Accesses', pt: 'Acessos' },
       },
       {
         value: 'Fast',

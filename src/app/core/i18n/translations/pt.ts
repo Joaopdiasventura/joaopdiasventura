@@ -14,7 +14,7 @@ export const PT_TRANSLATIONS: TranslationDictionary = {
 
   'hero.role': 'Desenvolvedor de Software',
   'hero.summary':
-    'Desenvolvedor de software que atua como principal responsável técnico em startups, liderando a arquitetura e a construção de sistemas financeiros e aplicações orientadas a dados em larga escala.',
+    'Desenvolvedor de software responsável pela arquitetura e implementação de sistemas financeiros e aplicações orientadas a dados em ambientes de startup.',
   'hero.cta.cv': 'Baixar Currículo',
   'hero.cta.contact': 'Contato',
   'hero.cta.projects': 'Ver Projetos',
@@ -33,17 +33,17 @@ export const PT_TRANSLATIONS: TranslationDictionary = {
   'exp.1.company': 'UFind',
   'exp.1.period': 'jun. 2025 - atual',
   'exp.1.desc':
-    'Atuo como principal responsável técnico pela arquitetura e implementação de um agente de IA orientado a dados, estruturando fluxos de ingestão e processamento de mais de 16 GB de informações. Defini padrões arquiteturais, modelagem e integrações com um sistema próprio de mensageria, garantindo rastreabilidade, histórico transacional e escalabilidade da solução.',
+    'Responsável pela arquitetura e implementação de um agente de IA orientado a dados, com fluxos de ingestão e processamento de mais de 16 GB de informações. Defini padrões arquiteturais, modelagem e integrações com sistema próprio de mensageria, garantindo rastreabilidade, histórico transacional e escalabilidade.',
   'exp.2.role': 'Desenvolvedor Júnior',
   'exp.2.company': 'Representa Online',
   'exp.2.period': 'set. 2024 - maio 2025',
   'exp.2.desc':
-    'Atuei como desenvolvedor principal na concepção e implementação de um sistema de faturamento para corretora, processando arquivos com mais de 200 mil beneficiários. Estruturei uma arquitetura performática para múltiplos layouts e regras financeiras, definindo validações críticas e otimizações que reduziram operações manuais de dias para minutos.',
+    'Responsável pela concepção e implementação de um sistema de faturamento para corretora, processando arquivos com mais de 200 mil beneficiários. Estruturei uma arquitetura para múltiplos layouts e regras financeiras, com validações críticas e otimizações que reduziram operações manuais de dias para minutos.',
   'exp.3.role': 'Estagiário em Desenvolvimento',
   'exp.3.company': 'Representa Online',
   'exp.3.period': 'jun. 2024 - ago. 2024',
   'exp.3.desc':
-    'Atuei como principal desenvolvedor no núcleo do catálogo de produtos e serviços da plataforma, conduzindo melhorias de performance em consultas, filtros e paginação sobre grandes volumes de registros.',
+    'Responsável pelo núcleo do catálogo de produtos e serviços da plataforma, com melhorias de performance em consultas, filtros e paginação sobre grandes volumes de registros.',
 
   'skills.title': 'Habilidades Técnicas',
   'skills.frontend': 'Frontend',
@@ -56,10 +56,10 @@ export const PT_TRANSLATIONS: TranslationDictionary = {
   'projects.cta.live': 'Ver Projeto Online',
   'projects.1.name': 'VOX - Sistema Eleitoral',
   'projects.1.desc':
-    'Arquitetura completa com foco em integridade, auditoria e rastreabilidade dos votos. Modelagem de domínio, validações transacionais e trilhas de auditoria. Suportou mais de 500 usuários simultâneos.',
+    'Arquitetura de sistema com foco em integridade, auditoria e rastreabilidade dos votos. Modelagem de domínio, validações transacionais e trilhas de auditoria. Suportou mais de 500 usuários.',
   'projects.2.name': 'Etecfy - Streaming de Música',
   'projects.2.desc':
-    'Plataforma com foco em escalabilidade e performance, catálogo otimizado e integrações com serviços de mídia. Alcançou 1,3 mil acessos em 6 horas após o lançamento.',
+    'Plataforma de streaming com catálogo otimizado e integrações com serviços de mídia. Registrou mais de 16 mil acessos.',
 
   'edu.title': 'Formação Acadêmica',
   'edu.1.course': 'Desenvolvimento de Software Multiplataforma',
@@ -87,11 +87,11 @@ export const PT_TRANSLATIONS: TranslationDictionary = {
   'metrics.data': '+16GB',
   'metrics.data.label': 'Dados Processados',
   'metrics.users': '+500',
-  'metrics.users.label': 'Usuários Simultâneos',
+  'metrics.users.label': 'Usuários',
   'metrics.beneficiaries': '+1M',
   'metrics.beneficiaries.label': 'Beneficiários',
-  'metrics.accesses': '1.3K',
-  'metrics.accesses.label': 'Acessos em 6h',
+  'metrics.accesses': '16K+',
+  'metrics.accesses.label': 'Acessos',
 
   'languages.title': 'Idiomas',
   'languages.pt': 'Português - Nativo',

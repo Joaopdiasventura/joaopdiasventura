@@ -86,6 +86,21 @@
                       <p class="project-card__tagline">{{ copy(project.tagline) }}</p>
                     </header>
 
+                    <div class="project-card__mobile-summary">
+                      @if (projectMobileMetric(project); as metric) {
+                        <div class="project-card__mobile-proof">
+                          <p class="project-card__label">{{ copy(metric.label) }}</p>
+                          <p class="project-card__mobile-proof-value">{{ metric.value }}</p>
+                        </div>
+                      }
+
+                      <ul class="project-card__stack project-card__stack--mobile">
+                        @for (stackItem of projectMobileStack(project); track stackItem) {
+                          <li>{{ stackItem }}</li>
+                        }
+                      </ul>
+                    </div>
+
                     <p class="project-card__description">{{ copy(project.description) }}</p>
 
                     <section class="project-card__panel">

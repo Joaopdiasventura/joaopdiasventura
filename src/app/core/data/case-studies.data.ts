@@ -2,8 +2,8 @@ import { CaseStudy, CaseStudyPreview, CaseStudySlug } from '../models/portfolio.
 import { CASE_STUDY_PREVIEWS } from './case-study-previews.data';
 
 const INDEPENDENT_PUBLIC_CASE = {
-  en: 'Independent public case',
-  pt: 'Case publico independente',
+  en: 'Independent engineering project',
+  pt: 'Projeto de engenharia independente',
 } as const;
 
 const CASE_STUDY_PREVIEW_BY_SLUG = new Map(
@@ -169,11 +169,11 @@ export const CASE_STUDIES = [
     overview: {
       en: [
         'Modularis splits onboarding into four services: browser ingress, identity, payment orchestration, and webhook verification, all coordinated through typed contracts.',
-        'User identity stays relational, payment state stays document-oriented, and the runtime ships verified webhooks, rate limiting, session cookies, live updates, and a deterministic local mock gateway.',
+        'User identity stays relational, payment state stays document-oriented, and the runtime ships verified webhooks, rate limiting, session cookies, live updates, and a deterministic gateway simulator for scenario validation.',
       ],
       pt: [
         'Modularis divide o onboarding em quatro servicos: entrada do navegador, identidade, orquestracao de pagamento e verificacao de webhook, todos coordenados por contratos tipados.',
-        'A identidade do usuario fica em modelo relacional, o estado do pagamento em modelo documental, e o runtime entrega webhooks validados, rate limiting, cookies de sessao, atualizacoes ao vivo e gateway mock deterministico.',
+        'A identidade do usuario fica em modelo relacional, o estado do pagamento em modelo documental, e o runtime entrega webhooks validados, rate limiting, cookies de sessao, atualizacoes ao vivo e simulador deterministico de gateway para validacao de cenarios.',
       ],
     },
     highlights: {
@@ -235,17 +235,17 @@ export const CASE_STUDIES = [
           pt: 'Tornar o progresso assincrono observavel ponta a ponta',
         },
         description: {
-          en: 'Live updates, centralized runtime config, and a deterministic mock gateway make retries, expiry, duplicate webhooks, and premium convergence reproducible in local runs.',
-          pt: 'Atualizacoes ao vivo, configuracao centralizada e gateway mock deterministico tornam retries, expiracao, webhooks duplicados e convergencia premium reproduziveis localmente.',
+          en: 'Live updates, centralized runtime config, and a deterministic gateway simulator make retries, expiry, duplicate webhooks, and premium convergence reproducible across validation scenarios.',
+          pt: 'Atualizacoes ao vivo, configuracao centralizada e simulador deterministico de gateway tornam retries, expiracao, webhooks duplicados e convergencia premium reproduziveis nos cenarios de validacao.',
         },
       },
     ],
     results: {
       en: [
-        'Locally verified on April 8, 2026: build, unit, and end-to-end suites passed with 57 tests across 14 suites while four services coordinated through eight typed message patterns.',
+        'Verified on April 8, 2026: build, unit, and end-to-end suites passed with 57 tests across 14 suites while four services coordinated through eight typed message patterns.',
       ],
       pt: [
-        'Verificado localmente em 8 de abril de 2026: build, testes unitarios e end-to-end passaram com 57 testes em 14 suites enquanto quatro servicos se coordenavam por oito padroes tipados.',
+        'Verificado em 8 de abril de 2026: build, testes unitarios e end-to-end passaram com 57 testes em 14 suites enquanto quatro servicos se coordenavam por oito padroes tipados.',
       ],
     },
     mediaCaption: {
@@ -332,12 +332,12 @@ export const CASE_STUDIES = [
       en: [
         'Built directly on platform HTTP primitives.',
         'No plugin runtime, schema validation layer, or specialized serialization subsystem.',
-        'Performance claims are limited to the checked-in local benchmark harness.',
+        'Performance claims are based on the versioned benchmark harness stored in the repository.',
       ],
       pt: [
         'Construido diretamente sobre os primitivos HTTP da plataforma.',
         'Sem runtime de plugin, camada de validacao por schema ou serializacao especializada.',
-        'As alegacoes de performance ficam limitadas ao harness local versionado.',
+        'As alegacoes de performance se baseiam no harness de benchmark versionado no repositorio.',
       ],
     },
     decisions: [
@@ -367,8 +367,8 @@ export const CASE_STUDIES = [
           pt: 'Entregar a prova junto do runtime',
         },
         description: {
-          en: 'The repository validates the scenarios and benchmarks Votrix against the comparison runtimes under the same local contracts, so the performance claim remains inspectable.',
-          pt: 'O repositorio valida os cenarios e benchmarka Votrix contra runtimes de comparacao sob os mesmos contratos locais, para que a alegacao de performance continue inspecionavel.',
+          en: 'The repository validates the scenarios and benchmarks Votrix against the comparison runtimes under the same contracts, keeping the performance claim inspectable.',
+          pt: 'O repositorio valida os cenarios e benchmarka Votrix contra runtimes de comparacao sob os mesmos contratos, mantendo a alegacao de performance inspecionavel.',
         },
       },
     ],
@@ -405,8 +405,8 @@ export const CASE_STUDIES = [
         eyebrow: { en: 'Proof', pt: 'Prova' },
         title: { en: 'Benchmark claims stay inspectable', pt: 'As alegacoes de benchmark permanecem inspecionaveis' },
         body: {
-          en: 'The same harness validates the scenarios first and then measures all runtimes under equivalent local contracts.',
-          pt: 'O mesmo harness valida os cenarios primeiro e depois mede todos os runtimes sob contratos locais equivalentes.',
+          en: 'The same harness validates the scenarios first and then measures all runtimes under equivalent contracts.',
+          pt: 'O mesmo harness valida os cenarios primeiro e depois mede todos os runtimes sob contratos equivalentes.',
         },
       },
     ],
@@ -415,8 +415,8 @@ export const CASE_STUDIES = [
       pt: 'Projeto Votrix Runtime de Alta Performance | Joao Paulo Dias Ventura',
     },
     seoDescription: {
-      en: 'Project page about Votrix, a high-performance runtime focused on hot-path reduction and locally benchmarked throughput advantages.',
-      pt: 'Pagina do projeto sobre o Votrix, um runtime de alta performance focado em reducao de hot path e vantagens locais de throughput medidas em benchmark.',
+      en: 'Project page about Votrix, a high-performance runtime focused on hot-path reduction and benchmarked throughput gains.',
+      pt: 'Pagina do projeto sobre o Votrix, um runtime de alta performance focado em reducao de hot path e ganhos de throughput medidos em benchmark.',
     },
   },
   {
@@ -509,16 +509,16 @@ export const CASE_STUDIES = [
     results: {
       en: [
         'A coherent voting system narrative where trust is reinforced by both backend guarantees and interface behavior.',
-        'A case that demonstrates thinking around state, auditability, and critical product flows under concurrency.',
+        'A system structured around explicit state handling, auditability, and critical product flows under concurrency.',
       ],
       pt: [
         'Uma narrativa de sistema coerente em que confianca e reforcada por garantias de backend e comportamento de interface.',
-        'Um case que demonstra raciocinio sobre estado, auditoria e fluxos criticos de produto sob concorrencia.',
+        'Um sistema estruturado em torno de tratamento explicito de estado, auditoria e fluxos criticos de produto sob concorrencia.',
       ],
     },
     mediaCaption: {
-      en: 'Editorial reconstruction of the platform logic, emphasizing election state, trust checkpoints, and operator visibility.',
-      pt: 'Reconstrucao editorial da logica da plataforma, enfatizando estado da eleicao, checkpoints de confianca e visibilidade para operadores.',
+      en: 'System representation of platform logic, emphasizing election state, trust checkpoints, and operator visibility.',
+      pt: 'Representacao de sistema da logica da plataforma, com enfase em estado da eleicao, checkpoints de confianca e visibilidade para operadores.',
     },
     mediaPanels: [
       {
@@ -647,17 +647,17 @@ export const CASE_STUDIES = [
     ],
     results: {
       en: [
-        'A public case that shows how product rhythm, frontend polish, and system planning can coexist.',
-        'A platform that reached 1.3K accesses within six hours and demonstrates thinking beyond visual styling alone.',
+        'A streaming platform structured around catalog navigation, playback continuity, and delivery planning.',
+        'The platform recorded more than 16K accesses while maintaining catalog depth and media delivery flow.',
       ],
       pt: [
-        'Um case publico que mostra como ritmo de produto, refinamento frontend e planejamento de sistema podem coexistir.',
-        'Uma plataforma que alcancou 1,3 mil acessos em seis horas e demonstra raciocinio alem de estilo visual isolado.',
+        'Uma plataforma de streaming estruturada em torno de navegacao de catalogo, continuidade de reproducao e planejamento de entrega.',
+        'A plataforma registrou mais de 16 mil acessos mantendo profundidade de catalogo e fluxo de entrega de midia.',
       ],
     },
     mediaCaption: {
-      en: 'Editorial interpretation of catalog depth, release momentum, and the motion language behind a media-focused interface.',
-      pt: 'Interpretacao editorial de profundidade de catalogo, impulso de lancamento e linguagem de motion por tras de uma interface orientada a midia.',
+      en: 'System representation of catalog depth, release flow, and interface motion for a media-focused product.',
+      pt: 'Representacao de sistema da profundidade de catalogo, do fluxo de lancamento e da linguagem de motion em um produto orientado a midia.',
     },
     mediaPanels: [
       {

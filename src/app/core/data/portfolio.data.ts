@@ -127,8 +127,8 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
     id: 'traffic',
     value: '500+',
     label: {
-      en: 'Concurrent users',
-      pt: 'Usuários simultâneos',
+      en: 'Users',
+      pt: 'Usuários',
     },
     context: {
       en: 'Institutional voting flow sustained with auditability and traceability.',

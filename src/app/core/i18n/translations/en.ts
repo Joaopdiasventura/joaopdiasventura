@@ -14,7 +14,7 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
 
   'hero.role': 'Software Developer',
   'hero.summary':
-    'Software Developer acting as lead technical responsible in startups, leading architecture and development of large-scale financial systems and data-oriented applications.',
+    'Software Developer responsible for architecture and implementation of large-scale financial systems and data-oriented applications in startup environments.',
   'hero.cta.cv': 'Download CV',
   'hero.cta.contact': 'Contact',
   'hero.cta.projects': 'View Projects',
@@ -56,10 +56,10 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
   'projects.cta.live': 'View live project',
   'projects.1.name': 'VOX - Electoral System',
   'projects.1.desc':
-    'Complete system architecture focused on vote integrity, auditability, and traceability. Domain modeling, transactional validations and audit trails. Supported 500+ concurrent users.',
+    'System architecture focused on vote integrity, auditability, and traceability. Domain modeling, transactional validations, and audit trails. Supported more than 500 users.',
   'projects.2.name': 'Etecfy - Music Streaming',
   'projects.2.desc':
-    'Platform focused on scalability and performance, optimized catalog and media service integrations. Reached 1.3K accesses within 6 hours of launch.',
+    'Streaming platform with optimized catalog navigation and media service integrations. Recorded more than 16K accesses.',
 
   'edu.title': 'Education',
   'edu.1.course': 'Multiplatform Software Development',
@@ -87,11 +87,11 @@ export const EN_TRANSLATIONS: TranslationDictionary = {
   'metrics.data': '+16GB',
   'metrics.data.label': 'Data Processed',
   'metrics.users': '+500',
-  'metrics.users.label': 'Concurrent Users',
+  'metrics.users.label': 'Users',
   'metrics.beneficiaries': '+1M',
   'metrics.beneficiaries.label': 'Beneficiaries',
-  'metrics.accesses': '1.3K',
-  'metrics.accesses.label': 'Accesses in 6h',
+  'metrics.accesses': '16K+',
+  'metrics.accesses.label': 'Accesses',
 
   'languages.title': 'Languages',
   'languages.pt': 'Portuguese - Native',

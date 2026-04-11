@@ -210,10 +210,10 @@ export const PROJECTS_SECTION_DATA = {
       },
       "metrics": [
         {
-          "value": "30.1K",
+          "value": "Faster",
           "label": {
-            "en": "RPS on /health",
-            "pt": "RPS em /health"
+            "en": "than Fastify and Express",
+            "pt": "que Fastify e Express"
           }
         },
         {
@@ -288,10 +288,10 @@ export const PROJECTS_SECTION_DATA = {
       },
       "metrics": [
         {
-          "value": "29",
+          "value": "500+",
           "label": {
-            "en": "HTTP routes",
-            "pt": "Rotas HTTP"
+            "en": "Users",
+            "pt": "Usuarios"
           }
         },
         {
@@ -373,10 +373,10 @@ export const PROJECTS_SECTION_DATA = {
       },
       "metrics": [
         {
-          "value": "8",
+          "value": "16K+",
           "label": {
-            "en": "Public endpoints",
-            "pt": "Endpoints publicos"
+            "en": "Accesses",
+            "pt": "Acessos"
           }
         },
         {

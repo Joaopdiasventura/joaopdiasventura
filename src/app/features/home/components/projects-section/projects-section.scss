@@ -232,6 +232,31 @@
   -webkit-line-clamp: 2;
 }
 
+.project-card__mobile-summary {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.project-card__mobile-proof {
+  align-items: end;
+  background: rgb(255 255 255 / 3%);
+  border: 1px solid color-mix(in srgb, var(--project-accent) 16%, var(--border));
+  border-radius: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  padding: 0.75rem 0.8rem;
+}
+
+.project-card__mobile-proof-value {
+  color: var(--foreground);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+  text-align: right;
+}
+
 .project-card__panel,
 .project-card__proof {
   background: rgb(255 255 255 / 3%);
@@ -328,6 +353,19 @@
   padding: 0.34rem 0.64rem;
 }
 
+.project-card__stack--mobile {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card__stack--mobile li {
+  overflow: hidden;
+  padding-inline: 0.7rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .project-card__cta {
   align-items: center;
   background: color-mix(in srgb, var(--project-accent) 18%, transparent);
@@ -384,6 +422,56 @@
   will-change: transform;
 }
 
+@media (max-width: 767.98px) {
+  .project-card {
+    grid-template-rows: 8.75rem auto;
+  }
+
+  .project-card__body {
+    gap: 0.9rem;
+    grid-template-rows: auto auto 1fr;
+    padding: 0.95rem;
+  }
+
+  .project-card__brand {
+    gap: 0.8rem;
+  }
+
+  .project-card__icon {
+    height: 2.6rem;
+    width: 2.6rem;
+  }
+
+  .project-card__identity h3 {
+    font-size: clamp(1.2rem, 6vw, 1.5rem);
+  }
+
+  .project-card__tagline {
+    font-size: 0.88rem;
+  }
+
+  .project-card__description,
+  .project-card__panel,
+  .project-card__proof,
+  .project-card__stack:not(.project-card__stack--mobile) {
+    display: none;
+  }
+
+  .project-card__footer {
+    gap: 0.9rem;
+  }
+
+  .project-card__footer-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .project-card__cta {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media (min-width: 640px) {
   .projects {
     --projects-card-width: clamp(24rem, 72vw, 28rem);
@@ -397,6 +485,10 @@
 @media (min-width: 768px) {
   .projects {
     --projects-card-width: clamp(26rem, 66vw, 31rem);
+  }
+
+  .project-card__mobile-summary {
+    display: none;
   }
 
   .projects__rail-meta {

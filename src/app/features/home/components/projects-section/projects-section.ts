@@ -17,6 +17,7 @@ const PROJECT_HOME_LIMITS = {
   highlights: 2,
   metrics: 2,
   stack: 3,
+  mobileStack: 2,
 } as const;
 
 @Component({
@@ -101,7 +102,15 @@ export class ProjectsSection {
     return project.metrics.slice(0, PROJECT_HOME_LIMITS.metrics);
   }
 
+  public projectMobileMetric(project: ProjectCard): CaseStudyMetric | null {
+    return project.metrics[0] ?? null;
+  }
+
   public projectStack(project: ProjectCard): readonly string[] {
     return project.stack.slice(0, PROJECT_HOME_LIMITS.stack);
+  }
+
+  public projectMobileStack(project: ProjectCard): readonly string[] {
+    return project.stack.slice(0, PROJECT_HOME_LIMITS.mobileStack);
   }
 }
