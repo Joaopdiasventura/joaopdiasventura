@@ -16,8 +16,8 @@ export class Navbar {
   public readonly navItems = NAV_ITEMS;
   public readonly chrome = SITE_CHROME;
   public readonly brandStrapline = {
-    en: 'Architecture · Performance · Scalability',
-    pt: 'Arquitetura · Performance · Escalabilidade',
+    en: 'Architecture · Delivery · Scale',
+    pt: 'Arquitetura · Entrega · Escala',
   } as const;
   public readonly languageService = inject(LanguageService);
 

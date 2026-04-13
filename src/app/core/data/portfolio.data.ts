@@ -34,19 +34,19 @@ export const SITE_CHROME: SiteChrome = {
     pt: 'Todos os direitos reservados.',
   },
   homeDescription: {
-    en: 'Portfolio of João Paulo Dias Ventura, focused on data-intensive products, auditable systems, and premium frontend execution.',
-    pt: 'Portfólio de João Paulo Dias Ventura, focado em produtos intensivos em dados, sistemas auditáveis e execução frontend premium.',
+    en: 'Portfolio of João Paulo Dias Ventura, focused on auditable systems, data-intensive products, and precise frontend execution.',
+    pt: 'Portfólio de João Paulo Dias Ventura, focado em sistemas auditáveis, produtos intensivos em dados e execução frontend precisa.',
   },
 };
 
 export const NAV_ITEMS: readonly NavItem[] = [
   {
     id: 'about',
-    label: { en: 'About', pt: 'Manifesto' },
+    label: { en: 'About', pt: 'Sobre' },
   },
   {
     id: 'work',
-    label: { en: 'Work', pt: 'Cases' },
+    label: { en: 'Work', pt: 'Projetos' },
   },
   {
     id: 'experience',
@@ -60,35 +60,35 @@ export const NAV_ITEMS: readonly NavItem[] = [
 
 export const HERO_CONTENT: HeroContent = {
   eyebrow: {
-    en: 'Data-intensive systems and Precise execution',
-    pt: 'Sistemas intensivos em dados e Execução precisa',
+    en: 'Auditable systems. Clear execution.',
+    pt: 'Sistemas auditáveis. Execução clara.',
   },
   titleLines: {
     en: ['João Paulo', 'Dias Ventura'],
     pt: ['João Paulo', 'Dias Ventura'],
   },
   summary: {
-    en: 'I design and ship software for complex flows where data integrity, operational clarity, and product quality cannot drift apart.',
-    pt: 'Eu projeto e entrego software para fluxos complexos em que integridade de dados, clareza operacional e qualidade de produto não podem se dissociar.',
+    en: 'I design and deliver software for complex operations where data integrity, operational clarity, and product quality must stay aligned.',
+    pt: 'Projeto e entrego software para operações complexas em que integridade de dados, clareza operacional e qualidade de produto precisam permanecer alinhadas.',
   },
   noteTitle: {
     en: 'Current focus',
     pt: 'Foco atual',
   },
   noteBody: {
-    en: 'Architecting auditable systems, high-volume processing pipelines, and interfaces that feel as deliberate as the backend behind them.',
-    pt: 'Arquitetar sistemas auditáveis, pipelines de alto volume e interfaces com o mesmo rigor do backend que as sustenta.',
+    en: 'Auditable systems, high-volume data flows, and interfaces that stay clear under complexity.',
+    pt: 'Sistemas auditáveis, fluxos de dados de alto volume e interfaces que permanecem claras sob complexidade.',
   },
   ctas: [
     {
       id: 'work',
       kind: 'primary',
-      label: { en: 'Explore featured work', pt: 'Explorar cases em destaque' },
+      label: { en: 'View work', pt: 'Ver projetos' },
     },
     {
       id: 'contact',
       kind: 'secondary',
-      label: { en: 'Start a conversation', pt: 'Iniciar conversa' },
+      label: { en: 'Get in touch', pt: 'Entrar em contato' },
     },
     {
       id: 'cv',
@@ -103,36 +103,36 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
     id: 'data',
     value: '+16GB',
     label: {
-      en: 'Processed data',
+      en: 'Data processed',
       pt: 'Dados processados',
     },
     context: {
-      en: 'Ingestion and structuring flows for AI-oriented information pipelines.',
-      pt: 'Fluxos de ingestão e estruturação para pipelines orientados a IA.',
+      en: 'AI ingestion and processing flows above 16 GB.',
+      pt: 'Fluxos de ingestão e processamento para IA acima de 16 GB.',
     },
   },
   {
     id: 'beneficiaries',
     value: '+1M',
     label: {
-      en: 'Beneficiaries handled',
+      en: 'Beneficiaries processed',
       pt: 'Beneficiários processados',
     },
     context: {
-      en: 'Billing rules and multi-layout validation in insurance operations.',
-      pt: 'Regras de faturamento e validação multi-layout em operações de corretora.',
+      en: 'Insurance billing flows with multi-layout validation.',
+      pt: 'Fluxos de faturamento com validação multi-layout em seguros.',
     },
   },
   {
     id: 'traffic',
     value: '500+',
     label: {
-      en: 'Users',
-      pt: 'Usuários',
+      en: 'Concurrent users',
+      pt: 'Usuários simultâneos',
     },
     context: {
-      en: 'Institutional voting flow sustained with auditability and traceability.',
-      pt: 'Fluxo de votação institucional sustentado com auditoria e rastreabilidade.',
+      en: 'Voting flows with audit trails under concurrent load.',
+      pt: 'Fluxos de votação com trilhas de auditoria sob carga concorrente.',
     },
   },
 ] as const;
@@ -144,26 +144,26 @@ export const MANIFESTO_CONTENT: ManifestoContent = {
       pt: 'Posicionamento',
     },
     title: {
-      en: 'I build systems where business rules, product decisions, and execution quality stay aligned.',
-      pt: 'Eu construo sistemas em que regras de negócio, decisões de produto e qualidade de execução permanecem alinhadas.',
+      en: 'I build software that keeps rules, decisions, and execution aligned.',
+      pt: 'Construo software que mantém regras, decisões e execução alinhadas.',
     },
     summary: {
-      en: 'The strongest work usually happens where architecture is not abstract theory but an operating constraint. That is the space I prefer to work in.',
-      pt: 'O melhor trabalho geralmente acontece quando arquitetura não é teoria abstrata, mas uma restrição operacional real. É nesse espaço que eu prefiro atuar.',
+      en: 'I prefer environments where architecture is an operating constraint, not presentation.',
+      pt: 'Prefiro ambientes em que arquitetura é uma restrição operacional, não apresentação.',
     },
   },
   lead: {
-    en: 'My edge is not just shipping features. It is structuring software so that complexity remains understandable, data remains trustworthy, and the product still feels intentional.',
-    pt: 'Meu diferencial não é apenas entregar funcionalidades. É estruturar software para que a complexidade continue compreensível, os dados continuem confiáveis e o produto mantenha intencionalidade.',
+    en: 'I do more than ship features. I structure systems so complexity stays readable, data stays trustworthy, and interfaces stay intentional.',
+    pt: 'Faço mais do que entregar funcionalidades. Estruturo sistemas para que a complexidade permaneça legível, os dados permaneçam confiáveis e as interfaces permaneçam intencionais.',
   },
   body: {
     en: [
-      'I work across architecture, backend, data-heavy flows, and frontend systems with the same goal: reduce operational friction without reducing rigor.',
-      'That means modeling domains carefully, treating validation as part of product quality, and using interfaces as instruments of clarity rather than decoration.',
+      'My work spans architecture, backend flows, data-heavy operations, and frontend systems with the same goal: reduce friction without reducing rigor.',
+      'That means modeling domains carefully, treating validation as product quality, and using interfaces to clarify critical decisions.',
     ],
     pt: [
-      'Eu atuo entre arquitetura, backend, fluxos intensivos em dados e sistemas frontend com o mesmo objetivo: reduzir fricção operacional sem reduzir rigor.',
-      'Isso significa modelar domínio com cuidado, tratar validação como parte da qualidade do produto e usar interfaces como instrumentos de clareza, não de ornamentação.',
+      'Meu trabalho cobre arquitetura, fluxos de backend, operações intensivas em dados e sistemas frontend com o mesmo objetivo: reduzir atrito sem reduzir rigor.',
+      'Isso significa modelar domínios com cuidado, tratar validação como qualidade de produto e usar interfaces para esclarecer decisões críticas.',
     ],
   },
   principles: [
@@ -173,38 +173,38 @@ export const MANIFESTO_CONTENT: ManifestoContent = {
         pt: 'Rastreabilidade acima de suposição',
       },
       description: {
-        en: 'Critical flows should explain themselves through explicit modeling, state history, and dependable system contracts.',
-        pt: 'Fluxos críticos devem se explicar por modelagem explícita, histórico de estados e contratos de sistema confiáveis.',
+        en: 'Critical flows should explain themselves through explicit models, state history, and dependable contracts.',
+        pt: 'Fluxos críticos devem se explicar por modelos explícitos, histórico de estados e contratos confiáveis.',
       },
     },
     {
       title: {
-        en: 'Performance with narrative clarity',
-        pt: 'Performance com clareza narrativa',
+        en: 'Performance with clarity',
+        pt: 'Performance com clareza',
       },
       description: {
-        en: 'Scale only matters when the product experience and operational understanding remain coherent under load.',
-        pt: 'Escala só importa quando experiência de produto e entendimento operacional permanecem coerentes sob carga.',
+        en: 'Scale matters when the product and the operation remain understandable under load.',
+        pt: 'Escala importa quando produto e operação permanecem compreensíveis sob carga.',
       },
     },
     {
       title: {
-        en: 'Design as engineering signal',
-        pt: 'Design como sinal de engenharia',
+        en: 'Design as system signal',
+        pt: 'Design como sinal de sistema',
       },
       description: {
-        en: 'Interfaces should communicate confidence, order, and decision quality. The visual layer is part of the system story.',
-        pt: 'Interfaces devem comunicar confiança, ordem e qualidade de decisão. A camada visual faz parte da narrativa do sistema.',
+        en: 'Interfaces should communicate confidence, order, and decision quality. The visual layer is part of the system.',
+        pt: 'Interfaces devem comunicar confiança, ordem e qualidade de decisão. A camada visual faz parte do sistema.',
       },
     },
   ],
   profileCardTitle: {
-    en: 'Operator profile',
+    en: 'Working profile',
     pt: 'Perfil de atuação',
   },
   profileCardBody: {
-    en: 'Working across product-minded engineering, system architecture, and frontend craftsmanship with an emphasis on auditable flows.',
-    pt: 'Atuando entre engenharia orientada a produto, arquitetura de sistemas e frontend refinado, com ênfase em fluxos auditáveis.',
+    en: 'Product-minded engineering, system architecture, and frontend craft with emphasis on auditable flows.',
+    pt: 'Engenharia orientada a produto, arquitetura de sistemas e frontend refinado com ênfase em fluxos auditáveis.',
   },
   profileMeta: [
     {
@@ -219,8 +219,8 @@ export const MANIFESTO_CONTENT: ManifestoContent = {
     {
       label: { en: 'Availability', pt: 'Disponibilidade' },
       value: {
-        en: 'Open to engineering roles with architectural depth.',
-        pt: 'Aberto a posições de engenharia com profundidade arquitetural.',
+        en: 'Open to engineering roles with strong architecture ownership.',
+        pt: 'Aberto a posições de engenharia com forte responsabilidade arquitetural.',
       },
     },
   ],
@@ -229,37 +229,37 @@ export const MANIFESTO_CONTENT: ManifestoContent = {
 export const FEATURED_WORK_CONTENT: FeaturedWorkContent = {
   heading: {
     eyebrow: {
-      en: 'Featured public work',
-      pt: 'Cases públicos em destaque',
+      en: 'Selected work',
+      pt: 'Trabalhos selecionados',
     },
     title: {
-      en: 'Featured projects',
-      pt: 'Projetos em destaque',
+      en: 'Selected projects',
+      pt: 'Projetos selecionados',
     },
     summary: {
-      en: 'The homepage shows only the essential signal: what each project is, why it matters, and where to open the full breakdown.',
-      pt: 'A home mostra apenas o sinal essencial: o que cada projeto é, por que ele importa e onde abrir a análise completa.',
+      en: 'Each project shows scope, architecture, and proof. The case study holds the deeper breakdown.',
+      pt: 'Cada projeto resume escopo, arquitetura e prova. O estudo de caso traz o detalhamento completo.',
     },
   },
   ctaLabel: {
     en: 'Open case study',
-    pt: 'Abrir case study',
+    pt: 'Abrir estudo de caso',
   },
   ctaSecondaryLabel: {
-    en: 'Live project',
-    pt: 'Projeto online',
+    en: 'Open live project',
+    pt: 'Abrir projeto online',
   },
 } as const;
 
 export const EXPERIENCE_HEADING = {
-  eyebrow: { en: 'Professional experience', pt: 'Experiência profissional' },
+  eyebrow: { en: 'Experience', pt: 'Experiência' },
   title: {
-    en: 'High-responsibility work across startup environments, financial flows, and data-heavy operations.',
-    pt: 'Atuação de alta responsabilidade em ambientes de startup, fluxos financeiros e operações intensivas em dados.',
+    en: 'Architecture ownership across startup, financial, and data-heavy environments.',
+    pt: 'Responsabilidade arquitetural em ambientes de startup, finanças e operações intensivas em dados.',
   },
   summary: {
-    en: 'The public work shows craft. The professional track record shows ownership under real constraints.',
-    pt: 'Os cases públicos mostram craft. A trajetória profissional mostra ownership sob restrições reais.',
+    en: 'Public work shows craft. Experience shows delivery under constraint.',
+    pt: 'Projetos públicos mostram craft. Experiência mostra entrega sob restrição.',
   },
 } as const;
 
@@ -268,21 +268,21 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     id: 'ufind',
     role: { en: 'Mid-level Developer', pt: 'Desenvolvedor Pleno' },
     company: 'UFind',
-    period: { en: 'Jun 2025 — Present', pt: 'jun. 2025 — atual' },
+    period: { en: 'Jun 2025 - Present', pt: 'jun. 2025 - atual' },
     summary: {
-      en: 'Lead technical owner for the architecture and implementation of a data-driven AI agent, structuring ingestion and processing flows for high-volume information.',
-      pt: 'Principal responsável técnico pela arquitetura e implementação de um agente de IA orientado a dados, estruturando fluxos de ingestão e processamento para grandes volumes de informação.',
+      en: 'Lead technical owner for a data-driven AI agent, defining architecture and high-volume ingestion flows.',
+      pt: 'Principal responsável técnico por um agente de IA orientado a dados, definindo arquitetura e fluxos de ingestão de alto volume.',
     },
     highlights: {
       en: [
         'Defined architecture standards and integration boundaries.',
-        'Structured flows for more than 16GB of data.',
-        'Preserved traceability and transactional history across the system.',
+        'Structured flows for more than 16 GB of data.',
+        'Kept traceability and transactional history explicit.',
       ],
       pt: [
         'Defini padrões arquiteturais e limites de integração.',
-        'Estruturei fluxos para mais de 16GB de dados.',
-        'Preservei rastreabilidade e histórico transacional ao longo do sistema.',
+        'Estruturei fluxos para mais de 16 GB de dados.',
+        'Mantive rastreabilidade e histórico transacional explícitos.',
       ],
     },
   },
@@ -290,21 +290,21 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     id: 'representa-junior',
     role: { en: 'Junior Developer', pt: 'Desenvolvedor Júnior' },
     company: 'Representa Online',
-    period: { en: 'Sep 2024 — May 2025', pt: 'set. 2024 — maio 2025' },
+    period: { en: 'Sep 2024 - May 2025', pt: 'set. 2024 - maio 2025' },
     summary: {
-      en: 'Led the conception and implementation of a billing system for an insurance brokerage with multiple financial layouts and critical validation rules.',
-      pt: 'Liderei a concepção e implementação de um sistema de faturamento para corretora com múltiplos layouts financeiros e regras críticas de validação.',
+      en: 'Led the design and implementation of an insurance billing system with multiple layouts and critical financial rules.',
+      pt: 'Liderei o desenho e a implementação de um sistema de faturamento para seguros com múltiplos layouts e regras financeiras críticas.',
     },
     highlights: {
       en: [
-        'Processed files with more than 1M beneficiaries.',
+        'Processed high-volume insurance files.',
         'Reduced manual routines from days to minutes.',
-        'Designed the architecture for layout variation and financial rules.',
+        'Designed for layout variation and financial rule handling.',
       ],
       pt: [
-        'Processei arquivos com mais de 200 mil beneficiários.',
+        'Processei arquivos de seguros em alto volume.',
         'Reduzi rotinas manuais de dias para minutos.',
-        'Desenhei a arquitetura para variação de layouts e regras financeiras.',
+        'Desenhei a arquitetura para variações de layout e regras financeiras.',
       ],
     },
   },
@@ -312,21 +312,21 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     id: 'representa-intern',
     role: { en: 'Software Development Intern', pt: 'Estagiário em Desenvolvimento' },
     company: 'Representa Online',
-    period: { en: 'Jun 2024 — Aug 2024', pt: 'jun. 2024 — ago. 2024' },
+    period: { en: 'Jun 2024 - Aug 2024', pt: 'jun. 2024 - ago. 2024' },
     summary: {
-      en: 'Worked in the platform core for product and service catalog behavior, performance, and resilience under large result sets.',
-      pt: 'Atuei no núcleo da plataforma para comportamento de catálogo de produtos e serviços, performance e resiliência sob grandes conjuntos de resultados.',
+      en: 'Worked on the platform core for catalog behavior, performance, and resilience.',
+      pt: 'Atuei no núcleo da plataforma em comportamento de catálogo, performance e resiliência.',
     },
     highlights: {
       en: [
         'Improved query, filter, and pagination performance.',
-        'Implemented rule-based access control and fault tolerance mechanisms.',
-        'Raised operational robustness in a growing platform core.',
+        'Implemented rule-based access control and fault-tolerance mechanisms.',
+        'Raised robustness in a growing platform core.',
       ],
       pt: [
-        'Melhorei performance de consultas, filtros e paginação.',
-        'Implementei controle de acesso por regras de negócio e mecanismos de tolerância a falhas.',
-        'Elevei a robustez operacional em um núcleo de plataforma em crescimento.',
+        'Melhorei a performance de consultas, filtros e paginação.',
+        'Implementei controle de acesso por regras e mecanismos de tolerância a falhas.',
+        'Aumentei a robustez de um núcleo de plataforma em crescimento.',
       ],
     },
   },
@@ -335,12 +335,12 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
 export const CAPABILITY_HEADING = {
   eyebrow: { en: 'Capabilities', pt: 'Capacidades' },
   title: {
-    en: 'What I bring to systems',
-    pt: 'O que eu levo para sistemas',
+    en: 'How I contribute to systems',
+    pt: 'Como contribuo para sistemas',
   },
   summary: {
-    en: 'Instead of listing tools in isolation, this section frames the kinds of technical leverage I am most useful for.',
-    pt: 'Em vez de listar ferramentas isoladamente, esta seção enquadra os tipos de alavanca técnica em que sou mais útil.',
+    en: 'This section groups the work by leverage, not by isolated tools.',
+    pt: 'Esta seção organiza o trabalho por alavanca técnica, não por ferramentas isoladas.',
   },
 } as const;
 
@@ -352,19 +352,19 @@ export const CAPABILITY_CLUSTERS: readonly CapabilityCluster[] = [
       pt: 'Arquitetura de sistemas',
     },
     summary: {
-      en: 'Designing service boundaries, domain models, and validation-heavy flows that stay understandable over time.',
-      pt: 'Desenho de fronteiras de serviço, modelos de domínio e fluxos intensivos em validação que permanecem compreensíveis ao longo do tempo.',
+      en: 'Service boundaries, domain models, and validation-heavy flows that stay understandable over time.',
+      pt: 'Fronteiras de serviço, modelos de domínio e fluxos intensivos em validação que permanecem compreensíveis ao longo do tempo.',
     },
     items: {
       en: [
         'Domain modeling for critical business rules',
         'Transactional integrity and trace history',
-        'Service contracts shaped for maintainability',
+        'Service contracts designed for maintainability',
       ],
       pt: [
         'Modelagem de domínio para regras de negócio críticas',
         'Integridade transacional e histórico de rastreabilidade',
-        'Contratos de serviço moldados para manutenção',
+        'Contratos de serviço desenhados para manutenção',
       ],
     },
     accentLabel: {
@@ -379,8 +379,8 @@ export const CAPABILITY_CLUSTERS: readonly CapabilityCluster[] = [
       pt: 'Execução sob restrições reais',
     },
     summary: {
-      en: 'Turning operational bottlenecks into software products with measurable impact and better decision quality.',
-      pt: 'Transformar gargalos operacionais em produtos de software com impacto mensurável e melhor qualidade de decisão.',
+      en: 'Turn operational bottlenecks into software with measurable impact and better decision quality.',
+      pt: 'Transformar gargalos operacionais em software com impacto mensurável e melhor qualidade de decisão.',
     },
     items: {
       en: [
@@ -395,30 +395,30 @@ export const CAPABILITY_CLUSTERS: readonly CapabilityCluster[] = [
       ],
     },
     accentLabel: {
-      en: 'Execution',
-      pt: 'Execução',
+      en: 'Delivery',
+      pt: 'Entrega',
     },
   },
   {
     id: 'stack',
     title: {
       en: 'Frontend and platform craft',
-      pt: 'Refinamento de frontend e plataforma',
+      pt: 'Frontend e engenharia de plataforma',
     },
     summary: {
-      en: 'Building interfaces and technical foundations that feel intentional, fast, and aligned with the architecture beneath them.',
-      pt: 'Construção de interfaces e fundações técnicas que pareçam intencionais, rápidas e alinhadas com a arquitetura que as sustenta.',
+      en: 'Build interfaces and technical foundations that feel deliberate, fast, and aligned with the architecture behind them.',
+      pt: 'Construir interfaces e fundações técnicas que pareçam deliberadas, rápidas e alinhadas com a arquitetura que as sustenta.',
     },
     items: {
       en: [
         'Angular, Next.js, and React Native',
-        'NestJS, Java, Golang, PostgreSQL, MongoDB, Redis',
-        'Docker, AWS, GCP, and Continuos Integration and Deplyoment',
+        'NestJS, Java, Go, PostgreSQL, MongoDB, Redis',
+        'Docker, AWS, GCP, and CI/CD',
       ],
       pt: [
         'Angular, Next.js e React Native',
-        'NestJS, Java, Golang, PostgreSQL, MongoDB, Redis',
-        'Docker, AWS, GCP e Integração e Implentação Contínua',
+        'NestJS, Java, Go, PostgreSQL, MongoDB e Redis',
+        'Docker, AWS, GCP e CI/CD',
       ],
     },
     accentLabel: {
@@ -432,12 +432,12 @@ export const CREDENTIALS_CONTENT: CredentialsContent = {
   heading: {
     eyebrow: { en: 'Credentials', pt: 'Credenciais' },
     title: {
-      en: 'Formal training and certifications.',
-      pt: 'Formação e certificados.',
+      en: 'Education and certifications.',
+      pt: 'Formação e certificações.',
     },
     summary: {
-      en: 'Education and certifications stay compact here by design. The priority is to reinforce trust, not to replace proof.',
-      pt: 'Formação e certificações permanecem compactas aqui por design. A prioridade é reforçar confiança, não substituir prova.',
+      en: 'Compact by design. Enough to establish background without replacing execution proof.',
+      pt: 'Compacto por design. O suficiente para estabelecer repertório sem substituir prova de execução.',
     },
   },
   education: [
@@ -451,8 +451,8 @@ export const CREDENTIALS_CONTENT: CredentialsContent = {
         pt: 'Fatec de Osasco',
       },
       meta: {
-        en: 'Feb 2026 — Dec 2028',
-        pt: 'fev. 2026 — dez. 2028',
+        en: 'Feb 2026 - Dec 2028',
+        pt: 'fev. 2026 - dez. 2028',
       },
     },
     {
@@ -465,8 +465,8 @@ export const CREDENTIALS_CONTENT: CredentialsContent = {
         pt: 'Etec de Guarulhos',
       },
       meta: {
-        en: 'Feb 2023 — Dec 2025',
-        pt: 'fev. 2023 — dez. 2025',
+        en: 'Feb 2023 - Dec 2025',
+        pt: 'fev. 2023 - dez. 2025',
       },
     },
   ],
@@ -485,8 +485,8 @@ export const CREDENTIALS_CONTENT: CredentialsContent = {
   },
   languagesLabel: { en: 'Languages', pt: 'Idiomas' },
   languages: {
-    en: ['Portuguese — Native', 'English — Advanced', 'French — Basic'],
-    pt: ['Português — Nativo', 'Inglês — Avançado', 'Francês — Básico'],
+    en: ['Portuguese - Native', 'English - Advanced', 'French - Basic'],
+    pt: ['Português - Nativo', 'Inglês - Avançado', 'Francês - Básico'],
   },
 };
 
@@ -494,17 +494,17 @@ export const CONTACT_CONTENT: ContactContent = {
   heading: {
     eyebrow: { en: 'Contact', pt: 'Contato' },
     title: {
-      en: 'Let’s talk.',
-      pt: 'Vamos conversar.',
+      en: 'Start a conversation.',
+      pt: 'Inicie uma conversa.',
     },
     summary: {
-      en: 'The best opportunities are usually the ones where architecture, product thinking, and implementation quality are all expected to matter.',
-      pt: 'As melhores oportunidades geralmente são aquelas em que arquitetura, visão de produto e qualidade de implementação realmente importam.',
+      en: 'I am interested in work where architecture, product judgment, and implementation quality all matter.',
+      pt: 'Tenho interesse em trabalhos em que arquitetura, visão de produto e qualidade de implementação realmente importam.',
     },
   },
   availability: {
-    en: 'Open to high-impact engineering roles, product-minded teams, and complex software challenges.',
-    pt: 'Aberto a posições de engenharia de alto impacto, times orientados a produto e desafios complexos de software.',
+    en: 'Open to high-impact engineering roles, product-minded teams, and complex software problems.',
+    pt: 'Aberto a posições de engenharia de alto impacto, times orientados a produto e problemas complexos de software.',
   },
   links: [
     {
@@ -540,7 +540,7 @@ export const CONTACT_CONTENT: ContactContent = {
   formSending: { en: 'Sending...', pt: 'Enviando...' },
   formSent: { en: 'Message sent.', pt: 'Mensagem enviada.' },
   formError: {
-    en: 'Unable to send the message right now. Please try again in a moment.',
+    en: 'Unable to send the message now. Please try again shortly.',
     pt: 'Não foi possível enviar a mensagem agora. Tente novamente em instantes.',
   },
 };

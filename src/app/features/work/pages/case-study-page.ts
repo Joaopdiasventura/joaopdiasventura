@@ -36,18 +36,18 @@ const DEFAULT_CASE_SHOWCASE =
 export class CaseStudyPage {
   public readonly workCopy = FEATURED_WORK_CONTENT;
   public readonly labels = {
-    back: { en: 'Back to work', pt: 'Voltar para cases' },
-    overview: { en: 'Overview', pt: 'Visao geral' },
-    problem: { en: 'Problem', pt: 'Problema' },
-    solution: { en: 'Solution', pt: 'Solucao' },
+    back: { en: 'Back to work', pt: 'Voltar aos projetos' },
+    overview: { en: 'Overview', pt: 'Visão geral' },
+    problem: { en: 'Challenge', pt: 'Desafio' },
+    solution: { en: 'Approach', pt: 'Abordagem' },
     role: { en: 'Role', pt: 'Papel' },
-    timeline: { en: 'Timeline', pt: 'Linha do tempo' },
+    timeline: { en: 'Context', pt: 'Contexto' },
     stack: { en: 'Stack', pt: 'Stack' },
-    capabilities: { en: 'Key capabilities', pt: 'Principais funcionalidades' },
-    architecture: { en: 'Architecture', pt: 'Arquitetura' },
-    constraints: { en: 'Delivery constraints', pt: 'Restricoes de entrega' },
+    capabilities: { en: 'Key points', pt: 'Pontos-chave' },
+    architecture: { en: 'Decisions', pt: 'Decisões' },
+    constraints: { en: 'Constraints', pt: 'Restrições' },
     impact: { en: 'Impact', pt: 'Impacto' },
-    nextCase: { en: 'Next case', pt: 'Proximo case' },
+    nextCase: { en: 'Next case study', pt: 'Próximo estudo de caso' },
   } as const;
 
   private readonly route = inject(ActivatedRoute);

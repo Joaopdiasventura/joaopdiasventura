@@ -6,8 +6,8 @@ const OPEN_LIVE_PROJECT_LABEL = {
 } as const;
 
 const repositoryLabel = (name: string): LocalizedValue<string> => ({
-  en: `View ${name} repository`,
-  pt: `Ver repositorio ${name}`,
+  en: `View ${name}`,
+  pt: `Ver ${name}`,
 });
 
 const liveLink = (href: CaseStudyLink['href']): CaseStudyLink => ({
@@ -29,22 +29,22 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'Auronix',
     },
     category: {
-      en: 'Stored-value transfers and payment requests',
-      pt: 'Transferencias de saldo e cobrancas',
+      en: 'Digital banking and payment flows',
+      pt: 'Banco digital e fluxos de pagamento',
     },
     year: '2025',
     teaser: {
-      en: 'Full-stack financial workspace with Angular and NestJS, PostgreSQL as the system of record, Redis-backed async delivery, and live updates for transfer outcomes.',
-      pt: 'Workspace financeiro full-stack com Angular e NestJS, PostgreSQL como fonte de verdade, entrega assincrona apoiada por Redis e atualizacoes ao vivo para desfechos de transferencia.',
+      en: 'Digital bank for balances, transfers, payment requests, and QR payments with async settlement and live status updates.',
+      pt: 'Banco digital para saldo, transferências, cobranças e pagamentos por QR com liquidação assíncrona e atualizações de status em tempo real.',
     },
     metrics: [
       {
-        value: '208',
+        value: '248',
         label: { en: 'Automated tests', pt: 'Testes automatizados' },
       },
       {
         value: '10',
-        label: { en: 'Guarded screens', pt: 'Telas protegidas' },
+        label: { en: 'Protected views', pt: 'Telas protegidas' },
       },
       {
         value: '100 / 24h',
@@ -71,17 +71,17 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Event-driven onboarding backend with four NestJS services, RabbitMQ contracts, PostgreSQL plus MongoDB persistence, and verified webhooks for premium activation.',
-      pt: 'Backend de onboarding orientado a eventos com quatro servicos NestJS, contratos sobre RabbitMQ, persistencia em PostgreSQL e MongoDB, e webhooks validados para ativacao premium.',
+      en: 'Event-driven backend for onboarding, payment issuance, webhook confirmation, and async premium activation across four services.',
+      pt: 'Backend orientado a eventos para onboarding, emissão de pagamento, confirmação por webhook e ativação premium assíncrona em quatro serviços.',
     },
     metrics: [
       {
         value: '4',
-        label: { en: 'Deployable services', pt: 'Servicos implantaveis' },
+        label: { en: 'Deployable services', pt: 'Serviços implantáveis' },
       },
       {
         value: '8',
-        label: { en: 'Typed message patterns', pt: 'Padroes tipados' },
+        label: { en: 'Message contracts', pt: 'Contratos de mensagem' },
       },
       {
         value: '57',
@@ -101,13 +101,13 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'Votrix',
     },
     category: {
-      en: 'High-performance Node.js HTTP framework',
-      pt: 'Framework HTTP de alta performance para Node.js',
+      en: 'High-performance Node.js HTTP runtime',
+      pt: 'Runtime HTTP de alta performance para Node.js',
     },
     year: '2025',
     teaser: {
-      en: 'Minimal TypeScript HTTP runtime on node:http focused on route resolution, deferred parsing, and reproducible benchmark throughput across real request scenarios.',
-      pt: 'Runtime HTTP minimalista em TypeScript sobre node:http focado em resolucao de rotas, parsing adiado e throughput reproduzivel em benchmark com cenarios reais.',
+      en: 'TypeScript HTTP runtime on node:http focused on direct routing, deferred parsing, and reproducible local benchmarks.',
+      pt: 'Runtime HTTP em TypeScript sobre node:http, focado em roteamento direto, parsing adiado e benchmarks locais reproduzíveis.',
     },
     metrics: [
       {
@@ -115,7 +115,7 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Local RPS', pt: 'RPS local' },
       },
       {
-        value: '37.3%',
+        value: '37.25%',
         label: { en: 'Lead vs Fastify', pt: 'Vantagem vs Fastify' },
       },
       {
@@ -132,8 +132,8 @@ export const CASE_STUDY_PREVIEWS = [
     slug: 'vox',
     theme: 'vox',
     name: {
-      en: 'VOX Electoral System',
-      pt: 'VOX Sistema Eleitoral',
+      en: 'VOX',
+      pt: 'VOX',
     },
     category: {
       en: 'Auditability and voting integrity',
@@ -141,21 +141,21 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Voting platform built with Angular, NestJS, and PostgreSQL to keep ballot state, audit trails, and operator feedback consistent under concurrent sessions.',
-      pt: 'Plataforma de votacao em Angular, NestJS e PostgreSQL para manter estado do voto, trilhas de auditoria e feedback operacional consistentes sob concorrencia.',
+      en: 'Voting platform designed to keep ballot state, audit trails, and operator feedback consistent under concurrent load.',
+      pt: 'Plataforma de votação desenhada para manter estado do voto, trilhas de auditoria e feedback operacional consistentes sob carga concorrente.',
     },
     metrics: [
       {
         value: '500+',
-        label: { en: 'Users', pt: 'Usuarios' },
+        label: { en: 'Concurrent users', pt: 'Usuários simultâneos' },
       },
       {
-        value: '100%',
-        label: { en: 'Vote trail coverage', pt: 'Cobertura de trilha de voto' },
+        value: '29',
+        label: { en: 'HTTP routes', pt: 'Rotas HTTP' },
       },
       {
-        value: '0',
-        label: { en: 'Ambiguous flow states', pt: 'Estados ambiguos no fluxo' },
+        value: '108',
+        label: { en: 'Automated tests', pt: 'Testes automatizados' },
       },
     ],
     stack: ['Angular', 'NestJS', 'PostgreSQL'],
@@ -174,28 +174,28 @@ export const CASE_STUDY_PREVIEWS = [
     },
     category: {
       en: 'Music streaming',
-      pt: 'Streaming de musica',
+      pt: 'Streaming de música',
     },
     year: '2025',
     teaser: {
-      en: 'A music platform shaped around catalog growth, fast discovery, and a launch experience built to absorb attention.',
-      pt: 'Uma plataforma de musica moldada em torno de crescimento de catalogo, descoberta rapida e uma experiencia de lancamento preparada para absorver atencao.',
+      en: 'Streaming platform built for catalog growth, fast discovery, and smooth playback across web and mobile.',
+      pt: 'Plataforma de streaming desenhada para crescimento de catálogo, descoberta rápida e reprodução fluida em web e mobile.',
     },
     metrics: [
       {
-        value: '16K+',
-        label: { en: 'Accesses', pt: 'Acessos' },
+        value: '1.3K',
+        label: { en: 'Launch accesses in 6h', pt: 'Acessos em 6h de lançamento' },
       },
       {
-        value: 'Fast',
-        label: { en: 'Catalog discovery', pt: 'Descoberta de catalogo' },
+        value: '10s',
+        label: { en: 'Chunk size', pt: 'Tamanho do chunk' },
       },
       {
-        value: 'Ready',
-        label: { en: 'Growth-oriented model', pt: 'Modelo pronto para crescimento' },
+        value: '3',
+        label: { en: 'Delivery surfaces', pt: 'Superfícies de entrega' },
       },
     ],
-    stack: ['Android Development', 'Web Audio API', 'MongoDB'],
+    stack: ['Angular', 'MediaSource API', 'Capacitor'],
     links: [
       liveLink('https://etecfy.vercel.app'),
       repositoryLink('Etecfy Client', 'https://github.com/Joaopdiasventura/etecfy-client'),

@@ -14,7 +14,7 @@ export const routes: Routes = [
       import('./features/not-found/pages/not-found-page').then(
         (module) => module.NotFoundPage,
       ),
-    title: '404 | Portfolio',
+    title: '404 | João Paulo Dias Ventura',
   },
   {
     path: ':lang',

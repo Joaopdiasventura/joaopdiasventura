@@ -5,8 +5,8 @@
   <main class="not-found page-shell__content">
     <div class="not-found__content">
       <h1>404</h1>
-      <p>Oops! Page not found</p>
-      <a class="action-link" routerLink="/">Return to Home</a>
+      <p>{{ copy(content.title) }}</p>
+      <a class="action-link" routerLink="/">{{ copy(content.action) }}</a>
     </div>
   </main>
 </div>

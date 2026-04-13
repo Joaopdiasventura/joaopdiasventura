@@ -34,16 +34,16 @@ export class ProjectsSection {
   public readonly scrollTopOffset = PROJECT_SCROLL_TOP_OFFSET;
   public readonly labels = {
     desktopHint: {
-      en: 'Scroll vertically to move across the project rail.',
-      pt: 'Role verticalmente para atravessar o trilho de projetos.',
+      en: 'Scroll to move through the project rail.',
+      pt: 'Role para percorrer o trilho de projetos.',
     },
     mobileHint: {
-      en: 'Scroll vertically to move across the project rail.',
-      pt: 'Role verticalmente para atravessar o trilho de projetos.',
+      en: 'Scroll to move through the project rail.',
+      pt: 'Role para percorrer o trilho de projetos.',
     },
     caseCta: {
       en: 'Open case study',
-      pt: 'Abrir case study',
+      pt: 'Abrir estudo de caso',
     },
     liveCta: {
       en: 'Open live project',
@@ -51,15 +51,15 @@ export class ProjectsSection {
     },
     repositoryCta: {
       en: 'View repository',
-      pt: 'Ver repositorio',
+      pt: 'Ver repositório',
     },
     highlights: {
-      en: 'Highlights',
-      pt: 'Destaques',
+      en: 'Key points',
+      pt: 'Pontos-chave',
     },
     proof: {
-      en: 'Proof points',
-      pt: 'Sinais de prova',
+      en: 'Proof',
+      pt: 'Prova',
     },
   } as const;
 

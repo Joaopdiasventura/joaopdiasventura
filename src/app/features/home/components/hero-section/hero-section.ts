@@ -19,8 +19,8 @@ export class HeroSection {
     pt: 'São Paulo',
   } as const;
   public readonly portraitCaption = {
-    en: 'Data oriented engineering · Premium frontend',
-    pt: 'Engenharia orientada a dados · Frontend premium',
+    en: 'Data systems · Frontend craft',
+    pt: 'Sistemas de dados · Frontend craft',
   } as const;
   public readonly languageService = inject(LanguageService);
 
