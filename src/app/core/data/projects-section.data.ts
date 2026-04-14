@@ -9,8 +9,8 @@ export const PROJECTS_SECTION_DATA = {
       pt: 'Projetos com sinal técnico claro',
     },
     summary: {
-      en: 'Each card summarizes scope, architecture, and proof in one pass.',
-      pt: 'Cada card resume escopo, arquitetura e prova em uma única leitura.',
+      en: 'Each card shows problem, solution, and proof.',
+      pt: 'Cada card mostra problema, solução e prova.',
     },
   },
   projects: [
@@ -28,35 +28,31 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Digital bank platform',
         pt: 'Plataforma de banco digital',
       },
-      description: {
-        en: 'Digital bank for balances, transfers, payment requests, and QR payments with async settlement and live status feedback.',
-        pt: 'Banco digital para saldo, transferências, cobranças e pagamentos por QR com liquidação assíncrona e feedback de status em tempo real.',
+      problem: {
+        en: 'Transfers and QR payments needed instant feedback without losing settlement safety.',
+        pt: 'Transferências e pagamentos por QR precisavam de feedback imediato sem perder segurança na liquidação.',
       },
-      highlights: {
-        en: [
-          'Digital bank organized as a modular monolith.',
-          'Async settlement with balance recheck and pessimistic locks.',
-          'Redis-backed SSE replay for balance and transfer status updates.',
-        ],
-        pt: [
-          'Banco digital organizado como monólito modular.',
-          'Liquidação assíncrona com rechecagem de saldo e locks pessimistas.',
-          'Replay de SSE em Redis para saldo e status de transferência.',
-        ],
+      solution: {
+        en: 'Modular monolith with async settlement, pessimistic locks, and live status updates.',
+        pt: 'Monólito modular com liquidação assíncrona, locks pessimistas e atualização de status em tempo real.',
+      },
+      description: {
+        en: 'Digital bank for balances, transfers, requests, and QR payments with async settlement.',
+        pt: 'Banco digital para saldo, transferências, cobranças e pagamentos por QR com liquidação assíncrona.',
       },
       metrics: [
-        {
-          value: '10',
-          label: {
-            en: 'Protected views',
-            pt: 'Telas protegidas',
-          },
-        },
         {
           value: '248',
           label: {
             en: 'Automated tests',
             pt: 'Testes automatizados',
+          },
+        },
+        {
+          value: '10',
+          label: {
+            en: 'Protected views',
+            pt: 'Telas protegidas',
           },
         },
         {
@@ -67,16 +63,16 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
       ],
-      stack: ['Angular', 'NestJS', 'Node.js', 'PostgreSQL', 'Redis'],
+      stack: ['Angular', 'PostgreSQL', 'Redis'],
       liveUrl: 'https://auronix-client.vercel.app',
       repositories: [
         {
           name: 'Auronix Client',
-          href: 'https://github.com/Joaopdiasventura/Auronix-client',
+          href: 'https://github.com/joaopdiasventura/Auronix-client',
         },
         {
           name: 'Auronix Server',
-          href: 'https://github.com/Joaopdiasventura/Auronix-server',
+          href: 'https://github.com/joaopdiasventura/Auronix-server',
         },
       ],
       icon: {
@@ -106,28 +102,31 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Distributed onboarding backend',
         pt: 'Backend distribuído de onboarding',
       },
-      description: {
-        en: 'Event-driven backend for onboarding, payment issuance, webhook confirmation, and async premium activation across isolated services.',
-        pt: 'Backend orientado a eventos para onboarding, emissão de pagamento, confirmação por webhook e ativação premium assíncrona entre serviços isolados.',
+      problem: {
+        en: 'Onboarding had to stay fast while payment state, retries, and premium activation ran across services.',
+        pt: 'O onboarding precisava permanecer rápido enquanto estado de pagamento, retries e ativação premium rodavam entre serviços.',
       },
-      highlights: {
-        en: [
-          'Four services with clear runtime boundaries.',
-          'Typed RabbitMQ contracts with split persistence ownership.',
-          'Webhook flow with HMAC validation, idempotency, and retry/backoff.',
-        ],
-        pt: [
-          'Quatro serviços com fronteiras de runtime claras.',
-          'Contratos tipados em RabbitMQ com persistência separada por responsabilidade.',
-          'Fluxo de webhook com validação HMAC, idempotência e retry/backoff.',
-        ],
+      solution: {
+        en: 'Four services coordinated by typed RabbitMQ contracts, verified webhooks, and split persistence.',
+        pt: 'Quatro serviços coordenados por contratos tipados em RabbitMQ, webhooks validados e persistência segmentada.',
+      },
+      description: {
+        en: 'Event-driven backend for onboarding, payment issuance, webhook confirmation, and premium activation.',
+        pt: 'Backend orientado a eventos para onboarding, emissão de pagamento, confirmação por webhook e ativação premium.',
       },
       metrics: [
         {
           value: '4',
           label: {
-            en: 'Deployable services',
-            pt: 'Serviços implantáveis',
+            en: 'Microservices',
+            pt: 'Microsserviços',
+          },
+        },
+        {
+          value: '57',
+          label: {
+            en: 'Passing tests',
+            pt: 'Testes aprovados',
           },
         },
         {
@@ -137,20 +136,13 @@ export const PROJECTS_SECTION_DATA = {
             pt: 'Contratos de mensagem',
           },
         },
-        {
-          value: '7',
-          label: {
-            en: 'Critical e2e cases',
-            pt: 'Casos críticos em e2e',
-          },
-        },
       ],
-      stack: ['NestJS', 'Node.js', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
+      stack: ['RabbitMQ', 'Docker', 'MongoDB'],
       liveUrl: null,
       repositories: [
         {
-          name: 'Modularis Workspace',
-          href: 'https://github.com/Joaopdiasventura/Modularis',
+          name: 'code',
+          href: 'https://github.com/joaopdiasventura/Modularis',
         },
       ],
       icon: {
@@ -180,21 +172,17 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Minimal HTTP runtime',
         pt: 'Runtime HTTP minimalista',
       },
-      description: {
-        en: 'Minimal TypeScript runtime on node:http built to reduce hot-path overhead and validate gains with reproducible benchmarks.',
-        pt: 'Runtime minimalista em TypeScript sobre node:http, focado em reduzir overhead no hot path e validar ganho com benchmarks reproduzíveis.',
+      problem: {
+        en: 'The runtime had to reduce hot-path cost without turning into a generic framework clone.',
+        pt: 'O runtime precisava reduzir custo no hot path sem virar um clone genérico de framework.',
       },
-      highlights: {
-        en: [
-          'Static routes in Map structures and dynamic routes in a compact tree.',
-          'Query and body parsing run only when the matched route needs them.',
-          'Benchmarks versioned against Fastify and Express.',
-        ],
-        pt: [
-          'Rotas estáticas em estruturas Map e rotas dinâmicas em uma árvore compacta.',
-          'Query e body parsing rodam só quando a rota casada precisa disso.',
-          'Benchmarks versionados contra Fastify e Express.',
-        ],
+      solution: {
+        en: 'Direct routing, deferred parsing, and a benchmark harness versioned with the codebase.',
+        pt: 'Roteamento direto, parsing adiado e um harness de benchmark versionado com o código.',
+      },
+      description: {
+        en: 'Minimal TypeScript runtime on node:http built to reduce overhead and validate gains with benchmarks.',
+        pt: 'Runtime minimalista em TypeScript sobre node:http, focado em reduzir overhead e validar ganho com benchmarks.',
       },
       metrics: [
         {
@@ -224,7 +212,7 @@ export const PROJECTS_SECTION_DATA = {
       repositories: [
         {
           name: 'Votrix Repository',
-          href: 'https://github.com/Joaopdiasventura/Votrix',
+          href: 'https://github.com/joaopdiasventura/Votrix',
         },
       ],
       icon: {
@@ -254,25 +242,21 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Auditable voting platform',
         pt: 'Plataforma de votação auditável',
       },
+      problem: {
+        en: 'Critical voting flows needed explicit state, audit trails, and operator clarity under concurrent load.',
+        pt: 'Fluxos críticos de votação exigiam estado explícito, trilhas de auditoria e clareza operacional sob concorrência.',
+      },
+      solution: {
+        en: 'Audit-first domain model with explicit transitions, backend guarantees, and clear feedback in the interface.',
+        pt: 'Modelo de domínio orientado a auditoria com transições explícitas, garantias de backend e feedback claro na interface.',
+      },
       description: {
         en: 'Voting platform with explicit state handling, audit trails, and operator feedback across critical flows.',
         pt: 'Plataforma de votação com estados explícitos, trilhas de auditoria e feedback operacional em fluxos críticos.',
       },
-      highlights: {
-        en: [
-          'Explicit domain modeling for elections, ballots, votes, and payments.',
-          'Combines HTTP, SSE, WebSocket, and async queue processing.',
-          'Auditability and operator feedback are part of the product flow.',
-        ],
-        pt: [
-          'Modelagem explícita de domínio para eleições, cédulas, votos e pagamentos.',
-          'Combina HTTP, SSE, WebSocket e processamento assíncrono em fila.',
-          'Auditabilidade e feedback operacional fazem parte do fluxo do produto.',
-        ],
-      },
       metrics: [
         {
-          value: '500+',
+          value: '+500',
           label: {
             en: 'Concurrent users',
             pt: 'Usuários simultâneos',
@@ -293,18 +277,9 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
       ],
-      stack: ['Angular', 'NestJS', 'Node.js', 'PostgreSQL', 'Redis', 'Socket.IO'],
+      stack: ['Tauri', 'NestJS', 'Redis'],
       liveUrl: 'https://v-o-x.vercel.app',
-      repositories: [
-        {
-          name: 'VOX App',
-          href: 'https://github.com/Joaopdiasventura/Vox',
-        },
-        {
-          name: 'VOX Landing Page',
-          href: 'https://github.com/Joaopdiasventura/vox-landing-page',
-        },
-      ],
+      repositories: [],
       icon: {
         src: '/assets/projects/icons/vox.svg',
         width: 24,
@@ -332,21 +307,17 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Streaming platform',
         pt: 'Plataforma de streaming',
       },
-      description: {
-        en: 'Streaming platform with searchable catalog, track detail, and chunk-based playback across web and mobile delivery.',
-        pt: 'Plataforma de streaming com catálogo pesquisável, detalhe de faixa e reprodução por chunks em web e mobile.',
+      problem: {
+        en: 'The product needed fast discovery and smooth playback without collapsing as the catalog grew.',
+        pt: 'O produto precisava de descoberta rápida e playback fluido sem colapsar com o crescimento do catálogo.',
       },
-      highlights: {
-        en: [
-          'SPA with cookie auth, persisted theme, and a player built on MediaSource and Media Session.',
-          'Backend split into users, songs, and song-chunk resources.',
-          'Upload flow fragments audio into chunks and exposes a searchable catalog.',
-        ],
-        pt: [
-          'SPA com auth por cookie, tema persistido e player em MediaSource e Media Session.',
-          'Backend separado em recursos de usuários, músicas e chunks.',
-          'Fluxo de upload fragmenta áudio em chunks e expõe um catálogo pesquisável.',
-        ],
+      solution: {
+        en: 'Catalog-ready structure, chunk-based media delivery, and a frontend tuned for release speed.',
+        pt: 'Estrutura pronta para catálogo, entrega de mídia em chunks e frontend ajustado para velocidade de lançamento.',
+      },
+      description: {
+        en: 'Streaming platform with searchable catalog, track detail, and chunk-based playback across web and mobile.',
+        pt: 'Plataforma de streaming com catálogo pesquisável, detalhe de faixa e reprodução em chunks em web e mobile.',
       },
       metrics: [
         {
@@ -371,16 +342,16 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
       ],
-      stack: ['Angular', 'NestJS', 'Node.js', 'PostgreSQL', 'MediaSource API', 'Capacitor'],
+      stack: ['Angular', 'NestJs', 'Capacitor'],
       liveUrl: 'https://etecfy.vercel.app',
       repositories: [
         {
           name: 'Etecfy Client',
-          href: 'https://github.com/Joaopdiasventura/etecfy-client',
+          href: 'https://github.com/joaopdiasventura/etecfy-client',
         },
         {
           name: 'Etecfy Server',
-          href: 'https://github.com/Joaopdiasventura/etecfy-server',
+          href: 'https://github.com/joaopdiasventura/etecfy-server',
         },
       ],
       icon: {

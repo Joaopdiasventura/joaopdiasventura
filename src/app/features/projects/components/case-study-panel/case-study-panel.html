@@ -1,0 +1,11 @@
+<article class="case-study-panel">
+  @if (title(); as panelTitle) {
+    <h2 class="case-study-panel__title">{{ panelTitle }}</h2>
+  }
+
+  @if (lead(); as panelLead) {
+    <p class="case-study-panel__lead">{{ panelLead }}</p>
+  }
+
+  <ng-content />
+</article>

@@ -2,12 +2,13 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { HERO_CONTENT } from '../../../../core/data/portfolio.data';
 import { HeroCta, NavSectionId } from '../../../../core/models/portfolio.model';
-import { LanguageService } from '../../../../core/services/language.service';
-import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
+import { LanguageService } from '../../../../core/services/language/language.service';
+import { UiButton } from '../../../../shared/components/ui/ui-button/ui-button';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [NgOptimizedImage, ViewportTiltDirective],
+  imports: [NgOptimizedImage, UiButton, ViewportTiltDirective],
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,14 @@
+<label class="ui-field__label" [attr.for]="id()">{{ label() }}</label>
+
+<div class="ui-field__shell ui-field__shell--textarea" [class.ui-field__shell--invalid]="invalid()">
+  <textarea
+    [attr.aria-invalid]="invalid()"
+    [disabled]="disabled()"
+    [id]="id()"
+    [required]="required()"
+    [rows]="rows()"
+    [value]="value()"
+    (blur)="onBlur()"
+    (input)="onInput($event)"
+  ></textarea>
+</div>

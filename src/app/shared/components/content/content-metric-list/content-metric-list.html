@@ -1,0 +1,13 @@
+<dl class="content-metric-list" [style.grid-template-columns]="templateColumns()">
+  @for (item of items(); track item.label + item.value) {
+    <div class="content-metric-list__item">
+      @if (valueFirst()) {
+        <dd class="content-metric-list__value">{{ item.value }}</dd>
+        <dt class="content-metric-list__label">{{ item.label }}</dt>
+      } @else {
+        <dt class="content-metric-list__label">{{ item.label }}</dt>
+        <dd class="content-metric-list__value">{{ item.value }}</dd>
+      }
+    </div>
+  }
+</dl>

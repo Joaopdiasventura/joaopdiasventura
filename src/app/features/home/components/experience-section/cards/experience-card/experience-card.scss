@@ -1,0 +1,69 @@
+:host {
+  --viewport-tilt-lift: 0px;
+  --surface-card-radius: 1.2rem;
+  display: block;
+  min-width: 0;
+  padding: 1.15rem;
+  transition:
+    border-color 0.24s ease,
+    transform 0.24s ease;
+}
+
+:host(:hover) {
+  --viewport-tilt-lift: -2px;
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+}
+
+.experience-card {
+  min-width: 0;
+}
+
+.experience-card__header {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.experience-card__company,
+.experience-card__period {
+  color: var(--muted-foreground);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.experience-card__header h3 {
+  color: var(--foreground);
+  font-size: 1.08rem;
+  margin: 0.2rem 0 0;
+}
+
+.experience-card__summary {
+  color: var(--foreground-soft);
+  line-height: 1.62;
+  margin: 0.9rem 0 0;
+}
+
+.experience-card__highlights {
+  --content-text-list-gap: 0.5rem;
+  --content-text-list-line-height: 1.5;
+  margin-top: 0.9rem;
+}
+
+@media (min-width: 960px) {
+  .experience-card__header {
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  :host {
+    padding: 1.3rem;
+  }
+
+  .experience-card__header h3 {
+    font-size: 1.14rem;
+  }
+}

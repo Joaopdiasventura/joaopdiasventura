@@ -1,0 +1,88 @@
+:host {
+  --ui-button-min-height: 3rem;
+  --ui-button-padding-block: 0.8rem;
+  --ui-button-padding-inline: 1.28rem;
+  --ui-button-radius: 1rem;
+  --ui-button-font-size: 0.84rem;
+  --ui-button-font-weight: 600;
+  --ui-button-letter-spacing: 0.06em;
+  --ui-button-gap: 0.5rem;
+  --ui-button-hover-shadow: var(--action-lift-shadow);
+  --ui-button-hover-transform: var(--action-lift-transform);
+  --ui-button-text-transform: uppercase;
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.ui-button__control {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--ui-button-radius);
+  color: var(--foreground);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: var(--ui-button-font-size);
+  font-weight: var(--ui-button-font-weight);
+  gap: var(--ui-button-gap);
+  inline-size: 100%;
+  justify-content: center;
+  letter-spacing: var(--ui-button-letter-spacing);
+  min-height: var(--ui-button-min-height);
+  min-width: 0;
+  padding: var(--ui-button-padding-block) var(--ui-button-padding-inline);
+  text-align: center;
+  text-decoration: none;
+  text-transform: var(--ui-button-text-transform);
+  transition:
+    color 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.ui-button__control:hover,
+.ui-button__control:focus-visible {
+  box-shadow: var(--ui-button-hover-shadow);
+  transform: var(--ui-button-hover-transform);
+}
+
+.ui-button__control:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.ui-button__control[disabled],
+.ui-button__control[aria-disabled='true'] {
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.76;
+  transform: none;
+}
+
+.ui-button__control--primary {
+  background: var(
+    --ui-button-background,
+    linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 72%, black) 100%)
+  );
+  border-color: var(--ui-button-border-color, transparent);
+  color: var(--ui-button-color, var(--primary-foreground));
+}
+
+.ui-button__control--secondary {
+  background: var(--ui-button-background, rgb(255 255 255 / 4%));
+  border-color: var(
+    --ui-button-border-color,
+    color-mix(in srgb, var(--border-strong) 70%, transparent)
+  );
+  color: var(--ui-button-color, var(--foreground));
+}
+
+.ui-button__control--ghost {
+  background: var(--ui-button-background, transparent);
+  border-color: var(--ui-button-border-color, color-mix(in srgb, var(--border) 70%, transparent));
+  color: var(--ui-button-color, var(--foreground-soft));
+}

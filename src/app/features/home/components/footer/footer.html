@@ -6,22 +6,13 @@
 
     <div class="footer__links">
       @for (link of socialLinks; track link.href) {
-        <a
-          class="action-link action-link--surface"
+        <app-ui-icon-link
+          class="footer__link"
           [href]="link.href"
-          [attr.aria-label]="copy(link.label)"
-          [attr.target]="link.external ? '_blank' : null"
-          [attr.rel]="link.external ? 'noopener noreferrer' : null"
-        >
-          <img
-            [ngSrc]="iconPath(link)"
-            width="18"
-            height="18"
-            class="icon-img icon-img--muted"
-            alt=""
-            aria-hidden="true"
-          />
-        </a>
+          [ariaLabel]="copy(link.label)"
+          [external]="!!link.external"
+          [iconSrc]="iconPath(link)"
+        />
       }
     </div>
   </div>

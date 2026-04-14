@@ -1,0 +1,17 @@
+<div class="page-shell page-shell--not-found" data-scene-section>
+  <div class="page-shell__background" aria-hidden="true"></div>
+  <app-brand-scene class="page-shell__scene page-shell__scene--not-found" />
+
+  <main class="not-found page-shell__content">
+    <div class="not-found__content">
+      <h1>404</h1>
+      <p>{{ copy(content.title) }}</p>
+      <app-ui-button
+        class="not-found__action"
+        [label]="copy(content.action)"
+        [routerLink]="homeRoute()"
+        [variant]="'ghost'"
+      />
+    </div>
+  </main>
+</div>

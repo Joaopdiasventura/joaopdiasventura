@@ -1,0 +1,45 @@
+:host {
+  --content-metric-list-gap: 0.75rem;
+  --content-metric-item-gap: 0.35rem;
+  --content-metric-item-padding: 0.85rem;
+  --content-metric-item-radius: 0.95rem;
+  --content-metric-item-background: rgb(255 255 255 / 3%);
+  --content-metric-item-border: color-mix(in srgb, var(--border) 72%, transparent);
+  --content-metric-label-color: var(--muted-foreground);
+  --content-metric-value-color: var(--foreground);
+  --content-metric-value-font-size: 1.12rem;
+  display: block;
+}
+
+.content-metric-list {
+  display: grid;
+  gap: var(--content-metric-list-gap);
+  margin: 0;
+}
+
+.content-metric-list__item {
+  background: var(--content-metric-item-background);
+  border: 1px solid var(--content-metric-item-border);
+  border-radius: var(--content-metric-item-radius);
+  display: grid;
+  gap: var(--content-metric-item-gap);
+  margin: 0;
+  padding: var(--content-metric-item-padding);
+}
+
+.content-metric-list__label {
+  color: var(--content-metric-label-color);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.content-metric-list__value {
+  color: var(--content-metric-value-color);
+  font-family: var(--font-heading);
+  font-size: var(--content-metric-value-font-size);
+  line-height: 1;
+  margin: 0;
+}

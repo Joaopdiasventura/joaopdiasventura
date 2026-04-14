@@ -1,0 +1,51 @@
+:host {
+  --content-text-list-gap: 0.65rem;
+  --content-text-list-item-color: var(--foreground-soft);
+  --content-text-list-line-height: 1.58;
+  --content-text-list-bullet-color: color-mix(in srgb, var(--primary) 76%, white);
+  --content-text-list-stack-border: color-mix(in srgb, var(--border) 72%, transparent);
+  --content-text-list-stack-background: rgb(255 255 255 / 3%);
+  display: block;
+}
+
+.content-text-list {
+  display: grid;
+  gap: var(--content-text-list-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.content-text-list li {
+  color: var(--content-text-list-item-color);
+  line-height: var(--content-text-list-line-height);
+  margin: 0;
+}
+
+.content-text-list--bullet li {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: 0.55rem minmax(0, 1fr);
+}
+
+.content-text-list--bullet li::before {
+  background: var(--content-text-list-bullet-color);
+  border-radius: 999px;
+  content: '';
+  height: 0.42rem;
+  margin-top: 0.48rem;
+  width: 0.42rem;
+}
+
+.content-text-list--stack {
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.content-text-list--stack li {
+  background: var(--content-text-list-stack-background);
+  border: 1px solid var(--content-text-list-stack-border);
+  border-radius: 999px;
+  color: var(--foreground);
+  padding: 0.58rem 0.8rem;
+  text-align: center;
+}

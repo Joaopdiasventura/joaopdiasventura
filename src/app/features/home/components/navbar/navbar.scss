@@ -110,7 +110,6 @@
   gap: 0.7rem;
 }
 
-.navbar__language,
 .navbar__menu-toggle {
   align-items: center;
   background: rgb(255 255 255 / 2%);
@@ -128,7 +127,6 @@
     transform 0.24s ease;
 }
 
-.navbar__language:hover,
 .navbar__menu-toggle:hover {
   background: color-mix(in srgb, var(--surface-raised) 80%, transparent);
   border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
@@ -137,10 +135,14 @@
 }
 
 .navbar__language {
+  --ui-button-background: rgb(255 255 255 / 2%);
+  --ui-button-border-color: color-mix(in srgb, var(--border) 72%, transparent);
+  --ui-button-color: var(--foreground);
+  --ui-button-min-height: 2.7rem;
+  --ui-button-padding-inline: 1rem;
+  --ui-button-radius: 999px;
   letter-spacing: 0.12em;
   min-width: 3.6rem;
-  padding: 0 1rem;
-  text-transform: uppercase;
 }
 
 .navbar__menu-toggle {
@@ -157,7 +159,6 @@
 }
 
 .navbar__brand:focus-visible,
-.navbar__language:focus-visible,
 .navbar__menu-toggle:focus-visible,
 .mobile-menu__link:focus-visible,
 .navbar__link:focus-visible {

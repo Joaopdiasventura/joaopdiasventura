@@ -7,10 +7,18 @@ import {
   signal,
 } from '@angular/core';
 import { CONTACT_CONTENT } from '../../../../core/data/portfolio.data';
-import { LanguageService } from '../../../../core/services/language.service';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
-import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
-import { ContactEmailApiService } from '../../services/contact-email-api.service';
+import { LanguageService } from '../../../../core/services/language/language.service';
+import {
+  ContentMetaItem,
+  ContentMetaList,
+} from '../../../../shared/components/content/content-meta-list/content-meta-list';
+import { ContentSectionHeading } from '../../../../shared/components/content/content-section-heading/content-section-heading';
+import { UiButton } from '../../../../shared/components/ui/ui-button/ui-button';
+import { UiTextField } from '../../../../shared/components/ui/ui-text-field/ui-text-field';
+import { UiTextareaField } from '../../../../shared/components/ui/ui-textarea-field/ui-textarea-field';
+import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll/reveal-on-scroll.directive';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
+import { ContactEmailApiService } from '../../services/contact-email-api/contact-email-api.service';
 
 interface ContactFormValue {
   name: string;
@@ -37,7 +45,15 @@ const INITIAL_TOUCHED_STATE: Readonly<Record<ContactFormField, boolean>> = {
 
 @Component({
   selector: 'app-contact-section',
-  imports: [RevealOnScrollDirective, ViewportTiltDirective],
+  imports: [
+    ContentMetaList,
+    ContentSectionHeading,
+    RevealOnScrollDirective,
+    UiButton,
+    UiTextField,
+    UiTextareaField,
+    ViewportTiltDirective,
+  ],
   templateUrl: './contact-section.html',
   styleUrl: './contact-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,6 +74,14 @@ export class ContactSection implements OnDestroy {
   public readonly nameInvalid = computed(() => this.fieldInvalid('name'));
   public readonly emailInvalid = computed(() => this.fieldInvalid('email'));
   public readonly messageInvalid = computed(() => this.fieldInvalid('message'));
+  public readonly detailItems = computed<readonly ContentMetaItem[]>(() =>
+    this.content.details.map((item) => ({
+      external: item.href?.startsWith('http') ?? false,
+      href: item.href,
+      label: this.copy(item.label),
+      value: this.copy(item.value),
+    })),
+  );
 
   public copy<T>(value: { en: T; pt: T }): T {
     return this.languageService.copy(value);
@@ -109,15 +133,7 @@ export class ContactSection implements OnDestroy {
     }
   }
 
-  public updateField(field: ContactFormField, event: Event): void {
-    const target = event.target;
-
-    if (!(target instanceof HTMLInputElement) && !(target instanceof HTMLTextAreaElement)) {
-      return;
-    }
-
-    const value = target.value;
-
+  public updateFieldValue(field: ContactFormField, value: string): void {
     this.contactModel.update((currentValue) => ({
       ...currentValue,
       [field]: value,

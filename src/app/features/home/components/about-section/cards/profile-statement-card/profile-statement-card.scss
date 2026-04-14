@@ -1,0 +1,19 @@
+:host {
+  --surface-card-radius: 1.2rem;
+  display: block;
+  padding: 1.2rem;
+}
+
+.profile-statement-card p {
+  color: var(--foreground);
+  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  line-height: 1.62;
+  margin: 0;
+  max-width: 40rem;
+}
+
+@media (min-width: 1200px) {
+  :host {
+    padding: 1.35rem;
+  }
+}

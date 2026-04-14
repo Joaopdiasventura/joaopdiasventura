@@ -1,12 +1,10 @@
 import {
-  CapabilityCluster,
   ContactContent,
-  CredentialsContent,
+  CredibilityContent,
   ExperienceEntry,
-  FeaturedWorkContent,
+  FeaturedProjectsContent,
   HeroContent,
   ImpactMetric,
-  ManifestoContent,
   NavItem,
   SiteChrome,
   SocialLink,
@@ -34,8 +32,8 @@ export const SITE_CHROME: SiteChrome = {
     pt: 'Todos os direitos reservados.',
   },
   homeDescription: {
-    en: 'Portfolio of João Paulo Dias Ventura, focused on auditable systems, data-intensive products, and precise frontend execution.',
-    pt: 'Portfólio de João Paulo Dias Ventura, focado em sistemas auditáveis, produtos intensivos em dados e execução frontend precisa.',
+    en: 'Portfolio of João Paulo Dias Ventura focused on auditable systems, data-heavy products, and precise frontend delivery.',
+    pt: 'Portfólio de João Paulo Dias Ventura focado em sistemas auditáveis, produtos intensivos em dados e execução frontend precisa.',
   },
 };
 
@@ -45,8 +43,8 @@ export const NAV_ITEMS: readonly NavItem[] = [
     label: { en: 'About', pt: 'Sobre' },
   },
   {
-    id: 'work',
-    label: { en: 'Work', pt: 'Projetos' },
+    id: 'projects',
+    label: { en: 'Projects', pt: 'Projetos' },
   },
   {
     id: 'experience',
@@ -68,22 +66,14 @@ export const HERO_CONTENT: HeroContent = {
     pt: ['João Paulo', 'Dias Ventura'],
   },
   summary: {
-    en: 'I design and deliver software for complex operations where data integrity, operational clarity, and product quality must stay aligned.',
-    pt: 'Projeto e entrego software para operações complexas em que integridade de dados, clareza operacional e qualidade de produto precisam permanecer alinhadas.',
-  },
-  noteTitle: {
-    en: 'Current focus',
-    pt: 'Foco atual',
-  },
-  noteBody: {
-    en: 'Auditable systems, high-volume data flows, and interfaces that stay clear under complexity.',
-    pt: 'Sistemas auditáveis, fluxos de dados de alto volume e interfaces que permanecem claras sob complexidade.',
+    en: 'I build software for operations that need traceability, strong data flow, and clear interfaces.',
+    pt: 'Construo software para operações que exigem rastreabilidade, fluxo de dados robusto e interfaces claras.',
   },
   ctas: [
     {
-      id: 'work',
+      id: 'projects',
       kind: 'primary',
-      label: { en: 'View work', pt: 'Ver projetos' },
+      label: { en: 'View projects', pt: 'Ver projetos' },
     },
     {
       id: 'contact',
@@ -93,7 +83,7 @@ export const HERO_CONTENT: HeroContent = {
     {
       id: 'cv',
       kind: 'ghost',
-      label: { en: 'Download CV', pt: 'Baixar currículo' },
+      label: { en: 'View CV', pt: 'Ver currículo' },
     },
   ],
 } as const;
@@ -106,139 +96,155 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
       en: 'Data processed',
       pt: 'Dados processados',
     },
-    context: {
-      en: 'AI ingestion and processing flows above 16 GB.',
-      pt: 'Fluxos de ingestão e processamento para IA acima de 16 GB.',
-    },
   },
   {
     id: 'beneficiaries',
     value: '+1M',
     label: {
-      en: 'Beneficiaries processed',
-      pt: 'Beneficiários processados',
-    },
-    context: {
-      en: 'Insurance billing flows with multi-layout validation.',
-      pt: 'Fluxos de faturamento com validação multi-layout em seguros.',
+      en: 'Beneficiaries registered',
+      pt: 'Beneficiários cadastrados',
     },
   },
   {
     id: 'traffic',
-    value: '500+',
+    value: '+500',
     label: {
       en: 'Concurrent users',
       pt: 'Usuários simultâneos',
     },
-    context: {
-      en: 'Voting flows with audit trails under concurrent load.',
-      pt: 'Fluxos de votação com trilhas de auditoria sob carga concorrente.',
-    },
   },
 ] as const;
 
-export const MANIFESTO_CONTENT: ManifestoContent = {
+export const CREDIBILITY_CONTENT: CredibilityContent = {
   heading: {
     eyebrow: {
-      en: 'Positioning',
-      pt: 'Posicionamento',
+      en: 'Profile',
+      pt: 'Perfil',
     },
     title: {
-      en: 'I build software that keeps rules, decisions, and execution aligned.',
-      pt: 'Construo software que mantém regras, decisões e execução alinhadas.',
+      en: 'Architecture, data flow, and delivery without noise.',
+      pt: 'Arquitetura, fluxo de dados e entrega sem ruído.',
     },
     summary: {
-      en: 'I prefer environments where architecture is an operating constraint, not presentation.',
-      pt: 'Prefiro ambientes em que arquitetura é uma restrição operacional, não apresentação.',
+      en: 'Enough context to understand how I work.',
+      pt: 'Contexto suficiente para entender como eu trabalho.',
     },
   },
-  lead: {
-    en: 'I do more than ship features. I structure systems so complexity stays readable, data stays trustworthy, and interfaces stay intentional.',
-    pt: 'Faço mais do que entregar funcionalidades. Estruturo sistemas para que a complexidade permaneça legível, os dados permaneçam confiáveis e as interfaces permaneçam intencionais.',
+  statement: {
+    en: 'I design systems where business rules stay explicit, operations stay traceable, and interfaces reduce ambiguity.',
+    pt: 'Desenho sistemas em que regras de negócio permanecem explícitas, a operação continua rastreável e a interface reduz ambiguidade.',
   },
-  body: {
-    en: [
-      'My work spans architecture, backend flows, data-heavy operations, and frontend systems with the same goal: reduce friction without reducing rigor.',
-      'That means modeling domains carefully, treating validation as product quality, and using interfaces to clarify critical decisions.',
-    ],
-    pt: [
-      'Meu trabalho cobre arquitetura, fluxos de backend, operações intensivas em dados e sistemas frontend com o mesmo objetivo: reduzir atrito sem reduzir rigor.',
-      'Isso significa modelar domínios com cuidado, tratar validação como qualidade de produto e usar interfaces para esclarecer decisões críticas.',
-    ],
-  },
-  principles: [
+  groups: [
     {
       title: {
-        en: 'Traceability over guesswork',
-        pt: 'Rastreabilidade acima de suposição',
+        en: 'Architecture',
+        pt: 'Arquitetura',
       },
-      description: {
-        en: 'Critical flows should explain themselves through explicit models, state history, and dependable contracts.',
-        pt: 'Fluxos críticos devem se explicar por modelos explícitos, histórico de estados e contratos confiáveis.',
+      items: {
+        en: [
+          'Domain modeling for critical rules',
+          'Transactional safety and trace history',
+          'Clean, event-driven systems',
+        ],
+        pt: [
+          'Modelagem de domínio para regras críticas',
+          'Segurança transacional e histórico de rastreio',
+          'Sistemas limpos e orientados a eventos',
+        ],
       },
     },
     {
       title: {
-        en: 'Performance with clarity',
-        pt: 'Performance com clareza',
+        en: 'Domain',
+        pt: 'Domínio',
       },
-      description: {
-        en: 'Scale matters when the product and the operation remain understandable under load.',
-        pt: 'Escala importa quando produto e operação permanecem compreensíveis sob carga.',
+      items: {
+        en: [
+          'High-volume ingestion and validation flows',
+          'Financial and operational automation',
+          'Applied AI with clear system boundaries',
+        ],
+        pt: [
+          'Fluxos de ingestão e validação em alto volume',
+          'Automação financeira e operacional',
+          'IA aplicada com limites de sistema claros',
+        ],
       },
     },
     {
       title: {
-        en: 'Design as system signal',
-        pt: 'Design como sinal de sistema',
+        en: 'Stack',
+        pt: 'Ferramentas',
       },
-      description: {
-        en: 'Interfaces should communicate confidence, order, and decision quality. The visual layer is part of the system.',
-        pt: 'Interfaces devem comunicar confiança, ordem e qualidade de decisão. A camada visual faz parte do sistema.',
+      items: {
+        en: [
+          'Angular and Next.js',
+          'NestJS and Java',
+          'PostgreSQL and MongoDB',
+          'Docker, AWS, GCP, and CI/CD',
+        ],
+        pt: [
+          'Angular e Next.js',
+          'NestJS e Java',
+          'PostgreSQL e MongoDB',
+          'Docker, AWS, GCP e CI/CD',
+        ],
+      },
+    },
+    {
+      title: {
+        en: 'Credentials',
+        pt: 'Credenciais',
+      },
+      items: {
+        en: [
+          'Fatec Osasco - Multiplatform Software Development (2026-2028)',
+          'Etec Guarulhos - Systems Development (2023-2025)',
+          'MongoDB - Advanced Data Modeling and Financial Knowledge',
+          'EDB - Distributed Postgres',
+        ],
+        pt: [
+          'Fatec Osasco - Desenvolvimento de Software Multiplataforma (2026-2028)',
+          'Etec Guarulhos - Desenvolvimento de Sistemas (2023-2025)',
+          'MongoDB - Modelagem Avançada de Dados e Conhecimento Financeiro',
+          'EDB - Postgres Distribuido',
+        ],
       },
     },
   ],
-  profileCardTitle: {
-    en: 'Working profile',
-    pt: 'Perfil de atuação',
-  },
-  profileCardBody: {
-    en: 'Product-minded engineering, system architecture, and frontend craft with emphasis on auditable flows.',
-    pt: 'Engenharia orientada a produto, arquitetura de sistemas e frontend refinado com ênfase em fluxos auditáveis.',
-  },
-  profileMeta: [
+  facts: [
     {
       label: { en: 'Location', pt: 'Localização' },
       value: { en: 'São Paulo, Brazil', pt: 'São Paulo, Brasil' },
     },
     {
-      label: { en: 'Email', pt: 'E-mail' },
+      label: { en: 'Email', pt: 'Email' },
       value: { en: 'joaopdias.dev@gmail.com', pt: 'joaopdias.dev@gmail.com' },
       href: 'mailto:joaopdias.dev@gmail.com',
     },
     {
       label: { en: 'Availability', pt: 'Disponibilidade' },
       value: {
-        en: 'Open to engineering roles with strong architecture ownership.',
-        pt: 'Aberto a posições de engenharia com forte responsabilidade arquitetural.',
+        en: 'Open to engineering roles with architecture ownership.',
+        pt: 'Aberto a funções de engenharia com responsabilidade arquitetural.',
       },
     },
   ],
 } as const;
 
-export const FEATURED_WORK_CONTENT: FeaturedWorkContent = {
+export const FEATURED_PROJECTS_CONTENT: FeaturedProjectsContent = {
   heading: {
     eyebrow: {
-      en: 'Selected work',
-      pt: 'Trabalhos selecionados',
-    },
-    title: {
       en: 'Selected projects',
       pt: 'Projetos selecionados',
     },
+    title: {
+      en: 'Projects with clear technical signal',
+      pt: 'Projetos com sinal técnico claro',
+    },
     summary: {
-      en: 'Each project shows scope, architecture, and proof. The case study holds the deeper breakdown.',
-      pt: 'Cada projeto resume escopo, arquitetura e prova. O estudo de caso traz o detalhamento completo.',
+      en: 'Problem, solution, and proof in one pass.',
+      pt: 'Problema, solução e prova em uma leitura.',
     },
   },
   ctaLabel: {
@@ -254,12 +260,12 @@ export const FEATURED_WORK_CONTENT: FeaturedWorkContent = {
 export const EXPERIENCE_HEADING = {
   eyebrow: { en: 'Experience', pt: 'Experiência' },
   title: {
-    en: 'Architecture ownership across startup, financial, and data-heavy environments.',
-    pt: 'Responsabilidade arquitetural em ambientes de startup, finanças e operações intensivas em dados.',
+    en: 'Delivery in startup, financial, and data-heavy systems.',
+    pt: 'Entrega em startup, financeiro e sistemas intensivos em dados.',
   },
   summary: {
-    en: 'Public work shows craft. Experience shows delivery under constraint.',
-    pt: 'Projetos públicos mostram craft. Experiência mostra entrega sob restrição.',
+    en: 'A short record of scope, constraints, and impact.',
+    pt: 'Um recorte curto de escopo, restrição e impacto.',
   },
 } as const;
 
@@ -270,19 +276,17 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'UFind',
     period: { en: 'Jun 2025 - Present', pt: 'jun. 2025 - atual' },
     summary: {
-      en: 'Lead technical owner for a data-driven AI agent, defining architecture and high-volume ingestion flows.',
-      pt: 'Principal responsável técnico por um agente de IA orientado a dados, definindo arquitetura e fluxos de ingestão de alto volume.',
+      en: 'Implementing a data-driven AI agent with high-volume ingestion, real-time chat, and traceable production flows.',
+      pt: 'Implemento um agente de IA orientado a dados com ingestão em alto volume, chat em tempo real e fluxos produtivos rastreáveis.',
     },
     highlights: {
       en: [
-        'Defined architecture standards and integration boundaries.',
-        'Structured flows for more than 16 GB of data.',
-        'Kept traceability and transactional history explicit.',
+        'Structured asynchronous Node.js pipelines to ingest and process more than 16 GB of information',
+        'Built real-time chat with the OpenAI API and participated in production infrastructure decisions',
       ],
       pt: [
-        'Defini padrões arquiteturais e limites de integração.',
-        'Estruturei fluxos para mais de 16 GB de dados.',
-        'Mantive rastreabilidade e histórico transacional explícitos.',
+        'Estruturei pipelines assíncronos em Node.js para ingestão e processamento de mais de 16 GB de informações',
+        'Desenvolvi chat em tempo real com a API da OpenAI e participei de decisões técnicas da infraestrutura em produção',
       ],
     },
   },
@@ -292,203 +296,44 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'Representa Online',
     period: { en: 'Sep 2024 - May 2025', pt: 'set. 2024 - maio 2025' },
     summary: {
-      en: 'Led the design and implementation of an insurance billing system with multiple layouts and critical financial rules.',
-      pt: 'Liderei o desenho e a implementação de um sistema de faturamento para seguros com múltiplos layouts e regras financeiras críticas.',
+      en: 'Worked on the design and development of an insurance billing system with high-volume file processing and multiple financial layouts.',
+      pt: 'Atuei na concepção e no desenvolvimento de um sistema de faturamento para corretora de seguros, com alto volume de arquivos e múltiplos layouts financeiros.',
     },
     highlights: {
       en: [
-        'Processed high-volume insurance files.',
-        'Reduced manual routines from days to minutes.',
-        'Designed for layout variation and financial rule handling.',
+        'Structured streams-based flows with critical validations to preserve data integrity and traceability',
+        'Implemented automation that reduced manual operations from days to minutes',
       ],
       pt: [
-        'Processei arquivos de seguros em alto volume.',
-        'Reduzi rotinas manuais de dias para minutos.',
-        'Desenhei a arquitetura para variações de layout e regras financeiras.',
+        'Estruturei um fluxo com streams e validações críticas para garantir integridade dos dados e rastreabilidade',
+        'Implementei uma automação que reduziu operações manuais de dias para minutos',
       ],
     },
   },
   {
     id: 'representa-intern',
-    role: { en: 'Software Development Intern', pt: 'Estagiário em Desenvolvimento' },
+    role: {
+      en: 'Systems Development Intern',
+      pt: 'Estagiário em Desenvolvimento de Sistemas',
+    },
     company: 'Representa Online',
     period: { en: 'Jun 2024 - Aug 2024', pt: 'jun. 2024 - ago. 2024' },
     summary: {
-      en: 'Worked on the platform core for catalog behavior, performance, and resilience.',
-      pt: 'Atuei no núcleo da plataforma em comportamento de catálogo, performance e resiliência.',
+      en: 'Worked on the core catalog for companies, products, and services with a focus on performance and scalability.',
+      pt: 'Atuei no núcleo de catálogo de empresas, produtos e serviços com foco em performance e escalabilidade.',
     },
     highlights: {
       en: [
-        'Improved query, filter, and pagination performance.',
-        'Implemented rule-based access control and fault-tolerance mechanisms.',
-        'Raised robustness in a growing platform core.',
+        'Added location search based on coordinates and distance ordering',
+        'Implemented JWT and Google OAuth2 flows plus full SSR and SSG pages for faster initial loading',
       ],
       pt: [
-        'Melhorei a performance de consultas, filtros e paginação.',
-        'Implementei controle de acesso por regras e mecanismos de tolerância a falhas.',
-        'Aumentei a robustez de um núcleo de plataforma em crescimento.',
+        'Adicionei busca por localização baseada em coordenadas e ordenação por distância',
+        'Implementei fluxos com JWT e Google OAuth2, além de páginas full SSR e SSG para reduzir o carregamento inicial',
       ],
     },
   },
 ] as const;
-
-export const CAPABILITY_HEADING = {
-  eyebrow: { en: 'Capabilities', pt: 'Capacidades' },
-  title: {
-    en: 'How I contribute to systems',
-    pt: 'Como contribuo para sistemas',
-  },
-  summary: {
-    en: 'This section groups the work by leverage, not by isolated tools.',
-    pt: 'Esta seção organiza o trabalho por alavanca técnica, não por ferramentas isoladas.',
-  },
-} as const;
-
-export const CAPABILITY_CLUSTERS: readonly CapabilityCluster[] = [
-  {
-    id: 'systems',
-    title: {
-      en: 'System architecture',
-      pt: 'Arquitetura de sistemas',
-    },
-    summary: {
-      en: 'Service boundaries, domain models, and validation-heavy flows that stay understandable over time.',
-      pt: 'Fronteiras de serviço, modelos de domínio e fluxos intensivos em validação que permanecem compreensíveis ao longo do tempo.',
-    },
-    items: {
-      en: [
-        'Domain modeling for critical business rules',
-        'Transactional integrity and trace history',
-        'Service contracts designed for maintainability',
-      ],
-      pt: [
-        'Modelagem de domínio para regras de negócio críticas',
-        'Integridade transacional e histórico de rastreabilidade',
-        'Contratos de serviço desenhados para manutenção',
-      ],
-    },
-    accentLabel: {
-      en: 'Architecture',
-      pt: 'Arquitetura',
-    },
-  },
-  {
-    id: 'delivery',
-    title: {
-      en: 'Execution under real constraints',
-      pt: 'Execução sob restrições reais',
-    },
-    summary: {
-      en: 'Turn operational bottlenecks into software with measurable impact and better decision quality.',
-      pt: 'Transformar gargalos operacionais em software com impacto mensurável e melhor qualidade de decisão.',
-    },
-    items: {
-      en: [
-        'High-volume ingestion and data processing',
-        'Financial rules, layouts, and operational reduction',
-        'Applied AI and automation with clear system boundaries',
-      ],
-      pt: [
-        'Ingestão e processamento de alto volume',
-        'Regras financeiras, layouts e redução operacional',
-        'IA aplicada e automação com limites de sistema claros',
-      ],
-    },
-    accentLabel: {
-      en: 'Delivery',
-      pt: 'Entrega',
-    },
-  },
-  {
-    id: 'stack',
-    title: {
-      en: 'Frontend and platform craft',
-      pt: 'Frontend e engenharia de plataforma',
-    },
-    summary: {
-      en: 'Build interfaces and technical foundations that feel deliberate, fast, and aligned with the architecture behind them.',
-      pt: 'Construir interfaces e fundações técnicas que pareçam deliberadas, rápidas e alinhadas com a arquitetura que as sustenta.',
-    },
-    items: {
-      en: [
-        'Angular, Next.js, and React Native',
-        'NestJS, Java, Go, PostgreSQL, MongoDB, Redis',
-        'Docker, AWS, GCP, and CI/CD',
-      ],
-      pt: [
-        'Angular, Next.js e React Native',
-        'NestJS, Java, Go, PostgreSQL, MongoDB e Redis',
-        'Docker, AWS, GCP e CI/CD',
-      ],
-    },
-    accentLabel: {
-      en: 'Craft',
-      pt: 'Craft',
-    },
-  },
-] as const;
-
-export const CREDENTIALS_CONTENT: CredentialsContent = {
-  heading: {
-    eyebrow: { en: 'Credentials', pt: 'Credenciais' },
-    title: {
-      en: 'Education and certifications.',
-      pt: 'Formação e certificações.',
-    },
-    summary: {
-      en: 'Compact by design. Enough to establish background without replacing execution proof.',
-      pt: 'Compacto por design. O suficiente para estabelecer repertório sem substituir prova de execução.',
-    },
-  },
-  education: [
-    {
-      title: {
-        en: 'Multiplatform Software Development',
-        pt: 'Desenvolvimento de Software Multiplataforma',
-      },
-      subtitle: {
-        en: 'Fatec de Osasco',
-        pt: 'Fatec de Osasco',
-      },
-      meta: {
-        en: 'Feb 2026 - Dec 2028',
-        pt: 'fev. 2026 - dez. 2028',
-      },
-    },
-    {
-      title: {
-        en: 'Systems Development',
-        pt: 'Desenvolvimento de Sistemas',
-      },
-      subtitle: {
-        en: 'Etec de Guarulhos',
-        pt: 'Etec de Guarulhos',
-      },
-      meta: {
-        en: 'Feb 2023 - Dec 2025',
-        pt: 'fev. 2023 - dez. 2025',
-      },
-    },
-  ],
-  certificationsLabel: { en: 'Certifications', pt: 'Certificações' },
-  certifications: {
-    en: [
-      'MongoDB - Financial Services Sector Knowledge',
-      'MongoDB - Advanced Data Modeling',
-      'EDB - Distributed Postgres',
-    ],
-    pt: [
-      'MongoDB - Conhecimento do Setor de Serviços Financeiros',
-      'MongoDB - Modelagem Avançada de Dados',
-      'EDB - Postgres Distribuído',
-    ],
-  },
-  languagesLabel: { en: 'Languages', pt: 'Idiomas' },
-  languages: {
-    en: ['Portuguese - Native', 'English - Advanced', 'French - Basic'],
-    pt: ['Português - Nativo', 'Inglês - Avançado', 'Francês - Básico'],
-  },
-};
 
 export const CONTACT_CONTENT: ContactContent = {
   heading: {
@@ -498,17 +343,13 @@ export const CONTACT_CONTENT: ContactContent = {
       pt: 'Inicie uma conversa.',
     },
     summary: {
-      en: 'I am interested in work where architecture, product judgment, and implementation quality all matter.',
-      pt: 'Tenho interesse em trabalhos em que arquitetura, visão de produto e qualidade de implementação realmente importam.',
+      en: 'Open to engineering roles with architecture ownership and complex product problems.',
+      pt: 'Aberto a funções de engenharia com responsabilidade arquitetural e problemas complexos de produto.',
     },
   },
-  availability: {
-    en: 'Open to high-impact engineering roles, product-minded teams, and complex software problems.',
-    pt: 'Aberto a posições de engenharia de alto impacto, times orientados a produto e problemas complexos de software.',
-  },
-  links: [
+  details: [
     {
-      label: { en: 'Email', pt: 'E-mail' },
+      label: { en: 'Email', pt: 'Email' },
       value: { en: 'joaopdias.dev@gmail.com', pt: 'joaopdias.dev@gmail.com' },
       href: 'mailto:joaopdias.dev@gmail.com',
     },
@@ -522,8 +363,6 @@ export const CONTACT_CONTENT: ContactContent = {
       value: { en: 'github.com/Joaopdiasventura', pt: 'github.com/Joaopdiasventura' },
       href: 'https://github.com/Joaopdiasventura',
     },
-  ],
-  baseItems: [
     {
       label: { en: 'Location', pt: 'Localização' },
       value: { en: 'São Paulo, Brazil', pt: 'São Paulo, Brasil' },
@@ -532,9 +371,16 @@ export const CONTACT_CONTENT: ContactContent = {
       label: { en: 'Phone', pt: 'Telefone' },
       value: { en: '+55 (11) 98655-3558', pt: '+55 (11) 98655-3558' },
     },
+    {
+      label: { en: 'Availability', pt: 'Disponibilidade' },
+      value: {
+        en: 'Open to engineering roles with architecture ownership.',
+        pt: 'Aberto a funções de engenharia com responsabilidade arquitetural.',
+      },
+    },
   ],
   formName: { en: 'Name', pt: 'Nome' },
-  formEmail: { en: 'Email', pt: 'E-mail' },
+  formEmail: { en: 'Email', pt: 'Email' },
   formMessage: { en: 'Message', pt: 'Mensagem' },
   formSubmit: { en: 'Send message', pt: 'Enviar mensagem' },
   formSending: { en: 'Sending...', pt: 'Enviando...' },
@@ -560,7 +406,7 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
   },
   {
     href: 'mailto:joaopdias.dev@gmail.com',
-    label: { en: 'Email', pt: 'E-mail' },
+    label: { en: 'Email', pt: 'Email' },
     icon: 'mail',
   },
 ] as const;

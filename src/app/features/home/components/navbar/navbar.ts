@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { Router } from '@angular/router';
 import { NAV_ITEMS, SITE_CHROME } from '../../../../core/data/portfolio.data';
 import { NavSectionId } from '../../../../core/models/portfolio.model';
-import { LanguageService } from '../../../../core/services/language.service';
+import { LanguageService } from '../../../../core/services/language/language.service';
+import { UiButton } from '../../../../shared/components/ui/ui-button/ui-button';
 
 @Component({
   selector: 'app-navbar',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, UiButton],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

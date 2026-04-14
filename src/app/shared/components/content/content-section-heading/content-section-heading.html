@@ -1,0 +1,75 @@
+<p appRevealOnScroll [preset]="'caption'" class="content-section-heading__eyebrow">
+  {{ eyebrow() }}
+</p>
+
+@switch (headingLevel()) {
+  @case (1) {
+    <h1
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h1>
+  }
+  @case (2) {
+    <h2
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h2>
+  }
+  @case (3) {
+    <h3
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h3>
+  }
+  @case (4) {
+    <h4
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h4>
+  }
+  @case (5) {
+    <h5
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h5>
+  }
+  @default {
+    <h6
+      [id]="titleId()"
+      appRevealOnScroll
+      [preset]="'headline'"
+      class="content-section-heading__title"
+    >
+      {{ title() }}
+    </h6>
+  }
+}
+
+<p
+  appRevealOnScroll
+  [delayMs]="summaryDelayMs()"
+  [preset]="'copy'"
+  class="content-section-heading__summary"
+>
+  {{ summary() }}
+</p>

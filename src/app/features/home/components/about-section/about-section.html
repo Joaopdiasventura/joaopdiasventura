@@ -1,69 +1,46 @@
-<section class="manifesto section-padding" aria-labelledby="about-title">
-  <div class="container-wide manifesto__layout">
-    <div class="manifesto__intro">
-      <p appRevealOnScroll [preset]="'caption'" class="manifesto__eyebrow">
-        {{ copy(content.heading.eyebrow) }}
-      </p>
+<section class="credibility section-padding" aria-labelledby="about-title">
+  <div class="container-wide credibility__layout">
+    <app-content-section-heading
+      class="credibility__heading"
+      [eyebrow]="copy(content.heading.eyebrow)"
+      [summary]="copy(content.heading.summary)"
+      [summaryDelayMs]="120"
+      [title]="copy(content.heading.title)"
+      [titleId]="'about-title'"
+    />
 
-      <h2 id="about-title" appRevealOnScroll [preset]="'headline'" class="manifesto__title">
-        {{ copy(content.heading.title) }}
-      </h2>
-
-      <p appRevealOnScroll [delayMs]="120" [preset]="'copy'" class="manifesto__summary">
-        {{ copy(content.heading.summary) }}
-      </p>
-    </div>
-
-    <div class="manifesto__body">
-      <div class="manifesto__copy">
-        <div appRevealOnScroll [delayMs]="160" [preset]="'panel'" class="tilt-reveal-wrap">
-          <p appViewportTilt="card" class="manifesto__lead">
-            {{ copy(content.lead) }}
-          </p>
-        </div>
-
-        @for (paragraph of copy(content.body); track paragraph; let index = $index) {
-          <p appRevealOnScroll [delayMs]="index * 110 + 240" [preset]="'copy'" class="manifesto__paragraph">
-            {{ paragraph }}
-          </p>
-        }
+    <div class="credibility__top">
+      <div appRevealOnScroll [delayMs]="140" [preset]="'panel'" class="tilt-reveal-wrap">
+        <app-profile-statement-card
+          appViewportTilt="card"
+          class="credibility__statement surface-card"
+          [text]="copy(content.statement)"
+        />
       </div>
 
-      <div appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="manifesto__profile-wrap tilt-reveal-wrap">
-        <aside appViewportTilt="card" class="manifesto__profile">
-          <p class="manifesto__profile-label">{{ copy(content.profileCardTitle) }}</p>
-          <p class="manifesto__profile-body">{{ copy(content.profileCardBody) }}</p>
-
-          <div class="manifesto__profile-meta">
-            @for (item of content.profileMeta; track copy(item.label)) {
-              <div class="manifesto__profile-row">
-                <span>{{ copy(item.label) }}</span>
-
-                @if (item.href) {
-                  <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
-                } @else {
-                  <strong>{{ copy(item.value) }}</strong>
-                }
-              </div>
-            }
-          </div>
-        </aside>
+      <div appRevealOnScroll [delayMs]="180" [preset]="'panel'" class="tilt-reveal-wrap">
+        <app-profile-meta-card
+          appViewportTilt="card"
+          class="credibility__facts surface-card"
+          [items]="factItems()"
+        />
       </div>
     </div>
 
-    <div class="manifesto__principles">
-      @for (principle of content.principles; track copy(principle.title); let index = $index) {
+    <div class="credibility__grid">
+      @for (group of content.groups; track copy(group.title); let index = $index) {
         <div
           appRevealOnScroll
-          [delayMs]="index * 110 + 240"
-          [preset]="'card'"
+          [delayMs]="index * 80 + 220"
+          [preset]="'panel'"
           class="tilt-reveal-wrap"
         >
-          <article appViewportTilt="card" class="manifesto__principle">
-            <p class="manifesto__principle-index">0{{ index + 1 }}</p>
-            <h3>{{ copy(principle.title) }}</h3>
-            <p>{{ copy(principle.description) }}</p>
-          </article>
+          <app-profile-group-card
+            appViewportTilt="card"
+            class="credibility__card surface-card"
+            [items]="copyList(group.items)"
+            [title]="copy(group.title)"
+          />
         </div>
       }
     </div>

@@ -1,0 +1,189 @@
+@if (caseStudy(); as study) {
+  @if (showcaseProject(); as showcase) {
+    <div class="page-shell page-shell--case-study" data-scene-section>
+      <div class="page-shell__background" aria-hidden="true"></div>
+      <app-brand-scene class="page-shell__scene page-shell__scene--case" [variant]="'case'" />
+
+      <main class="case-study page-shell__content">
+        <section class="case-study__hero">
+          <div class="container-wide case-study__hero-layout">
+            <div class="case-study__hero-copy">
+              <a class="case-study__backlink action-link" [attr.href]="homeProjectsHref()">
+                &larr; {{ copy(labels.back) }}
+              </a>
+
+              <div class="case-study__hero-identity">
+                <span class="case-study__hero-icon" aria-hidden="true">
+                  <img
+                    [ngSrc]="showcase.icon.src"
+                    [width]="showcase.icon.width"
+                    [height]="showcase.icon.height"
+                    alt=""
+                  />
+                </span>
+
+                <div class="case-study__hero-heading">
+                  <p class="case-study__hero-eyebrow">{{ copy(study.category) }}</p>
+                  <h1 class="case-study__hero-title">{{ copy(showcase.name) }}</h1>
+                </div>
+              </div>
+
+              <p class="case-study__hero-summary">{{ copy(study.teaser) }}</p>
+
+              <div class="case-study__hero-actions">
+                @for (link of actionLinks(); track link.href) {
+                  <app-ui-button
+                    [href]="link.href"
+                    [external]="true"
+                    [label]="link.label"
+                    [variant]="'secondary'"
+                  />
+                }
+              </div>
+            </div>
+
+            <div class="case-study__hero-aside">
+              <app-case-study-panel
+                appRevealOnScroll
+                [preset]="'panel'"
+                appViewportTilt="card"
+                class="case-study__panel surface-card"
+              >
+                <p class="case-study__section-label">{{ copy(labels.result) }}</p>
+
+                <app-content-metric-list
+                  class="case-study__hero-metrics"
+                  [items]="heroMetrics()"
+                  [templateColumns]="caseStudyMetricsTemplate"
+                  [valueFirst]="true"
+                />
+              </app-case-study-panel>
+
+              <app-case-study-panel
+                appRevealOnScroll
+                [delayMs]="80"
+                [preset]="'panel'"
+                appViewportTilt="card"
+                class="case-study__panel surface-card"
+              >
+                <app-content-meta-list class="case-study__facts" [items]="caseStudyFacts()" />
+              </app-case-study-panel>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-study__section">
+          <div class="container-wide case-study__core">
+            <app-case-study-panel
+              appRevealOnScroll
+              [preset]="'panel'"
+              appViewportTilt="card"
+              class="case-study__panel surface-card"
+              [lead]="copy(study.problem)"
+              [title]="copy(labels.problem)"
+            >
+              <div class="case-study__support">
+                <p class="case-study__support-label">{{ copy(labels.constraints) }}</p>
+
+                <app-content-text-list
+                  class="case-study__bullet-list"
+                  [items]="constraintItems()"
+                  [variant]="'bullet'"
+                />
+              </div>
+            </app-case-study-panel>
+
+            <app-case-study-panel
+              appRevealOnScroll
+              [delayMs]="90"
+              [preset]="'panel'"
+              appViewportTilt="card"
+              class="case-study__panel surface-card"
+              [lead]="copy(study.solution)"
+              [title]="copy(labels.solution)"
+            >
+              <div class="case-study__support">
+                <p class="case-study__support-label">{{ copy(labels.stack) }}</p>
+
+                <app-content-text-list
+                  class="case-study__stack-list"
+                  [items]="solutionStackItems()"
+                  [variant]="'stack'"
+                />
+              </div>
+
+              <div class="case-study__support">
+                <p class="case-study__support-label">{{ copy(labels.decisions) }}</p>
+
+                <div class="case-study__decision-list">
+                  @for (decision of study.decisions; track decision.title.en) {
+                    <article class="case-study__decision-item">
+                      <h3>{{ copy(decision.title) }}</h3>
+                      <p>{{ copy(decision.description) }}</p>
+                    </article>
+                  }
+                </div>
+              </div>
+            </app-case-study-panel>
+
+            <app-case-study-panel
+              appRevealOnScroll
+              [delayMs]="180"
+              [preset]="'panel'"
+              appViewportTilt="card"
+              class="case-study__panel surface-card"
+              [lead]="copy(study.resultSummary)"
+              [title]="copy(labels.result)"
+            >
+              <div class="case-study__support">
+                <p class="case-study__support-label">{{ copy(labels.proof) }}</p>
+
+                <app-content-metric-list
+                  class="case-study__impact-metrics"
+                  [items]="impactMetrics()"
+                  [templateColumns]="caseStudyMetricsTemplate"
+                  [valueFirst]="true"
+                />
+              </div>
+            </app-case-study-panel>
+          </div>
+        </section>
+
+        <section class="case-study__section case-study__section--next">
+          <div
+            appRevealOnScroll
+            [preset]="'panel'"
+            appViewportTilt="card"
+            class="container-wide case-study__next surface-card"
+          >
+            <div>
+              <p class="case-study__section-label">{{ copy(labels.nextCase) }}</p>
+
+              <div class="case-study__next-identity">
+                <span class="case-study__next-icon" aria-hidden="true">
+                  <img
+                    [ngSrc]="nextPreview().icon.src"
+                    [width]="nextPreview().icon.width"
+                    [height]="nextPreview().icon.height"
+                    alt=""
+                  />
+                </span>
+
+                <h2>{{ copy(nextPreview().name) }}</h2>
+              </div>
+
+              <p>{{ copy(nextTeaser()) }}</p>
+            </div>
+
+            <app-ui-button
+              class="case-study__next-button"
+              [label]="copy(projectsCopy.ctaLabel)"
+              [routerLink]="caseRoute(nextCaseStudy().slug)"
+              [variant]="'primary'"
+            />
+          </div>
+        </section>
+      </main>
+    </div>
+  }
+}

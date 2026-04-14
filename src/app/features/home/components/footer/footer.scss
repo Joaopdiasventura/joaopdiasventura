@@ -41,33 +41,6 @@
   gap: 0.8rem;
 }
 
-.footer__links a {
-  align-items: center;
-  background: rgb(255 255 255 / 2%);
-  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-  border-radius: 999px;
-  display: inline-flex;
-  height: 2.6rem;
-  justify-content: center;
-  transition:
-    border-color 0.22s ease,
-    background-color 0.22s ease,
-    transform 0.22s ease;
-  width: 2.6rem;
-}
-
-.footer__links a:hover {
-  background: rgb(255 255 255 / 5%);
-  box-shadow: var(--action-lift-shadow);
-  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
-  transform: var(--action-lift-transform);
-}
-
-.footer__links a:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 3px;
-}
-
 @media (min-width: 760px) {
   .footer__inner {
     align-items: center;

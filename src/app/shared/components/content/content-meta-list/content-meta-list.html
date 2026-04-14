@@ -1,0 +1,18 @@
+@for (item of items(); track item.label + item.value) {
+  <div class="content-meta-list__item">
+    <span class="content-meta-list__label">{{ item.label }}</span>
+
+    @if (item.href) {
+      <a
+        class="content-meta-list__value content-meta-list__value--link"
+        [attr.href]="item.href"
+        [attr.rel]="itemRel(item)"
+        [attr.target]="itemTarget(item)"
+      >
+        {{ item.value }}
+      </a>
+    } @else {
+      <strong class="content-meta-list__value">{{ item.value }}</strong>
+    }
+  </div>
+}

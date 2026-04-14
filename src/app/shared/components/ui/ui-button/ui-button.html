@@ -1,0 +1,39 @@
+@if (routerLink(); as route) {
+  <a
+    class="ui-button__control"
+    [class.ui-button__control--primary]="controlClass('primary')"
+    [class.ui-button__control--secondary]="controlClass('secondary')"
+    [class.ui-button__control--ghost]="controlClass('ghost')"
+    [routerLink]="route"
+    [attr.aria-disabled]="disabledState()"
+    [attr.aria-label]="ariaLabel()"
+  >
+    {{ label() }}
+  </a>
+} @else if (href(); as link) {
+  <a
+    class="ui-button__control"
+    [class.ui-button__control--primary]="controlClass('primary')"
+    [class.ui-button__control--secondary]="controlClass('secondary')"
+    [class.ui-button__control--ghost]="controlClass('ghost')"
+    [attr.aria-disabled]="disabledState()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.href]="disabled() ? null : link"
+    [attr.rel]="controlRel()"
+    [attr.target]="controlTarget()"
+  >
+    {{ label() }}
+  </a>
+} @else {
+  <button
+    class="ui-button__control"
+    [class.ui-button__control--primary]="controlClass('primary')"
+    [class.ui-button__control--secondary]="controlClass('secondary')"
+    [class.ui-button__control--ghost]="controlClass('ghost')"
+    [attr.aria-label]="ariaLabel()"
+    [disabled]="disabled()"
+    [type]="type()"
+  >
+    {{ label() }}
+  </button>
+}

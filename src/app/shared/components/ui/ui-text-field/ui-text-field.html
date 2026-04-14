@@ -1,0 +1,15 @@
+<label class="ui-field__label" [attr.for]="id()">{{ label() }}</label>
+
+<div class="ui-field__shell" [class.ui-field__shell--invalid]="invalid()">
+  <input
+    [attr.aria-invalid]="invalid()"
+    [attr.autocomplete]="autocomplete()"
+    [disabled]="disabled()"
+    [id]="id()"
+    [required]="required()"
+    [type]="type()"
+    [value]="value()"
+    (blur)="onBlur()"
+    (input)="onInput($event)"
+  />
+</div>

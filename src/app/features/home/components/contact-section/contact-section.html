@@ -1,56 +1,24 @@
 <section class="contact section-padding" aria-labelledby="contact-title">
   <div class="container-wide contact__layout">
     <div class="contact__intro">
-      <p appRevealOnScroll [preset]="'caption'" class="contact__eyebrow">
-        {{ copy(content.heading.eyebrow) }}
-      </p>
-      <h2 id="contact-title" appRevealOnScroll [preset]="'headline'" class="contact__title">
-        {{ copy(content.heading.title) }}
-      </h2>
-      <p appRevealOnScroll [delayMs]="120" [preset]="'copy'" class="contact__summary">
-        {{ copy(content.heading.summary) }}
-      </p>
+      <app-content-section-heading
+        class="contact__heading"
+        [eyebrow]="copy(content.heading.eyebrow)"
+        [summary]="copy(content.heading.summary)"
+        [summaryDelayMs]="120"
+        [title]="copy(content.heading.title)"
+        [titleId]="'contact-title'"
+      />
 
-      <p appRevealOnScroll [delayMs]="180" [preset]="'copy'" class="contact__availability">
-        {{ copy(content.availability) }}
-      </p>
-
-      <div appRevealOnScroll [delayMs]="220" [preset]="'panel'" class="contact__panel-wrap">
-        <div appViewportTilt="card" class="contact__links">
-          @for (link of content.links; track link.label.en) {
-            <a
-              class="action-link action-link--surface"
-              [href]="link.href"
-              [attr.target]="link.href.startsWith('http') ? '_blank' : null"
-              [attr.rel]="link.href.startsWith('http') ? 'noopener noreferrer' : null"
-            >
-              <span>{{ copy(link.label) }}</span>
-              <strong>{{ copy(link.value) }}</strong>
-            </a>
-          }
-        </div>
-      </div>
-
-      <div appRevealOnScroll [delayMs]="260" [preset]="'panel'" class="contact__panel-wrap">
-        <article appViewportTilt="card" class="contact__base">
-          <div class="contact__base-grid">
-            @for (item of content.baseItems; track item.label.en) {
-              <div class="contact__base-item">
-                <span>{{ copy(item.label) }}</span>
-                @if (item.href) {
-                  <a class="action-link" [href]="item.href">{{ copy(item.value) }}</a>
-                } @else {
-                  <strong>{{ copy(item.value) }}</strong>
-                }
-              </div>
-            }
-          </div>
+      <div appRevealOnScroll [delayMs]="200" [preset]="'panel'" class="contact__panel-wrap">
+        <article appViewportTilt="card" class="contact__details surface-card">
+          <app-content-meta-list class="contact__details-grid" [items]="detailItems()" />
         </article>
       </div>
     </div>
 
     <div appRevealOnScroll [delayMs]="120" [preset]="'panel'" class="contact-form-wrap">
-      <form appViewportTilt="card" class="contact-form" novalidate (submit)="submit($event)">
+      <form appViewportTilt="card" class="contact-form surface-card" novalidate (submit)="submit($event)">
         <div class="contact-form__chrome" aria-hidden="true">
           <span></span>
           <span></span>
@@ -58,71 +26,53 @@
         </div>
 
         <div class="contact-form__grid">
-          <div class="field">
-            <label for="contact-name">{{ copy(content.formName) }}</label>
-            <div
-              class="field__shell"
-              [class.field__shell--invalid]="controlInvalid('name')"
-            >
-              <input
-                id="contact-name"
-                type="text"
-                [value]="formValue().name"
-                [attr.aria-invalid]="controlInvalid('name')"
-                autocomplete="name"
-                required
-                (blur)="markTouched('name')"
-                (input)="updateField('name', $event)"
-              />
-            </div>
-          </div>
+          <app-ui-text-field
+            class="field"
+            [autocomplete]="'name'"
+            [id]="'contact-name'"
+            [invalid]="controlInvalid('name')"
+            [label]="copy(content.formName)"
+            [required]="true"
+            [type]="'text'"
+            [value]="formValue().name"
+            (blurred)="markTouched('name')"
+            (valueChange)="updateFieldValue('name', $event)"
+          />
 
-          <div class="field">
-            <label for="contact-email">{{ copy(content.formEmail) }}</label>
-            <div
-              class="field__shell"
-              [class.field__shell--invalid]="controlInvalid('email')"
-            >
-              <input
-                id="contact-email"
-                type="email"
-                [value]="formValue().email"
-                [attr.aria-invalid]="controlInvalid('email')"
-                autocomplete="email"
-                required
-                (blur)="markTouched('email')"
-                (input)="updateField('email', $event)"
-              />
-            </div>
-          </div>
+          <app-ui-text-field
+            class="field"
+            [autocomplete]="'email'"
+            [id]="'contact-email'"
+            [invalid]="controlInvalid('email')"
+            [label]="copy(content.formEmail)"
+            [required]="true"
+            [type]="'email'"
+            [value]="formValue().email"
+            (blurred)="markTouched('email')"
+            (valueChange)="updateFieldValue('email', $event)"
+          />
         </div>
 
-        <div class="field">
-          <label for="contact-message">{{ copy(content.formMessage) }}</label>
-          <div
-            class="field__shell field__shell--textarea"
-            [class.field__shell--invalid]="controlInvalid('message')"
-          >
-            <textarea
-              id="contact-message"
-              rows="6"
-              [value]="formValue().message"
-              [attr.aria-invalid]="controlInvalid('message')"
-              required
-              (blur)="markTouched('message')"
-              (input)="updateField('message', $event)"
-            ></textarea>
-          </div>
-        </div>
+        <app-ui-textarea-field
+          class="field"
+          [id]="'contact-message'"
+          [invalid]="controlInvalid('message')"
+          [label]="copy(content.formMessage)"
+          [required]="true"
+          [rows]="6"
+          [value]="formValue().message"
+          (blurred)="markTouched('message')"
+          (valueChange)="updateFieldValue('message', $event)"
+        />
 
         <div class="contact-form__actions">
-          <button
-            type="submit"
-            class="button button--primary contact-form__submit"
+          <app-ui-button
+            class="contact-form__submit"
             [disabled]="isSubmitting()"
-          >
-            {{ isSubmitting() ? copy(content.formSending) : copy(content.formSubmit) }}
-          </button>
+            [label]="isSubmitting() ? copy(content.formSending) : copy(content.formSubmit)"
+            [type]="'submit'"
+            [variant]="'primary'"
+          />
 
           <p
             class="contact-form__status"

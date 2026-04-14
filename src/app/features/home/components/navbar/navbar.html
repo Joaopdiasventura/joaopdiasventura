@@ -23,14 +23,13 @@
     </div>
 
     <div class="navbar__actions">
-      <button
-        type="button"
+      <app-ui-button
         class="navbar__language"
-        [attr.aria-label]="copy(chrome.switchLanguage)"
+        [ariaLabel]="copy(chrome.switchLanguage)"
+        [label]="languageLabel()"
+        [variant]="'ghost'"
         (click)="toggleLanguageRoute()"
-      >
-        <span>{{ languageLabel() }}</span>
-      </button>
+      />
 
       <button
         type="button"

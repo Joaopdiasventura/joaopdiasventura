@@ -1,0 +1,30 @@
+:host {
+  --surface-card-radius: 1.2rem;
+  display: block;
+}
+
+.case-study-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.15rem;
+}
+
+.case-study-panel__title {
+  color: var(--foreground);
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.case-study-panel__lead {
+  color: var(--foreground-soft);
+  line-height: 1.66;
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .case-study-panel {
+    gap: 1.15rem;
+    padding: 1.4rem;
+  }
+}

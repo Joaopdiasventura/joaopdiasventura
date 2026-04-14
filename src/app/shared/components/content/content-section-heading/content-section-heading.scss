@@ -1,0 +1,39 @@
+:host {
+  --content-heading-eyebrow-color: var(--primary);
+  --content-heading-eyebrow-size: 0.74rem;
+  --content-heading-eyebrow-margin: 0 0 0.8rem;
+  --content-heading-title-color: var(--foreground);
+  --content-heading-title-size: clamp(2rem, 4.4vw, 3rem);
+  --content-heading-title-line-height: 1.05;
+  --content-heading-title-max-width: none;
+  --content-heading-summary-color: var(--foreground-soft);
+  --content-heading-summary-line-height: 1.7;
+  --content-heading-summary-margin: 0.9rem 0 0;
+  --content-heading-summary-max-width: 30rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.content-section-heading__eyebrow {
+  color: var(--content-heading-eyebrow-color);
+  font-size: var(--content-heading-eyebrow-size);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: var(--content-heading-eyebrow-margin);
+  text-transform: uppercase;
+}
+
+.content-section-heading__title {
+  color: var(--content-heading-title-color);
+  font-size: var(--content-heading-title-size);
+  line-height: var(--content-heading-title-line-height);
+  margin: 0;
+  max-width: var(--content-heading-title-max-width);
+}
+
+.content-section-heading__summary {
+  color: var(--content-heading-summary-color);
+  line-height: var(--content-heading-summary-line-height);
+  margin: var(--content-heading-summary-margin);
+  max-width: var(--content-heading-summary-max-width);
+}

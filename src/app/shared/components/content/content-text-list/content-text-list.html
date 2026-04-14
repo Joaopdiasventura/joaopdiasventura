@@ -1,0 +1,10 @@
+<ul
+  class="content-text-list"
+  [class.content-text-list--bullet]="isVariant('bullet')"
+  [class.content-text-list--plain]="isVariant('plain')"
+  [class.content-text-list--stack]="isVariant('stack')"
+>
+  @for (item of items(); track item) {
+    <li>{{ item }}</li>
+  }
+</ul>

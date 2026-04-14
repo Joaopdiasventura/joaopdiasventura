@@ -1,0 +1,38 @@
+:host {
+  --content-meta-list-gap: 0.9rem;
+  --content-meta-list-item-gap: 0.3rem;
+  --content-meta-list-label-color: var(--muted-foreground);
+  --content-meta-list-value-color: var(--foreground);
+  --content-meta-list-link-hover-color: var(--primary);
+  display: grid;
+  gap: var(--content-meta-list-gap);
+  min-width: 0;
+}
+
+.content-meta-list__item {
+  align-content: start;
+  display: grid;
+  gap: var(--content-meta-list-item-gap);
+  min-width: 0;
+}
+
+.content-meta-list__label {
+  color: var(--content-meta-list-label-color);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.content-meta-list__value {
+  color: var(--content-meta-list-value-color);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.content-meta-list__value--link:hover,
+.content-meta-list__value--link:focus-visible {
+  color: var(--content-meta-list-link-hover-color);
+  transform: var(--action-lift-transform);
+}

@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { IMPACT_METRICS } from '../../../../core/data/portfolio.data';
-import { LanguageService } from '../../../../core/services/language.service';
-import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll.directive';
-import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt.directive';
+import { LanguageService } from '../../../../core/services/language/language.service';
+import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll/reveal-on-scroll.directive';
+import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
+import { ImpactMetricCard } from './cards/impact-metric-card/impact-metric-card';
 
 @Component({
   selector: 'app-metrics-section',
-  imports: [RevealOnScrollDirective, ViewportTiltDirective],
+  imports: [ImpactMetricCard, RevealOnScrollDirective, ViewportTiltDirective],
   templateUrl: './metrics-section.html',
   styleUrl: './metrics-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

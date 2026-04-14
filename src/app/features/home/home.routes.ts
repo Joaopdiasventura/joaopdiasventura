@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { caseStudyRouteGuard } from '../../core/guards/case-study-route.guard';
-import { HomePage } from './pages/home-page';
+import { CaseStudyRouteGuard } from '../../core/guards/case-study-route/case-study-route.guard';
+import { HomePage } from './pages/home-page/home-page';
 
 export const HOME_ROUTES: Routes = [
   {
@@ -9,10 +9,12 @@ export const HOME_ROUTES: Routes = [
     title: 'João Paulo Dias Ventura | Portfolio',
   },
   {
-    path: 'work/:slug',
-    canActivate: [caseStudyRouteGuard],
+    path: 'projects/:slug',
+    canActivate: [CaseStudyRouteGuard],
     loadComponent: () =>
-      import('../work/pages/case-study-page').then((module) => module.CaseStudyPage),
+      import('../projects/pages/case-study-page/case-study-page').then(
+        (module) => module.CaseStudyPage,
+      ),
     title: 'Case Study | João Paulo Dias Ventura',
   },
 ];

@@ -15,4 +15,14 @@ describe('HeroSection', () => {
     const instance = fixture.componentInstance;
     expect(instance).toBeTruthy();
   });
+
+  it('renders the three hero CTAs through the shared button component', () => {
+    const fixture = TestBed.createComponent(HeroSection);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(host.querySelector('#hero-title')).not.toBeNull();
+    expect(host.querySelectorAll('app-ui-button').length).toBe(3);
+  });
 });

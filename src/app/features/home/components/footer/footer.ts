@@ -1,12 +1,12 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SITE_CHROME, SOCIAL_LINKS } from '../../../../core/data/portfolio.data';
 import { SocialLink } from '../../../../core/models/portfolio.model';
-import { LanguageService } from '../../../../core/services/language.service';
+import { LanguageService } from '../../../../core/services/language/language.service';
+import { UiIconLink } from '../../../../shared/components/ui/ui-icon-link/ui-icon-link';
 
 @Component({
   selector: 'app-footer',
-  imports: [NgOptimizedImage],
+  imports: [UiIconLink],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

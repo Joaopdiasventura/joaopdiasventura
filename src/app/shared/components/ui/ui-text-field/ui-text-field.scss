@@ -1,0 +1,63 @@
+:host {
+  --ui-field-radius: 0.95rem;
+  --ui-field-min-height: 3.2rem;
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.ui-field__label {
+  color: color-mix(in srgb, var(--foreground) 90%, var(--foreground-soft));
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding-left: 0.1rem;
+  text-transform: uppercase;
+}
+
+.ui-field__shell {
+  align-items: center;
+  background: color-mix(in srgb, var(--background) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: var(--ui-field-radius);
+  display: flex;
+  min-height: var(--ui-field-min-height);
+  padding: 0.18rem;
+  position: relative;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.ui-field__shell:focus-within {
+  border-color: color-mix(in srgb, var(--primary) 66%, white);
+  box-shadow: 0 0 0 2px rgb(146 25 36 / 14%);
+  transform: translateY(-1px);
+}
+
+.ui-field__shell--invalid {
+  border-color: color-mix(in srgb, var(--primary) 70%, white);
+  box-shadow: 0 0 0 1px rgb(146 25 36 / 18%);
+}
+
+.ui-field__shell input {
+  background: transparent;
+  border: 0;
+  color: var(--foreground);
+  font: inherit;
+  min-height: calc(var(--ui-field-min-height) - 0.36rem);
+  outline: none;
+  padding: 0.9rem 0.95rem;
+  width: 100%;
+}
+
+.ui-field__shell input::placeholder {
+  color: color-mix(in srgb, var(--muted-foreground) 82%, transparent);
+}
+
+.ui-field__shell input:focus-visible {
+  box-shadow: none;
+  outline: none;
+  transform: none;
+}

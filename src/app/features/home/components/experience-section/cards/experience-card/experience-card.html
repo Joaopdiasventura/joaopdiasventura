@@ -1,0 +1,13 @@
+<article class="experience-card">
+  <div class="experience-card__header">
+    <div>
+      <p class="experience-card__company">{{ company() }}</p>
+      <h3>{{ role() }}</h3>
+    </div>
+    <p class="experience-card__period">{{ period() }}</p>
+  </div>
+
+  <p class="experience-card__summary">{{ summary() }}</p>
+
+  <app-content-text-list class="experience-card__highlights" [items]="highlights()" />
+</article>

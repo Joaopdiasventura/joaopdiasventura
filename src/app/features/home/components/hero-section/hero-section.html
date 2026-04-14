@@ -18,55 +18,33 @@
       <div class="hero__actions">
         @for (cta of content.ctas; track cta.id) {
           @if (cta.id === 'cv') {
-            <a
-              class="button"
-              [class.button--primary]="cta.kind === 'primary'"
-              [class.button--secondary]="cta.kind === 'secondary'"
-              [class.button--ghost]="cta.kind === 'ghost'"
+            <app-ui-button
               [href]="languageService.cvPath()"
-              download
-            >
-              {{ copy(cta.label) }}
-            </a>
+              [external]="true"
+              [label]="copy(cta.label)"
+              [variant]="cta.kind"
+            />
           } @else {
-            <a
-              class="button"
-              [class.button--primary]="cta.kind === 'primary'"
-              [class.button--secondary]="cta.kind === 'secondary'"
-              [class.button--ghost]="cta.kind === 'ghost'"
-              [attr.href]="ctaHref(cta)"
-            >
-              {{ copy(cta.label) }}
-            </a>
+            <app-ui-button
+              [href]="ctaHref(cta)"
+              [label]="copy(cta.label)"
+              [variant]="cta.kind"
+            />
           }
         }
       </div>
     </div>
 
-    <div class="hero__aside">
-      <article class="hero__note">
-        <p class="hero__note-label">{{ copy(content.noteTitle) }}</p>
-        <p class="hero__note-body">{{ copy(content.noteBody) }}</p>
-      </article>
-
-      <article class="hero__portrait">
-        <div appViewportTilt="card" class="hero__portrait-shell">
-          <div class="hero__portrait-media">
-            <img
-              ngSrc="/assets/profile.webp"
-              width="252"
-              height="252"
-              priority
-              alt="João Paulo Dias Ventura"
-            />
-          </div>
-
-          <div class="hero__portrait-copy">
-            <p>{{ copy(portraitLocation) }}</p>
-            <span>{{ copy(portraitCaption) }}</span>
-          </div>
-        </div>
-      </article>
-    </div>
+    <aside class="hero__aside">
+      <div appViewportTilt="card" class="hero__portrait-shell surface-card hero__portrait-media">
+        <img
+          ngSrc="/assets/profile.webp"
+          width="252"
+          height="252"
+          priority
+          alt="João Paulo Dias Ventura"
+        />
+      </div>
+    </aside>
   </div>
 </section>

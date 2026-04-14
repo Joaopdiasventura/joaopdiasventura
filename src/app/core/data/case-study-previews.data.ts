@@ -5,9 +5,9 @@ const OPEN_LIVE_PROJECT_LABEL = {
   pt: 'Abrir projeto online',
 } as const;
 
-const repositoryLabel = (name: string): LocalizedValue<string> => ({
-  en: `View ${name}`,
-  pt: `Ver ${name}`,
+const repositoryLabel = (name: LocalizedValue<string>): LocalizedValue<string> => ({
+  en: `View ${name.en}`,
+  pt: `Ver ${name.pt}`,
 });
 
 const liveLink = (href: CaseStudyLink['href']): CaseStudyLink => ({
@@ -15,7 +15,10 @@ const liveLink = (href: CaseStudyLink['href']): CaseStudyLink => ({
   href,
 });
 
-const repositoryLink = (name: string, href: CaseStudyLink['href']): CaseStudyLink => ({
+const repositoryLink = (
+  name: LocalizedValue<string>,
+  href: CaseStudyLink['href'],
+): CaseStudyLink => ({
   label: repositoryLabel(name),
   href,
 });
@@ -34,8 +37,8 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Digital bank for balances, transfers, payment requests, and QR payments with async settlement and live status updates.',
-      pt: 'Banco digital para saldo, transferências, cobranças e pagamentos por QR com liquidação assíncrona e atualizações de status em tempo real.',
+      en: 'Digital banking flow with async settlement, live status, and strict money movement rules.',
+      pt: 'Fluxo bancário digital com liquidação assíncrona, status ao vivo e regras estritas de movimentação financeira.',
     },
     metrics: [
       {
@@ -51,11 +54,17 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'SSE replay window', pt: 'Janela de replay SSE' },
       },
     ],
-    stack: ['Angular', 'NestJS', 'PostgreSQL + Redis'],
+    stack: ['Angular', 'PostgreSQL', 'Redis'],
     links: [
       liveLink('https://auronix-client.vercel.app'),
-      repositoryLink('Auronix Client', 'https://github.com/Joaopdiasventura/Auronix-client'),
-      repositoryLink('Auronix Server', 'https://github.com/Joaopdiasventura/Auronix-server'),
+      repositoryLink(
+        { en: 'backend code', pt: 'código do backend' },
+        'https://github.com/joaopdiasventura/Auronix-server',
+      ),
+      repositoryLink(
+        { en: 'frontend code', pt: 'código do frontend' },
+        'https://github.com/joaopdiasventura/Auronix-client',
+      ),
     ],
   },
   {
@@ -71,26 +80,26 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Event-driven backend for onboarding, payment issuance, webhook confirmation, and async premium activation across four services.',
-      pt: 'Backend orientado a eventos para onboarding, emissão de pagamento, confirmação por webhook e ativação premium assíncrona em quatro serviços.',
+      en: 'Event-driven onboarding backend with typed contracts, verified webhooks, and premium activation across four services.',
+      pt: 'Backend de onboarding orientado a eventos com contratos tipados, webhooks validados e ativação premium em quatro serviços.',
     },
     metrics: [
       {
         value: '4',
-        label: { en: 'Deployable services', pt: 'Serviços implantáveis' },
-      },
-      {
-        value: '8',
-        label: { en: 'Message contracts', pt: 'Contratos de mensagem' },
+        label: { en: 'Microservices', pt: 'Microsserviços' },
       },
       {
         value: '57',
         label: { en: 'Passing tests', pt: 'Testes aprovados' },
       },
+      {
+        value: '8',
+        label: { en: 'Message contracts', pt: 'Contratos de mensagem' },
+      },
     ],
-    stack: ['NestJS', 'RabbitMQ', 'PostgreSQL + MongoDB'],
+    stack: ['RabbitMQ', 'Docker', 'MongoDB'],
     links: [
-      repositoryLink('Modularis Workspace', 'https://github.com/Joaopdiasventura/Modularis'),
+      repositoryLink({ en: 'Code', pt: 'Código' }, 'https://github.com/joaopdiasventura/Modularis'),
     ],
   },
   {
@@ -106,8 +115,8 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'TypeScript HTTP runtime on node:http focused on direct routing, deferred parsing, and reproducible local benchmarks.',
-      pt: 'Runtime HTTP em TypeScript sobre node:http, focado em roteamento direto, parsing adiado e benchmarks locais reproduzíveis.',
+      en: 'TypeScript HTTP runtime built for direct routing, deferred parsing, and inspectable benchmark gains.',
+      pt: 'Runtime HTTP em TypeScript construído para roteamento direto, parsing adiado e ganhos de benchmark inspecionáveis.',
     },
     metrics: [
       {
@@ -125,7 +134,7 @@ export const CASE_STUDY_PREVIEWS = [
     ],
     stack: ['TypeScript', 'node:http', 'autocannon'],
     links: [
-      repositoryLink('Votrix Repository', 'https://github.com/Joaopdiasventura/Votrix'),
+      repositoryLink({ en: 'code', pt: 'código' }, 'https://github.com/joaopdiasventura/Votrix'),
     ],
   },
   {
@@ -141,12 +150,12 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Voting platform designed to keep ballot state, audit trails, and operator feedback consistent under concurrent load.',
-      pt: 'Plataforma de votação desenhada para manter estado do voto, trilhas de auditoria e feedback operacional consistentes sob carga concorrente.',
+      en: 'Voting platform focused on explicit state, auditability, and operator clarity under concurrent load.',
+      pt: 'Plataforma de votação focada em estado explícito, auditabilidade e clareza operacional sob carga concorrente.',
     },
     metrics: [
       {
-        value: '500+',
+        value: '+500',
         label: { en: 'Concurrent users', pt: 'Usuários simultâneos' },
       },
       {
@@ -158,12 +167,8 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Automated tests', pt: 'Testes automatizados' },
       },
     ],
-    stack: ['Angular', 'NestJS', 'PostgreSQL'],
-    links: [
-      liveLink('https://v-o-x.vercel.app'),
-      repositoryLink('VOX App', 'https://github.com/Joaopdiasventura/Vox'),
-      repositoryLink('VOX Landing Page', 'https://github.com/Joaopdiasventura/vox-landing-page'),
-    ],
+    stack: ['Tauri', 'NestJS', 'Redis'],
+    links: [liveLink('https://v-o-x.vercel.app')],
   },
   {
     slug: 'etecfy',
@@ -178,8 +183,8 @@ export const CASE_STUDY_PREVIEWS = [
     },
     year: '2025',
     teaser: {
-      en: 'Streaming platform built for catalog growth, fast discovery, and smooth playback across web and mobile.',
-      pt: 'Plataforma de streaming desenhada para crescimento de catálogo, descoberta rápida e reprodução fluida em web e mobile.',
+      en: 'Streaming platform built for catalog growth, fast discovery, and smooth playback.',
+      pt: 'Plataforma de streaming desenhada para crescimento de catálogo, descoberta rápida e reprodução fluida.',
     },
     metrics: [
       {
@@ -195,11 +200,17 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Delivery surfaces', pt: 'Superfícies de entrega' },
       },
     ],
-    stack: ['Angular', 'MediaSource API', 'Capacitor'],
+    stack: ['Angular', 'NestJs', 'Capacitor'],
     links: [
       liveLink('https://etecfy.vercel.app'),
-      repositoryLink('Etecfy Client', 'https://github.com/Joaopdiasventura/etecfy-client'),
-      repositoryLink('Etecfy Server', 'https://github.com/Joaopdiasventura/etecfy-server'),
+      repositoryLink(
+        { en: 'backend code', pt: 'código do backend' },
+        'https://github.com/joaopdiasventura/etecfy-server',
+      ),
+      repositoryLink(
+        { en: 'frontend code', pt: 'código do frontend' },
+        'https://github.com/joaopdiasventura/etecfy-client',
+      ),
     ],
   },
 ] as const satisfies readonly CaseStudyPreview[];

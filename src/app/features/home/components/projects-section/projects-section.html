@@ -1,17 +1,14 @@
-<section class="projects section-padding" aria-labelledby="projects-title">
+<section #sectionRoot class="projects section-padding" aria-labelledby="projects-title">
   <div class="container-wide projects__intro-shell">
     <div class="projects__intro">
-      <p appRevealOnScroll [preset]="'caption'" class="projects__eyebrow">
-        {{ copy(content.heading.eyebrow) }}
-      </p>
-
-      <h2 id="projects-title" appRevealOnScroll [preset]="'headline'" class="projects__title">
-        {{ copy(content.heading.title) }}
-      </h2>
-
-      <p appRevealOnScroll [delayMs]="100" [preset]="'copy'" class="projects__summary">
-        {{ copy(content.heading.summary) }}
-      </p>
+      <app-content-section-heading
+        class="projects__heading"
+        [eyebrow]="copy(content.heading.eyebrow)"
+        [summary]="copy(content.heading.summary)"
+        [summaryDelayMs]="100"
+        [title]="copy(content.heading.title)"
+        [titleId]="'projects-title'"
+      />
     </div>
 
     <div appRevealOnScroll [delayMs]="140" [preset]="'panel'" class="projects__rail-meta">
@@ -45,125 +42,16 @@
           aria-describedby="projects-track-hint"
         >
           <ul #track class="projects__track">
-            @for (project of content.projects; track project.slug; let index = $index) {
+            @for (project of projectCards(); track project.theme) {
               <li class="project-card-wrap">
-                <article
+                <app-project-card
+                  appViewportTilt="project"
                   class="project-card"
-                  [class.project-card--case]="projectCaseRoute(project.slug) !== null"
-                  [attr.data-theme]="project.slug"
-                  [attr.aria-labelledby]="'project-' + project.slug + '-title'"
-                >
-                  <div class="project-card__media">
-                    <img
-                      [ngSrc]="project.cover.src"
-                      [sizes]="imageSizes"
-                      [alt]="copy(project.cover.alt)"
-                      fill
-                    />
-
-                    <div class="project-card__media-overlay" aria-hidden="true"></div>
-                    <span class="project-card__index" aria-hidden="true">0{{ index + 1 }}</span>
-                  </div>
-
-                  <div class="project-card__body">
-                    <header class="project-card__header">
-                      <div class="project-card__brand">
-                        <span class="project-card__icon" aria-hidden="true">
-                          <img
-                            [ngSrc]="project.icon.src"
-                            [width]="project.icon.width"
-                            [height]="project.icon.height"
-                            alt=""
-                          />
-                        </span>
-
-                        <div class="project-card__identity">
-                          <p class="project-card__category">{{ copy(project.category) }}</p>
-                          <h3 [id]="'project-' + project.slug + '-title'">{{ copy(project.name) }}</h3>
-                        </div>
-                      </div>
-
-                      <p class="project-card__tagline">{{ copy(project.tagline) }}</p>
-                    </header>
-
-                    <div class="project-card__mobile-summary">
-                      @if (projectMobileMetric(project); as metric) {
-                        <div class="project-card__mobile-proof">
-                          <p class="project-card__label">{{ copy(metric.label) }}</p>
-                          <p class="project-card__mobile-proof-value">{{ metric.value }}</p>
-                        </div>
-                      }
-
-                      <ul class="project-card__stack project-card__stack--mobile">
-                        @for (stackItem of projectMobileStack(project); track stackItem) {
-                          <li>{{ stackItem }}</li>
-                        }
-                      </ul>
-                    </div>
-
-                    <p class="project-card__description">{{ copy(project.description) }}</p>
-
-                    <section class="project-card__panel">
-                      <p class="project-card__label">{{ copy(labels.highlights) }}</p>
-
-                      <ul class="project-card__highlights">
-                        @for (highlight of projectHighlights(project); track highlight) {
-                          <li>{{ highlight }}</li>
-                        }
-                      </ul>
-                    </section>
-
-                    <footer class="project-card__footer">
-                      <div class="project-card__proof">
-                        <p class="project-card__label">{{ copy(labels.proof) }}</p>
-
-                        <dl class="project-card__metrics">
-                          @for (metric of projectMetrics(project); track metric.label.en) {
-                            <div class="project-card__metric">
-                              <dt>{{ copy(metric.label) }}</dt>
-                              <dd>{{ metric.value }}</dd>
-                            </div>
-                          }
-                        </dl>
-                      </div>
-
-                      <div class="project-card__footer-row">
-                        <ul class="project-card__stack">
-                          @for (stackItem of projectStack(project); track stackItem) {
-                            <li>{{ stackItem }}</li>
-                          }
-                        </ul>
-
-                        <span class="project-card__cta" aria-hidden="true">
-                          @if (projectCaseRoute(project.slug)) {
-                            {{ copy(labels.caseCta) }}
-                          } @else {
-                            {{ copy(projectPrimaryLabel(project)) }}
-                          }
-                        </span>
-                      </div>
-                    </footer>
-                  </div>
-
-                  @if (projectCaseRoute(project.slug); as route) {
-                    <a class="project-card__overlay-link" [routerLink]="route">
-                      <span class="visually-hidden">
-                        {{ copy(labels.caseCta) }} {{ copy(project.name) }}
-                      </span>
-                    </a>
-                  } @else {
-                    <a
-                      class="project-card__overlay-link"
-                      [href]="projectPrimaryHref(project)"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="visually-hidden">
-                        {{ copy(projectPrimaryLabel(project)) }} {{ copy(project.name) }}
-                      </span>
-                    </a>
-                  }
-                </article>
+                  [class.project-card--case]="project.caseRoute !== null"
+                  [attr.aria-labelledby]="project.titleId"
+                  [attr.data-theme]="project.theme"
+                  [project]="project"
+                />
               </li>
             }
           </ul>

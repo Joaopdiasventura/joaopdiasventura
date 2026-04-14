@@ -1,0 +1,26 @@
+:host {
+  --surface-card-radius: 1.2rem;
+  display: block;
+  padding: 1.2rem;
+}
+
+.profile-group-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.profile-group-card h3 {
+  color: var(--foreground);
+  font-size: 1.04rem;
+  margin: 0;
+}
+
+.profile-group-card__list {
+  --content-text-list-gap: 0.65rem;
+}
+
+@media (min-width: 1200px) {
+  :host {
+    padding: 1.35rem;
+  }
+}

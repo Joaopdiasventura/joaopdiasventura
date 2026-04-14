@@ -1,0 +1,39 @@
+:host {
+  --ui-icon-link-size: 2.6rem;
+  --ui-icon-link-radius: 999px;
+  --ui-icon-link-background: rgb(255 255 255 / 2%);
+  --ui-icon-link-background-hover: rgb(255 255 255 / 5%);
+  --ui-icon-link-border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  --ui-icon-link-border-color-hover: color-mix(in srgb, var(--primary) 42%, var(--border));
+  display: inline-flex;
+}
+
+.ui-icon-link {
+  align-items: center;
+  background: var(--ui-icon-link-background);
+  border: 1px solid var(--ui-icon-link-border-color);
+  border-radius: var(--ui-icon-link-radius);
+  display: inline-flex;
+  height: var(--ui-icon-link-size);
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+  width: var(--ui-icon-link-size);
+}
+
+.ui-icon-link:hover,
+.ui-icon-link:focus-visible {
+  background: var(--ui-icon-link-background-hover);
+  border-color: var(--ui-icon-link-border-color-hover);
+  box-shadow: var(--action-lift-shadow);
+  transform: var(--action-lift-transform);
+}
+
+.ui-icon-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}

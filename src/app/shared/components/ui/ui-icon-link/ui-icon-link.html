@@ -1,0 +1,16 @@
+<a
+  class="ui-icon-link"
+  [attr.aria-label]="ariaLabel()"
+  [attr.href]="href()"
+  [attr.rel]="rel()"
+  [attr.target]="target()"
+>
+  <img
+    [ngSrc]="iconSrc()"
+    [width]="iconWidth()"
+    [height]="iconHeight()"
+    class="icon-img icon-img--muted"
+    [alt]="iconAlt()"
+    [attr.aria-hidden]="!iconAlt().length"
+  />
+</a>

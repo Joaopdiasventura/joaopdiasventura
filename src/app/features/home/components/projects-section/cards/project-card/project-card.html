@@ -1,0 +1,89 @@
+<div class="project-card__media">
+  @if (project().imagesReady) {
+    <img
+      [ngSrc]="project().coverSrc"
+      [sizes]="project().imageSizes"
+      [alt]="project().coverAlt"
+      fill
+    />
+  }
+
+  <div class="project-card__media-overlay" aria-hidden="true"></div>
+  <span class="project-card__index" aria-hidden="true">{{ project().indexLabel }}</span>
+
+  @if (project().caseRoute; as route) {
+    <a class="project-card__overlay-link" [routerLink]="route">
+      <span class="visually-hidden"> {{ project().caseActionLabel }} {{ project().name }} </span>
+    </a>
+  } @else {
+    <a
+      class="project-card__overlay-link"
+      [href]="project().primaryActionHref"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="visually-hidden">
+        {{ project().primaryActionLabel }} {{ project().name }}
+      </span>
+    </a>
+  }
+</div>
+
+<div class="project-card__body">
+  <header class="project-card__header">
+    <div class="project-card__identity">
+      <span class="project-card__icon" aria-hidden="true">
+        @if (project().imagesReady) {
+          <img
+            [ngSrc]="project().iconSrc"
+            [width]="project().iconWidth"
+            [height]="project().iconHeight"
+            alt=""
+          />
+        }
+      </span>
+
+      <div class="project-card__identity-copy">
+        <p class="project-card__category">{{ project().category }}</p>
+        <h3 [id]="project().titleId">{{ project().name }}</h3>
+      </div>
+    </div>
+  </header>
+
+  <dl class="project-card__story">
+    <div class="project-card__story-item">
+      <dt>{{ project().problemLabel }}</dt>
+      <dd>{{ project().problem }}</dd>
+    </div>
+
+    <div class="project-card__story-item project-card__story-item--solution">
+      <dt>{{ project().solutionLabel }}</dt>
+      <dd>{{ project().solution }}</dd>
+    </div>
+  </dl>
+
+  <footer class="project-card__footer">
+    @if (metricItems().length > 0) {
+      <div class="project-card__result">
+        <p class="project-card__result-label">{{ project().resultLabel }}</p>
+        <app-content-metric-list [items]="metricItems()" [valueFirst]="true" />
+      </div>
+    }
+
+    <div class="project-card__meta">
+      @if (project().caseRoute; as route) {
+        <app-ui-button
+          class="project-card__case-button"
+          [label]="project().caseActionLabel"
+          [routerLink]="route"
+          [variant]="'primary'"
+        />
+      }
+
+      <p class="project-card__stack-note">
+        <span>{{ project().stackLabel }}</span>
+        {{ project().stackSummary }}
+      </p>
+    </div>
+  </footer>
+</div>

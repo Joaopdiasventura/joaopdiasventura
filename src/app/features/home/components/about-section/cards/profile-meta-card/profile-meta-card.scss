@@ -1,0 +1,16 @@
+:host {
+  --surface-card-radius: 1.2rem;
+  display: block;
+  padding: 1.2rem;
+}
+
+.profile-meta-card__list {
+  --content-meta-list-gap: 0.9rem;
+  --content-meta-list-item-gap: 0.32rem;
+}
+
+@media (min-width: 1200px) {
+  :host {
+    padding: 1.35rem;
+  }
+}

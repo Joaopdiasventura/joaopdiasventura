@@ -15,7 +15,7 @@ export const serverRoutes: ServerRoute[] = [
     },
   },
   {
-    path: ':lang/work/:slug',
+    path: ':lang/projects/:slug',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams(): Promise<Record<string, string>[]> {
       return SUPPORTED_LANGUAGES.flatMap((language) =>

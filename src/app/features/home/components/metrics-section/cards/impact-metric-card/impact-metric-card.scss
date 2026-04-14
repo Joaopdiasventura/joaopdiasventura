@@ -1,0 +1,26 @@
+:host {
+  --surface-card-radius: 1.1rem;
+  display: block;
+  padding: 1.1rem 1rem;
+}
+
+.impact-metric-card {
+  min-width: 0;
+}
+
+app-content-metric-list {
+  --content-metric-list-gap: 0;
+  --content-metric-item-background: transparent;
+  --content-metric-item-border: transparent;
+  --content-metric-item-padding: 0;
+  --content-metric-item-gap: 0.4rem;
+  --content-metric-label-color: var(--muted-foreground);
+  --content-metric-value-font-size: clamp(2rem, 5vw, 3rem);
+}
+
+@media (min-width: 1200px) {
+  :host {
+    min-height: 100%;
+    padding: 1.25rem 1.15rem;
+  }
+}

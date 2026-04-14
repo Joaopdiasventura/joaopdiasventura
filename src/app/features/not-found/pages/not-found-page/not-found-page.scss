@@ -1,0 +1,41 @@
+﻿:host {
+  display: block;
+}
+
+.not-found {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-6);
+}
+
+.not-found__content {
+  text-align: center;
+}
+
+.not-found h1 {
+  color: var(--foreground);
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin: 0 0 1rem;
+}
+
+.not-found p {
+  color: var(--muted-foreground);
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.not-found__action {
+  --ui-button-background: transparent;
+  --ui-button-border-color: transparent;
+  --ui-button-color: var(--primary);
+  --ui-button-font-size: 1rem;
+  --ui-button-hover-shadow: none;
+  --ui-button-letter-spacing: 0;
+  --ui-button-min-height: auto;
+  --ui-button-padding-block: 0;
+  --ui-button-padding-inline: 0;
+  --ui-button-text-transform: none;
+}
