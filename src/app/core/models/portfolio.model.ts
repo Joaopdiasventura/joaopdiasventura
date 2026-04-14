@@ -63,7 +63,6 @@ export interface ExperienceEntry {
 }
 
 export type CaseStudySlug = 'auronix' | 'modularis' | 'votrix' | 'vox' | 'etecfy';
-export type CaseStudyTheme = CaseStudySlug;
 
 export interface CaseStudyMetric {
   value: string;
@@ -82,10 +81,8 @@ export interface CaseStudyLink {
 
 export interface CaseStudyPreview {
   slug: CaseStudySlug;
-  theme: CaseStudyTheme;
   name: LocalizedValue<string>;
   category: LocalizedValue<string>;
-  year: string;
   teaser: LocalizedValue<string>;
   metrics: readonly CaseStudyMetric[];
   stack: readonly string[];
@@ -105,9 +102,7 @@ export interface CaseStudy extends CaseStudyPreview {
 }
 
 export interface FeaturedProjectsContent {
-  heading: SectionHeading;
   ctaLabel: LocalizedValue<string>;
-  ctaSecondaryLabel: LocalizedValue<string>;
 }
 
 export interface ContactLink {

@@ -2,7 +2,9 @@
   @if (showcaseProject(); as showcase) {
     <div class="page-shell page-shell--case-study" data-scene-section>
       <div class="page-shell__background" aria-hidden="true"></div>
-      <app-brand-scene class="page-shell__scene page-shell__scene--case" [variant]="'case'" />
+      @defer (on idle) {
+        <app-brand-scene class="page-shell__scene page-shell__scene--case" [variant]="'case'" />
+      }
 
       <main class="case-study page-shell__content">
         <section class="case-study__hero">

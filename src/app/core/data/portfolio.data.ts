@@ -233,27 +233,9 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
 } as const;
 
 export const FEATURED_PROJECTS_CONTENT: FeaturedProjectsContent = {
-  heading: {
-    eyebrow: {
-      en: 'Selected projects',
-      pt: 'Projetos selecionados',
-    },
-    title: {
-      en: 'Projects with clear technical signal',
-      pt: 'Projetos com sinal técnico claro',
-    },
-    summary: {
-      en: 'Problem, solution, and proof in one pass.',
-      pt: 'Problema, solução e prova em uma leitura.',
-    },
-  },
   ctaLabel: {
     en: 'Open case study',
     pt: 'Abrir estudo de caso',
-  },
-  ctaSecondaryLabel: {
-    en: 'Open live project',
-    pt: 'Abrir projeto online',
   },
 } as const;
 

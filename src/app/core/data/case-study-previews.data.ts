@@ -26,7 +26,6 @@ const repositoryLink = (
 export const CASE_STUDY_PREVIEWS = [
   {
     slug: 'auronix',
-    theme: 'auronix',
     name: {
       en: 'Auronix',
       pt: 'Auronix',
@@ -35,7 +34,6 @@ export const CASE_STUDY_PREVIEWS = [
       en: 'Digital banking and payment flows',
       pt: 'Banco digital e fluxos de pagamento',
     },
-    year: '2025',
     teaser: {
       en: 'Digital banking flow with async settlement, live status, and strict money movement rules.',
       pt: 'Fluxo bancário digital com liquidação assíncrona, status ao vivo e regras estritas de movimentação financeira.',
@@ -69,7 +67,6 @@ export const CASE_STUDY_PREVIEWS = [
   },
   {
     slug: 'modularis',
-    theme: 'modularis',
     name: {
       en: 'Modularis',
       pt: 'Modularis',
@@ -78,7 +75,6 @@ export const CASE_STUDY_PREVIEWS = [
       en: 'Event-driven onboarding and payments',
       pt: 'Onboarding e pagamentos orientados a eventos',
     },
-    year: '2025',
     teaser: {
       en: 'Event-driven onboarding backend with typed contracts, verified webhooks, and premium activation across four services.',
       pt: 'Backend de onboarding orientado a eventos com contratos tipados, webhooks validados e ativação premium em quatro serviços.',
@@ -104,7 +100,6 @@ export const CASE_STUDY_PREVIEWS = [
   },
   {
     slug: 'votrix',
-    theme: 'votrix',
     name: {
       en: 'Votrix',
       pt: 'Votrix',
@@ -113,7 +108,6 @@ export const CASE_STUDY_PREVIEWS = [
       en: 'High-performance Node.js HTTP runtime',
       pt: 'Runtime HTTP de alta performance para Node.js',
     },
-    year: '2025',
     teaser: {
       en: 'TypeScript HTTP runtime built for direct routing, deferred parsing, and inspectable benchmark gains.',
       pt: 'Runtime HTTP em TypeScript construído para roteamento direto, parsing adiado e ganhos de benchmark inspecionáveis.',
@@ -139,7 +133,6 @@ export const CASE_STUDY_PREVIEWS = [
   },
   {
     slug: 'vox',
-    theme: 'vox',
     name: {
       en: 'VOX',
       pt: 'VOX',
@@ -148,7 +141,6 @@ export const CASE_STUDY_PREVIEWS = [
       en: 'Auditability and voting integrity',
       pt: 'Auditabilidade e integridade eleitoral',
     },
-    year: '2025',
     teaser: {
       en: 'Voting platform focused on explicit state, auditability, and operator clarity under concurrent load.',
       pt: 'Plataforma de votação focada em estado explícito, auditabilidade e clareza operacional sob carga concorrente.',
@@ -172,7 +164,6 @@ export const CASE_STUDY_PREVIEWS = [
   },
   {
     slug: 'etecfy',
-    theme: 'etecfy',
     name: {
       en: 'Etecfy',
       pt: 'Etecfy',
@@ -181,7 +172,6 @@ export const CASE_STUDY_PREVIEWS = [
       en: 'Music streaming',
       pt: 'Streaming de música',
     },
-    year: '2025',
     teaser: {
       en: 'Streaming platform built for catalog growth, fast discovery, and smooth playback.',
       pt: 'Plataforma de streaming desenhada para crescimento de catálogo, descoberta rápida e reprodução fluida.',

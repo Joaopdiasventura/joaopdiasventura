@@ -11,9 +11,9 @@ import {
   OnDestroy,
   PLATFORM_ID,
 } from '@angular/core';
+import type { BufferGeometry, Object3D } from 'three';
 
-type ThreeModule = typeof import('three');
-type ThreeObject = import('three').Object3D;
+type ThreeRuntime = typeof import('./brand-scene.runtime');
 
 interface DisposableMaterial {
   dispose?: () => void;
@@ -118,7 +118,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       typeof window.matchMedia == 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const THREE = await import('three');
+    const THREE = await import('./brand-scene.runtime');
 
     if (this.destroyed) {
       return;
@@ -130,7 +130,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
   }
 
   private createScene(
-    THREE: ThreeModule,
+    THREE: ThreeRuntime,
     viewport: HTMLElement,
     reducedMotion: boolean,
   ): () => void {
@@ -260,7 +260,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       transparent: true,
     });
 
-    nodes.children.forEach((child: ThreeObject, index: number) => {
+    nodes.children.forEach((child: Object3D, index: number) => {
       const next = nodes.children[(index + 3) % nodes.children.length];
       const geometry = new THREE.BufferGeometry().setFromPoints([
         child.position.clone(),
@@ -499,7 +499,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       resizeObserver.disconnect();
 
       renderer.dispose();
-      scene.traverse((child: ThreeObject) => {
+      scene.traverse((child: Object3D) => {
         const mesh = child as {
           geometry?: { dispose?: () => void };
           material?: DisposableMaterial | DisposableMaterial[];
@@ -518,7 +518,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     };
   }
 
-  private createSparkGeometry(THREE: ThreeModule): import('three').BufferGeometry {
+  private createSparkGeometry(THREE: ThreeRuntime): BufferGeometry {
     const geometry = new THREE.BufferGeometry();
     const positions: number[] = [];
 

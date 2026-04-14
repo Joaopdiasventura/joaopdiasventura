@@ -1,6 +1,8 @@
 <div class="page-shell page-shell--not-found" data-scene-section>
   <div class="page-shell__background" aria-hidden="true"></div>
-  <app-brand-scene class="page-shell__scene page-shell__scene--not-found" />
+  @defer (on idle) {
+    <app-brand-scene class="page-shell__scene page-shell__scene--not-found" />
+  }
 
   <main class="not-found page-shell__content">
     <div class="not-found__content">

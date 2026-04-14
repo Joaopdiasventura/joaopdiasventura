@@ -1,6 +1,8 @@
 <div class="page-shell page-shell--home home-shell" data-scene-section>
   <div class="page-shell__background" aria-hidden="true"></div>
-  <app-brand-scene class="page-shell__scene page-shell__scene--home" />
+  @defer (on idle) {
+    <app-brand-scene class="page-shell__scene page-shell__scene--home" />
+  }
 
   <div class="page-shell__content">
     <app-navbar />
@@ -10,19 +12,36 @@
     <main class="home-main">
       <div class="home-scene-stage">
         <app-hero-section />
-        <app-metrics-section />
+
+        @defer (on idle) {
+          <app-metrics-section />
+        }
       </div>
 
-      <span id="about" class="scroll-anchor" aria-hidden="true"></span>
-      <app-about-section />
-      <span id="projects" class="scroll-anchor" aria-hidden="true"></span>
-      <app-projects-section />
-      <span id="experience" class="scroll-anchor" aria-hidden="true"></span>
-      <app-experience-section />
-      <span id="contact" class="scroll-anchor" aria-hidden="true"></span>
-      <app-contact-section />
+      <span #aboutTrigger id="about" class="scroll-anchor" aria-hidden="true"></span>
+      @defer (on viewport(aboutTrigger); prefetch on idle) {
+        <app-about-section />
+      }
+
+      <span #projectsTrigger id="projects" class="scroll-anchor" aria-hidden="true"></span>
+      @defer (on viewport(projectsTrigger); prefetch on idle) {
+        <app-projects-section />
+      }
+
+      <span #experienceTrigger id="experience" class="scroll-anchor" aria-hidden="true"></span>
+      @defer (on viewport(experienceTrigger); prefetch on idle) {
+        <app-experience-section />
+      }
+
+      <span #contactTrigger id="contact" class="scroll-anchor" aria-hidden="true"></span>
+      @defer (on viewport(contactTrigger); prefetch on idle) {
+        <app-contact-section />
+      }
     </main>
 
-    <app-footer />
+    <span #footerTrigger class="scroll-anchor" aria-hidden="true"></span>
+    @defer (on viewport(footerTrigger); prefetch on idle) {
+      <app-footer />
+    }
   </div>
 </div>

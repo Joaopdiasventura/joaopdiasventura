@@ -24,10 +24,6 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Digital banking and payment flows',
         pt: 'Banco digital e fluxos de pagamento',
       },
-      tagline: {
-        en: 'Digital bank platform',
-        pt: 'Plataforma de banco digital',
-      },
       problem: {
         en: 'Transfers and QR payments needed instant feedback without losing settlement safety.',
         pt: 'Transferências e pagamentos por QR precisavam de feedback imediato sem perder segurança na liquidação.',
@@ -35,10 +31,6 @@ export const PROJECTS_SECTION_DATA = {
       solution: {
         en: 'Modular monolith with async settlement, pessimistic locks, and live status updates.',
         pt: 'Monólito modular com liquidação assíncrona, locks pessimistas e atualização de status em tempo real.',
-      },
-      description: {
-        en: 'Digital bank for balances, transfers, requests, and QR payments with async settlement.',
-        pt: 'Banco digital para saldo, transferências, cobranças e pagamentos por QR com liquidação assíncrona.',
       },
       metrics: [
         {
@@ -81,7 +73,7 @@ export const PROJECTS_SECTION_DATA = {
         height: 24,
       },
       cover: {
-        src: '/assets/projects/covers/auronix/auronix-1280.png',
+        src: '/assets/projects/covers/auronix/auronix-1280.webp',
         alt: {
           en: 'Auronix cover showing digital account state, transfer authorization, QR payment entry, and live settlement feedback.',
           pt: 'Capa do Auronix mostrando estado da conta digital, autorização de transferência, entrada de pagamento por QR e feedback de liquidação em tempo real.',
@@ -98,10 +90,6 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Event-driven onboarding and payments',
         pt: 'Onboarding e pagamentos orientados a eventos',
       },
-      tagline: {
-        en: 'Distributed onboarding backend',
-        pt: 'Backend distribuído de onboarding',
-      },
       problem: {
         en: 'Onboarding had to stay fast while payment state, retries, and premium activation ran across services.',
         pt: 'O onboarding precisava permanecer rápido enquanto estado de pagamento, retries e ativação premium rodavam entre serviços.',
@@ -109,10 +97,6 @@ export const PROJECTS_SECTION_DATA = {
       solution: {
         en: 'Four services coordinated by typed RabbitMQ contracts, verified webhooks, and split persistence.',
         pt: 'Quatro serviços coordenados por contratos tipados em RabbitMQ, webhooks validados e persistência segmentada.',
-      },
-      description: {
-        en: 'Event-driven backend for onboarding, payment issuance, webhook confirmation, and premium activation.',
-        pt: 'Backend orientado a eventos para onboarding, emissão de pagamento, confirmação por webhook e ativação premium.',
       },
       metrics: [
         {
@@ -151,7 +135,7 @@ export const PROJECTS_SECTION_DATA = {
         height: 24,
       },
       cover: {
-        src: '/assets/projects/covers/modularis/modularis-1280.png',
+        src: '/assets/projects/covers/modularis/modularis-1280.webp',
         alt: {
           en: 'Modularis cover showing service boundaries, queues, and payment state propagation.',
           pt: 'Capa do Modularis mostrando fronteiras de serviço, filas e propagação de estado de pagamento.',
@@ -168,10 +152,6 @@ export const PROJECTS_SECTION_DATA = {
         en: 'High-performance Node.js HTTP runtime',
         pt: 'Runtime HTTP de alta performance para Node.js',
       },
-      tagline: {
-        en: 'Minimal HTTP runtime',
-        pt: 'Runtime HTTP minimalista',
-      },
       problem: {
         en: 'The runtime had to reduce hot-path cost without turning into a generic framework clone.',
         pt: 'O runtime precisava reduzir custo no hot path sem virar um clone genérico de framework.',
@@ -179,10 +159,6 @@ export const PROJECTS_SECTION_DATA = {
       solution: {
         en: 'Direct routing, deferred parsing, and a benchmark harness versioned with the codebase.',
         pt: 'Roteamento direto, parsing adiado e um harness de benchmark versionado com o código.',
-      },
-      description: {
-        en: 'Minimal TypeScript runtime on node:http built to reduce overhead and validate gains with benchmarks.',
-        pt: 'Runtime minimalista em TypeScript sobre node:http, focado em reduzir overhead e validar ganho com benchmarks.',
       },
       metrics: [
         {
@@ -221,7 +197,7 @@ export const PROJECTS_SECTION_DATA = {
         height: 24,
       },
       cover: {
-        src: '/assets/projects/covers/votrix/votrix-1280.png',
+        src: '/assets/projects/covers/votrix/votrix-1280.webp',
         alt: {
           en: 'Votrix cover showing route maps, dispatch stages, and benchmark throughput.',
           pt: 'Capa do Votrix mostrando mapas de rota, etapas de despacho e throughput em benchmark.',
@@ -238,10 +214,6 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Auditability and voting integrity',
         pt: 'Auditabilidade e integridade eleitoral',
       },
-      tagline: {
-        en: 'Auditable voting platform',
-        pt: 'Plataforma de votação auditável',
-      },
       problem: {
         en: 'Critical voting flows needed explicit state, audit trails, and operator clarity under concurrent load.',
         pt: 'Fluxos críticos de votação exigiam estado explícito, trilhas de auditoria e clareza operacional sob concorrência.',
@@ -249,10 +221,6 @@ export const PROJECTS_SECTION_DATA = {
       solution: {
         en: 'Audit-first domain model with explicit transitions, backend guarantees, and clear feedback in the interface.',
         pt: 'Modelo de domínio orientado a auditoria com transições explícitas, garantias de backend e feedback claro na interface.',
-      },
-      description: {
-        en: 'Voting platform with explicit state handling, audit trails, and operator feedback across critical flows.',
-        pt: 'Plataforma de votação com estados explícitos, trilhas de auditoria e feedback operacional em fluxos críticos.',
       },
       metrics: [
         {
@@ -286,7 +254,7 @@ export const PROJECTS_SECTION_DATA = {
         height: 30,
       },
       cover: {
-        src: '/assets/projects/covers/vox/vox-1280.png',
+        src: '/assets/projects/covers/vox/vox-1280.webp',
         alt: {
           en: 'VOX cover showing vote flow, audit checkpoints, and operator visibility.',
           pt: 'Capa do VOX mostrando fluxo de voto, checkpoints de auditoria e visibilidade operacional.',
@@ -303,10 +271,6 @@ export const PROJECTS_SECTION_DATA = {
         en: 'Music streaming',
         pt: 'Streaming de música',
       },
-      tagline: {
-        en: 'Streaming platform',
-        pt: 'Plataforma de streaming',
-      },
       problem: {
         en: 'The product needed fast discovery and smooth playback without collapsing as the catalog grew.',
         pt: 'O produto precisava de descoberta rápida e playback fluido sem colapsar com o crescimento do catálogo.',
@@ -314,10 +278,6 @@ export const PROJECTS_SECTION_DATA = {
       solution: {
         en: 'Catalog-ready structure, chunk-based media delivery, and a frontend tuned for release speed.',
         pt: 'Estrutura pronta para catálogo, entrega de mídia em chunks e frontend ajustado para velocidade de lançamento.',
-      },
-      description: {
-        en: 'Streaming platform with searchable catalog, track detail, and chunk-based playback across web and mobile.',
-        pt: 'Plataforma de streaming com catálogo pesquisável, detalhe de faixa e reprodução em chunks em web e mobile.',
       },
       metrics: [
         {
@@ -360,7 +320,7 @@ export const PROJECTS_SECTION_DATA = {
         height: 24,
       },
       cover: {
-        src: '/assets/projects/covers/etecfy/etecfy-1280.png',
+        src: '/assets/projects/covers/etecfy/etecfy-1280.webp',
         alt: {
           en: 'Etecfy cover showing catalog depth, playback controls, and launch-focused hierarchy.',
           pt: 'Capa do Etecfy mostrando profundidade de catálogo, controles de playback e hierarquia focada em lançamento.',
