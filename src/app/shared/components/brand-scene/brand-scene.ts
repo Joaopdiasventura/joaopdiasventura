@@ -12,6 +12,7 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import type { BufferGeometry, Object3D } from 'three';
+import { ViewportPointerService } from '../../services/viewport-pointer/viewport-pointer.service';
 
 type ThreeRuntime = typeof import('./brand-scene.runtime');
 
@@ -42,6 +43,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly pointerService = inject(ViewportPointerService);
 
   private cleanup: (() => void) | null = null;
   private idleHandle: number | null = null;
@@ -272,6 +274,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     const pointer = { x: 0, y: 0 };
     const section = this.host.nativeElement.closest<HTMLElement>('[data-scene-section]');
     const defaultProgress = isHeroVariant ? 0.14 : 0.08;
+    const supportsFinePointer =
+      typeof window.matchMedia == 'function' &&
+      window.matchMedia('(pointer: fine)').matches &&
+      window.matchMedia('(hover: hover)').matches;
 
     let frameId = 0;
     let progressFrameId = 0;
@@ -285,6 +291,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     let lastFrameTime = 0;
     let idleTimeoutId = 0;
     const targetFrameDuration = isHeroVariant ? 1000 / 30 : 1000 / 36;
+    let pointerCleanup: (() => void) | null = null;
 
     const updateSize = (): void => {
       const width = viewport.clientWidth;
@@ -445,16 +452,6 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
     visibilityObserver.observe(section ?? viewport);
 
-    const handlePointerMove = (event: PointerEvent): void => {
-      if (reducedMotion || !isVisible) {
-        return;
-      }
-
-      pointer.x = event.clientX / Math.max(window.innerWidth, 1) - 0.5;
-      pointer.y = event.clientY / Math.max(window.innerHeight, 1) - 0.5;
-      wakeScene();
-    };
-
     const handleVisibilityChange = (): void => {
       if (document.hidden) {
         stopRender();
@@ -464,10 +461,22 @@ export class BrandScene implements AfterViewInit, OnDestroy {
       wakeScene();
     };
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    window.addEventListener('resize', scheduleProgressSync, { passive: true });
     window.addEventListener('scroll', scheduleProgressSync, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    if (!reducedMotion && supportsFinePointer) {
+      pointerCleanup = this.pointerService.subscribe((state) => {
+        if (!state.active) {
+          pointer.x = 0;
+          pointer.y = 0;
+          return;
+        }
+
+        pointer.x = state.x;
+        pointer.y = state.y;
+        wakeScene();
+      });
+    }
 
     updateSize();
     updateSectionMetrics();
@@ -491,10 +500,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
         window.clearTimeout(idleTimeoutId);
       }
 
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('resize', scheduleProgressSync);
       window.removeEventListener('scroll', scheduleProgressSync);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      pointerCleanup?.();
+      pointerCleanup = null;
       visibilityObserver.disconnect();
       resizeObserver.disconnect();
 

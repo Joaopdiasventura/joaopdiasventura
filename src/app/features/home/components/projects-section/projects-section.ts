@@ -145,6 +145,7 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
       );
 
       this.observer.observe(section);
+      return;
     }
 
     this.startVisibilityTracking(section);

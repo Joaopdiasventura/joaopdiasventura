@@ -96,6 +96,7 @@ function setElementMetric(target: object, property: string, value: number): void
 describe('ScrollMotionDirective', () => {
   const originalInnerWidth = window.innerWidth;
   const originalInnerHeight = window.innerHeight;
+  const originalScrollY = window.scrollY;
   const originalMatchMedia = window.matchMedia;
   const originalResizeObserver = (window as typeof window & { ResizeObserver?: typeof ResizeObserver })
     .ResizeObserver;
@@ -130,6 +131,10 @@ describe('ScrollMotionDirective', () => {
       configurable: true,
       value: originalInnerHeight,
     });
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: originalScrollY,
+    });
     window.matchMedia = originalMatchMedia;
     vi.restoreAllMocks();
 
@@ -148,6 +153,10 @@ describe('ScrollMotionDirective', () => {
     Object.defineProperty(window, 'innerHeight', {
       configurable: true,
       value: 900,
+    });
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: 0,
     });
 
     const fixture = TestBed.createComponent(TestHostComponent);
@@ -176,11 +185,19 @@ describe('ScrollMotionDirective', () => {
     expect(host.style.height).toBe('1400px');
     expect(host.style.getPropertyValue('--scroll-motion-top-offset')).toBe('110px');
 
-    hostTop = -290;
+    const hostLayoutReads = (host.getBoundingClientRect as ReturnType<typeof vi.fn>).mock.calls.length;
+
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: 400,
+    });
     window.dispatchEvent(new Event('scroll'));
 
     expect(track.style.transform).toBe('translate3d(-400px, 0, 0)');
     expect(host.style.getPropertyValue('--scroll-motion-progress')).toBe('0.5000');
+    expect((host.getBoundingClientRect as ReturnType<typeof vi.fn>).mock.calls.length).toBe(
+      hostLayoutReads,
+    );
   });
 
   it('supports the same pinned horizontal translation on mobile when the breakpoint allows it', () => {
@@ -191,6 +208,10 @@ describe('ScrollMotionDirective', () => {
     Object.defineProperty(window, 'innerHeight', {
       configurable: true,
       value: 780,
+    });
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: 0,
     });
 
     const fixture = TestBed.createComponent(MobileTestHostComponent);
@@ -220,7 +241,10 @@ describe('ScrollMotionDirective', () => {
     expect(host.style.height).toBe('1580px');
     expect(host.style.getPropertyValue('--scroll-motion-top-offset')).toBe('100px');
 
-    hostTop = -420;
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: 520,
+    });
     window.dispatchEvent(new Event('scroll'));
 
     expect(track.style.transform).toBe('translate3d(-520px, 0, 0)');
