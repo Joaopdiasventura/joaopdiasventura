@@ -22,10 +22,12 @@ describe('Navbar', () => {
 
     const host = fixture.nativeElement as HTMLElement;
     const instance = fixture.componentInstance;
+    const languageButton = host.querySelector<HTMLAnchorElement>('.navbar__language a');
 
     expect(host.querySelector('.navbar__brand')?.getAttribute('href')).toBe(instance.homeHref());
     expect(host.querySelectorAll('.navbar__link').length).toBe(instance.navItems.length);
     expect(host.querySelectorAll('.mobile-menu__link').length).toBe(instance.navItems.length);
+    expect(languageButton?.getAttribute('href')).toBe('/pt');
   });
 
   it('toggles the mobile menu state from the menu button', () => {

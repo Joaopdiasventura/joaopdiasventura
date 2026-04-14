@@ -1,6 +1,6 @@
 <div class="page-shell page-shell--home home-shell" data-scene-section>
   <div class="page-shell__background" aria-hidden="true"></div>
-  @defer (on idle) {
+  @defer (on timer(1000ms)) {
     <app-brand-scene class="page-shell__scene page-shell__scene--home" />
   }
 
@@ -13,34 +13,35 @@
       <div class="home-scene-stage">
         <app-hero-section />
 
-        @defer (on idle) {
+        <span #metricsTrigger class="scroll-anchor" aria-hidden="true"></span>
+        @defer (on viewport(metricsTrigger)) {
           <app-metrics-section />
         }
       </div>
 
       <span #aboutTrigger id="about" class="scroll-anchor" aria-hidden="true"></span>
-      @defer (on viewport(aboutTrigger); prefetch on idle) {
+      @defer (on viewport(aboutTrigger)) {
         <app-about-section />
       }
 
       <span #projectsTrigger id="projects" class="scroll-anchor" aria-hidden="true"></span>
-      @defer (on viewport(projectsTrigger); prefetch on idle) {
+      @defer (on viewport(projectsTrigger)) {
         <app-projects-section />
       }
 
       <span #experienceTrigger id="experience" class="scroll-anchor" aria-hidden="true"></span>
-      @defer (on viewport(experienceTrigger); prefetch on idle) {
+      @defer (on viewport(experienceTrigger)) {
         <app-experience-section />
       }
 
       <span #contactTrigger id="contact" class="scroll-anchor" aria-hidden="true"></span>
-      @defer (on viewport(contactTrigger); prefetch on idle) {
+      @defer (on viewport(contactTrigger)) {
         <app-contact-section />
       }
     </main>
 
     <span #footerTrigger class="scroll-anchor" aria-hidden="true"></span>
-    @defer (on viewport(footerTrigger); prefetch on idle) {
+    @defer (on viewport(footerTrigger)) {
       <app-footer />
     }
   </div>

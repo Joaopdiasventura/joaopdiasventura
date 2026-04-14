@@ -39,31 +39,23 @@ export class Navbar {
     return this.languageService.sectionHref(section);
   }
 
+  public alternateLanguageHref(): string {
+    const nextLanguage = this.languageService.language() == 'en' ? 'pt' : 'en';
+    const [pathAndQuery, currentFragment] = this.router.url.split('#');
+    const [pathname, currentQuery] = pathAndQuery.split('?');
+    const currentSegments = pathname.split('/').filter(Boolean);
+    const nextPath = `/${[nextLanguage, ...currentSegments.slice(1)].join('/')}`;
+    const querySuffix = currentQuery ? `?${currentQuery}` : '';
+    const fragmentSuffix = currentFragment ? `#${currentFragment}` : '';
+
+    return `${nextPath}${querySuffix}${fragmentSuffix}`;
+  }
+
   public toggleMenu(): void {
     this.isMenuOpen.update((currentState) => !currentState);
   }
 
   public closeMenu(): void {
     this.isMenuOpen.set(false);
-  }
-
-  public async toggleLanguageRoute(): Promise<void> {
-    const nextLanguage = this.languageService.language() == 'en' ? 'pt' : 'en';
-    const currentSegments = this.router.url
-      .split('?')[0]
-      .split('#')[0]
-      .split('/')
-      .filter(Boolean);
-    const currentFragment = this.router.url.split('#')[1] ?? undefined;
-
-    const nextRoute =
-      currentSegments.length > 0
-        ? ['/', nextLanguage, ...currentSegments.slice(1)]
-        : this.languageService.homeRoute(nextLanguage);
-
-    this.closeMenu();
-    await this.router.navigate(nextRoute, {
-      fragment: currentFragment,
-    });
   }
 }

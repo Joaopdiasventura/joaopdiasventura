@@ -26,9 +26,9 @@
       <app-ui-button
         class="navbar__language"
         [ariaLabel]="copy(chrome.switchLanguage)"
+        [href]="alternateLanguageHref()"
         [label]="languageLabel()"
         [variant]="'ghost'"
-        (click)="toggleLanguageRoute()"
       />
 
       <button
