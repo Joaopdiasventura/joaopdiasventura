@@ -29,6 +29,7 @@ type ProjectsSectionProject = (typeof PROJECTS_SECTION_DATA.projects)[number];
 const PROJECT_SCROLL_BREAKPOINT = 0;
 const PROJECT_SCROLL_TOP_OFFSET = 84;
 const PROJECT_CARD_IMAGE_SIZES = '(max-width: 959px) 92vw, 36rem';
+const PROJECT_CARD_IMAGE_SRCSET = '640w, 960w, 1280w';
 const PROJECT_STACK_LIMIT = 3;
 
 @Component({
@@ -47,6 +48,7 @@ const PROJECT_STACK_LIMIT = 3;
 export class ProjectsSection implements AfterViewInit, OnDestroy {
   public readonly content = PROJECTS_SECTION_DATA;
   public readonly imageSizes = PROJECT_CARD_IMAGE_SIZES;
+  public readonly imageSrcset = PROJECT_CARD_IMAGE_SRCSET;
   public readonly projectImagesReady = signal(false);
   public readonly projectCards = computed<readonly ProjectCardViewModel[]>(() =>
     this.content.projects.map((project, index) => ({
@@ -55,6 +57,7 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
       category: this.copy(project.category),
       coverAlt: this.copy(project.cover.alt),
       coverSrc: project.cover.src,
+      coverSrcset: this.imageSrcset,
       imageSizes: this.imageSizes,
       iconHeight: project.icon.height,
       iconSrc: project.icon.src,

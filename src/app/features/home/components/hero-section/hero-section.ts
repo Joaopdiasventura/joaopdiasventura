@@ -5,6 +5,10 @@ import { HeroCta, NavSectionId } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language/language.service';
 import { UiButton } from '../../../../shared/components/ui/ui-button/ui-button';
 import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
+import { provideLocalAssetImageLoader } from '../../../../shared/images/local-asset-image-loader';
+
+const HERO_PORTRAIT_SIZES = '(min-width: 1200px) 18rem, 16rem';
+const HERO_PORTRAIT_SRCSET = '256w, 384w, 448w, 504w';
 
 @Component({
   selector: 'app-hero-section',
@@ -12,9 +16,12 @@ import { ViewportTiltDirective } from '../../../../shared/directives/viewport-ti
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideLocalAssetImageLoader()],
 })
 export class HeroSection {
   public readonly content = HERO_CONTENT;
+  public readonly portraitSizes = HERO_PORTRAIT_SIZES;
+  public readonly portraitSrcset = HERO_PORTRAIT_SRCSET;
   public readonly portraitLocation = {
     en: 'São Paulo',
     pt: 'São Paulo',

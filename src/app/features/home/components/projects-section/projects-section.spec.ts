@@ -133,8 +133,11 @@ describe('ProjectsSection', () => {
     sectionObserver?.trigger(section as HTMLElement, true);
     fixture.detectChanges();
 
-    expect(host.querySelectorAll('.project-card__media img').length).toBe(5);
+    const mediaImages = host.querySelectorAll<HTMLImageElement>('.project-card__media img');
+
+    expect(mediaImages.length).toBe(5);
     expect(host.querySelectorAll('.project-card__icon img').length).toBe(5);
     expect(sectionObserver?.disconnect).toHaveBeenCalled();
+    expect(mediaImages[0]?.getAttribute('srcset')).toContain('640w');
   });
 });

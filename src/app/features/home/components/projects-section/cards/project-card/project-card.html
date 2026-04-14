@@ -2,8 +2,10 @@
   @if (project().imagesReady) {
     <img
       [ngSrc]="project().coverSrc"
+      [ngSrcset]="project().coverSrcset"
       [sizes]="project().imageSizes"
       [alt]="project().coverAlt"
+      decoding="async"
       fill
     />
   }
@@ -38,6 +40,7 @@
             [ngSrc]="project().iconSrc"
             [width]="project().iconWidth"
             [height]="project().iconHeight"
+            decoding="async"
             alt=""
           />
         }

@@ -8,6 +8,7 @@ const buildProject = (overrides: Partial<ProjectCardViewModel> = {}): ProjectCar
   category: 'AI Platform',
   coverAlt: 'Project cover',
   coverSrc: '/assets/projects/auronix-cover.webp',
+  coverSrcset: '640w, 960w, 1280w',
   imageSizes: '100vw',
   iconHeight: 48,
   iconSrc: '/assets/projects/auronix-icon.svg',
@@ -43,16 +44,25 @@ describe('ProjectCard', () => {
 
   it('renders the project narrative, metric, and case study CTA when a case route exists', () => {
     const fixture = TestBed.createComponent(ProjectCard);
-    fixture.componentRef.setInput('project', buildProject());
+    fixture.componentRef.setInput(
+      'project',
+      buildProject({
+        coverSrc: '/assets/projects/covers/auronix/auronix-1280.webp',
+        imagesReady: true,
+      }),
+    );
     fixture.detectChanges();
 
     const host = fixture.nativeElement as HTMLElement;
+    const cover = host.querySelector<HTMLImageElement>('.project-card__media img');
 
     expect(host.querySelector('h3')?.textContent).toContain('Auronix');
     expect(host.querySelectorAll('.project-card__story-item').length).toBe(2);
     expect(host.querySelector('.project-card__result')?.textContent).toContain('-42%');
     expect(host.querySelector('.project-card__case-button')).not.toBeNull();
     expect(host.querySelector('.project-card__overlay-link')).not.toBeNull();
+    expect(cover?.getAttribute('srcset')).toContain('/assets/projects/covers/auronix/auronix-960.webp 960w');
+    expect(cover?.getAttribute('decoding')).toBe('async');
   });
 
   it('falls back to the external project link when there is no case study route', () => {

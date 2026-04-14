@@ -39,8 +39,10 @@
       <div appViewportTilt="card" class="hero__portrait-shell surface-card hero__portrait-media">
         <img
           ngSrc="/assets/profile.webp"
-          width="252"
-          height="252"
+          [ngSrcset]="portraitSrcset"
+          [sizes]="portraitSizes"
+          width="448"
+          height="448"
           priority
           alt="João Paulo Dias Ventura"
         />

@@ -21,8 +21,12 @@ describe('HeroSection', () => {
     fixture.detectChanges();
 
     const host = fixture.nativeElement as HTMLElement;
+    const portrait = host.querySelector<HTMLImageElement>('.hero__portrait-media img');
 
     expect(host.querySelector('#hero-title')).not.toBeNull();
     expect(host.querySelectorAll('app-ui-button').length).toBe(3);
+    expect(portrait?.getAttribute('fetchpriority')).toBe('high');
+    expect(portrait?.getAttribute('sizes')).toBe('(min-width: 1200px) 18rem, 16rem');
+    expect(portrait?.getAttribute('srcset')).toContain('/assets/profile-384.webp 384w');
   });
 });
