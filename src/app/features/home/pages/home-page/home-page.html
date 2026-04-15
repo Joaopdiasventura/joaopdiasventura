@@ -1,7 +1,9 @@
 <div class="page-shell page-shell--home home-shell" data-scene-section>
   <div class="page-shell__background" aria-hidden="true"></div>
-  @defer (on timer(1500ms)) {
+  @defer (on timer(5000ms)) {
     <app-brand-scene class="page-shell__scene page-shell__scene--home" />
+  } @placeholder {
+    <app-loading-bg class="page-shell__scene page-shell__scene--home"/>
   }
 
   <div class="page-shell__content">

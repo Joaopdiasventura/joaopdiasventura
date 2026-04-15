@@ -11,12 +11,14 @@ import { HeroSection } from '../../components/hero-section/hero-section';
 import { MetricsSection } from '../../components/metrics-section/metrics-section';
 import { Navbar } from '../../components/navbar/navbar';
 import { ProjectsSection } from '../../components/projects-section/projects-section';
+import { LoadingBg } from '../../../../shared/components/loading-bg/loading-bg';
 
 @Component({
   selector: 'app-home-page',
   imports: [
     Navbar,
     BrandScene,
+    LoadingBg,
     HeroSection,
     MetricsSection,
     AboutSection,

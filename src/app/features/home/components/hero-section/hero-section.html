@@ -25,11 +25,7 @@
               [variant]="cta.kind"
             />
           } @else {
-            <app-ui-button
-              [href]="ctaHref(cta)"
-              [label]="copy(cta.label)"
-              [variant]="cta.kind"
-            />
+            <app-ui-button [href]="ctaHref(cta)" [label]="copy(cta.label)" [variant]="cta.kind" />
           }
         }
       </div>
@@ -43,8 +39,7 @@
           [sizes]="portraitSizes"
           width="448"
           height="448"
-          loading="eager"
-          fetchpriority="high"
+          priority
           decoding="sync"
           alt="João Paulo Dias Ventura"
         />

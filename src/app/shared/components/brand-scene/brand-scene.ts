@@ -22,15 +22,12 @@ interface DisposableMaterial {
 
 type IdleWindow = Window & {
   cancelIdleCallback?: (handle: number) => void;
-  requestIdleCallback?: (
-    callback: () => void,
-    options?: { timeout?: number },
-  ) => number;
+  requestIdleCallback?: (callback: () => void, options?: { timeout?: number }) => number;
 };
 
 @Component({
   selector: 'app-brand-scene',
-  template: '<div class="brand-scene__viewport" aria-hidden="true"></div>',
+  templateUrl: './brand-scene.html',
   styleUrl: './brand-scene.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -74,17 +71,13 @@ export class BrandScene implements AfterViewInit, OnDestroy {
   }
 
   private cancelIdleTask(): void {
-    if (this.idleHandle == null) {
-      return;
-    }
+    if (this.idleHandle == null) return;
 
     const idleWindow = window as IdleWindow;
 
-    if (typeof idleWindow.cancelIdleCallback == 'function') {
+    if (typeof idleWindow.cancelIdleCallback == 'function')
       idleWindow.cancelIdleCallback(this.idleHandle);
-    } else {
-      window.clearTimeout(this.idleHandle);
-    }
+    else window.clearTimeout(this.idleHandle);
 
     this.idleHandle = null;
   }
@@ -94,9 +87,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     const start = (): void => {
       this.idleHandle = null;
 
-      if (this.destroyed) {
-        return;
-      }
+      if (this.destroyed) return;
 
       void this.initializeScene();
     };
@@ -112,9 +103,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
   private async initializeScene(): Promise<void> {
     const viewport = this.host.nativeElement.querySelector<HTMLElement>('.brand-scene__viewport');
 
-    if (!viewport) {
-      return;
-    }
+    if (!viewport) return;
 
     const reducedMotion =
       typeof window.matchMedia == 'function' &&
@@ -122,9 +111,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
     const THREE = await import('./brand-scene.runtime');
 
-    if (this.destroyed) {
-      return;
-    }
+    if (this.destroyed) return;
 
     this.cleanup = this.ngZone.runOutsideAngular(() =>
       this.createScene(THREE, viewport, reducedMotion),
@@ -151,7 +138,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.04;
 
-    camera.position.set(0, 0.25, isHeroVariant ? 7.8 : 7.2);
+    camera.position.set(0, 0.8, isHeroVariant ? 9.6 : 8.8);
 
     const ambient = new THREE.AmbientLight(0xfff3ea, 1.2);
     const keyLight = new THREE.DirectionalLight(0xff746f, 2.1);
@@ -180,6 +167,10 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
     rig.add(core, nodes, sparks);
     scene.add(rig);
+
+    rig.scale.setScalar(0.72);
+    rig.rotation.set(-0.22, -0.55, -0.12);
+    rig.position.set(0, -0.2, 0);
 
     const shardMaterial = new THREE.MeshStandardMaterial({
       color: 0x7f1018,
@@ -290,16 +281,16 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     let sceneProgress = defaultProgress;
     let lastFrameTime = 0;
     let idleTimeoutId = 0;
-    const targetFrameDuration = isHeroVariant ? 1000 / 30 : 1000 / 36;
     let pointerCleanup: (() => void) | null = null;
+    const targetFrameDuration = isHeroVariant ? 1000 / 30 : 1000 / 36;
+    const introStartedAt = performance.now();
+    const introDuration = 1400;
 
     const updateSize = (): void => {
       const width = viewport.clientWidth;
       const height = viewport.clientHeight;
 
-      if (width <= 0 || height <= 0) {
-        return;
-      }
+      if (width <= 0 || height <= 0) return;
 
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
@@ -332,13 +323,9 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     };
 
     const scheduleIdleStop = (): void => {
-      if (!isHeroVariant || reducedMotion) {
-        return;
-      }
+      if (!isHeroVariant || reducedMotion) return;
 
-      if (idleTimeoutId != 0) {
-        window.clearTimeout(idleTimeoutId);
-      }
+      if (idleTimeoutId != 0) window.clearTimeout(idleTimeoutId);
 
       idleTimeoutId = window.setTimeout(() => {
         idleTimeoutId = 0;
@@ -347,9 +334,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     };
 
     const wakeScene = (): void => {
-      if (!isVisible || document.hidden) {
-        return;
-      }
+      if (!isVisible || document.hidden) return;
 
       scheduleIdleStop();
       startRender();
@@ -358,9 +343,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     const renderFrame = (timestamp: number): void => {
       frameId = 0;
 
-      if (isDestroyed || !renderActive) {
-        return;
-      }
+      if (isDestroyed || !renderActive) return;
 
       if (lastFrameTime != 0 && timestamp - lastFrameTime < targetFrameDuration) {
         frameId = window.requestAnimationFrame(renderFrame);
@@ -369,28 +352,45 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
       lastFrameTime = timestamp;
 
+      const introProgress = reducedMotion
+        ? 1
+        : Math.min((timestamp - introStartedAt) / introDuration, 1);
+
+      const easedIntro = 1 - Math.pow(1 - introProgress, 3);
+
       const targetRotationY = pointer.x * 0.3 + sceneProgress * (isHeroVariant ? 1.15 : 0.72);
       const targetRotationX = pointer.y * 0.18 - 0.16 - sceneProgress * 0.16;
       const targetPositionY = 0.24 + sceneProgress * 0.48;
       const targetPositionZ = (isHeroVariant ? 7.8 : 7.2) - sceneProgress * 1.2;
 
-      rig.rotation.y += (targetRotationY - rig.rotation.y) * 0.045;
-      rig.rotation.x += (targetRotationX - rig.rotation.x) * 0.045;
-      rig.position.y += ((sceneProgress - 0.5) * 0.3 - rig.position.y) * 0.05;
+      const introRotationY = -0.55 + (targetRotationY + 0.55) * easedIntro;
+      const introRotationX = -0.22 + (targetRotationX + 0.22) * easedIntro;
+      const introPositionY = -0.2 + (0 + 0.2) * easedIntro;
+      const introCameraY = 0.8 + (targetPositionY - 0.8) * easedIntro;
+      const introCameraZ =
+        (isHeroVariant ? 9.6 : 8.8) + (targetPositionZ - (isHeroVariant ? 9.6 : 8.8)) * easedIntro;
+      const introScale = 0.72 + (1 - 0.72) * easedIntro;
+
+      rig.rotation.y += (introRotationY - rig.rotation.y) * 0.08;
+      rig.rotation.x += (introRotationX - rig.rotation.x) * 0.08;
+      rig.position.y += (introPositionY - rig.position.y) * 0.08;
+      rig.scale.x += (introScale - rig.scale.x) * 0.08;
+      rig.scale.y += (introScale - rig.scale.y) * 0.08;
+      rig.scale.z += (introScale - rig.scale.z) * 0.08;
+
       core.rotation.z += reducedMotion ? 0 : 0.0022;
       nodes.rotation.z -= reducedMotion ? 0 : 0.0014;
       sparks.rotation.z += reducedMotion ? 0 : 0.001;
-      camera.position.y += (targetPositionY - camera.position.y) * 0.06;
-      camera.position.z += (targetPositionZ - camera.position.z) * 0.06;
+
+      camera.position.y += (introCameraY - camera.position.y) * 0.08;
+      camera.position.z += (introCameraZ - camera.position.z) * 0.08;
 
       renderer.render(scene, camera);
       frameId = window.requestAnimationFrame(renderFrame);
     };
 
     const startRender = (): void => {
-      if (reducedMotion || renderActive || !isVisible) {
-        return;
-      }
+      if (reducedMotion || renderActive || !isVisible) return;
 
       renderActive = true;
       lastFrameTime = 0;
@@ -418,10 +418,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     };
 
     const scheduleProgressSync = (): void => {
-      if (progressFrameId != 0) {
-        return;
-      }
-
+      if (progressFrameId != 0) return;
       progressFrameId = window.requestAnimationFrame(syncProgress);
     };
 
@@ -432,9 +429,7 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
     resizeObserver.observe(viewport);
 
-    if (section) {
-      resizeObserver.observe(section);
-    }
+    if (section) resizeObserver.observe(section);
 
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
@@ -481,24 +476,21 @@ export class BrandScene implements AfterViewInit, OnDestroy {
     updateSize();
     updateSectionMetrics();
     viewport.append(renderer.domElement);
+    renderer.domElement.classList.add('brand-scene__canvas');
 
-    if (reducedMotion) {
-      renderer.render(scene, camera);
-    } else {
-      wakeScene();
-    }
+    requestAnimationFrame(() => {
+      renderer.domElement.classList.add('brand-scene__canvas--ready');
+    });
+
+    if (reducedMotion) renderer.render(scene, camera);
+    else wakeScene();
 
     return () => {
       isDestroyed = true;
       stopRender();
 
-      if (progressFrameId != 0) {
-        window.cancelAnimationFrame(progressFrameId);
-      }
-
-      if (idleTimeoutId != 0) {
-        window.clearTimeout(idleTimeoutId);
-      }
+      if (progressFrameId != 0) window.cancelAnimationFrame(progressFrameId);
+      if (idleTimeoutId != 0) window.clearTimeout(idleTimeoutId);
 
       window.removeEventListener('scroll', scheduleProgressSync);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
@@ -516,11 +508,8 @@ export class BrandScene implements AfterViewInit, OnDestroy {
 
         mesh.geometry?.dispose?.();
 
-        if (Array.isArray(mesh.material)) {
-          mesh.material.forEach((material) => material.dispose?.());
-        } else {
-          mesh.material?.dispose?.();
-        }
+        if (Array.isArray(mesh.material)) mesh.material.forEach((material) => material.dispose?.());
+        else mesh.material?.dispose?.();
       });
 
       viewport.replaceChildren();

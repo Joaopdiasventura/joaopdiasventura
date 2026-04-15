@@ -1,0 +1,66 @@
+:host {
+  --brand-scene-mask: radial-gradient(circle at center, black 58%, transparent 100%);
+  --brand-scene-min-height: 20rem;
+  display: flex;
+  height: 100%;
+  inline-size: 100%;
+  min-height: var(--brand-scene-min-height);
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#svg {
+  width: 100%;
+  stroke: var(--primary);
+  fill-opacity: 0;
+  stroke-width: 3px;
+  stroke-dasharray: 4500;
+  stroke-dashoffset: 4500;
+  opacity: 0;
+  animation:
+    draw 5s ease-in-out infinite,
+    svgFade 0.6s ease forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 4500;
+    fill-opacity: 0;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    fill-opacity: 0.3;
+  }
+  75% {
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 4500;
+    fill-opacity: 0;
+  }
+}
+
+@keyframes svgFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host::before {
+    animation: none;
+    opacity: 1;
+  }
+
+  #svg {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+  }
+}
