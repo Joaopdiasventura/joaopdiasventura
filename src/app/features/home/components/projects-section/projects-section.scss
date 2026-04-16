@@ -3,6 +3,7 @@
 }
 
 .projects {
+  outline: none;
   --projects-card-radius: 1.25rem;
   --projects-card-width: clamp(19rem, 84vw, 23rem);
   --projects-rail-gap: clamp(0.9rem, 2vw, 1.2rem);
