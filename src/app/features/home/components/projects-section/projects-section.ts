@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -19,10 +19,7 @@ import { ContentSectionHeading } from '../../../../shared/components/content/con
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll/reveal-on-scroll.directive';
 import { ScrollMotionDirective } from '../../../../shared/directives/scroll-motion/scroll-motion.directive';
 import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
-import {
-  ProjectCard,
-  ProjectCardViewModel,
-} from './cards/project-card/project-card';
+import { ProjectCard, ProjectCardViewModel } from './cards/project-card/project-card';
 
 type ProjectsSectionProject = (typeof PROJECTS_SECTION_DATA.projects)[number];
 
@@ -121,6 +118,7 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
   } as const;
 
   private readonly languageService = inject(LanguageService);
+  private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sectionRef = viewChild.required<ElementRef<HTMLElement>>('sectionRoot');
 
@@ -131,6 +129,7 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const section = this.sectionRef().nativeElement;
+    this.focusSectionOnHash(section);
 
     if (this.supportsObserver()) {
       this.observer = new IntersectionObserver(
@@ -174,9 +173,7 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
     return project.liveUrl ? this.labels.liveCta : this.labels.repositoryCta;
   }
 
-  public projectPrimaryMetric(
-    project: ProjectsSectionProject,
-  ): ProjectCardViewModel['metric'] {
+  public projectPrimaryMetric(project: ProjectsSectionProject): ProjectCardViewModel['metric'] {
     const metric = project.metrics[0];
 
     return metric
@@ -248,5 +245,15 @@ export class ProjectsSection implements AfterViewInit, OnDestroy {
 
   private supportsObserver(): boolean {
     return typeof IntersectionObserver == 'function';
+  }
+
+  private focusSectionOnHash(section: HTMLElement): void {
+    const hash = this.document.defaultView?.location.hash;
+    if (hash !== '#projects') return;
+
+    this.document.defaultView?.requestAnimationFrame(() => {
+      section.scrollIntoView({ block: 'start', behavior: 'auto' });
+      section.focus({ preventScroll: true });
+    });
   }
 }

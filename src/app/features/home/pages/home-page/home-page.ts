@@ -55,14 +55,17 @@ export class HomePage {
 
     effect(() => {
       const fragment = this.fragment();
-      if (!isPlatformBrowser(this.platformId) || !fragment) return;
+      if (!isPlatformBrowser(this.platformId) || !fragment || fragment == 'projects') return;
 
       this.document.defaultView?.requestAnimationFrame(() => {
-        const target = this.document.getElementById(fragment);
-        if (!target) return;
+        const anchor = this.document.getElementById(fragment);
+        if (!anchor) return;
 
-        target.scrollIntoView({ block: 'start', behavior: 'auto' });
-        target.focus({ preventScroll: true });
+        anchor.scrollIntoView({ block: 'start', behavior: 'auto' });
+
+        const section = this.document.getElementById(`${fragment}-section`);
+        const focusTarget = section ?? anchor;
+        focusTarget.focus({ preventScroll: true });
       });
     });
   }
