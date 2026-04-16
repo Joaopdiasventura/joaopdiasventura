@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, inject, PLATFORM_ID } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { SITE_CHROME } from '../../../../core/data/portfolio.data';
 import { LanguageService } from '../../../../core/services/language/language.service';
@@ -35,6 +38,10 @@ export class HomePage {
   private readonly languageService = inject(LanguageService);
   private readonly meta = inject(Meta);
   private readonly titleService = inject(Title);
+  private readonly route = inject(ActivatedRoute);
+  private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly fragment = toSignal(this.route.fragment, { initialValue: null });
 
   public constructor() {
     effect(() => {
@@ -43,6 +50,19 @@ export class HomePage {
       this.meta.updateTag({
         name: 'description',
         content: SITE_CHROME.homeDescription[language],
+      });
+    });
+
+    effect(() => {
+      const fragment = this.fragment();
+      if (!isPlatformBrowser(this.platformId) || !fragment) return;
+
+      this.document.defaultView?.requestAnimationFrame(() => {
+        const target = this.document.getElementById(fragment);
+        if (!target) return;
+
+        target.scrollIntoView({ block: 'start', behavior: 'auto' });
+        target.focus({ preventScroll: true });
       });
     });
   }

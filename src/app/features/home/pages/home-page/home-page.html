@@ -3,13 +3,13 @@
   @defer (on timer(5000ms)) {
     <app-brand-scene class="page-shell__scene page-shell__scene--home" />
   } @placeholder {
-    <app-loading-bg class="page-shell__scene page-shell__scene--home"/>
+    <app-loading-bg class="page-shell__scene page-shell__scene--home" />
   }
 
   <div class="page-shell__content">
     <app-navbar />
 
-    <span id="top" class="scroll-anchor" aria-hidden="true"></span>
+    <span id="top" class="scroll-anchor" tabindex="-1"></span>
 
     <main class="home-main">
       <div class="home-scene-stage">
@@ -21,22 +21,22 @@
         }
       </div>
 
-      <span #aboutTrigger id="about" class="scroll-anchor" aria-hidden="true"></span>
+      <span #aboutTrigger id="about" class="scroll-anchor" tabindex="-1"></span>
       @defer (on viewport(aboutTrigger)) {
         <app-about-section />
       }
 
-      <span #projectsTrigger id="projects" class="scroll-anchor" aria-hidden="true"></span>
+      <span #projectsTrigger id="projects" class="scroll-anchor" tabindex="-1"></span>
       @defer (on viewport(projectsTrigger)) {
         <app-projects-section />
       }
 
-      <span #experienceTrigger id="experience" class="scroll-anchor" aria-hidden="true"></span>
+      <span #experienceTrigger id="experience" class="scroll-anchor" tabindex="-1"></span>
       @defer (on viewport(experienceTrigger)) {
         <app-experience-section />
       }
 
-      <span #contactTrigger id="contact" class="scroll-anchor" aria-hidden="true"></span>
+      <span #contactTrigger id="contact" class="scroll-anchor" tabindex="-1"></span>
       @defer (on viewport(contactTrigger)) {
         <app-contact-section />
       }
