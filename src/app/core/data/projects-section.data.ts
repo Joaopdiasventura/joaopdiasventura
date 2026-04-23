@@ -205,6 +205,68 @@ export const PROJECTS_SECTION_DATA = {
       },
     },
     {
+      slug: 'ggc',
+      name: {
+        en: 'GGCompress',
+        pt: 'GGCompress',
+      },
+      category: {
+        en: 'High-throughput archive and compression engineering',
+        pt: 'Engenharia de compressão e arquivamento de alto throughput',
+      },
+      problem: {
+        en: 'Large files and directory trees needed predictable throughput, bounded memory, and safe extraction without losing deterministic output.',
+        pt: 'Arquivos grandes e árvores de diretório precisavam de throughput previsível, memória limitada e extração segura sem perder saída determinística.',
+      },
+      solution: {
+        en: 'Sequential reader, goroutine workers, ordered writer, and a versioned `.ggc` format with chunk and index validation.',
+        pt: 'Leitor sequencial, workers com goroutines, writer ordenado e um formato `.ggc` versionado com validação de chunks e índices.',
+      },
+      metrics: [
+        {
+          value: '1.23 GiB/s',
+          label: {
+            en: 'Observed throughput',
+            pt: 'Throughput observado',
+          },
+        },
+        {
+          value: '9.77 GiB',
+          label: {
+            en: 'Benchmark input',
+            pt: 'Entrada de benchmark',
+          },
+        },
+        {
+          value: '0.47%',
+          label: {
+            en: 'Compression ratio',
+            pt: 'Taxa de compressão',
+          },
+        },
+      ],
+      stack: ['Go', 'gzip', 'SHA-256'],
+      liveUrl: null,
+      repositories: [
+        {
+          name: 'GGCompress Repository',
+          href: 'https://github.com/Joaopdiasventura/ggc',
+        },
+      ],
+      icon: {
+        src: '/assets/projects/icons/ggc.svg',
+        width: 24,
+        height: 24,
+      },
+      cover: {
+        src: '/assets/projects/covers/ggc/ggc-1280.webp',
+        alt: {
+          en: 'GGCompress cover showing a terminal benchmark with multi-gigabyte throughput, archive output, and compression metrics.',
+          pt: 'Capa do GGCompress mostrando um benchmark no terminal com throughput em multigigabytes, saída do arquivo e métricas de compressão.',
+        },
+      },
+    },
+    {
       slug: 'vox',
       name: {
         en: 'VOX',

@@ -132,6 +132,42 @@ export const CASE_STUDY_PREVIEWS = [
     ],
   },
   {
+    slug: 'ggc',
+    name: {
+      en: 'GGCompress',
+      pt: 'GGCompress',
+    },
+    category: {
+      en: 'High-throughput archive and compression engineering',
+      pt: 'Engenharia de compressão e arquivamento de alto throughput',
+    },
+    teaser: {
+      en: 'Go compression engine built around ordered chunk pipelines, deterministic indexing, and benchmarked multi-gigabyte throughput.',
+      pt: 'Motor de compressão em Go construído em torno de pipelines ordenados por chunk, indexação determinística e throughput em multigigabytes medido em benchmark.',
+    },
+    metrics: [
+      {
+        value: '1.23 GiB/s',
+        label: { en: 'Observed throughput', pt: 'Throughput observado' },
+      },
+      {
+        value: '9.77 GiB',
+        label: { en: 'Benchmark input', pt: 'Entrada de benchmark' },
+      },
+      {
+        value: '0.47%',
+        label: { en: 'Compression ratio', pt: 'Taxa de compressão' },
+      },
+    ],
+    stack: ['Go', 'gzip', 'SHA-256'],
+    links: [
+      repositoryLink(
+        { en: 'repository', pt: 'repositório' },
+        'https://github.com/Joaopdiasventura/ggc',
+      ),
+    ],
+  },
+  {
     slug: 'vox',
     name: {
       en: 'VOX',

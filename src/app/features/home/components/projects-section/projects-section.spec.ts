@@ -83,12 +83,12 @@ describe('ProjectsSection', () => {
     expect(instance).toBeTruthy();
   });
 
-  it('renders the five projects extracted from the README dataset', () => {
+  it('renders the six featured projects in the rail', () => {
     const fixture = TestBed.createComponent(ProjectsSection);
     fixture.detectChanges();
 
     const cards = fixture.nativeElement.querySelectorAll('.project-card');
-    expect(cards.length).toBe(5);
+    expect(cards.length).toBe(6);
   });
 
   it('renders a compact narrative for each project card', () => {
@@ -103,9 +103,10 @@ describe('ProjectsSection', () => {
     const icons = host.querySelectorAll('.project-card__icon img');
     const tiltedCards = host.querySelectorAll('.project-card.viewport-tilt');
 
-    expect(cards.length).toBe(5);
-    expect(icons.length).toBe(5);
-    expect(tiltedCards.length).toBe(5);
+    expect(cards.length).toBe(6);
+    expect(icons.length).toBe(6);
+    expect(tiltedCards.length).toBe(6);
+    expect(cards.some((card) => card.textContent?.includes('GGCompress'))).toBe(true);
 
     for (const card of cards) {
       expect(card.querySelectorAll('.project-card__story-item').length).toBe(2);
@@ -135,8 +136,8 @@ describe('ProjectsSection', () => {
 
     const mediaImages = host.querySelectorAll<HTMLImageElement>('.project-card__media img');
 
-    expect(mediaImages.length).toBe(5);
-    expect(host.querySelectorAll('.project-card__icon img').length).toBe(5);
+    expect(mediaImages.length).toBe(6);
+    expect(host.querySelectorAll('.project-card__icon img').length).toBe(6);
     expect(sectionObserver?.disconnect).toHaveBeenCalled();
     expect(mediaImages[0]?.getAttribute('srcset')).toContain('640w');
   });

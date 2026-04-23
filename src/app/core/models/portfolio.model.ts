@@ -62,7 +62,7 @@ export interface ExperienceEntry {
   highlights: LocalizedValue<readonly string[]>;
 }
 
-export type CaseStudySlug = 'auronix' | 'modularis' | 'votrix' | 'vox' | 'etecfy';
+export type CaseStudySlug = 'auronix' | 'modularis' | 'votrix' | 'ggc' | 'vox' | 'etecfy';
 
 export interface CaseStudyMetric {
   value: string;

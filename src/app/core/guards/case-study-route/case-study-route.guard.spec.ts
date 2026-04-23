@@ -6,7 +6,6 @@ import {
   convertToParamMap,
   provideRouter,
 } from '@angular/router';
-import { CASE_STUDY_SLUGS } from '../../data/case-study-previews.data';
 import { CaseStudyRouteGuard } from './case-study-route.guard';
 
 const routeWithSlug = (slug: string | null): ActivatedRouteSnapshot =>
@@ -23,9 +22,7 @@ describe('CaseStudyRouteGuard', () => {
 
   it('allows access when the slug belongs to a known case study', () => {
     const guard = TestBed.inject(CaseStudyRouteGuard);
-    const validSlug = Array.from(CASE_STUDY_SLUGS)[0];
-
-    const result = guard.canActivate(routeWithSlug(validSlug));
+    const result = guard.canActivate(routeWithSlug('ggc'));
 
     expect(result).toBe(true);
   });

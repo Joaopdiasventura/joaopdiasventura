@@ -238,6 +238,80 @@ export const CASE_STUDIES = [
     },
   },
   {
+    ...previewFor('ggc'),
+    role: {
+      en: 'Systems design, archive format engineering, concurrency pipeline, benchmark methodology',
+      pt: 'Desenho de sistemas, engenharia de formato de arquivo, pipeline concorrente e metodologia de benchmark',
+    },
+    timeline: INDEPENDENT_PUBLIC_CASE,
+    problem: {
+      en: 'Large inputs had to compress and verify quickly without unbounded memory, non-deterministic archives, or unsafe extraction paths.',
+      pt: 'Entradas grandes precisavam ser comprimidas e verificadas rapidamente sem memória ilimitada, arquivos não deterministas ou caminhos inseguros de extração.',
+    },
+    solution: {
+      en: 'GGCompress combines sequential disk reads, goroutine-based chunk workers, ordered emission, and one versioned `.ggc` format that validates manifest and chunk indexes before restore.',
+      pt: 'GGCompress combina leitura sequencial de disco, workers por chunk baseados em goroutines, emissão ordenada e um único formato `.ggc` versionado que valida manifesto e índices de chunk antes da restauração.',
+    },
+    resultSummary: {
+      en: 'Measured CLI run dated April 23, 2026: a 9.77 GiB file compressed at 1.23 GiB/s with 8 workers and 4 MiB chunks, finishing in 7.952s at a 0.47% ratio.',
+      pt: 'Execução medida da CLI em 23 de abril de 2026: um arquivo de 9.77 GiB foi comprimido a 1.23 GiB/s com 8 workers e chunks de 4 MiB, concluindo em 7.952s com taxa de 0.47%.',
+    },
+    constraints: {
+      en: [
+        'Pipelines stay bounded in memory through pooled buffers and fixed-size channels',
+        'Archive paths must remain normalized, relative, and traversal-safe',
+        'Symlink recreation is platform-dependent and fails explicitly when unsupported',
+        'Performance claims stay scoped to the versioned benchmark run and input profile',
+      ],
+      pt: [
+        'Os pipelines permanecem limitados em memória por meio de buffers reutilizados e canais de tamanho fixo',
+        'Os caminhos do arquivo precisam permanecer normalizados, relativos e seguros contra traversal',
+        'A recriação de symlinks depende da plataforma e falha explicitamente quando não é suportada',
+        'As alegações de performance ficam restritas à execução versionada de benchmark e ao perfil da entrada',
+      ],
+    },
+    decisions: [
+      {
+        title: {
+          en: 'Unify file and directory roots under one official format',
+          pt: 'Unificar raízes de arquivo e diretório em um único formato oficial',
+        },
+        description: {
+          en: 'The `GGC1` v1 layout keeps `Header -> Metadata -> Entry Table -> Chunk Table -> Data`, so single files, trees, and symlinks share one deterministic archive contract.',
+          pt: 'O layout `GGC1` v1 mantém `Header -> Metadata -> Entry Table -> Chunk Table -> Data`, permitindo que arquivos únicos, árvores e symlinks compartilhem um contrato determinístico de arquivamento.',
+        },
+      },
+      {
+        title: {
+          en: 'Parallelize chunk work, serialize archive order',
+          pt: 'Paralelizar o trabalho por chunk e serializar a ordem do arquivo',
+        },
+        description: {
+          en: 'A sequential reader feeds goroutine workers, while an ordered emission helper preserves contiguous chunk indexes and deterministic output by global chunk index.',
+          pt: 'Um leitor sequencial alimenta workers com goroutines, enquanto um helper de emissão ordenada preserva índices contíguos de chunk e saída determinística por índice global.',
+        },
+      },
+      {
+        title: {
+          en: 'Validate integrity beyond payload decompression',
+          pt: 'Validar integridade além da descompressão do payload',
+        },
+        description: {
+          en: 'Per-chunk checksums, optional canonical SHA-256 over archive metadata plus logical bytes, and staged extraction with final rename make corruption and partial restore states explicit.',
+          pt: 'Checksums por chunk, SHA-256 canônico opcional sobre metadados do arquivo e bytes lógicos, e extração em staging com rename final tornam explícitos os estados de corrupção e restauração parcial.',
+        },
+      },
+    ],
+    seoTitle: {
+      en: 'GGCompress Case Study | João Paulo Dias Ventura',
+      pt: 'Estudo de caso GGCompress | João Paulo Dias Ventura',
+    },
+    seoDescription: {
+      en: 'Case study about a Go compression engine with deterministic archive design, concurrent chunk pipelines, and measured throughput.',
+      pt: 'Estudo de caso sobre um motor de compressão em Go com design determinístico de arquivo, pipelines concorrentes por chunk e throughput medido.',
+    },
+  },
+  {
     ...previewFor('vox'),
     role: {
       en: 'Product architecture, backend design, audit-oriented modeling',

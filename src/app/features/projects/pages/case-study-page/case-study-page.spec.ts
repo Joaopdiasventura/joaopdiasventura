@@ -25,7 +25,7 @@ describe('CaseStudyPage', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            paramMap: of(convertToParamMap({ slug: 'auronix' })),
+            paramMap: of(convertToParamMap({ slug: 'ggc' })),
           },
         },
       ],
@@ -42,7 +42,7 @@ describe('CaseStudyPage', () => {
     );
     const tiltedPanels = host.querySelectorAll('app-case-study-panel.case-study__panel.viewport-tilt');
 
-    expect(host.querySelector('.case-study__hero-title')?.textContent).toContain('Auronix');
+    expect(host.querySelector('.case-study__hero-title')?.textContent).toContain('GGCompress');
     expect(host.querySelector('.case-study__hero-icon img')).not.toBeNull();
     expect(host.querySelector('.case-study__next-icon img')).not.toBeNull();
     expect(panelTitles).toEqual(['Problem', 'Solution', 'Result']);
@@ -51,5 +51,6 @@ describe('CaseStudyPage', () => {
     expect(host.querySelectorAll('.case-study__hero-metrics .content-metric-list__item').length).toBe(3);
     expect(host.querySelector('.case-study__next-button')).not.toBeNull();
     expect(host.querySelector('.case-study__next')).not.toBeNull();
+    expect(host.querySelector('.case-study__next h2')?.textContent).toContain('VOX');
   });
 });

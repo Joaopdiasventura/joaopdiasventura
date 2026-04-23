@@ -457,13 +457,18 @@ html::-webkit-scrollbar-corner {
 }
 
 .project-card[data-theme='modularis'] {
-  --project-accent: rgb(200, 155, 60);
-  --project-accent-soft: rgb(200 155 60 / 0.18);
+  --project-accent: rgb(224, 35, 78);
+  --project-accent-soft: rgb(224 35 78 / 0.18);
 }
 
 .project-card[data-theme='votrix'] {
-  --project-accent: rgb(45, 121, 199);
-  --project-accent-soft: rgb(45 121 199 / 0.18);
+  --project-accent: rgb(95, 160, 78);
+  --project-accent-soft: rgb(95 160 78 / 0.18);
+}
+
+.project-card[data-theme='ggc'] {
+  --project-accent: rgb(0, 173, 216);
+  --project-accent-soft: rgb(0 173 216 / 0.18);
 }
 
 .project-card[data-theme='vox'] {
