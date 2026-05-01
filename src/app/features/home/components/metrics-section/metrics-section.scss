@@ -7,8 +7,13 @@
 }
 
 .impact-strip__grid {
-  display: grid;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 0.9rem;
+  align-items: center;
 }
 
 .impact-strip__item-wrap {
@@ -16,19 +21,10 @@
 }
 
 .impact-strip__item {
-  min-width: 0;
-}
-
-@media (min-width: 720px) {
-  .impact-strip__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  min-width: 33%;
 }
 
 @media (min-width: 1200px) {
-  .impact-strip__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
   .impact-strip__item {
     min-height: 100%;
   }

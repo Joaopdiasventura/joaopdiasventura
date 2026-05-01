@@ -5,12 +5,12 @@ export const PROJECTS_SECTION_DATA = {
       pt: 'Projetos',
     },
     title: {
-      en: 'Projects with clear technical signal',
-      pt: 'Projetos com sinal técnico claro',
+      en: 'Case studies with architectural trade-offs made explicit',
+      pt: 'Estudos de caso com trade-offs arquiteturais explícitos',
     },
     summary: {
-      en: 'Each card shows problem, solution, and proof.',
-      pt: 'Cada card mostra problema, solução e prova.',
+      en: 'Production-shaped projects centered on consistency, asynchronous coordination, and measured performance.',
+      pt: 'Projetos com forma de produção, centrados em consistência, coordenação assíncrona e performance medida.',
     },
   },
   projects: [
@@ -21,16 +21,16 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'Auronix',
       },
       category: {
-        en: 'Financial platform and transactional flows',
-        pt: 'Plataforma financeira e fluxos transacionais',
+        en: 'Digital banking and transactional settlement',
+        pt: 'Banco digital e liquidação transacional',
       },
       problem: {
-        en: 'Financial operations needed strong consistency, serialized critical paths, and live status updates without raising operational cost.',
-        pt: 'Operações financeiras exigiam consistência forte, serialização de caminhos críticos e atualizações ao vivo com menor custo operacional.',
+        en: 'Money movement needed immediate user feedback without relaxing balance correctness, replay safety, or concurrency control across transfer and QR payment flows.',
+        pt: 'A movimentação financeira precisava de feedback imediato ao usuário sem relaxar corretude de saldo, segurança de replay ou controle de concorrência em fluxos de transferência e QR Code.',
       },
       solution: {
-        en: 'Domain-driven architecture with queue-based concurrency control, PostgreSQL transactions, async business events, and Angular SSR.',
-        pt: 'Arquitetura orientada a domínio com controle de concorrência por filas, transações no PostgreSQL, eventos assíncronos e Angular com SSR.',
+        en: 'A modular NestJS core keeps ledger mutation local to PostgreSQL transactions, serializes critical work with Redis-backed queues, and streams settlement status to a thin Angular client over SSE.',
+        pt: 'Um núcleo modular em NestJS mantém a mutação de saldo local às transações do PostgreSQL, serializa trabalho crítico com filas apoiadas em Redis e transmite o status de liquidação para um cliente Angular enxuto via SSE.',
       },
       metrics: [
         {
@@ -41,21 +41,21 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
         {
-          value: '10',
+          value: '10 min',
           label: {
-            en: 'Protected views',
-            pt: 'Telas protegidas',
+            en: 'Request expiry',
+            pt: 'Expiração de cobrança',
           },
         },
         {
           value: '100 / 24h',
           label: {
-            en: 'Replay window',
-            pt: 'Janela de replay',
+            en: 'SSE replay window',
+            pt: 'Janela de replay SSE',
           },
         },
       ],
-      stack: ['Angular', 'PostgreSQL', 'Redis'],
+      stack: ['NestJS', 'PostgreSQL', 'Redis'],
       liveUrl: 'https://auronix-client.vercel.app',
       repositories: [
         {
@@ -87,16 +87,16 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'Modularis',
       },
       category: {
-        en: 'Distributed onboarding saga and payment orchestration',
-        pt: 'Saga distribuída de onboarding e orquestração de pagamentos',
+        en: 'Event-driven microservices and distributed onboarding',
+        pt: 'Microsserviços orientados a eventos e onboarding distribuído',
       },
       problem: {
-        en: 'The edge had to respond quickly while identity, payment intent, webhook confirmation, and premium convergence tolerated retries and duplicate delivery.',
-        pt: 'A borda precisava responder rápido enquanto identidade, intenção de pagamento, confirmação de webhook e convergência premium toleravam retries e entrega duplicada.',
+        en: 'Onboarding, payment intent, signed webhook ingress, and premium activation had to converge without global transactions while remaining recoverable under retries, duplicates, and partial failure.',
+        pt: 'Onboarding, intenção de pagamento, ingresso de webhook assinado e ativação premium precisavam convergir sem transações globais, mantendo recuperação sob retries, duplicidades e falhas parciais.',
       },
       solution: {
-        en: 'A persisted saga coordinates service-owned stores, RabbitMQ contracts, and idempotent consumers across NestJS, Spring Boot, and Go.',
-        pt: 'Uma saga persistida coordena persistências por serviço, contratos RabbitMQ e consumidores idempotentes em NestJS, Spring Boot e Go.',
+        en: 'A thin HTTP edge hands off coordination to a persisted onboarding saga across RabbitMQ, with service-owned storage, idempotent consumers, signed webhook relay, and recovery loops in NestJS, Spring Boot, and Go.',
+        pt: 'Uma borda HTTP fina transfere a coordenação para uma saga persistida de onboarding sobre RabbitMQ, com persistência por serviço, consumidores idempotentes, retransmissão de webhook assinado e loops de recuperação em NestJS, Spring Boot e Go.',
       },
       metrics: [
         {
@@ -121,7 +121,7 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
       ],
-      stack: ['NestJS', 'Spring Boot', 'Go'],
+      stack: ['NestJS', 'RabbitMQ', 'Go'],
       liveUrl: null,
       repositories: [
         {
@@ -211,16 +211,16 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'GGCompress',
       },
       category: {
-        en: 'Compression and archiving engine',
-        pt: 'Engine de compressão e arquivamento',
+        en: 'Concurrent archive engine and deterministic extraction',
+        pt: 'Engine de arquivamento concorrente e extração determinística',
       },
       problem: {
-        en: 'Large archives needed concurrent compression, deterministic integrity, and safe extraction without breaking throughput.',
-        pt: 'Arquivos grandes exigiam compressão concorrente, integridade determinística e extração segura sem perder throughput.',
+        en: 'Large archives needed bounded-memory compression, deterministic recovery, and safe extraction while sustaining throughput on multi-gigabyte inputs.',
+        pt: 'Arquivos grandes exigiam compressão com memória limitada, recuperação determinística e extração segura sem perder throughput em entradas de vários gigabytes.',
       },
       solution: {
-        en: 'A versioned `.ggc` format combines goroutine pipelines, ordered writes, per-chunk checksums, SHA-256 verification, and atomic extraction.',
-        pt: 'Um formato `.ggc` versionado combina pipelines com goroutines, escrita ordenada, checksum por chunk, verificação com SHA-256 e extração atômica.',
+        en: 'A versioned `.ggc` format combines sequential reads, goroutine chunk workers, ordered writes, per-chunk checksums, optional SHA-256 validation, and staged extraction with final atomic rename.',
+        pt: 'Um formato `.ggc` versionado combina leitura sequencial, workers por chunk com goroutines, escrita ordenada, checksum por chunk, validação opcional com SHA-256 e extração em staging com rename atômico final.',
       },
       metrics: [
         {
@@ -238,10 +238,10 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
         {
-          value: '0.47%',
+          value: '8 / 4 MiB',
           label: {
-            en: 'Compression ratio',
-            pt: 'Taxa de compressão',
+            en: 'Workers / chunk size',
+            pt: 'Workers / tamanho do chunk',
           },
         },
       ],

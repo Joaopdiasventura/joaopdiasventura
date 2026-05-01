@@ -32,8 +32,8 @@ export const SITE_CHROME: SiteChrome = {
     pt: 'Todos os direitos reservados.',
   },
   homeDescription: {
-    en: 'Portfolio of João Paulo Dias Ventura focused on distributed systems, transactional consistency, and data-intensive architecture.',
-    pt: 'Portfólio de João Paulo Dias Ventura focado em sistemas distribuídos, consistência transacional e arquitetura orientada a dados.',
+    en: 'Portfolio of João Paulo Dias Ventura focused on distributed systems, financial workflows, and resilient data-intensive architecture.',
+    pt: 'Portfólio de João Paulo Dias Ventura focado em sistemas distribuídos, fluxos financeiros e arquitetura resiliente orientada a dados.',
   },
 };
 
@@ -58,16 +58,16 @@ export const NAV_ITEMS: readonly NavItem[] = [
 
 export const HERO_CONTENT: HeroContent = {
   eyebrow: {
-    en: 'Auditable systems. Clear execution.',
-    pt: 'Sistemas auditáveis. Execução clara.',
+    en: 'Distributed systems. Transactional rigor.',
+    pt: 'Sistemas distribuídos. Rigor transacional.',
   },
   titleLines: {
     en: ['João Paulo', 'Dias Ventura'],
     pt: ['João Paulo', 'Dias Ventura'],
   },
   summary: {
-    en: 'I build distributed and data-intensive systems with transactional consistency, high-throughput processing, and resilient architecture.',
-    pt: 'Construo sistemas distribuídos e orientados a dados com consistência transacional, alto volume de processamento e arquitetura resiliente.',
+    en: 'Software engineer focused on distributed systems and data-intensive applications, building financial and operational flows with transactional consistency, event-driven communication, and resilient high-volume processing.',
+    pt: 'Engenheiro de software focado em sistemas distribuídos e aplicações orientadas a dados, construindo fluxos financeiros e operacionais com consistência transacional, comunicação orientada a eventos e processamento resiliente de alto volume.',
   },
   ctas: [
     {
@@ -93,32 +93,24 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
     id: 'data',
     value: '+16GB',
     label: {
-      en: 'Data processed',
-      pt: 'Dados processados',
+      en: 'Television media data processed',
+      pt: 'Dados de mídia televisiva processados',
     },
   },
   {
     id: 'beneficiaries',
-    value: 'R$1M',
+    value: 'R$1M+',
     label: {
-      en: 'Monthly billed volume',
-      pt: 'Volume mensal faturado',
-    },
-  },
-  {
-    id: 'traffic',
-    value: '+500',
-    label: {
-      en: 'Concurrent users',
-      pt: 'Usuários simultâneos',
+      en: 'Monthly billed volume automated',
+      pt: 'Volume mensal faturado automatizado',
     },
   },
   {
     id: 'ggconcurrent',
     value: '1.23 GiB/s',
     label: {
-      en: 'GGConcurrent throughput',
-      pt: 'Throughput do GGConcurrent',
+      en: 'Compression throughput measured',
+      pt: 'Throughput de compressão medido',
     },
   },
 ] as const;
@@ -130,17 +122,17 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
       pt: 'Perfil',
     },
     title: {
-      en: 'Architecture, data flow, and delivery without noise.',
-      pt: 'Arquitetura, fluxo de dados e entrega sem ruído.',
+      en: 'Distributed systems, financial flows, and delivery shaped by production constraints.',
+      pt: 'Sistemas distribuídos, fluxos financeiros e entrega moldada por restrições reais de produção.',
     },
     summary: {
-      en: 'Enough context to understand how I work.',
-      pt: 'Contexto suficiente para entender como eu trabalho.',
+      en: 'The profile behind the architecture decisions, asynchronous flows, and performance trade-offs.',
+      pt: 'O perfil por trás das decisões arquiteturais, dos fluxos assíncronos e dos trade-offs de performance.',
     },
   },
   statement: {
-    en: 'I design production-critical systems with explicit rules, resilient asynchronous flows, and traceable operations at scale.',
-    pt: 'Desenho sistemas críticos em produção com regras explícitas, fluxos assíncronos resilientes e operações rastreáveis em escala.',
+    en: 'Software engineer with hands-on full-stack delivery across backend, frontend, cloud, and messaging layers, focused on systems where transactional consistency, asynchronous processing, and operational traceability are part of the architecture from day one.',
+    pt: 'Engenheiro de software com atuação full stack em backend, frontend, cloud e mensageria, focado em sistemas em que consistência transacional, processamento assíncrono e rastreabilidade operacional fazem parte da arquitetura desde o primeiro dia.',
   },
   groups: [
     {
@@ -150,72 +142,72 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
       },
       items: {
         en: [
-          'Event-driven architecture',
-          'Distributed systems and asynchronous communication',
-          'Concurrency control and data consistency',
+          'Event-driven architecture and asynchronous communication',
+          'Distributed systems, concurrency control, and idempotent flows',
+          'Transactional consistency for financial and critical business operations',
         ],
         pt: [
-          'Arquitetura orientada a eventos',
-          'Sistemas distribuídos e comunicação assíncrona',
-          'Controle de concorrência e consistência de dados',
+          'Arquitetura orientada a eventos e comunicação assíncrona',
+          'Sistemas distribuídos, controle de concorrência e fluxos idempotentes',
+          'Consistência transacional para operações financeiras e fluxos críticos de negócio',
         ],
       },
     },
     {
       title: {
-        en: 'Focus',
-        pt: 'Foco',
+        en: 'Systems focus',
+        pt: 'Foco de atuação',
       },
       items: {
         en: [
-          'Financial systems and transactional processing',
-          'Large-scale data processing with streams and pipelines',
-          'High-performance interfaces with hybrid rendering and LCP/TTFB optimization',
+          'Financial systems, billing workflows, and transactional processing',
+          'Streaming ingestion, data pipelines, and distributed processing',
+          'Angular SSR, hydration, lazy loading, and frontend performance optimization',
         ],
         pt: [
-          'Sistemas financeiros e processamento transacional',
-          'Processamento de grandes volumes de dados com streams e pipelines',
-          'Interfaces de alta performance com rendering híbrido e otimização de LCP/TTFB',
+          'Sistemas financeiros, fluxos de faturamento e processamento transacional',
+          'Ingestão em stream, pipelines de dados e processamento distribuído',
+          'Angular SSR, hydration, lazy loading e otimização de performance no frontend',
         ],
       },
     },
     {
       title: {
-        en: 'Tech stack',
+        en: 'Technical stack',
         pt: 'Stack técnica',
       },
       items: {
         en: [
-          'Node.js and Golang',
-          'Angular with SSR, hydration, and lazy loading',
-          'PostgreSQL, MongoDB, RabbitMQ, and Redis',
-          'AWS and CI/CD',
+          'Node.js, Java, and Go for backend and runtime engineering',
+          'Angular with SSR, hydration, lazy loading, and route-level performance optimization',
+          'PostgreSQL, MongoDB, RabbitMQ, and Redis across storage and messaging',
+          'AWS, CI/CD, and infrastructure standards with S3, ECS, and IAM',
         ],
         pt: [
-          'Node.js e Golang',
-          'Angular com SSR, hydration e lazy loading',
-          'PostgreSQL, MongoDB, RabbitMQ e Redis',
-          'AWS e CI/CD',
+          'Node.js, Java e Go para backend e engenharia de runtime',
+          'Angular para interfaces com SSR e performance orientada por rotas',
+          'PostgreSQL, MongoDB, RabbitMQ e Redis entre persistência e mensageria',
+          'AWS, CI/CD e padrões de infraestrutura com S3, ECS e IAM',
         ],
       },
     },
     {
       title: {
-        en: 'Credentials',
-        pt: 'Credenciais',
+        en: 'Education and certificates',
+        pt: 'Formação e certificados',
       },
       items: {
         en: [
           'Fatec Osasco - Multiplatform Software Development (2026-2028)',
           'Etec Guarulhos - Systems Development (2023-2025)',
-          'MongoDB - Advanced Data Modeling and Financial Knowledge',
-          'AWS - Event-Driven Architecture Modeling',
+          'AWS - Event-Driven Architecture Modeling and Deploying Microservices on Amazon EKS',
+          'MongoDB - Financial Services Industry Knowledge',
         ],
         pt: [
           'Fatec Osasco - Desenvolvimento de Software Multiplataforma (2026-2028)',
           'Etec Guarulhos - Desenvolvimento de Sistemas (2023-2025)',
-          'MongoDB - Modelagem Avançada de Dados e Conhecimento Financeiro',
-          'EDB - Postgres Distribuido1',
+          'AWS - Modelagem de arquiteturas orientadas a eventos e implantação de microsserviços no Amazon EKS',
+          'MongoDB - Conhecimento do setor de serviços financeiros',
         ],
       },
     },
@@ -231,10 +223,14 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
       href: 'mailto:joaopdias.dev@gmail.com',
     },
     {
+      label: { en: 'Language', pt: 'Idioma' },
+      value: { en: 'Advanced English', pt: 'Inglês avançado' },
+    },
+    {
       label: { en: 'Availability', pt: 'Disponibilidade' },
       value: {
-        en: 'Open to engineering roles with architecture ownership.',
-        pt: 'Aberto a funções de engenharia com responsabilidade arquitetural.',
+        en: 'Open to engineering roles involving distributed systems, critical backend flows, and architectural responsibility.',
+        pt: 'Aberto a funções de engenharia com sistemas distribuídos, fluxos críticos de backend e responsabilidade arquitetural.',
       },
     },
   ],
@@ -250,12 +246,12 @@ export const FEATURED_PROJECTS_CONTENT: FeaturedProjectsContent = {
 export const EXPERIENCE_HEADING = {
   eyebrow: { en: 'Experience', pt: 'Experiência' },
   title: {
-    en: 'Delivery in startup, financial, and data-heavy systems.',
-    pt: 'Entrega em startup, financeiro e sistemas intensivos em dados.',
+    en: 'Progressive delivery across frontend performance, data pipelines, and financial processing.',
+    pt: 'Evolução prática entre performance de frontend, pipelines de dados e processamento financeiro.',
   },
   summary: {
-    en: 'A short record of scope, constraints, and impact.',
-    pt: 'Um recorte curto de escopo, restrição e impacto.',
+    en: 'Intern to mid-level growth in production systems, with increasing scope in architecture, resilience, and automation.',
+    pt: 'Crescimento de estagiário a pleno em sistemas de produção, com aumento de escopo em arquitetura, resiliência e automação.',
   },
 } as const;
 
@@ -266,37 +262,37 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
     company: 'uFind Tecnologia',
     period: { en: 'Jun 2025 - Present', pt: 'jun. 2025 - atual' },
     summary: {
-      en: 'Led the design of an insurance billing workflow with high-volume monthly processing, traceability, and transactional consistency.',
-      pt: 'Liderei o desenho de um fluxo de faturamento para corretora de seguros com alto volume mensal, rastreabilidade e consistência transacional.',
+      en: 'Leading the implementation of an insurance billing workflow that ingests heterogeneous financial files, reconciles transactional state, and automates monthly processing above R$1M with end-to-end traceability.',
+      pt: 'Conduzo a implementação de um fluxo de faturamento para uma corretora de seguros, ingerindo arquivos financeiros heterogêneos, conciliando estado transacional e automatizando mais de R$ 1 milhão mensais com rastreabilidade ponta a ponta.',
     },
     highlights: {
       en: [
-        'Built streams-based ingestion for multiple financial layouts using the Strategy Pattern and critical validations',
-        'Reduced manual work from days to minutes and helped evolve AWS standards across S3, ECS, and IAM',
+        'Designed stream-based ingestion pipelines for multiple financial layouts with Strategy Pattern, critical validations, and consistency guarantees across the full billing flow',
+        'Reduced manual processing from days to minutes and helped evolve AWS architecture standards around S3, ECS, and IAM with high autonomy',
       ],
       pt: [
-        'Desenvolvi ingestão com streams para múltiplos layouts financeiros usando Strategy Pattern e validações críticas',
-        'Reduzi operações manuais de dias para minutos e atuei na evolução de padrões AWS com S3, ECS e IAM',
+        'Projetei pipelines de ingestão em stream para múltiplos layouts financeiros com Strategy Pattern, validações críticas e garantias de consistência em todo o fluxo de faturamento',
+        'Reduzi o processamento manual de dias para minutos e atuei com alta autonomia na evolução de padrões AWS em S3, ECS e IAM',
       ],
     },
   },
   {
     id: 'representa-junior',
     role: { en: 'Junior Developer', pt: 'Desenvolvedor Júnior' },
-    company: 'uFind Tecnologia',
+    company: 'Representa Online',
     period: { en: 'Sep 2024 - May 2025', pt: 'set. 2024 - maio 2025' },
     summary: {
-      en: 'Designed AI-driven pipelines for more than 16 GB of television media data and real-time communication integrated with the OpenAI API.',
-      pt: 'Projetei pipelines orientados a IA para mais de 16 GB de dados de mídia televisiva e comunicação em tempo real integrada à API da OpenAI.',
+      en: 'Designed AI-oriented data pipelines for more than 16 GB of television media data, structuring ingestion, transformation, and vector-store storage for model consumption.',
+      pt: 'Projetei pipelines orientados a IA para mais de 16 GB de dados de mídia televisiva, estruturando ingestão, transformação e armazenamento vetorial para consumo por modelos.',
     },
     highlights: {
       en: [
-        'Structured event-driven Node.js pipelines with flow control, fault isolation, and distributed processing',
-        'Stored processed media data in a vector store and delivered bidirectional communication over WebSocket',
+        'Structured event-driven Node.js pipelines with flow control, fault isolation, and distributed processing for ingestion and transformation workloads',
+        'Developed bidirectional real-time communication over WebSocket integrated with the OpenAI API, keeping asynchronous coordination explicit across long-running interactions',
       ],
       pt: [
-        'Estruturei pipelines em Node.js com arquitetura orientada a eventos, controle de fluxo, isolamento de falhas e processamento distribuído',
-        'Armazenei dados processados em vector store e entreguei comunicação bidirecional via WebSocket',
+        'Estruturei pipelines em Node.js com arquitetura orientada a eventos, controle de fluxo, isolamento de falhas e processamento distribuído para cargas de ingestão e transformação',
+        'Desenvolvi comunicação bidirecional em tempo real via WebSocket integrada à API da OpenAI, mantendo a coordenação assíncrona explícita em operações de longa duração',
       ],
     },
   },
@@ -306,20 +302,20 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
       en: 'Systems Development Intern',
       pt: 'Estagiário em Desenvolvimento de Sistemas',
     },
-    company: 'uFind Tecnologia',
+    company: 'Representa Online',
     period: { en: 'Jun 2024 - Aug 2024', pt: 'jun. 2024 - ago. 2024' },
     summary: {
-      en: 'Built catalog features with geospatial search, SSR/SSG delivery, and authentication flows tuned for performance and scale.',
-      pt: 'Desenvolvi features de catálogo com busca geoespacial, entrega SSR/SSG e autenticação orientadas a performance e escala.',
+      en: 'Built catalog and authentication features focused on scalable discovery, SSR/SSG delivery, and frontend performance for content-heavy experiences.',
+      pt: 'Desenvolvi funcionalidades de catálogo e autenticação com foco em descoberta escalável, entrega SSR/SSG e performance de frontend para experiências intensivas em conteúdo.',
     },
     highlights: {
       en: [
         'Implemented proximity search with the Haversine formula and optimized queries for scalable catalog discovery',
-        'Structured JWT and Google OAuth2 auth plus SSR/SSG pages with lazy loading, asset optimization, and rendering control',
+        'Implemented JWT and Google OAuth2 authentication plus SSR/SSG pages with lazy loading, asset optimization, and render control to improve TTFB and LCP',
       ],
       pt: [
         'Implementei busca por proximidade com a fórmula de Haversine e consultas otimizadas para descoberta escalável no catálogo',
-        'Estruturei autenticação com JWT e Google OAuth2, além de páginas SSR/SSG com lazy loading, otimização de assets e controle de renderização',
+        'Implementei autenticação com JWT e Google OAuth2, além de páginas SSR/SSG com lazy loading, otimização de assets e controle de renderização para melhorar TTFB e LCP',
       ],
     },
   },
@@ -329,12 +325,12 @@ export const CONTACT_CONTENT: ContactContent = {
   heading: {
     eyebrow: { en: 'Contact', pt: 'Contato' },
     title: {
-      en: 'Start a conversation.',
-      pt: 'Inicie uma conversa.',
+      en: 'Start a technical conversation.',
+      pt: 'Inicie uma conversa técnica.',
     },
     summary: {
-      en: 'Open to engineering roles with architecture ownership and complex product problems.',
-      pt: 'Aberto a funções de engenharia com responsabilidade arquitetural e problemas complexos de produto.',
+      en: 'Open to engineering roles involving distributed systems, financial backends, and architecture ownership.',
+      pt: 'Aberto a funções de engenharia com sistemas distribuídos, backends financeiros e responsabilidade arquitetural.',
     },
   },
   details: [
@@ -364,8 +360,8 @@ export const CONTACT_CONTENT: ContactContent = {
     {
       label: { en: 'Availability', pt: 'Disponibilidade' },
       value: {
-        en: 'Open to engineering roles with architecture ownership.',
-        pt: 'Aberto a funções de engenharia com responsabilidade arquitetural.',
+        en: 'Open to engineering roles involving distributed systems, critical backend flows, and architectural responsibility.',
+        pt: 'Aberto a funções de engenharia com sistemas distribuídos, fluxos críticos de backend e responsabilidade arquitetural.',
       },
     },
   ],

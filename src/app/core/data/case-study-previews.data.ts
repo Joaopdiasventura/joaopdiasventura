@@ -31,12 +31,12 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'Auronix',
     },
     category: {
-      en: 'Digital banking and payment flows',
-      pt: 'Banco digital e fluxos de pagamento',
+      en: 'Digital banking and transactional settlement',
+      pt: 'Banco digital e liquidação transacional',
     },
     teaser: {
-      en: 'Digital banking flow with async settlement, live status, and strict money movement rules.',
-      pt: 'Fluxo bancário digital com liquidação assíncrona, status ao vivo e regras estritas de movimentação financeira.',
+      en: 'Digital banking core with asynchronous settlement, Redis-backed concurrency control, and live transfer feedback over SSE.',
+      pt: 'Núcleo bancário digital com liquidação assíncrona, controle de concorrência apoiado em Redis e feedback de transferências em tempo real via SSE.',
     },
     metrics: [
       {
@@ -44,15 +44,15 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Automated tests', pt: 'Testes automatizados' },
       },
       {
-        value: '10',
-        label: { en: 'Protected views', pt: 'Telas protegidas' },
+        value: '10 min',
+        label: { en: 'Request expiry', pt: 'Expiração de cobrança' },
       },
       {
         value: '100 / 24h',
         label: { en: 'SSE replay window', pt: 'Janela de replay SSE' },
       },
     ],
-    stack: ['Angular', 'PostgreSQL', 'Redis'],
+    stack: ['NestJS', 'PostgreSQL', 'Redis'],
     links: [
       liveLink('https://auronix-client.vercel.app'),
       repositoryLink(
@@ -72,12 +72,12 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'Modularis',
     },
     category: {
-      en: 'Distributed onboarding saga and payment orchestration',
-      pt: 'Saga distribuída de onboarding e orquestração de pagamentos',
+      en: 'Event-driven microservices and distributed onboarding',
+      pt: 'Microsserviços orientados a eventos e onboarding distribuído',
     },
     teaser: {
-      en: 'Polyglot microservice platform where a persisted onboarding saga coordinates identity, payment intent, verified webhooks, and premium activation through RabbitMQ contracts.',
-      pt: 'Plataforma de microsserviços poliglota em que uma saga persistida de onboarding coordena identidade, intenção de pagamento, webhooks verificados e ativação premium por contratos RabbitMQ.',
+      en: 'Polyglot microservice platform where a persisted onboarding saga coordinates identity, payment intent, signed webhooks, and premium activation through RabbitMQ contracts.',
+      pt: 'Plataforma de microsserviços poliglota em que uma saga persistida de onboarding coordena identidade, intenção de pagamento, webhooks assinados e ativação premium por contratos RabbitMQ.',
     },
     metrics: [
       {
@@ -93,7 +93,7 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Runtime stacks', pt: 'Stacks de runtime' },
       },
     ],
-    stack: ['NestJS', 'Spring Boot', 'Go'],
+    stack: ['NestJS', 'RabbitMQ', 'Go'],
     links: [
       repositoryLink({ en: 'Code', pt: 'Código' }, 'https://github.com/joaopdiasventura/Modularis'),
     ],
@@ -138,12 +138,12 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'GGCompress',
     },
     category: {
-      en: 'High-throughput archive and compression engineering',
-      pt: 'Engenharia de compressão e arquivamento de alto throughput',
+      en: 'Concurrent archive engine and deterministic extraction',
+      pt: 'Engine de arquivamento concorrente e extração determinística',
     },
     teaser: {
-      en: 'Go compression engine built around ordered chunk pipelines, deterministic indexing, and benchmarked multi-gigabyte throughput.',
-      pt: 'Motor de compressão em Go construído em torno de pipelines ordenados por chunk, indexação determinística e throughput em multigigabytes medido em benchmark.',
+      en: 'Go archive engine built around ordered chunk pipelines, deterministic indexing, integrity verification, and measured multi-gigabyte throughput.',
+      pt: 'Engine de arquivamento em Go construída sobre pipelines ordenados por chunk, indexação determinística, verificação de integridade e throughput em multigigabytes medido em benchmark.',
     },
     metrics: [
       {
@@ -155,8 +155,8 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Benchmark input', pt: 'Entrada de benchmark' },
       },
       {
-        value: '0.47%',
-        label: { en: 'Compression ratio', pt: 'Taxa de compressão' },
+        value: '8 / 4 MiB',
+        label: { en: 'Workers / chunk size', pt: 'Workers / tamanho do chunk' },
       },
     ],
     stack: ['Go', 'gzip', 'SHA-256'],

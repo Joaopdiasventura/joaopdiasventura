@@ -24,63 +24,140 @@ export const CASE_STUDIES = [
   {
     ...previewFor('auronix'),
     role: {
-      en: 'Full-stack architecture, transactional backend design, workflow UX',
-      pt: 'Arquitetura full-stack, backend transacional e UX de fluxo',
+      en: 'Full-stack architecture, transactional backend design, real-time workflow UX',
+      pt: 'Arquitetura full stack, backend transacional e UX de fluxos em tempo real',
     },
     timeline: INDEPENDENT_PUBLIC_CASE,
+    facts: [
+      {
+        label: { en: 'Focus', pt: 'Foco' },
+        value: {
+          en: 'Transactional settlement, payment requests, and live transfer feedback',
+          pt: 'Liquidação transacional, cobranças e feedback ao vivo de transferências',
+        },
+      },
+      {
+        label: { en: 'Consistency', pt: 'Consistência' },
+        value: {
+          en: 'PostgreSQL as system of record with pessimistic row locking',
+          pt: 'PostgreSQL como fonte transacional com bloqueio pessimista de linhas',
+        },
+      },
+      {
+        label: { en: 'Delivery', pt: 'Entrega' },
+        value: {
+          en: 'Angular client, SSE replay, and QR-driven transfer entry',
+          pt: 'Cliente Angular, replay via SSE e entrada de transferências por QR Code',
+        },
+      },
+    ],
+    systemStack: ['NestJS', 'Fastify', 'PostgreSQL', 'Redis', 'BullMQ', 'Angular', 'SSE'],
+    heroTags: [
+      'Transactional consistency',
+      'PostgreSQL',
+      'Redis',
+      'BullMQ',
+      'Pessimistic locking',
+      'SSE',
+      'QR flows',
+    ],
     problem: {
-      en: 'Transfers and QR payments had to feel immediate while settlement, balance recheck, and double-spend protection stayed strict.',
-      pt: 'Transferências e pagamentos por QR precisavam parecer imediatos enquanto liquidação, rechecagem de saldo e proteção contra double-spend permaneciam rigorosas.',
+      en: 'Transfers, payment requests, and QR entry points had to feel immediate at the UI while balance mutation, double-spend protection, and notification replay stayed strictly controlled.',
+      pt: 'Transferências, cobranças e pontos de entrada por QR Code precisavam parecer imediatos na interface enquanto mutação de saldo, proteção contra double-spend e replay de notificações permaneciam estritamente controlados.',
     },
     solution: {
-      en: 'Core banking consistency stayed in one modular monolith. Transfers enter as pending, workers settle them asynchronously, and balance mutation runs under pessimistic row locks with live UI updates.',
-      pt: 'A consistência bancária central ficou em um monolito modular. Transferências entram como pendentes, workers liquidam tudo de forma assíncrona, e a mutação de saldo roda com row locks pessimistas e atualização ao vivo na interface.',
+      en: 'Auronix keeps money movement inside one modular NestJS core. The API writes pending transfers transactionally, BullMQ workers recheck balance under pessimistic row locks before settlement, Redis supports queueing plus replayable SSE delivery, and the Angular client stays thin while surfacing live transfer state.',
+      pt: 'O Auronix mantém a movimentação financeira dentro de um único núcleo modular em NestJS. A API grava transferências pendentes de forma transacional, workers com BullMQ rechecam saldo sob bloqueio pessimista de linhas antes da liquidação, Redis sustenta filas e entrega SSE com replay, e o cliente Angular permanece enxuto enquanto expõe o estado da transferência em tempo real.',
     },
+    technicalHighlights: [
+      {
+        title: {
+          en: 'Modular monolith around the consistency boundary',
+          pt: 'Monólito modular em torno da fronteira de consistência',
+        },
+        description: {
+          en: 'User, transfer, payment-request, notification, and cache responsibilities stay separated inside one deployable runtime so balance mutation never crosses service boundaries.',
+          pt: 'Responsabilidades de usuário, transferência, cobrança, notificação e cache permanecem separadas dentro de um único runtime implantável para que a mutação de saldo nunca atravesse fronteiras de serviço.',
+        },
+      },
+      {
+        title: {
+          en: 'Accept fast, settle under lock',
+          pt: 'Aceitar rápido, liquidar sob lock',
+        },
+        description: {
+          en: 'The API persists pending transfers synchronously, then BullMQ workers recheck balance and settle under pessimistic row locks before emitting the final outcome.',
+          pt: 'A API persiste transferências pendentes de forma síncrona e, em seguida, workers com BullMQ rechecam saldo e liquidam sob bloqueio pessimista de linhas antes de emitir o resultado final.',
+        },
+      },
+      {
+        title: {
+          en: 'Replayable real-time feedback',
+          pt: 'Feedback em tempo real com replay',
+        },
+        description: {
+          en: 'Redis backs notification fan-out and bounded replay windows so reconnecting SSE clients recover recent state without turning the browser into the source of truth.',
+          pt: 'O Redis sustenta fan-out de notificações e janelas de replay limitadas para que clientes SSE reconectados recuperem estado recente sem transformar o navegador na fonte da verdade.',
+        },
+      },
+      {
+        title: {
+          en: 'Unified transfer entry surface',
+          pt: 'Superfície unificada de entrada de transferências',
+        },
+        description: {
+          en: 'Manual targets, direct links, payment requests, and QR payloads converge to the same authorization path, centralizing validation and money movement rules.',
+          pt: 'Alvos manuais, links diretos, cobranças e payloads de QR convergem para o mesmo caminho de autorização, centralizando validações e regras de movimentação financeira.',
+        },
+      },
+    ],
     resultSummary: {
-      en: 'Re-run on April 8, 2026: 248 automated tests covering account flows, payment-request expiry, double-spend protection, and notification replay.',
-      pt: 'Reexecutado em 8 de abril de 2026: 248 testes automatizados cobrindo fluxos de conta, expiração de cobrança, double-spend e replay de notificações.',
+      en: 'Reviewed on May 1, 2026: 248 automated tests cover account lifecycle, cursor-based transfer history, payment-request expiry, double-spend protection, and replayable transfer notifications across the full pending-to-settled flow.',
+      pt: 'Revisado em 1 de maio de 2026: 248 testes automatizados cobrem ciclo de vida de conta, histórico de transferências com cursor, expiração de cobrança, proteção contra double-spend e notificações com replay ao longo de todo o fluxo de pendente até liquidado.',
     },
     constraints: {
       en: [
-        'All monetary values use integer cents',
-        'Cookie auth keeps session authority on the backend',
-        'Pending transfers must resist concurrency and replay limits',
+        'All monetary values stay in integer cents',
+        'Session authority remains on the backend through secure cookie auth',
+        'Transfer settlement must recheck balance under lock before mutation',
+        'Replay windows and expiring payment requests need bounded TTL behavior visible to the client',
       ],
       pt: [
-        'Todos os valores monetários usam centavos inteiros',
-        'Autenticação por cookie mantém a autoridade de sessão no backend',
-        'Transferências pendentes precisam resistir \u00e0 concorrência e a limites de replay',
+        'Todos os valores monetários permanecem em centavos inteiros',
+        'A autoridade da sessão permanece no backend por autenticação segura com cookie',
+        'A liquidação da transferência precisa revalidar saldo sob lock antes de qualquer mutação',
+        'Janelas de replay e cobranças expiradas exigem comportamento de TTL limitado e visível ao cliente',
       ],
     },
     decisions: [
       {
         title: {
-          en: 'Keep banking consistency in one deployable core',
-          pt: 'Manter a consistência bancária em um núcleo implantável',
+          en: 'Keep consistency in one deployable core',
+          pt: 'Manter a consistência em um único núcleo implantável',
         },
         description: {
-          en: 'User, transfer, payment-request, notification, cache, and persistence concerns stay modular without turning balance mutation into distributed coordination.',
-          pt: 'Responsabilidades de usuário, transferência, cobrança, notificação, cache e persistência ficam modulares sem transformar mutação de saldo em coordenação distribuída.',
+          en: 'User, transfer, payment-request, notification, and cache concerns stay modular without turning balance mutation into distributed coordination.',
+          pt: 'Responsabilidades de usuário, transferência, cobrança, notificação e cache permanecem modulares sem transformar mutação de saldo em coordenação distribuída.',
         },
       },
       {
         title: {
-          en: 'Accept fast, settle carefully',
-          pt: 'Aceitar rápido, liquidar com cuidado',
+          en: 'Separate acceptance from settlement',
+          pt: 'Separar aceitação de liquidação',
         },
         description: {
-          en: 'The API persists a pending transfer first, then workers recheck balance before mutating both accounts and emitting the final event.',
-          pt: 'A API persiste a transferência pendente primeiro; depois, workers rechecam saldo antes de mutar as duas contas e emitir o evento final.',
+          en: 'The API responds after persisting the pending transfer, while workers own the locked recheck, balance mutation, and final transfer event.',
+          pt: 'A API responde após persistir a transferência pendente, enquanto os workers assumem a rechecagem sob lock, a mutação de saldo e o evento final da transferência.',
         },
       },
       {
         title: {
-          en: 'Unify money movement into one authorization path',
-          pt: 'Unificar movimentação financeira em um único caminho',
+          en: 'Push events one way and keep truth on the server',
+          pt: 'Empurrar eventos em uma direção e manter a verdade no servidor',
         },
         description: {
-          en: 'Manual keys, payment requests, links, and QR payloads converge to the same transfer authorization flow.',
-          pt: 'Chaves manuais, cobranças, links e payloads de QR convergem para o mesmo fluxo de autorização de transferência.',
+          en: 'SSE keeps transfer state visible in real time, but balance authority, replay limits, and notification history remain enforced by backend and Redis boundaries.',
+          pt: 'SSE mantém o estado da transferência visível em tempo real, mas autoridade de saldo, limites de replay e histórico de notificações permanecem impostos pelo backend e pelas fronteiras do Redis.',
         },
       },
     ],
@@ -89,8 +166,8 @@ export const CASE_STUDIES = [
       pt: 'Estudo de caso Auronix | João Paulo Dias Ventura',
     },
     seoDescription: {
-      en: 'Case study about a digital bank with async settlement, live transfer updates, and auditable money movement.',
-      pt: 'Estudo de caso sobre um banco digital com liquidação assíncrona, atualização ao vivo e movimentação financeira auditável.',
+      en: 'Case study about a digital banking core with asynchronous settlement, pessimistic locking, and replayable SSE notifications.',
+      pt: 'Estudo de caso sobre um núcleo bancário digital com liquidação assíncrona, bloqueio pessimista e notificações SSE com replay.',
     },
   },
   {
@@ -104,22 +181,22 @@ export const CASE_STUDIES = [
       {
         label: { en: 'Focus', pt: 'Foco' },
         value: {
-          en: 'Distributed backend architecture, sagas, and integration contracts',
-          pt: 'Arquitetura de backend distribuído, sagas e contratos de integração',
+          en: 'Distributed onboarding, payment confirmation, and premium activation',
+          pt: 'Onboarding distribuído, confirmação de pagamento e ativação premium',
         },
       },
       {
         label: { en: 'Topology', pt: 'Topologia' },
         value: {
-          en: 'nginx + gateway + five business services',
-          pt: 'nginx + gateway + cinco serviços de negócio',
+          en: 'nginx + gateway + onboarding, identity, membership, payment, and webhook services',
+          pt: 'nginx + gateway + serviços de onboarding, identidade, membership, pagamento e webhook',
         },
       },
       {
-        label: { en: 'Persistence', pt: 'Persistência' },
+        label: { en: 'Messaging', pt: 'Mensageria' },
         value: {
-          en: 'PostgreSQL, MongoDB, and RabbitMQ with service ownership',
-          pt: 'PostgreSQL, MongoDB e RabbitMQ com ownership por serviço',
+          en: 'RabbitMQ commands, events, RPC responses, and signed webhook relay',
+          pt: 'Comandos, eventos, respostas RPC em RabbitMQ e retransmissão de webhook assinado',
         },
       },
     ],
@@ -130,8 +207,9 @@ export const CASE_STUDIES = [
       'RabbitMQ',
       'PostgreSQL',
       'MongoDB',
-      'Docker',
-      'Nginx',
+      'Docker Compose',
+      'nginx',
+      'AsyncAPI',
     ],
     heroTags: [
       'Event-driven architecture',
@@ -141,6 +219,7 @@ export const CASE_STUDIES = [
       'Idempotency',
       'Retries',
       'Fault tolerance',
+      'Signed webhooks',
       'NestJS',
       'Spring Boot',
       'Go',
@@ -150,16 +229,16 @@ export const CASE_STUDIES = [
       pt: 'Superfície de runtime',
     },
     heroVisualCaption: {
-      en: 'Real manual demo used to drive account creation, stream subscription, and webhook confirmation against the distributed topology.',
-      pt: 'Demo manual real usada para acionar criação de conta, inscrição no stream e confirmação de webhook contra a topologia distribuída.',
+      en: 'Manual demo used to drive account creation, event propagation, and webhook confirmation against the distributed topology.',
+      pt: 'Demo manual usada para acionar criação de conta, propagação de eventos e confirmação de webhook contra a topologia distribuída.',
     },
     problem: {
-      en: 'Account creation had to stay fast at the edge without assuming a global transaction. Identity, payment intent, signed webhooks, and premium entitlement each needed explicit ownership, duplicate protection, and recovery after partial failure.',
-      pt: 'A criação de conta precisava permanecer rápida na borda sem assumir uma transação global. Identidade, intenção de pagamento, webhooks assinados e entitlement premium exigiam ownership explícito, proteção contra duplicidade e recuperação após falha parcial.',
+      en: 'Account creation had to stay fast at the edge without assuming a global transaction. Identity, payment intent, signed webhooks, and premium entitlement each needed explicit ownership, duplicate protection, and deterministic recovery after partial failure.',
+      pt: 'A criação de conta precisava permanecer rápida na borda sem assumir uma transação global. Identidade, intenção de pagamento, webhooks assinados e entitlement premium exigiam responsabilidade explícita, proteção contra duplicidade e recuperação determinística após falha parcial.',
     },
     solution: {
-      en: 'Modularis keeps HTTP thin and shifts coordination to a persisted onboarding saga. The gateway publishes commands, downstream services exchange events and RPC-style responses over RabbitMQ, webhook ingress is durably relayed before mutating payment state, and each bounded context keeps the storage model that matches its own failure and consistency profile.',
-      pt: 'O Modularis mantém o HTTP fino e desloca a coordenação para uma saga persistida de onboarding. O gateway publica comandos, os serviços trocam eventos e respostas em estilo RPC via RabbitMQ, o ingresso de webhook é retransmitido de forma durável antes de alterar o estado do pagamento, e cada bounded context preserva o modelo de armazenamento que combina com seu perfil de falha e consistência.',
+      en: 'Modularis keeps HTTP thin and shifts coordination to a persisted onboarding saga. The gateway publishes commands, downstream services exchange events and RPC-style responses over RabbitMQ, signed webhook ingress is relayed durably before mutating payment state, and each bounded context keeps the storage model that matches its own consistency and failure profile.',
+      pt: 'O Modularis mantém o HTTP fino e desloca a coordenação para uma saga persistida de onboarding. O gateway publica comandos, os serviços trocam eventos e respostas em estilo RPC via RabbitMQ, o ingresso de webhook assinado é retransmitido de forma durável antes de alterar o estado do pagamento, e cada bounded context preserva o modelo de armazenamento que combina com seu perfil de consistência e falha.',
     },
     technicalHighlights: [
       {
@@ -169,7 +248,7 @@ export const CASE_STUDIES = [
         },
         description: {
           en: 'The onboarding service stores transitions, retry schedule, and lease ownership in PostgreSQL before advancing identity and payment steps.',
-          pt: 'O onboarding-service persiste transições, agenda de retry e ownership de lease em PostgreSQL antes de avançar etapas de identidade e pagamento.',
+          pt: 'O serviço de onboarding persiste transições, agenda de retries e controle por lease em PostgreSQL antes de avançar etapas de identidade e pagamento.',
         },
       },
       {
@@ -204,8 +283,8 @@ export const CASE_STUDIES = [
       },
     ],
     resultSummary: {
-      en: 'Reviewed on May 1, 2026: the repository implements six deployable services behind nginx, three RabbitMQ exchanges, nine documented async channels, signed webhook verification, outbox and inbox style delivery controls, and recovery loops that converge the flow from account request to premium entitlement.',
-      pt: 'Revisado em 1 de maio de 2026: o repositório implementa seis serviços implantáveis atrás do nginx, três exchanges RabbitMQ, nove canais assíncronos documentados, verificação de webhook assinado, controles de entrega em estilo outbox e inbox e loops de recuperação que convergem o fluxo da requisição de conta ao entitlement premium.',
+      en: 'Reviewed on May 1, 2026: the repository implements six deployable services behind nginx, RabbitMQ command and event contracts, nine documented async channels, signed webhook verification, and recovery loops that converge onboarding from account request to premium activation.',
+      pt: 'Revisado em 1 de maio de 2026: o repositório implementa seis serviços implantáveis atrás do nginx, contratos de comandos e eventos em RabbitMQ, nove canais assíncronos documentados, verificação de webhook assinado e loops de recuperação que convergem o onboarding da requisição de conta até a ativação premium.',
     },
     constraints: {
       en: [
@@ -218,7 +297,7 @@ export const CASE_STUDIES = [
         'Os dados pertencem aos serviços, sem transação global',
         'Entrega at-least-once exige consumidores idempotentes e recibos de deduplicação',
         'Callbacks externos só são aceitos após verificação HMAC sobre o payload bruto',
-        'Workers de recuperação exigem ownership por lease para evitar progresso duplicado de saga',
+        'Workers de recuperação exigem controle por lease para evitar progresso duplicado de saga',
       ],
     },
     decisions: [
@@ -229,7 +308,7 @@ export const CASE_STUDIES = [
         },
         description: {
           en: 'The onboarding saga stores state, retryability, next action, and lock ownership so partially completed flows can be recovered deterministically.',
-          pt: 'A saga de onboarding armazena estado, retryability, próxima ação e ownership de lock para que fluxos parcialmente concluídos sejam recuperados de forma determinística.',
+          pt: 'A saga de onboarding armazena estado, política de retry, próxima ação e posse do lock para que fluxos parcialmente concluídos sejam recuperados de forma determinística.',
         },
       },
       {
@@ -258,8 +337,8 @@ export const CASE_STUDIES = [
       pt: 'Estudo de caso Modularis | João Paulo Dias Ventura',
     },
     seoDescription: {
-      en: 'Case study about a production-shaped distributed platform with a persisted saga, RabbitMQ contracts, idempotent delivery, and signed webhook relay.',
-      pt: 'Estudo de caso sobre uma plataforma distribuída com formato de produção, saga persistida, contratos RabbitMQ, entrega idempotente e retransmissão de webhook assinado.',
+      en: 'Case study about event-driven microservices with a persisted saga, RabbitMQ contracts, idempotent delivery, and signed webhook relay.',
+      pt: 'Estudo de caso sobre microsserviços orientados a eventos com saga persistida, contratos RabbitMQ, entrega idempotente e retransmissão de webhook assinado.',
     },
   },
   {
@@ -337,21 +416,85 @@ export const CASE_STUDIES = [
   {
     ...previewFor('ggc'),
     role: {
-      en: 'Systems design, archive format engineering, concurrency pipeline, benchmark methodology',
+      en: 'Systems design, archive format engineering, concurrency pipeline, and benchmark methodology',
       pt: 'Desenho de sistemas, engenharia de formato de arquivo, pipeline concorrente e metodologia de benchmark',
     },
     timeline: INDEPENDENT_PUBLIC_CASE,
+    facts: [
+      {
+        label: { en: 'Focus', pt: 'Foco' },
+        value: {
+          en: 'Archive format design, concurrency pipeline, and integrity verification',
+          pt: 'Design de formato de arquivo, pipeline concorrente e verificação de integridade',
+        },
+      },
+      {
+        label: { en: 'Runtime', pt: 'Runtime' },
+        value: {
+          en: 'Sequential reader, worker pool, and ordered writer',
+          pt: 'Leitor sequencial, pool de workers e escrita ordenada',
+        },
+      },
+      {
+        label: { en: 'Safety', pt: 'Segurança' },
+        value: {
+          en: 'Per-chunk checksums, optional SHA-256, and staged extraction',
+          pt: 'Checksums por chunk, SHA-256 opcional e extração em staging',
+        },
+      },
+    ],
+    systemStack: ['Go', 'goroutines', 'channels', 'gzip', 'SHA-256', 'CLI'],
+    heroTags: [
+      'Go',
+      'Concurrency pipeline',
+      'Archive format',
+      'Worker pool',
+      'Checksums',
+      'Safe extraction',
+    ],
     problem: {
-      en: 'Large inputs had to compress and verify quickly without unbounded memory, non-deterministic archives, or unsafe extraction paths.',
-      pt: 'Entradas grandes precisavam ser comprimidas e verificadas rapidamente sem memória ilimitada, arquivos não deterministas ou caminhos inseguros de extração.',
+      en: 'Large file and directory inputs had to compress and verify quickly without unbounded memory, non-deterministic archive order, or unsafe restore paths.',
+      pt: 'Entradas grandes de arquivos e diretórios precisavam ser comprimidas e verificadas rapidamente sem memória ilimitada, ordem de arquivo não determinística ou caminhos inseguros de restauração.',
     },
     solution: {
-      en: 'GGCompress combines sequential disk reads, goroutine-based chunk workers, ordered emission, and one versioned `.ggc` format that validates manifest and chunk indexes before restore.',
-      pt: 'GGCompress combina leitura sequencial de disco, workers por chunk baseados em goroutines, emissão ordenada e um único formato `.ggc` versionado que valida manifesto e índices de chunk antes da restauração.',
+      en: 'GGCompress uses one versioned `.ggc` format for single files and directory trees, combining sequential discovery and reads, goroutine chunk workers, ordered emission, and integrity checks before restore.',
+      pt: 'O GGCompress usa um único formato `.ggc` versionado para arquivos únicos e árvores de diretório, combinando descoberta e leitura sequencial, workers por chunk com goroutines, emissão ordenada e verificações de integridade antes da restauração.',
     },
+    technicalHighlights: [
+      {
+        title: {
+          en: 'One official archive format',
+          pt: 'Um formato oficial de arquivamento',
+        },
+        description: {
+          en: 'The `GGC1` layout keeps one deterministic contract for files, directory trees, metadata, chunk indexes, and restore semantics instead of splitting behaviors across modes.',
+          pt: 'O layout `GGC1` mantém um único contrato determinístico para arquivos, árvores de diretório, metadados, índices de chunk e semântica de restauração, sem dividir comportamento entre modos.',
+        },
+      },
+      {
+        title: {
+          en: 'Parallel chunk work with ordered output',
+          pt: 'Trabalho paralelo por chunk com saída ordenada',
+        },
+        description: {
+          en: 'Sequential readers feed goroutine workers while an ordered emission stage preserves deterministic archive order by global chunk index.',
+          pt: 'Leitores sequenciais alimentam workers com goroutines enquanto uma etapa de emissão ordenada preserva a ordem determinística do arquivo por índice global de chunk.',
+        },
+      },
+      {
+        title: {
+          en: 'Restore only after verification',
+          pt: 'Restaurar apenas após verificação',
+        },
+        description: {
+          en: 'Chunk checksums, optional SHA-256 validation, normalized relative paths, and staged extraction make corruption and traversal risks explicit before the final rename.',
+          pt: 'Checksums por chunk, validação opcional com SHA-256, caminhos relativos normalizados e extração em staging tornam explícitos riscos de corrupção e traversal antes do rename final.',
+        },
+      },
+    ],
     resultSummary: {
-      en: 'Measured CLI run dated April 23, 2026: a 9.77 GiB file compressed at 1.23 GiB/s with 8 workers and 4 MiB chunks, finishing in 7.952s at a 0.47% ratio.',
-      pt: 'Execução medida da CLI em 23 de abril de 2026: um arquivo de 9.77 GiB foi comprimido a 1.23 GiB/s com 8 workers e chunks de 4 MiB, concluindo em 7.952s com taxa de 0.47%.',
+      en: 'Measured CLI run dated April 23, 2026: a 9.77 GiB input compressed at 1.23 GiB/s with 8 workers and 4 MiB chunks, finishing in 7.952s while preserving deterministic archive order.',
+      pt: 'Execução medida da CLI em 23 de abril de 2026: uma entrada de 9.77 GiB foi comprimida a 1.23 GiB/s com 8 workers e chunks de 4 MiB, concluindo em 7.952s enquanto preservava ordem determinística de arquivamento.',
     },
     constraints: {
       en: [
@@ -404,8 +547,8 @@ export const CASE_STUDIES = [
       pt: 'Estudo de caso GGCompress | João Paulo Dias Ventura',
     },
     seoDescription: {
-      en: 'Case study about a Go compression engine with deterministic archive design, concurrent chunk pipelines, and measured throughput.',
-      pt: 'Estudo de caso sobre um motor de compressão em Go com design determinístico de arquivo, pipelines concorrentes por chunk e throughput medido.',
+      en: 'Case study about a Go archive engine with deterministic format design, concurrent chunk pipelines, and measured throughput.',
+      pt: 'Estudo de caso sobre uma engine de arquivamento em Go com design determinístico de formato, pipelines concorrentes por chunk e throughput medido.',
     },
   },
   {

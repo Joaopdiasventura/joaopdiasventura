@@ -168,7 +168,7 @@ describe('ScrollMotionDirective', () => {
     const track = fixture.nativeElement.querySelector('.track') as HTMLDivElement;
     const card = fixture.nativeElement.querySelector('.card') as HTMLDivElement;
 
-    let hostTop = 110;
+    const hostTop = 110;
 
     setElementMetric(sticky, 'offsetHeight', 600);
     setElementMetric(viewport, 'clientWidth', 800);
@@ -223,7 +223,7 @@ describe('ScrollMotionDirective', () => {
     const track = fixture.nativeElement.querySelector('.track') as HTMLDivElement;
     const card = fixture.nativeElement.querySelector('.card') as HTMLDivElement;
 
-    let hostTop = 100;
+    const hostTop = 100;
 
     setElementMetric(sticky, 'offsetHeight', 540);
     setElementMetric(viewport, 'clientWidth', 360);
