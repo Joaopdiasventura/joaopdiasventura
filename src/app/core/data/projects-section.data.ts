@@ -87,41 +87,41 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'Modularis',
       },
       category: {
-        en: 'Event-driven onboarding and payments',
-        pt: 'Onboarding e pagamentos orientados a eventos',
+        en: 'Distributed onboarding saga and payment orchestration',
+        pt: 'Saga distribuída de onboarding e orquestração de pagamentos',
       },
       problem: {
-        en: 'Onboarding had to stay fast while payment state, retries, and premium activation ran across services.',
-        pt: 'O onboarding precisava permanecer rápido enquanto estado de pagamento, retries e ativação premium rodavam entre serviços.',
+        en: 'The edge had to respond quickly while identity, payment intent, webhook confirmation, and premium convergence tolerated retries and duplicate delivery.',
+        pt: 'A borda precisava responder rápido enquanto identidade, intenção de pagamento, confirmação de webhook e convergência premium toleravam retries e entrega duplicada.',
       },
       solution: {
-        en: 'Four services coordinated by typed RabbitMQ contracts, verified webhooks, and split persistence.',
-        pt: 'Quatro serviços coordenados por contratos tipados em RabbitMQ, webhooks validados e persistência segmentada.',
+        en: 'A persisted saga coordinates service-owned stores, RabbitMQ contracts, and idempotent consumers across NestJS, Spring Boot, and Go.',
+        pt: 'Uma saga persistida coordena persistências por serviço, contratos RabbitMQ e consumidores idempotentes em NestJS, Spring Boot e Go.',
       },
       metrics: [
         {
-          value: '4',
+          value: '6',
           label: {
-            en: 'Microservices',
-            pt: 'Microsserviços',
+            en: 'Deployable services',
+            pt: 'Serviços implantáveis',
           },
         },
         {
-          value: '57',
+          value: '9',
           label: {
-            en: 'Passing tests',
-            pt: 'Testes aprovados',
+            en: 'Async channels',
+            pt: 'Canais assíncronos',
           },
         },
         {
-          value: '8',
+          value: '3',
           label: {
-            en: 'Message contracts',
-            pt: 'Contratos de mensagem',
+            en: 'Runtime stacks',
+            pt: 'Stacks de runtime',
           },
         },
       ],
-      stack: ['RabbitMQ', 'Docker', 'MongoDB'],
+      stack: ['NestJS', 'Spring Boot', 'Go'],
       liveUrl: null,
       repositories: [
         {
@@ -131,14 +131,14 @@ export const PROJECTS_SECTION_DATA = {
       ],
       icon: {
         src: '/assets/projects/icons/modularis.svg',
-        width: 24,
-        height: 24,
+        width: 28,
+        height: 28,
       },
       cover: {
         src: '/assets/projects/covers/modularis/modularis-1280.webp',
         alt: {
-          en: 'Modularis cover showing service boundaries, queues, and payment state propagation.',
-          pt: 'Capa do Modularis mostrando fronteiras de serviço, filas e propagação de estado de pagamento.',
+          en: 'Modularis cover showing the real flow demo used to drive account creation, stream subscription, and webhook confirmation over the distributed runtime.',
+          pt: 'Capa do Modularis mostrando a demo de fluxo real usada para acionar criação de conta, inscrição no stream e confirmação de webhook sobre o runtime distribuído.',
         },
       },
     },
@@ -255,8 +255,8 @@ export const PROJECTS_SECTION_DATA = {
       ],
       icon: {
         src: '/assets/projects/icons/ggc.svg',
-        width: 24,
-        height: 24,
+        width: 30,
+        height: 30,
       },
       cover: {
         src: '/assets/projects/covers/ggc/ggc-1280.webp',
@@ -364,7 +364,7 @@ export const PROJECTS_SECTION_DATA = {
           },
         },
       ],
-      stack: ['Angular', 'NestJs', 'Capacitor'],
+      stack: ['Angular', 'NestJS', 'Capacitor'],
       liveUrl: 'https://etecfy.vercel.app',
       repositories: [
         {

@@ -72,28 +72,28 @@ export const CASE_STUDY_PREVIEWS = [
       pt: 'Modularis',
     },
     category: {
-      en: 'Event-driven onboarding and payments',
-      pt: 'Onboarding e pagamentos orientados a eventos',
+      en: 'Distributed onboarding saga and payment orchestration',
+      pt: 'Saga distribuída de onboarding e orquestração de pagamentos',
     },
     teaser: {
-      en: 'Event-driven onboarding backend with typed contracts, verified webhooks, and premium activation across four services.',
-      pt: 'Backend de onboarding orientado a eventos com contratos tipados, webhooks validados e ativação premium em quatro serviços.',
+      en: 'Polyglot microservice platform where a persisted onboarding saga coordinates identity, payment intent, verified webhooks, and premium activation through RabbitMQ contracts.',
+      pt: 'Plataforma de microsserviços poliglota em que uma saga persistida de onboarding coordena identidade, intenção de pagamento, webhooks verificados e ativação premium por contratos RabbitMQ.',
     },
     metrics: [
       {
-        value: '4',
-        label: { en: 'Microservices', pt: 'Microsserviços' },
+        value: '6',
+        label: { en: 'Deployable services', pt: 'Serviços implantáveis' },
       },
       {
-        value: '57',
-        label: { en: 'Passing tests', pt: 'Testes aprovados' },
+        value: '9',
+        label: { en: 'Async channels', pt: 'Canais assíncronos' },
       },
       {
-        value: '8',
-        label: { en: 'Message contracts', pt: 'Contratos de mensagem' },
+        value: '3',
+        label: { en: 'Runtime stacks', pt: 'Stacks de runtime' },
       },
     ],
-    stack: ['RabbitMQ', 'Docker', 'MongoDB'],
+    stack: ['NestJS', 'Spring Boot', 'Go'],
     links: [
       repositoryLink({ en: 'Code', pt: 'Código' }, 'https://github.com/joaopdiasventura/Modularis'),
     ],
@@ -226,7 +226,7 @@ export const CASE_STUDY_PREVIEWS = [
         label: { en: 'Delivery surfaces', pt: 'Superfícies de entrega' },
       },
     ],
-    stack: ['Angular', 'NestJs', 'Capacitor'],
+    stack: ['Angular', 'NestJS', 'Capacitor'],
     links: [
       liveLink('https://etecfy.vercel.app'),
       repositoryLink(

@@ -37,18 +37,27 @@ describe('CaseStudyPage', () => {
     fixture.detectChanges();
 
     const host = fixture.nativeElement as HTMLElement;
-    const panelTitles = Array.from(host.querySelectorAll<HTMLElement>('.case-study-panel__title')).map(
-      (element) => element.textContent?.trim(),
+    const panelTitles = Array.from(
+      host.querySelectorAll<HTMLElement>('.case-study-panel__title'),
+    ).map((element) => element.textContent?.trim());
+    const tiltedPanels = host.querySelectorAll(
+      'app-case-study-panel.case-study__panel.viewport-tilt',
     );
-    const tiltedPanels = host.querySelectorAll('app-case-study-panel.case-study__panel.viewport-tilt');
+    const cover = host.querySelector<HTMLImageElement>('.case-study__cover-frame img');
 
     expect(host.querySelector('.case-study__hero-title')?.textContent).toContain('GGCompress');
     expect(host.querySelector('.case-study__hero-icon img')).not.toBeNull();
+    expect(cover).not.toBeNull();
+    expect(cover?.getAttribute('srcset')).toContain(
+      '/assets/projects/covers/ggc/ggc-960.webp 960w',
+    );
     expect(host.querySelector('.case-study__next-icon img')).not.toBeNull();
     expect(panelTitles).toEqual(['Problem', 'Solution', 'Result']);
     expect(tiltedPanels.length).toBe(5);
     expect(host.querySelector('.case-study__next.viewport-tilt')).not.toBeNull();
-    expect(host.querySelectorAll('.case-study__hero-metrics .content-metric-list__item').length).toBe(3);
+    expect(
+      host.querySelectorAll('.case-study__hero-metrics .content-metric-list__item').length,
+    ).toBe(3);
     expect(host.querySelector('.case-study__next-button')).not.toBeNull();
     expect(host.querySelector('.case-study__next')).not.toBeNull();
     expect(host.querySelector('.case-study__next h2')?.textContent).toContain('VOX');

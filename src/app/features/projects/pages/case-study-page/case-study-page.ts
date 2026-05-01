@@ -15,7 +15,7 @@ import { CASE_STUDIES } from '../../../../core/data/case-studies.data';
 import { CASE_STUDY_PREVIEWS } from '../../../../core/data/case-study-previews.data';
 import { PROJECTS_SECTION_DATA } from '../../../../core/data/projects-section.data';
 import { FEATURED_PROJECTS_CONTENT } from '../../../../core/data/portfolio.data';
-import { CaseStudySlug } from '../../../../core/models/portfolio.model';
+import { CaseStudy, CaseStudySlug } from '../../../../core/models/portfolio.model';
 import { LanguageService } from '../../../../core/services/language/language.service';
 import { BrandScene } from '../../../../shared/components/brand-scene/brand-scene';
 import {
@@ -30,6 +30,7 @@ import { ContentTextList } from '../../../../shared/components/content/content-t
 import { UiButton } from '../../../../shared/components/ui/ui-button/ui-button';
 import { RevealOnScrollDirective } from '../../../../shared/directives/reveal-on-scroll/reveal-on-scroll.directive';
 import { ViewportTiltDirective } from '../../../../shared/directives/viewport-tilt/viewport-tilt.directive';
+import { provideLocalAssetImageLoader } from '../../../../shared/images/local-asset-image-loader';
 import { CaseStudyPanel } from '../../components/case-study-panel/case-study-panel';
 
 type ShowcaseProject = (typeof PROJECTS_SECTION_DATA.projects)[number];
@@ -38,6 +39,11 @@ const DEFAULT_CASE_SHOWCASE =
   PROJECTS_SECTION_DATA.projects.find((project) => project.slug == 'vox') ??
   PROJECTS_SECTION_DATA.projects[0];
 const CASE_STUDY_METRICS_TEMPLATE = 'repeat(auto-fit, minmax(min(100%, 10rem), 1fr))';
+const CASE_STUDY_COVER_SRCSET = '640w, 960w, 1280w';
+const CASE_STUDY_COVER_SIZES =
+  '(max-width: 959px) calc(100vw - 2rem), (max-width: 1399px) 50vw, 42rem';
+const CASE_STUDY_COVER_WIDTH = 1280;
+const CASE_STUDY_COVER_HEIGHT = 512;
 
 @Component({
   selector: 'app-case-study-page',
@@ -55,10 +61,15 @@ const CASE_STUDY_METRICS_TEMPLATE = 'repeat(auto-fit, minmax(min(100%, 10rem), 1
   templateUrl: './case-study-page.html',
   styleUrl: './case-study-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideLocalAssetImageLoader()],
 })
 export class CaseStudyPage {
   public readonly projectsCopy = FEATURED_PROJECTS_CONTENT;
   public readonly caseStudyMetricsTemplate = CASE_STUDY_METRICS_TEMPLATE;
+  public readonly coverSrcset = CASE_STUDY_COVER_SRCSET;
+  public readonly coverSizes = CASE_STUDY_COVER_SIZES;
+  public readonly coverWidth = CASE_STUDY_COVER_WIDTH;
+  public readonly coverHeight = CASE_STUDY_COVER_HEIGHT;
   public readonly labels = {
     back: { en: 'Back to projects', pt: 'Voltar aos projetos' },
     problem: { en: 'Problem', pt: 'Problema' },
@@ -70,6 +81,12 @@ export class CaseStudyPage {
     constraints: { en: 'Constraints', pt: 'Restrições' },
     decisions: { en: 'Decisions', pt: 'Decisões' },
     proof: { en: 'Proof', pt: 'Prova' },
+    system: { en: 'System view', pt: 'Visão do sistema' },
+    architecture: { en: 'Architecture signals', pt: 'Sinais de arquitetura' },
+    architectureSummary: {
+      en: 'The operational shape that makes the distributed flow recoverable, observable, and evolvable.',
+      pt: 'A forma operacional que torna o fluxo distribuído recuperável, observável e evolutivo.',
+    },
     nextCase: { en: 'Next case study', pt: 'Próximo estudo de caso' },
   } as const;
 
@@ -85,7 +102,7 @@ export class CaseStudyPage {
     { initialValue: null },
   );
 
-  public readonly caseStudy = computed(() => {
+  public readonly caseStudy = computed<CaseStudy>(() => {
     const slug = this.slug();
     return CASE_STUDIES.find((item) => item.slug == slug) ?? CASE_STUDIES[0];
   });
@@ -122,6 +139,13 @@ export class CaseStudyPage {
     const study = this.caseStudy();
     const showcase = this.showcaseProject();
 
+    if (study.facts?.length) {
+      return study.facts.map((fact) => ({
+        label: this.copy(fact.label),
+        value: this.copy(fact.value),
+      }));
+    }
+
     return [
       {
         label: this.copy(this.labels.role),
@@ -133,13 +157,17 @@ export class CaseStudyPage {
       },
       {
         label: this.copy(this.labels.stack),
-        value: showcase.stack.join(' / '),
+        value: (study.systemStack ?? showcase.stack).join(' / '),
       },
     ];
   });
 
+  public readonly heroTags = computed(() => this.caseStudy().heroTags ?? []);
   public readonly constraintItems = computed(() => this.copyList(this.caseStudy().constraints));
-  public readonly solutionStackItems = computed(() => [...this.showcaseProject().stack]);
+  public readonly solutionStackItems = computed(() => [
+    ...(this.caseStudy().systemStack ?? this.showcaseProject().stack),
+  ]);
+  public readonly technicalHighlights = computed(() => this.caseStudy().technicalHighlights ?? []);
 
   public readonly impactMetrics = computed<readonly ContentMetricItem[]>(() =>
     this.showcaseProject().metrics.map((metric) => ({

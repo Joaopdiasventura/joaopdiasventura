@@ -457,8 +457,8 @@ html::-webkit-scrollbar-corner {
 }
 
 .project-card[data-theme='modularis'] {
-  --project-accent: rgb(224, 35, 78);
-  --project-accent-soft: rgb(224 35 78 / 0.18);
+  --project-accent: rgb(230, 120, 40);
+  --project-accent-soft: rgb(230 120 40 / 0.18);
 }
 
 .project-card[data-theme='votrix'] {
@@ -494,6 +494,10 @@ html::-webkit-scrollbar-corner {
   object-fit: cover;
   transform: scale(1.02);
   transition: transform 280ms ease;
+}
+
+.project-card[data-theme='modularis'] .project-card__media img {
+  object-position: left top;
 }
 
 .project-card:hover .project-card__media img,

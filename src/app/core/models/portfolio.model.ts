@@ -74,6 +74,11 @@ export interface CaseStudyDecision {
   description: LocalizedValue<string>;
 }
 
+export interface CaseStudyFact {
+  label: LocalizedValue<string>;
+  value: LocalizedValue<string>;
+}
+
 export interface CaseStudyLink {
   label: LocalizedValue<string>;
   href: ExternalUrl;
@@ -97,6 +102,12 @@ export interface CaseStudy extends CaseStudyPreview {
   resultSummary: LocalizedValue<string>;
   constraints: LocalizedValue<readonly string[]>;
   decisions: readonly CaseStudyDecision[];
+  facts?: readonly CaseStudyFact[];
+  systemStack?: readonly string[];
+  heroTags?: readonly string[];
+  technicalHighlights?: readonly CaseStudyDecision[];
+  heroVisualLabel?: LocalizedValue<string>;
+  heroVisualCaption?: LocalizedValue<string>;
   seoTitle: LocalizedValue<string>;
   seoDescription: LocalizedValue<string>;
 }

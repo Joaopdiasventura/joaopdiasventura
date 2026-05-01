@@ -48,7 +48,7 @@ export const CASE_STUDIES = [
       ],
       pt: [
         'Todos os valores monetários usam centavos inteiros',
-        'Autenticacao por cookie mantém a autoridade de sessao no backend',
+        'Autenticação por cookie mantém a autoridade de sessão no backend',
         'Transferências pendentes precisam resistir \u00e0 concorrência e a limites de replay',
       ],
     },
@@ -96,63 +96,160 @@ export const CASE_STUDIES = [
   {
     ...previewFor('modularis'),
     role: {
-      en: 'Backend architecture, async workflow design, service contracts',
-      pt: 'Arquitetura de backend, desenho de fluxo assíncrono e contratos de serviço',
+      en: 'Distributed backend architecture, saga orchestration, async contracts, operational resilience',
+      pt: 'Arquitetura de backend distribuído, orquestração de sagas, contratos assíncronos e resiliência operacional',
     },
     timeline: INDEPENDENT_PUBLIC_CASE,
+    facts: [
+      {
+        label: { en: 'Focus', pt: 'Foco' },
+        value: {
+          en: 'Distributed backend architecture, sagas, and integration contracts',
+          pt: 'Arquitetura de backend distribuído, sagas e contratos de integração',
+        },
+      },
+      {
+        label: { en: 'Topology', pt: 'Topologia' },
+        value: {
+          en: 'nginx + gateway + five business services',
+          pt: 'nginx + gateway + cinco serviços de negócio',
+        },
+      },
+      {
+        label: { en: 'Persistence', pt: 'Persistência' },
+        value: {
+          en: 'PostgreSQL, MongoDB, and RabbitMQ with service ownership',
+          pt: 'PostgreSQL, MongoDB e RabbitMQ com ownership por serviço',
+        },
+      },
+    ],
+    systemStack: [
+      'NestJS',
+      'Spring Boot',
+      'Go',
+      'RabbitMQ',
+      'PostgreSQL',
+      'MongoDB',
+      'Docker',
+      'Nginx',
+    ],
+    heroTags: [
+      'Event-driven architecture',
+      'Distributed microservices',
+      'RabbitMQ',
+      'Sagas',
+      'Idempotency',
+      'Retries',
+      'Fault tolerance',
+      'NestJS',
+      'Spring Boot',
+      'Go',
+    ],
+    heroVisualLabel: {
+      en: 'Runtime surface',
+      pt: 'Superfície de runtime',
+    },
+    heroVisualCaption: {
+      en: 'Real manual demo used to drive account creation, stream subscription, and webhook confirmation against the distributed topology.',
+      pt: 'Demo manual real usada para acionar criação de conta, inscrição no stream e confirmação de webhook contra a topologia distribuída.',
+    },
     problem: {
-      en: 'Onboarding had to respond quickly while retries, duplicate callbacks, and premium activation stayed explicit across services.',
-      pt: 'O onboarding precisava responder rápido enquanto retries, callbacks duplicados e ativação premium permaneciam explícitos entre serviços.',
+      en: 'Account creation had to stay fast at the edge without assuming a global transaction. Identity, payment intent, signed webhooks, and premium entitlement each needed explicit ownership, duplicate protection, and recovery after partial failure.',
+      pt: 'A criação de conta precisava permanecer rápida na borda sem assumir uma transação global. Identidade, intenção de pagamento, webhooks assinados e entitlement premium exigiam ownership explícito, proteção contra duplicidade e recuperação após falha parcial.',
     },
     solution: {
-      en: 'The flow was split into four NestJS services with typed RabbitMQ contracts, verified webhooks, split persistence, and observable async progress.',
-      pt: 'O fluxo foi dividido em quatro serviços NestJS com contratos tipados em RabbitMQ, webhooks validados, persistência segmentada e progresso assíncrono observável.',
+      en: 'Modularis keeps HTTP thin and shifts coordination to a persisted onboarding saga. The gateway publishes commands, downstream services exchange events and RPC-style responses over RabbitMQ, webhook ingress is durably relayed before mutating payment state, and each bounded context keeps the storage model that matches its own failure and consistency profile.',
+      pt: 'O Modularis mantém o HTTP fino e desloca a coordenação para uma saga persistida de onboarding. O gateway publica comandos, os serviços trocam eventos e respostas em estilo RPC via RabbitMQ, o ingresso de webhook é retransmitido de forma durável antes de alterar o estado do pagamento, e cada bounded context preserva o modelo de armazenamento que combina com seu perfil de falha e consistência.',
     },
+    technicalHighlights: [
+      {
+        title: {
+          en: 'Persisted saga orchestration',
+          pt: 'Orquestração de saga persistida',
+        },
+        description: {
+          en: 'The onboarding service stores transitions, retry schedule, and lease ownership in PostgreSQL before advancing identity and payment steps.',
+          pt: 'O onboarding-service persiste transições, agenda de retry e ownership de lease em PostgreSQL antes de avançar etapas de identidade e pagamento.',
+        },
+      },
+      {
+        title: {
+          en: 'Async contract boundary',
+          pt: 'Fronteira assíncrona por contrato',
+        },
+        description: {
+          en: 'Commands, events, and RPC responses travel through RabbitMQ exchanges documented in AsyncAPI instead of ad hoc service coupling.',
+          pt: 'Comandos, eventos e respostas RPC trafegam por exchanges RabbitMQ documentadas em AsyncAPI, sem acoplamento ad hoc entre serviços.',
+        },
+      },
+      {
+        title: {
+          en: 'Delivery safety and retries',
+          pt: 'Segurança de entrega e retries',
+        },
+        description: {
+          en: 'Payment and webhook flows persist dedupe keys, pending publications, and retry backoff rather than assuming single-shot processing.',
+          pt: 'Os fluxos de pagamento e webhook persistem chaves de deduplicação, publicações pendentes e backoff de retry em vez de assumir processamento de tentativa única.',
+        },
+      },
+      {
+        title: {
+          en: 'Polyglot service ownership',
+          pt: 'Ownership poliglota por serviço',
+        },
+        description: {
+          en: 'NestJS owns the edge and saga, Spring Boot owns identity and membership, and Go isolates payment plus webhook ingress with storage chosen per state model.',
+          pt: 'NestJS assume borda e saga, Spring Boot assume identidade e membership, e Go isola pagamento e ingresso de webhook com storage escolhido por modelo de estado.',
+        },
+      },
+    ],
     resultSummary: {
-      en: 'Verified on April 8, 2026: build, unit, and end-to-end suítes passed with 57 tests across 14 suítes while four services coordinated through eight message patterns.',
-      pt: 'Verificado em 8 de abril de 2026: build, testes unitários e end-to-end passaram com 57 testes em 14 suítes enquanto quatro serviços se coordenavam por oito padrões de mensagem.',
+      en: 'Reviewed on May 1, 2026: the repository implements six deployable services behind nginx, three RabbitMQ exchanges, nine documented async channels, signed webhook verification, outbox and inbox style delivery controls, and recovery loops that converge the flow from account request to premium entitlement.',
+      pt: 'Revisado em 1 de maio de 2026: o repositório implementa seis serviços implantáveis atrás do nginx, três exchanges RabbitMQ, nove canais assíncronos documentados, verificação de webhook assinado, controles de entrega em estilo outbox e inbox e loops de recuperação que convergem o fluxo da requisição de conta ao entitlement premium.',
     },
     constraints: {
       en: [
         'Service-owned data only, with no global transaction',
-        'At-least-once delivery with idempotent consumers',
-        'Webhook signature verification over raw body',
+        'At-least-once delivery requires idempotent consumers and dedupe receipts',
+        'External callbacks are accepted only after HMAC verification over the raw payload',
+        'Recovery workers need lease-based ownership to avoid duplicated saga progress',
       ],
       pt: [
-        'Dados pertencem aos serviços, sem transação global',
-        'Entrega at-least-once com consumidores idempotentes',
-        'Verificação de assinatura de webhook sobre raw body',
+        'Os dados pertencem aos serviços, sem transação global',
+        'Entrega at-least-once exige consumidores idempotentes e recibos de deduplicação',
+        'Callbacks externos só são aceitos após verificação HMAC sobre o payload bruto',
+        'Workers de recuperação exigem ownership por lease para evitar progresso duplicado de saga',
       ],
     },
     decisions: [
       {
         title: {
-          en: 'Split onboarding into explicit service boundaries',
-          pt: 'Dividir o onboarding em fronteiras explícitas de serviço',
+          en: 'Persist the orchestration instead of coordinating in memory',
+          pt: 'Persistir a orquestração em vez de coordenar em memória',
         },
         description: {
-          en: 'Ingress, identity, payments, and webhooks own separate responsibilities, making trust boundaries and failure modes visible.',
-          pt: 'Entrada, identidade, pagamentos e webhooks assumem responsabilidades separadas, deixando fronteiras de confiança e falhas visíveis.',
+          en: 'The onboarding saga stores state, retryability, next action, and lock ownership so partially completed flows can be recovered deterministically.',
+          pt: 'A saga de onboarding armazena estado, retryability, próxima ação e ownership de lock para que fluxos parcialmente concluídos sejam recuperados de forma determinística.',
         },
       },
       {
         title: {
-          en: 'Match persistence to each state model',
-          pt: 'Aderir a persistência a cada modelo de estado',
+          en: 'Treat webhook ingress as a durable boundary',
+          pt: 'Tratar o ingresso de webhook como uma fronteira durável',
         },
         description: {
-          en: 'Identity keeps relational guarantees while payment state stores callback metadata, retries, and processed-event tracking.',
-          pt: 'Identidade preserva garantias relacionais enquanto o estado de pagamento armazena metadados de callback, retries e rastreio de eventos processados.',
+          en: 'The webhook service validates signatures, records receipts, deduplicates confirmations, and only then relays payment callbacks to the broker.',
+          pt: 'O webhook-service valida assinaturas, registra receipts, deduplica confirmações e só então retransmite callbacks de pagamento para o broker.',
         },
       },
       {
         title: {
-          en: 'Make async progress observable end to end',
-          pt: 'Tornar o progresso assíncrono observável ponta a ponta',
+          en: 'Use delivery controls at every boundary',
+          pt: 'Usar controles de entrega em cada fronteira',
         },
         description: {
-          en: 'Live updates and a deterministic gateway simulator made retries, expiry, duplicate webhooks, and premium convergence reproducible.',
-          pt: 'Atualizações ao vivo e um simulador determinístico de gateway tornaram retries, expiração, webhooks duplicados e convergência premium reproduzíveis.',
+          en: 'Idempotency keys, request hashes, outbox and inbox receipts, correlation metadata, and retry backoff make failures explicit instead of hiding them behind optimistic assumptions.',
+          pt: 'Chaves de idempotência, hashes de requisição, receipts de outbox e inbox, metadados de correlação e backoff de retry tornam falhas explícitas em vez de escondê-las atrás de suposições otimistas.',
         },
       },
     ],
@@ -161,8 +258,8 @@ export const CASE_STUDIES = [
       pt: 'Estudo de caso Modularis | João Paulo Dias Ventura',
     },
     seoDescription: {
-      en: 'Case study about an event-driven onboarding backend with typed contracts, verified webhooks, and split persistence.',
-      pt: 'Estudo de caso sobre um backend de onboarding orientado a eventos com contratos tipados, webhooks validados e persistência segmentada.',
+      en: 'Case study about a production-shaped distributed platform with a persisted saga, RabbitMQ contracts, idempotent delivery, and signed webhook relay.',
+      pt: 'Estudo de caso sobre uma plataforma distribuída com formato de produção, saga persistida, contratos RabbitMQ, entrega idempotente e retransmissão de webhook assinado.',
     },
   },
   {
@@ -396,7 +493,7 @@ export const CASE_STUDIES = [
     },
     solution: {
       en: 'The system was planned around scalable catalog structure, chunk-based delivery, and frontend pacing tuned for music discovery.',
-      pt: 'O sistema foi planejado em torno de estrutura escalável de catálogo, entrega em chunks e ritmo de frontend ajustado para descoberta músical.',
+      pt: 'O sistema foi planejado em torno de estrutura escalável de catálogo, entrega em chunks e ritmo de frontend ajustado para descoberta musical.',
     },
     resultSummary: {
       en: 'Launch reached 1.3K accesses in six hours while validating catalog depth, playback continuity, and perceived responsiveness.',

@@ -6,7 +6,7 @@
         <app-brand-scene class="page-shell__scene page-shell__scene--case" [variant]="'case'" />
       }
 
-      <main class="case-study page-shell__content">
+      <main class="case-study page-shell__content" [attr.data-theme]="showcase.slug">
         <section class="case-study__hero">
           <div class="container-wide case-study__hero-layout">
             <div class="case-study__hero-copy">
@@ -33,6 +33,14 @@
 
               <p class="case-study__hero-summary">{{ copy(study.teaser) }}</p>
 
+              @if (heroTags().length > 0) {
+                <ul class="case-study__hero-tags">
+                  @for (tag of heroTags(); track tag) {
+                    <li>{{ tag }}</li>
+                  }
+                </ul>
+              }
+
               <div class="case-study__hero-actions">
                 @for (link of actionLinks(); track link.href) {
                   <app-ui-button
@@ -49,31 +57,82 @@
               <app-case-study-panel
                 appRevealOnScroll
                 [preset]="'panel'"
-                appViewportTilt="card"
-                class="case-study__panel surface-card"
+                class="case-study__panel case-study__hero-visual surface-card"
               >
-                <p class="case-study__section-label">{{ copy(labels.result) }}</p>
+                <figure class="case-study__cover-frame">
+                  <img
+                    [ngSrc]="showcase.cover.src"
+                    [ngSrcset]="coverSrcset"
+                    [sizes]="coverSizes"
+                    [width]="coverWidth"
+                    [height]="coverHeight"
+                    [alt]="copy(showcase.cover.alt)"
+                    decoding="async"
+                    priority
+                  />
 
-                <app-content-metric-list
-                  class="case-study__hero-metrics"
-                  [items]="heroMetrics()"
-                  [templateColumns]="caseStudyMetricsTemplate"
-                  [valueFirst]="true"
-                />
+                  <figcaption>
+                    {{ copy(study.heroVisualCaption ?? showcase.cover.alt) }}
+                  </figcaption>
+                </figure>
               </app-case-study-panel>
 
-              <app-case-study-panel
-                appRevealOnScroll
-                [delayMs]="80"
-                [preset]="'panel'"
-                appViewportTilt="card"
-                class="case-study__panel surface-card"
-              >
-                <app-content-meta-list class="case-study__facts" [items]="caseStudyFacts()" />
-              </app-case-study-panel>
+              <div class="case-study__hero-panels">
+                <app-case-study-panel
+                  appRevealOnScroll
+                  [delayMs]="80"
+                  [preset]="'panel'"
+                  appViewportTilt="card"
+                  class="case-study__panel surface-card"
+                >
+                  <p class="case-study__section-label">{{ copy(labels.result) }}</p>
+
+                  <app-content-metric-list
+                    class="case-study__hero-metrics"
+                    [items]="heroMetrics()"
+                    [templateColumns]="caseStudyMetricsTemplate"
+                    [valueFirst]="true"
+                  />
+                </app-case-study-panel>
+
+                <app-case-study-panel
+                  appRevealOnScroll
+                  [delayMs]="120"
+                  [preset]="'panel'"
+                  appViewportTilt="card"
+                  class="case-study__panel surface-card"
+                >
+                  <app-content-meta-list class="case-study__facts" [items]="caseStudyFacts()" />
+                </app-case-study-panel>
+              </div>
             </div>
           </div>
         </section>
+
+        @if (technicalHighlights().length > 0) {
+          <section class="case-study__section case-study__section--signals">
+            <div class="container-wide case-study__signals-shell">
+              <div class="case-study__signals-intro">
+                <p class="case-study__section-label">{{ copy(labels.architecture) }}</p>
+                <h2 class="case-study__signals-title">{{ copy(labels.architectureSummary) }}</h2>
+              </div>
+
+              <div class="case-study__callout-grid">
+                @for (highlight of technicalHighlights(); track highlight.title.en) {
+                  <article
+                    appRevealOnScroll
+                    [preset]="'panel'"
+                    appViewportTilt="card"
+                    class="case-study__callout surface-card"
+                  >
+                    <h3>{{ copy(highlight.title) }}</h3>
+                    <p>{{ copy(highlight.description) }}</p>
+                  </article>
+                }
+              </div>
+            </div>
+          </section>
+        }
 
         <section class="case-study__section">
           <div class="container-wide case-study__core">
