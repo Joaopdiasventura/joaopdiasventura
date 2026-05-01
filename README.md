@@ -4,72 +4,52 @@
 
 # João Paulo Dias Ventura
 
-### Engineering systems where **data, money and scale cannot fail**
+**Distributed systems engineer building data-intensive applications with transactional rigor**
 
-<a href="https://joaopdias-dev.vercel.app/en" target="_blank">
-  <img src="https://img.shields.io/badge/Portfolio-Explore-111111?style=for-the-badge" />
-</a>
-<a href="https://www.linkedin.com/in/joaopdias-dev/" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
-<a href="mailto:joaopdias.dev@gmail.com">
-  <img src="https://img.shields.io/badge/Email-Direct-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
-</a>
+<a href="https://joaopdias-dev.vercel.app/en">Portfolio</a>
+&nbsp;&middot;&nbsp;
+<a href="https://www.linkedin.com/in/joaopdias-dev/">LinkedIn</a>
+&nbsp;&middot;&nbsp;
+<a href="mailto:joaopdias.dev@gmail.com">Email</a>
 
 </div>
 
----
+## About
 
-## Positioning
+I build distributed and data-oriented systems where consistency, throughput, and recovery behavior are explicit design concerns. My scope has grown from frontend performance, authentication flows, and SSR delivery into high-volume ingestion pipelines, event-driven real-time systems, and cloud-backed financial automation, with direct involvement in architecture decisions, pattern definition, and system evolution at production scale.
 
-Software Engineer focused on **financial systems, data pipelines and distributed architectures**.
+## Engineering Focus
 
-Operating as a technical lead in startup environments, responsible for **system design, critical flows and long-term scalability decisions**.
+- Event-driven architecture
+- Distributed systems and asynchronous communication
+- Concurrency control and data consistency
+- Financial systems and transactional processing
+- Large-scale data processing (streams and pipelines)
+- High-performance interfaces (hybrid rendering and LCP/TTFB optimization)
 
----
+## Impact
 
-## What I Build
+- `R$1M per month` automated in an insurance billing flow with transactional traceability.
+- `Days to minutes` reduction in manual operational processing through flow-oriented automation.
+- `+16GB` of television media data processed through ingestion and transformation pipelines.
+- `1.23 GiB/s` measured throughput on a `9.77 GiB` benchmark with deterministic archive behavior.
 
-- **Transaction-critical systems**  
-  Flows where consistency, idempotency and failure handling are non-negotiable.
+## Core Technologies
 
-- **High-volume data pipelines**  
-  Processing large datasets with controlled throughput, backpressure and observability.
-
-- **Event-driven architectures**  
-  Decoupled services with asynchronous communication and resilient integrations.
-
-- **Real-time systems**  
-  SSE/WebSocket infrastructures for state propagation and user feedback loops.
-
----
-
-## Stack
+<div align="center">
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="42" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" width="42" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" width="42" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="42" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="42" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" width="42" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" width="42" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" width="42" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" width="42" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="42" />
 </p>
 
----
-
-## Focus Areas
-
-- Financial systems and billing workflows  
-- Distributed systems and messaging  
-- Data integrity and concurrency control  
-- Cloud-native deployments and scaling strategies  
-- Applied AI for operational automation  
-
----
-
-<div align="center">
-
-### Building systems that are **observable, reliable and economically efficient**
+![Most Used Languages](https://language-count.joaopdias.dev.br/?username=Joaopdiasventura&langs_count=4&card_width=450)
 
 </div>
