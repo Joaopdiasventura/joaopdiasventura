@@ -24,7 +24,7 @@ export interface HeroContent {
 }
 
 export interface ImpactMetric {
-  id: 'data' | 'beneficiaries' | 'access' | 'traffic';
+  id: 'data' | 'beneficiaries' | 'access' | 'traffic' | 'ggconcurrent';
   value: string;
   label: LocalizedValue<string>;
 }

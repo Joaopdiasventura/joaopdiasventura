@@ -21,16 +21,16 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'Auronix',
       },
       category: {
-        en: 'Digital banking and payment flows',
-        pt: 'Banco digital e fluxos de pagamento',
+        en: 'Financial platform and transactional flows',
+        pt: 'Plataforma financeira e fluxos transacionais',
       },
       problem: {
-        en: 'Transfers and QR payments needed instant feedback without losing settlement safety.',
-        pt: 'Transferências e pagamentos por QR precisavam de feedback imediato sem perder segurança na liquidação.',
+        en: 'Financial operations needed strong consistency, serialized critical paths, and live status updates without raising operational cost.',
+        pt: 'Operações financeiras exigiam consistência forte, serialização de caminhos críticos e atualizações ao vivo com menor custo operacional.',
       },
       solution: {
-        en: 'Modular monolith with async settlement, pessimistic locks, and live status updates.',
-        pt: 'Monólito modular com liquidação assíncrona, locks pessimistas e atualização de status em tempo real.',
+        en: 'Domain-driven architecture with queue-based concurrency control, PostgreSQL transactions, async business events, and Angular SSR.',
+        pt: 'Arquitetura orientada a domínio com controle de concorrência por filas, transações no PostgreSQL, eventos assíncronos e Angular com SSR.',
       },
       metrics: [
         {
@@ -211,16 +211,16 @@ export const PROJECTS_SECTION_DATA = {
         pt: 'GGCompress',
       },
       category: {
-        en: 'High-throughput archive and compression engineering',
-        pt: 'Engenharia de compressão e arquivamento de alto throughput',
+        en: 'Compression and archiving engine',
+        pt: 'Engine de compressão e arquivamento',
       },
       problem: {
-        en: 'Large files and directory trees needed predictable throughput, bounded memory, and safe extraction without losing deterministic output.',
-        pt: 'Arquivos grandes e árvores de diretório precisavam de throughput previsível, memória limitada e extração segura sem perder saída determinística.',
+        en: 'Large archives needed concurrent compression, deterministic integrity, and safe extraction without breaking throughput.',
+        pt: 'Arquivos grandes exigiam compressão concorrente, integridade determinística e extração segura sem perder throughput.',
       },
       solution: {
-        en: 'Sequential reader, goroutine workers, ordered writer, and a versioned `.ggc` format with chunk and index validation.',
-        pt: 'Leitor sequencial, workers com goroutines, writer ordenado e um formato `.ggc` versionado com validação de chunks e índices.',
+        en: 'A versioned `.ggc` format combines goroutine pipelines, ordered writes, per-chunk checksums, SHA-256 verification, and atomic extraction.',
+        pt: 'Um formato `.ggc` versionado combina pipelines com goroutines, escrita ordenada, checksum por chunk, verificação com SHA-256 e extração atômica.',
       },
       metrics: [
         {

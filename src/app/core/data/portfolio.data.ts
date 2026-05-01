@@ -32,8 +32,8 @@ export const SITE_CHROME: SiteChrome = {
     pt: 'Todos os direitos reservados.',
   },
   homeDescription: {
-    en: 'Portfolio of João Paulo Dias Ventura focused on auditable systems, data-heavy products, and precise frontend delivery.',
-    pt: 'Portfólio de João Paulo Dias Ventura focado em sistemas auditáveis, produtos intensivos em dados e execução frontend precisa.',
+    en: 'Portfolio of João Paulo Dias Ventura focused on distributed systems, transactional consistency, and data-intensive architecture.',
+    pt: 'Portfólio de João Paulo Dias Ventura focado em sistemas distribuídos, consistência transacional e arquitetura orientada a dados.',
   },
 };
 
@@ -66,8 +66,8 @@ export const HERO_CONTENT: HeroContent = {
     pt: ['João Paulo', 'Dias Ventura'],
   },
   summary: {
-    en: 'I build software for operations that need traceability, strong data flow, and clear interfaces.',
-    pt: 'Construo software para operações que exigem rastreabilidade, fluxo de dados robusto e interfaces claras.',
+    en: 'I build distributed and data-intensive systems with transactional consistency, high-throughput processing, and resilient architecture.',
+    pt: 'Construo sistemas distribuídos e orientados a dados com consistência transacional, alto volume de processamento e arquitetura resiliente.',
   },
   ctas: [
     {
@@ -99,10 +99,10 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
   },
   {
     id: 'beneficiaries',
-    value: '+1M',
+    value: 'R$1M',
     label: {
-      en: 'Beneficiaries registered',
-      pt: 'Beneficiários cadastrados',
+      en: 'Monthly billed volume',
+      pt: 'Volume mensal faturado',
     },
   },
   {
@@ -111,6 +111,14 @@ export const IMPACT_METRICS: readonly ImpactMetric[] = [
     label: {
       en: 'Concurrent users',
       pt: 'Usuários simultâneos',
+    },
+  },
+  {
+    id: 'ggconcurrent',
+    value: '1.23 GiB/s',
+    label: {
+      en: 'GGConcurrent throughput',
+      pt: 'Throughput do GGConcurrent',
     },
   },
 ] as const;
@@ -131,63 +139,63 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
     },
   },
   statement: {
-    en: 'I design systems where business rules stay explicit, operations stay traceable, and interfaces reduce ambiguity.',
-    pt: 'Desenho sistemas em que regras de negócio permanecem explícitas, a operação continua rastreável e a interface reduz ambiguidade.',
+    en: 'I design production-critical systems with explicit rules, resilient asynchronous flows, and traceable operations at scale.',
+    pt: 'Desenho sistemas críticos em produção com regras explícitas, fluxos assíncronos resilientes e operações rastreáveis em escala.',
   },
   groups: [
     {
       title: {
-        en: 'Architecture',
-        pt: 'Arquitetura',
+        en: 'Specialization',
+        pt: 'Especialização',
       },
       items: {
         en: [
-          'Domain modeling for critical rules',
-          'Transactional safety and trace history',
-          'Clean, event-driven systems',
+          'Event-driven architecture',
+          'Distributed systems and asynchronous communication',
+          'Concurrency control and data consistency',
         ],
         pt: [
-          'Modelagem de domínio para regras críticas',
-          'Segurança transacional e histórico de rastreio',
-          'Sistemas limpos e orientados a eventos',
+          'Arquitetura orientada a eventos',
+          'Sistemas distribuídos e comunicação assíncrona',
+          'Controle de concorrência e consistência de dados',
         ],
       },
     },
     {
       title: {
-        en: 'Domain',
-        pt: 'Domínio',
+        en: 'Focus',
+        pt: 'Foco',
       },
       items: {
         en: [
-          'High-volume ingestion and validation flows',
-          'Financial and operational automation',
-          'Applied AI with clear system boundaries',
+          'Financial systems and transactional processing',
+          'Large-scale data processing with streams and pipelines',
+          'High-performance interfaces with hybrid rendering and LCP/TTFB optimization',
         ],
         pt: [
-          'Fluxos de ingestão e validação em alto volume',
-          'Automação financeira e operacional',
-          'IA aplicada com limites de sistema claros',
+          'Sistemas financeiros e processamento transacional',
+          'Processamento de grandes volumes de dados com streams e pipelines',
+          'Interfaces de alta performance com rendering híbrido e otimização de LCP/TTFB',
         ],
       },
     },
     {
       title: {
-        en: 'Stack',
-        pt: 'Ferramentas',
+        en: 'Tech stack',
+        pt: 'Stack técnica',
       },
       items: {
         en: [
-          'Angular and Next.js',
-          'NestJS and Java',
-          'PostgreSQL and MongoDB',
-          'Docker, AWS, GCP, and CI/CD',
+          'Node.js and Golang',
+          'Angular with SSR, hydration, and lazy loading',
+          'PostgreSQL, MongoDB, RabbitMQ, and Redis',
+          'AWS and CI/CD',
         ],
         pt: [
-          'Angular e Next.js',
-          'NestJS e Java',
-          'PostgreSQL e MongoDB',
-          'Docker, AWS, GCP e CI/CD',
+          'Node.js e Golang',
+          'Angular com SSR, hydration e lazy loading',
+          'PostgreSQL, MongoDB, RabbitMQ e Redis',
+          'AWS e CI/CD',
         ],
       },
     },
@@ -201,13 +209,13 @@ export const CREDIBILITY_CONTENT: CredibilityContent = {
           'Fatec Osasco - Multiplatform Software Development (2026-2028)',
           'Etec Guarulhos - Systems Development (2023-2025)',
           'MongoDB - Advanced Data Modeling and Financial Knowledge',
-          'EDB - Distributed Postgres',
+          'AWS - Event-Driven Architecture Modeling',
         ],
         pt: [
           'Fatec Osasco - Desenvolvimento de Software Multiplataforma (2026-2028)',
           'Etec Guarulhos - Desenvolvimento de Sistemas (2023-2025)',
           'MongoDB - Modelagem Avançada de Dados e Conhecimento Financeiro',
-          'EDB - Postgres Distribuido',
+          'EDB - Postgres Distribuido1',
         ],
       },
     },
@@ -255,40 +263,40 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
   {
     id: 'ufind',
     role: { en: 'Mid-level Developer', pt: 'Desenvolvedor Pleno' },
-    company: 'UFind',
+    company: 'uFind Tecnologia',
     period: { en: 'Jun 2025 - Present', pt: 'jun. 2025 - atual' },
     summary: {
-      en: 'Implementing a data-driven AI agent with high-volume ingestion, real-time chat, and traceable production flows.',
-      pt: 'Implemento um agente de IA orientado a dados com ingestão em alto volume, chat em tempo real e fluxos produtivos rastreáveis.',
+      en: 'Led the design of an insurance billing workflow with high-volume monthly processing, traceability, and transactional consistency.',
+      pt: 'Liderei o desenho de um fluxo de faturamento para corretora de seguros com alto volume mensal, rastreabilidade e consistência transacional.',
     },
     highlights: {
       en: [
-        'Structured asynchronous Node.js pipelines to ingest and process more than 16 GB of information',
-        'Built real-time chat with the OpenAI API and participated in production infrastructure decisions',
+        'Built streams-based ingestion for multiple financial layouts using the Strategy Pattern and critical validations',
+        'Reduced manual work from days to minutes and helped evolve AWS standards across S3, ECS, and IAM',
       ],
       pt: [
-        'Estruturei pipelines assíncronos em Node.js para ingestão e processamento de mais de 16 GB de informações',
-        'Desenvolvi chat em tempo real com a API da OpenAI e participei de decisões técnicas da infraestrutura em produção',
+        'Desenvolvi ingestão com streams para múltiplos layouts financeiros usando Strategy Pattern e validações críticas',
+        'Reduzi operações manuais de dias para minutos e atuei na evolução de padrões AWS com S3, ECS e IAM',
       ],
     },
   },
   {
     id: 'representa-junior',
     role: { en: 'Junior Developer', pt: 'Desenvolvedor Júnior' },
-    company: 'Representa Online',
+    company: 'uFind Tecnologia',
     period: { en: 'Sep 2024 - May 2025', pt: 'set. 2024 - maio 2025' },
     summary: {
-      en: 'Worked on the design and development of an insurance billing system with high-volume file processing and multiple financial layouts.',
-      pt: 'Atuei na concepção e no desenvolvimento de um sistema de faturamento para corretora de seguros, com alto volume de arquivos e múltiplos layouts financeiros.',
+      en: 'Designed AI-driven pipelines for more than 16 GB of television media data and real-time communication integrated with the OpenAI API.',
+      pt: 'Projetei pipelines orientados a IA para mais de 16 GB de dados de mídia televisiva e comunicação em tempo real integrada à API da OpenAI.',
     },
     highlights: {
       en: [
-        'Structured streams-based flows with critical validations to preserve data integrity and traceability',
-        'Implemented automation that reduced manual operations from days to minutes',
+        'Structured event-driven Node.js pipelines with flow control, fault isolation, and distributed processing',
+        'Stored processed media data in a vector store and delivered bidirectional communication over WebSocket',
       ],
       pt: [
-        'Estruturei um fluxo com streams e validações críticas para garantir integridade dos dados e rastreabilidade',
-        'Implementei uma automação que reduziu operações manuais de dias para minutos',
+        'Estruturei pipelines em Node.js com arquitetura orientada a eventos, controle de fluxo, isolamento de falhas e processamento distribuído',
+        'Armazenei dados processados em vector store e entreguei comunicação bidirecional via WebSocket',
       ],
     },
   },
@@ -298,20 +306,20 @@ export const EXPERIENCE_ENTRIES: readonly ExperienceEntry[] = [
       en: 'Systems Development Intern',
       pt: 'Estagiário em Desenvolvimento de Sistemas',
     },
-    company: 'Representa Online',
+    company: 'uFind Tecnologia',
     period: { en: 'Jun 2024 - Aug 2024', pt: 'jun. 2024 - ago. 2024' },
     summary: {
-      en: 'Worked on the core catalog for companies, products, and services with a focus on performance and scalability.',
-      pt: 'Atuei no núcleo de catálogo de empresas, produtos e serviços com foco em performance e escalabilidade.',
+      en: 'Built catalog features with geospatial search, SSR/SSG delivery, and authentication flows tuned for performance and scale.',
+      pt: 'Desenvolvi features de catálogo com busca geoespacial, entrega SSR/SSG e autenticação orientadas a performance e escala.',
     },
     highlights: {
       en: [
-        'Added location search based on coordinates and distance ordering',
-        'Implemented JWT and Google OAuth2 flows plus full SSR and SSG pages for faster initial loading',
+        'Implemented proximity search with the Haversine formula and optimized queries for scalable catalog discovery',
+        'Structured JWT and Google OAuth2 auth plus SSR/SSG pages with lazy loading, asset optimization, and rendering control',
       ],
       pt: [
-        'Adicionei busca por localização baseada em coordenadas e ordenação por distância',
-        'Implementei fluxos com JWT e Google OAuth2, além de páginas full SSR e SSG para reduzir o carregamento inicial',
+        'Implementei busca por proximidade com a fórmula de Haversine e consultas otimizadas para descoberta escalável no catálogo',
+        'Estruturei autenticação com JWT e Google OAuth2, além de páginas SSR/SSG com lazy loading, otimização de assets e controle de renderização',
       ],
     },
   },
