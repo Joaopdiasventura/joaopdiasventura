@@ -18,15 +18,6 @@
 
 I build distributed and data-oriented systems where consistency, throughput, and recovery behavior are explicit design concerns. My scope has grown from frontend performance, authentication flows, and SSR delivery into high-volume ingestion pipelines, event-driven real-time systems, and cloud-backed financial automation, with direct involvement in architecture decisions, pattern definition, and system evolution at production scale.
 
-## Engineering Focus
-
-- Event-driven architecture
-- Distributed systems and asynchronous communication
-- Concurrency control and data consistency
-- Financial systems and transactional processing
-- Large-scale data processing (streams and pipelines)
-- High-performance interfaces (hybrid rendering and LCP/TTFB optimization)
-
 ## Impact
 
 - `R$1M per month` automated in an insurance billing flow with transactional traceability.
