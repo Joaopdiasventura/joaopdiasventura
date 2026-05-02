@@ -6,7 +6,7 @@
 
 **Distributed systems engineer building data-intensive applications with transactional rigor**
 
-<a href="https://joaopdias-dev.vercel.app/en">Portfolio</a>
+<a href="https://joaopdias.dev.br/en">Portfolio</a>
 &nbsp;&middot;&nbsp;
 <a href="https://www.linkedin.com/in/joaopdias-dev/">LinkedIn</a>
 &nbsp;&middot;&nbsp;

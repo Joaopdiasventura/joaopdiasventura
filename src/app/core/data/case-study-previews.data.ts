@@ -54,7 +54,7 @@ export const CASE_STUDY_PREVIEWS = [
     ],
     stack: ['NestJS', 'PostgreSQL', 'Redis'],
     links: [
-      liveLink('https://auronix-client.vercel.app'),
+      liveLink('https://auronix.joaopdias.dev.br'),
       repositoryLink(
         { en: 'backend code', pt: 'código do backend' },
         'https://github.com/joaopdiasventura/Auronix-server',
@@ -196,7 +196,7 @@ export const CASE_STUDY_PREVIEWS = [
       },
     ],
     stack: ['Tauri', 'NestJS', 'Redis'],
-    links: [liveLink('https://v-o-x.vercel.app')],
+    links: [liveLink('https://vox.joaopdias.dev.br')],
   },
   {
     slug: 'etecfy',
@@ -228,7 +228,7 @@ export const CASE_STUDY_PREVIEWS = [
     ],
     stack: ['Angular', 'NestJS', 'Capacitor'],
     links: [
-      liveLink('https://etecfy.vercel.app'),
+      liveLink('https://etecfy.joaopdias.dev.br'),
       repositoryLink(
         { en: 'backend code', pt: 'código do backend' },
         'https://github.com/joaopdiasventura/etecfy-server',

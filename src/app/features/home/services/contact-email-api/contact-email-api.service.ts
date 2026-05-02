@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const CONTACT_API_ENDPOINT = 'https://joaopdias-email.vercel.app/';
+const CONTACT_API_ENDPOINT = 'https://email.joaopdias.dev.br/';
 
 interface EmailApiRequest {
   subject: string;

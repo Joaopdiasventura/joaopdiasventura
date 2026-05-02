@@ -49,7 +49,7 @@ describe('ContactEmailApiService', () => {
       replyTo: string;
     };
 
-    expect(requestUrl).toBe('https://joaopdias-email.vercel.app/');
+    expect(requestUrl).toBe('https://email.joaopdias.dev.br/');
     expect(requestInit?.method).toBe('POST');
     expect(body.subject).toBe('Portfolio contact - João');
     expect(body.replyTo).toBe('joao@example.com');

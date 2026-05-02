@@ -56,7 +56,7 @@ export const PROJECTS_SECTION_DATA = {
         },
       ],
       stack: ['NestJS', 'PostgreSQL', 'Redis'],
-      liveUrl: 'https://auronix-client.vercel.app',
+      liveUrl: 'https://auronix.joaopdias.dev.br',
       repositories: [
         {
           name: 'Auronix Client',
@@ -308,7 +308,7 @@ export const PROJECTS_SECTION_DATA = {
         },
       ],
       stack: ['Tauri', 'NestJS', 'Redis'],
-      liveUrl: 'https://v-o-x.vercel.app',
+      liveUrl: 'https://vox.joaopdias.dev.br',
       repositories: [],
       icon: {
         src: '/assets/projects/icons/vox.svg',
@@ -365,7 +365,7 @@ export const PROJECTS_SECTION_DATA = {
         },
       ],
       stack: ['Angular', 'NestJS', 'Capacitor'],
-      liveUrl: 'https://etecfy.vercel.app',
+      liveUrl: 'https://etecfy.joaopdias.dev.br',
       repositories: [
         {
           name: 'Etecfy Client',
