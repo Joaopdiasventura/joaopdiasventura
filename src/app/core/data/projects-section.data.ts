@@ -137,8 +137,8 @@ export const PROJECTS_SECTION_DATA = {
       cover: {
         src: '/assets/projects/covers/modularis/modularis-1280.webp',
         alt: {
-          en: 'Modularis cover showing the real flow demo used to drive account creation, stream subscription, and webhook confirmation over the distributed runtime.',
-          pt: 'Capa do Modularis mostrando a demo de fluxo real usada para acionar criação de conta, inscrição no stream e confirmação de webhook sobre o runtime distribuído.',
+          en: 'Modularis cover showing the architecture diagram for the onboarding saga, RabbitMQ contracts, signed webhook ingress, and service-owned runtime boundaries.',
+          pt: 'Capa do Modularis mostrando o diagrama de arquitetura da saga de onboarding, dos contratos em RabbitMQ, do ingresso de webhook assinado e das fronteiras do runtime por serviço.',
         },
       },
     },

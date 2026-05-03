@@ -225,12 +225,12 @@ export const CASE_STUDIES = [
       'Go',
     ],
     heroVisualLabel: {
-      en: 'Runtime surface',
-      pt: 'Superfície de runtime',
+      en: 'System topology',
+      pt: 'Topologia do sistema',
     },
     heroVisualCaption: {
-      en: 'Manual demo used to drive account creation, event propagation, and webhook confirmation against the distributed topology.',
-      pt: 'Demo manual usada para acionar criação de conta, propagação de eventos e confirmação de webhook contra a topologia distribuída.',
+      en: 'Architecture diagram mapping the onboarding saga, async contracts, signed webhook ingress, and service-owned data boundaries across the distributed runtime.',
+      pt: 'Diagrama de arquitetura mapeando a saga de onboarding, os contratos assíncronos, o ingresso de webhook assinado e as fronteiras de dados por serviço no runtime distribuído.',
     },
     problem: {
       en: 'Account creation had to stay fast at the edge without assuming a global transaction. Identity, payment intent, signed webhooks, and premium entitlement each needed explicit ownership, duplicate protection, and deterministic recovery after partial failure.',
